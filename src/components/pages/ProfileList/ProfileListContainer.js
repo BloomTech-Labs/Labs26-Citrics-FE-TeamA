@@ -5,11 +5,11 @@ import { getProfileData } from '../../../api';
 
 import { List } from '../../common';
 
-//import RenderProfileListPage from './RenderProfileListPage';
+// import RenderProfileListPage from './RenderProfileListPage';
 
 // Here is an example of using our reusable List component to display some list data to the UI.
 const ProfileList = () => {
-  //const { authState } = useOktaAuth();
+  // const { authState } = useOktaAuth();
 
   return (
     <List
@@ -19,7 +19,7 @@ const ProfileList = () => {
       // to complete.
       LoadingComponent={() => <div>Loading Profiles...</div>}
       // Here we are passing in a component that receives our new data and returns our JSX elements.
-      //RenderItems={RenderProfileListPage}
+      // RenderItems={RenderProfileListPage}
     />
   );
 };
