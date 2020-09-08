@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 
 function RenderHomePage(props) {
-  // const { userInfo, authService } = props;
   return (
     <div>
       <h1>Welcome to Labs Basic SPA</h1>
@@ -21,11 +20,9 @@ function RenderHomePage(props) {
         <p>
           <Link to="/datavis">Data Visualizations Example</Link>
         </p>
-        {/* <p>
-          <Button type="primary" onClick={() => authService.logout()}>
-            Logout
-          </Button>
-        </p> */}
+        <p>
+          <Button type="primary">Search</Button>
+        </p>
       </div>
     </div>
   );
