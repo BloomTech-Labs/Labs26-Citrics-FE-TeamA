@@ -19,6 +19,10 @@ import { ExampleDataViz } from './components/pages/ExampleDataViz';
 // import { config } from './utils/oktaConfig';
 import { LoadingComponent } from './components/common';
 
+import Amplify from 'aws-amplify';
+import awsExports from './aws-exports';
+Amplify.configure(awsExports);
+
 ReactDOM.render(
   <Router>
     <React.StrictMode>
