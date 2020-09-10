@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
+import AddCityButton from '../../common/AddCityButton';
 
 function RenderHomePage(props) {
   return (
@@ -23,6 +24,7 @@ function RenderHomePage(props) {
         <p>
           <Button type="primary">Search</Button>
         </p>
+        <AddCityButton />
       </div>
     </div>
   );

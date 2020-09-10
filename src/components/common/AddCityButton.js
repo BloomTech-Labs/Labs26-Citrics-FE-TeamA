@@ -6,7 +6,7 @@ import { PlusOutlined } from '@ant-design/icons';
 const AddCityButton = () => {
   return (
     <div className="site-button-ghost-wrapper">
-      <Button className="button">
+      <Button>
         <PlusOutlined />
         Add City
       </Button>
