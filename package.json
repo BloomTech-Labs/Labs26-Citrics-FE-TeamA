@@ -6,10 +6,12 @@
   "repository": "github:Lambda-School-Labs/labs-spa-starter",
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
+    "@aws-amplify/ui-react": "^0.2.18",
     "@craco/craco": "^5.6.4",
     "@okta/okta-react": "^3.0.2",
     "@okta/okta-signin-widget": "^4.1.2",
     "antd": "^4.4.3",
+    "aws-amplify": "^3.1.1",
     "axios": "^0.19.2",
     "craco-less": "^1.17.0",
     "node-sass": "^4.14.1",
@@ -18,7 +20,7 @@
     "react-dom": "^16.13.1",
     "react-plotly.js": "^2.4.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1"
+    "react-scripts": "^3.4.1"
   },
   "scripts": {
     "start": "craco --max_old_space_size=4096 start",
@@ -30,7 +32,10 @@
     "lint": "eslint 'src/**/*.{js,jsx}' --fix",
     "format": "prettier --write 'src/**/*.{js,jsx,css,scss}'",
     "storybook": "start-storybook",
-    "deploy-storybook": "storybook-to-ghpages"
+    "deploy-storybook": "storybook-to-ghpages",
+    "build:prod": "docker build -t perezident/testing_docker .",
+    "start:prod": "docker run --rm -d -p 80:80 --name running-zen perezident/testing_docker",
+    "stop:prod": "docker stop running-zen"
   },
   "eslintConfig": {
     "extends": "react-app"

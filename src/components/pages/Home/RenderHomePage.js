@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 import AddCityButton from '../../common/AddCityButton';
 
-function RenderHomePage(props) {
+function RenderHomePage() {
   return (
     <div>
       <h1>Welcome to Labs Basic SPA</h1>

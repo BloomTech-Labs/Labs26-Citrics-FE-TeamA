@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { Layout, Menu } from 'antd';
 import './styles/NavBar.scss';
@@ -11,7 +11,7 @@ function NavBar() {
     <Layout className="layout">
       <Header>
         <Menu theme="dark" mode="horizontal">
-          <Menu.Item key="1" className="link">
+          <Menu.Item key="1" className="link-home">
             <Link to="/">Home</Link>
           </Menu.Item>
           <Menu.Item key="2" className="link">

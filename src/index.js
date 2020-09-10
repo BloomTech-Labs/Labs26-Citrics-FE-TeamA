@@ -9,6 +9,10 @@ import { NotFoundPage } from './components/pages/NotFound';
 import { HomePage } from './components/pages/Home';
 import { LoadingComponent } from './components/common';
 
+import Amplify from 'aws-amplify';
+import awsExports from './aws-exports';
+Amplify.configure(awsExports);
+
 ReactDOM.render(
   <Router>
     <React.StrictMode>
