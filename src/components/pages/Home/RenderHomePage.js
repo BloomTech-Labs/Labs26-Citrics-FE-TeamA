@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 import AddCityButton from '../../common/AddCityButton';
+import AddCityBar from '../../common/AddCityBar';
 
 function RenderHomePage() {
   return (
@@ -21,10 +22,10 @@ function RenderHomePage() {
         <p>
           <Link to="/datavis">Data Visualizations Example</Link>
         </p>
-        <p>
-          <Button type="primary">Search</Button>
-        </p>
-        <AddCityButton />
+        <section className="addingCities">
+          <AddCityBar />
+          <AddCityButton />
+        </section>
       </div>
     </div>
   );
