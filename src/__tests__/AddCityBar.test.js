@@ -11,10 +11,6 @@ test('Should add text to the input', async () => {
   const { getByPlaceholderText } = render(<AddCityBar />);
   fireEvent.click(getByPlaceholderText(/input/i));
   await userEvent.type(getByPlaceholderText(/input/i), 'Hello there!');
-  //   fireEvent.keyDown(getByPlaceholderText(/input/i), { key: 'A', code: 'KeyA' });
-  //   fireEvent.keyDown(getByPlaceholderText(/input/i), {
-  //     key: 'Enter',
-  //     code: 'Enter',
-  //   });
+
   expect(getByPlaceholderText(/input/i)).toHaveValue('Hello there!');
 });
