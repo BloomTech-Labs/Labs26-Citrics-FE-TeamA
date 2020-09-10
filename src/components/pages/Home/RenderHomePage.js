@@ -22,7 +22,7 @@ function RenderHomePage() {
         <p>
           <Link to="/datavis">Data Visualizations Example</Link>
         </p>
-
+        {'The add a city section'}
         <section className="addingCities">
           <AddCityBar />
           {!AddCityBar && <AddCityButton />}

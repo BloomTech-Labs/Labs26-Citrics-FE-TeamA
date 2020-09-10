@@ -4,7 +4,7 @@ import './styles/AddCityBar.scss';
 
 const AddCityBar = () => {
   const { Search } = Input;
-
+  // Search bar for adding cities
   return (
     <Search
       placeholder="input search text"

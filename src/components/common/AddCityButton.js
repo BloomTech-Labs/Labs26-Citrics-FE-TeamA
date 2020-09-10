@@ -4,6 +4,7 @@ import { Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 
 const AddCityButton = () => {
+  // A button for adding another city search bar
   return (
     <div className="site-button-ghost-wrapper">
       <Button>
