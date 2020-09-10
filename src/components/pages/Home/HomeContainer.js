@@ -2,7 +2,7 @@ import React from 'react';
 
 import RenderHomePage from './RenderHomePage';
 
-function HomeContainer(props) {
+function HomeContainer() {
   return <RenderHomePage />;
 }
 
