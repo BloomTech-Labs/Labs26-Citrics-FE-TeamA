@@ -8,7 +8,7 @@ afterEach(cleanup);
 
 describe('<HomeContainer /> testing suite', () => {
   test('mounts a page', async () => {
-    const { getByText } = render(
+    render(
       <Router>
         <HomePage
           LoadingComponent={() => (
