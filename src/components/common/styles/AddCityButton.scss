@@ -1,0 +1,10 @@
+.button {
+  color: lightgrey;
+  &:hover {
+    border-color: purple;
+    color: purple;
+    .anticon {
+      color: purple;
+    }
+  }
+}
