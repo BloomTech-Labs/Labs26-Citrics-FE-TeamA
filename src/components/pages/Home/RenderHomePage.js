@@ -22,9 +22,11 @@ function RenderHomePage() {
         <p>
           <Link to="/datavis">Data Visualizations Example</Link>
         </p>
+
         <section className="addingCities">
           <AddCityBar />
-          <AddCityButton />
+          {!AddCityBar && <AddCityButton />}
+          {/* Adjust to have the button show when the city is recieved from DS */}
         </section>
       </div>
     </div>
