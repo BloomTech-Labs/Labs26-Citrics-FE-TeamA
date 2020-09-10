@@ -1,3 +1,4 @@
+import './matchMedia.mock.js';
 import RenderHomePage from '../components/pages/Home/RenderHomePage';
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
