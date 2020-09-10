@@ -1,11 +1,10 @@
 .addingCities {
   display: grid;
-  border: 1px solid blue;
   grid-template-columns: repeat(2, 1fr);
   width: 90%;
   margin: 0 auto;
   .ant-input-group-wrapper {
-    width: 80%;
+    width: 60vw;
     margin: 0 auto;
   }
 }
