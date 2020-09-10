@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'antd';
+import AddCityButton from '../../common/AddCityButton';
+import AddCityBar from '../../common/AddCityBar';
 
 function RenderHomePage() {
   return (
@@ -20,9 +22,12 @@ function RenderHomePage() {
         <p>
           <Link to="/datavis">Data Visualizations Example</Link>
         </p>
-        <p>
-          <Button type="primary">Search</Button>
-        </p>
+        {'The add a city section'}
+        <section className="addingCities">
+          <AddCityBar />
+          {!AddCityBar && <AddCityButton />}
+          {/* Adjust to have the button show when the city is recieved from DS */}
+        </section>
       </div>
     </div>
   );
