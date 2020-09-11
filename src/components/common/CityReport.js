@@ -101,14 +101,16 @@ function onChange(pagination, filters, sorter, extra) {
 
 function CityReport() {
   return (
-    <div className="report-container">
-      <div className="average-rent">
-        <h1>Average Rent</h1>
-        <Table columns={columns} dataSource={data} onChange={onChange} />
-      </div>
-      <div className="weather">
-        <h1>Weather</h1>
-        <Table columns={columns} dataSource={data2} onChange={onChange} />
+    <div>
+      <div className="report-container">
+        <div className="average-rent">
+          <h1>Average Rent</h1>
+          <Table columns={columns} dataSource={data} onChange={onChange} />
+        </div>
+        <div className="weather">
+          <h1>Weather</h1>
+          <Table columns={columns} dataSource={data2} onChange={onChange} />
+        </div>
       </div>
     </div>
   );
