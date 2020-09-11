@@ -5,8 +5,10 @@ import AddingCities from '../../common/AddingCities';
 function RenderHomePage() {
   return (
     <>
-      <Title />
-      <AddingCities />
+      <div className="colorTitle">
+        <Title />
+        <AddingCities />
+      </div>
       <CityReport />
     </>
   );
