@@ -5,12 +5,10 @@ console.log(cityData);
 const cityDataArr = {};
 cityData.forEach(value => {
   // console.log(value.city[0], value.state);
-  if (value.city in cityDataArr) {
-    cityDataArr[value.city].push([value.city, value.state]);
-  } else {
+  if (!(value.city in cityDataArr)) {
     cityDataArr[value.city] = [];
-    cityDataArr[value.city].push([value.city, value.state]);
   }
+  cityDataArr[value.city].push([value.city, value.state]);
 });
 console.log(cityDataArr);
 
@@ -19,11 +17,13 @@ function AutoCompleteInput() {
 
   const handleNameChange = event => {
     setCity({ city: event.target.value });
-    console.log(event.target.value);
+    console.log(event.target.value.length);
 
+    let i = event.target.value.length;
     Object.keys(cityDataArr).forEach(value => {
       // console.log(value[0]);
-      if (event.target.value === value[0]) {
+      // console.log(value.slice(0, i));
+      if (event.target.value == value.slice(0, i)) {
         console.log(value);
         console.log(cityDataArr[value]);
       }
