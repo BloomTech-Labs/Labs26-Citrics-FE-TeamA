@@ -8,17 +8,23 @@ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste
 
 ## Contributors
 
-|                                                      [Michael Perez](https://github.com/Perezented)                                         |                                                       [Toricruz Mendiola](https://github.com/mtoricruz)                                       |
-| :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://i.ibb.co/JBq28bz/mperez.jpg" width = "135" />](https://github.com/Perezented)                                           |               [<img src="https://i.ibb.co/7yBt5rb/profpic.jpg" width = "200" />](https://github.com/mtoricruz)                                |
-|                                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Perezented)                      |                            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/mtoricruz)                             |
-|       [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/perezenting-michael/)  |    [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/toricruz-mendiola/)         |   
+|                                            [Michael Perez](https://github.com/Perezented)                                            |                                         [Toricruz Mendiola](https://github.com/mtoricruz)                                          |
+| :----------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------: |
+|                   [<img src="https://i.ibb.co/JBq28bz/mperez.jpg" width = "135" />](https://github.com/Perezented)                   |                  [<img src="https://i.ibb.co/7yBt5rb/profpic.jpg" width = "200" />](https://github.com/mtoricruz)                  |
+|                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Perezented)                        |                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/mtoricruz)                       |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/perezenting-michael/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/toricruz-mendiola/) |
 
 <br>
 <br>
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
+![aws-amplify](https://img.shields.io/badge/aws--amplify-%5E3.1.1-darkblue?style=flat-square)
+![axios](https://img.shields.io/badge/axios-%5E0.19.2-yellow?style=flat-square)
+![ant-design](https://img.shields.io/badge/ant--design-%5E4.2.2-red?style=flat-square)
+![craco](https://img.shields.io/badge/craco-%5E5.6.4-default?style=flat-square)
+![plotly.js](https://img.shields.io/badge/plotly.js-%5E1.54.6-%23e4f5f2?style=flat-square)
+![node-sass](https://img.shields.io/badge/node--sass-%5E4.14.1-darkgreen?style=flat-square)
 ![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)
 
 ### How to Work App Locally
@@ -53,7 +59,7 @@ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste
 
 🚫Replace text below with a description of the API
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
 
 ## Payment API here
 
