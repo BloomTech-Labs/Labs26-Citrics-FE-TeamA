@@ -17,9 +17,6 @@ function NavBar() {
           <Menu.Item key="2" className="link">
             <Link to="/about-us">About Us</Link>
           </Menu.Item>
-          <Menu.Item key="3" className="link">
-            <Link to="/why-citrics"> Why Citrics?</Link>
-          </Menu.Item>
           <h1 className="title" selectable="false">
             <Link to="/">Citrics</Link>
           </h1>
