@@ -111,6 +111,18 @@ function CityReport() {
           <h1>Weather</h1>
           <Table columns={columns} dataSource={data2} onChange={onChange} />
         </div>
+        <div className="weather">
+          <h1>Weather</h1>
+          <Table columns={columns} dataSource={data2} onChange={onChange} />
+        </div>
+        <div className="weather">
+          <h1>Weather</h1>
+          <Table columns={columns} dataSource={data2} onChange={onChange} />
+        </div>
+        <div className="weather">
+          <h1>Weather</h1>
+          <Table columns={columns} dataSource={data2} onChange={onChange} />
+        </div>
       </div>
     </div>
   );
