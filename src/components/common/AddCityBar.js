@@ -4,13 +4,6 @@ import AutoCompleteInput from './AutoComplete';
 
 const AddCityBar = () => {
   // Search bar for adding cities
-  return (
-    // <Search
-    //   placeholder="input search text"
-    //   onSearch={value => console.log(value)}
-    //   enterButton
-    // />
-    <AutoCompleteInput />
-  );
+  return <AutoCompleteInput />;
 };
 export default AddCityBar;
