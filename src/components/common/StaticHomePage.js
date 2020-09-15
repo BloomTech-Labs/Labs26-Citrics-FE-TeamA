@@ -9,8 +9,8 @@ export default function StaticHomePage() {
           <h2>Data that Matters</h2>
           <p>
             Research a single city or compare multiple cities measuring
-            different metrics like average rent of 1-bedroom, average climate,
-            most popular job industry and more.
+            different metrics like the average rent of a 1-bedroom, average
+            climate, most popular job industry and more.
           </p>
         </div>
       </div>
@@ -30,7 +30,7 @@ export default function StaticHomePage() {
           <h2>Look Ahead</h2>
           <p>
             Based on historic city data, we layout predictions for you of what
-            the cities metrics will look like up to 5 years ahead.{' '}
+            the city wide metrics will look like, up to 5 years in advance.{' '}
           </p>
         </div>
       </div>

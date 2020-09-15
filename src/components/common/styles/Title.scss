@@ -1,9 +1,13 @@
 .TitleSection {
-  h1 {
-    font-size: 2.8rem;
+  .homeQuote {
+    font-size: 5rem;
     font-weight: 700;
+    margin-left: 9%;
+    width: 55%;
+
+    color: rgba(0, 0, 0, 0.438);
   }
-  text-align: center;
+  margin-top: 4%;
   padding: 2%;
 }
 .colorTitle {
