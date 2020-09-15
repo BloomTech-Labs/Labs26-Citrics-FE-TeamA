@@ -5,12 +5,12 @@ import userEvent from '@testing-library/user-event';
 
 const { getByPlaceholderText } = render(<AddCityBar />);
 test('AddCityBar should have placeholder text', () => {
-  expect(getByPlaceholderText(/input search/i)).toBeInTheDocument();
+  expect(getByPlaceholderText(/Search city/i)).toBeInTheDocument();
 });
 test('Should add text to the input', async () => {
   const { getByPlaceholderText } = render(<AddCityBar />);
-  fireEvent.click(getByPlaceholderText(/input/i));
-  await userEvent.type(getByPlaceholderText(/input/i), 'Hello there!');
+  fireEvent.click(getByPlaceholderText(/search city/i));
+  await userEvent.type(getByPlaceholderText(/search city/i), 'Hello there!');
 
-  expect(getByPlaceholderText(/input/i)).toHaveValue('Hello there!');
+  expect(getByPlaceholderText(/search city/i)).toHaveValue('Hello there!');
 });
