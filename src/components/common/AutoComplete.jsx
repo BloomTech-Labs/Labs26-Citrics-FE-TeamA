@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import cityData from '../../api/cityData';
+import { Input } from 'antd';
 
 console.log(cityData);
 const cityDataArr = {};
@@ -13,6 +14,7 @@ cityData.forEach(value => {
 console.log(cityDataArr);
 
 function AutoCompleteInput() {
+  const { Search } = Input;
   const [city, setCity] = useState({ city: '' });
   const handleNameChange = event => {
     setCity({ city: event.target.value });
@@ -44,13 +46,13 @@ function AutoCompleteInput() {
       {/* {console.log(city)} */}
       <form onSubmit={event => handleSubmit(event)}>
         <label>
-          <input
+          <Search
             type="text"
             placeholder="Search City"
+            enterButton
             onChange={event => handleNameChange(event)}
           />
         </label>
-        <button>Submit!</button>
       </form>
     </div>
   );
