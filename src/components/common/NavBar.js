@@ -21,7 +21,7 @@ function NavBar() {
             <Link to="/why-citrics"> Why Citrics?</Link>
           </Menu.Item>
           <h1 className="title" selectable="false">
-            Citrics
+            <Link to="/">Citrics</Link>
           </h1>
         </Menu>
       </Header>
