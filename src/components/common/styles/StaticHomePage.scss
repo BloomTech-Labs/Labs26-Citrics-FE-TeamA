@@ -1,0 +1,17 @@
+.information {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1%;
+  margin: 2% 5% 4%;
+  div,
+  h2 {
+    text-align: center;
+  }
+  i {
+    margin: 5% 0;
+  }
+  p {
+    margin: 1% 10%;
+    font-size: 1.5rem;
+  }
+}

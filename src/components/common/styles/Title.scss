@@ -1,12 +1,23 @@
 .TitleSection {
-  h1 {
-    font-size: 2.8rem;
+  .homeQuote {
+    font-size: 5rem;
     font-weight: 700;
+    margin-left: 9%;
+    width: 55%;
+
+    color: rgba(0, 0, 0, 0.438);
   }
-  text-align: center;
+  margin-top: 4%;
   padding: 2%;
 }
 .colorTitle {
-  background-color: rgb(253, 152, 0);
+  background-image: url('./imgs/dorian-mongel-9zQkRU9IsDk-unsplash.jpg');
+
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  height: 66vh;
   padding: 1%;
 }
+// <span>Photo by <a href="https://unsplash.com/@_dorian_?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Dorian Mongel</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
