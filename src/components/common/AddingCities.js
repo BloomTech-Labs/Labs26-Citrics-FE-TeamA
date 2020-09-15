@@ -1,6 +1,7 @@
 import React from 'react';
 import AddCityBar from './AddCityBar';
 import AddCityButton from './AddCityButton';
+import './styles/AddCityBar.scss';
 
 export default function AddingCities() {
   return (
