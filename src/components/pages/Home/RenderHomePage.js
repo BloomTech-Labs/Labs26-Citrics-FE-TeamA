@@ -3,6 +3,7 @@ import CityReport from '../../common/CityReport';
 import Title from '../../common/Title';
 import AddingCities from '../../common/AddingCities';
 function RenderHomePage() {
+  // state of home page. default state is StaticHomePageComp
   return (
     <>
       <div className="colorTitle">
@@ -11,6 +12,7 @@ function RenderHomePage() {
       </div>
       <CityReport />
     </>
+    // if no search : <StaticHomePageComp/> ? <CityReport/>
   );
 }
 export default RenderHomePage;
