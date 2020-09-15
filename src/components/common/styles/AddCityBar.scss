@@ -3,15 +3,15 @@
   grid-template-columns: repeat(1, 1fr);
   width: 90%;
   margin: 0 auto;
-  .ant-input-group-wrapper {
-    width: 60vw;
+  .ant-select {
+    width: 80%;
     margin: 0 auto;
   }
-  .ant-btn{
+  .ant-btn {
     height: 4.9vh;
     width: 5vh;
   }
-  .ant-input:first-child{
+  .ant-input:first-child {
     font-size: 1.4rem;
   }
 }
