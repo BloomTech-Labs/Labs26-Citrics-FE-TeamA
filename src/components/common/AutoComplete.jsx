@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import fetchCityData from '../../api/cityData';
 import { Input } from 'antd';
+import './styles/AutoComplete.scss';
 
 // log the matching cities from input typed
 
@@ -91,11 +92,15 @@ function AutoCompleteInput() {
             onChange={event => handleCityInputChange(event)}
           />
           {console.log(options.length)}
-          <div>
+          <div className="autocomplete">
             {options.length > 0 &&
               options.map(value => {
                 console.log(value);
-                return <p>{value[0]}</p>;
+                return (
+                  <p>
+                    {value[0]}, {value[1]}
+                  </p>
+                );
               })}
           </div>
         </label>
