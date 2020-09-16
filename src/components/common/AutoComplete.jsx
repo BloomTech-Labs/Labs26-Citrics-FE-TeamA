@@ -91,13 +91,16 @@ function AutoCompleteInput() {
             enterButton
             onChange={event => handleCityInputChange(event)}
           />
-          {console.log(options.length)}
           <div className="autocomplete">
             {options.length > 0 &&
               options.map(value => {
                 console.log(value);
                 return (
-                  <p>
+                  <p
+                    onClick={() => {
+                      console.log(cityDataArr[value[0]]);
+                    }}
+                  >
                     {value[0]}, {value[1]}
                   </p>
                 );
