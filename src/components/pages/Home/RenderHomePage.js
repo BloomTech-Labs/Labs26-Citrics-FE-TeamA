@@ -22,6 +22,7 @@ function RenderHomePage() {
   const getRentalData = () => {
     fetchCityData()
       .then(response => {
+        // console.log('RESPONSE FROM FETCHCITY', response);
         setCityData(response);
       })
       .catch(err => {

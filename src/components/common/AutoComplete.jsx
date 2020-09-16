@@ -3,7 +3,6 @@ import { Input } from 'antd';
 import './styles/AutoComplete.scss';
 import { SearchContext } from '../../state/contexts/ReportContext';
 
-// log the matching cities from input typed
 
 function AutoCompleteInput() {
   const citySearch = useContext(SearchContext);
@@ -14,8 +13,7 @@ function AutoCompleteInput() {
   // useState for autocomplete options
   const [options, setOptions] = useState([]);
   
-  // console.log(cityDataArr);
-  // console.log(cityData);
+  // console.log('CITY SEARCH',citySearch);
 
   const handleCityInputChange = event => {
     setCity({ city: event.target.value });
@@ -32,7 +30,7 @@ function AutoCompleteInput() {
         // Checks if the user input matches each city, sliced from the beginning to the user input's word length
         if (userInput === value.slice(0, i)) {
           // logs the cities that come up for that match
-          console.log(value);
+          console.log('VALUE LOG',value);
           // Once something matches, push it into optionsArr
           if (citySearch[value].length > 1) {
             citySearch[value].map(value => {
@@ -68,7 +66,7 @@ function AutoCompleteInput() {
           <div className="autocomplete">
             {options.length > 0 &&
               options.map(value => {
-                console.log(value);
+                console.log('VALUE',value);
                 return (
                   <p
                     onClick={() => {
