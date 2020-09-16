@@ -4,8 +4,7 @@ import './styles/Title.scss';
 export default function Title() {
   return (
     <section className="TitleSection">
-      <h1>Citrics</h1>
-      <h2>Find and Compare City Data</h2>
+      <h2 className="homeQuote">Make the right choice for your new home</h2>
     </section>
   );
 }
