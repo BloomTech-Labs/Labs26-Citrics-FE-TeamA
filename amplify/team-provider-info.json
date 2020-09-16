@@ -1,44 +1,44 @@
 {
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-labs26citricsfeteama-dev-145823-authRole",
-            "UnauthRoleArn": "arn:aws:iam::011797621610:role/amplify-labs26citricsfeteama-dev-145823-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::011797621610:role/amplify-labs26citricsfeteama-dev-145823-authRole",
-            "Region": "us-east-2",
-            "DeploymentBucketName": "amplify-labs26citricsfeteama-dev-145823-deployment",
-            "UnauthRoleName": "amplify-labs26citricsfeteama-dev-145823-unauthRole",
-            "StackName": "amplify-labs26citricsfeteama-dev-145823",
-            "StackId": "arn:aws:cloudformation:us-east-2:011797621610:stack/amplify-labs26citricsfeteama-dev-145823/d3ab3f40-f2d6-11ea-8cae-0aa2a0de9f8e",
-            "AmplifyAppId": "d2dc1dka01fxmc"
-        },
-        "categories": {
-            "hosting": {
-                "amplifyhosting": {
-                    "appId": "d2dc1dka01fxmc",
-                    "type": "manual"
-                }
-            }
-        }
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-labs26citricsfeteama-dev-145823-authRole",
+      "UnauthRoleArn": "arn:aws:iam::011797621610:role/amplify-labs26citricsfeteama-dev-145823-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::011797621610:role/amplify-labs26citricsfeteama-dev-145823-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-labs26citricsfeteama-dev-145823-deployment",
+      "UnauthRoleName": "amplify-labs26citricsfeteama-dev-145823-unauthRole",
+      "StackName": "amplify-labs26citricsfeteama-dev-145823",
+      "StackId": "arn:aws:cloudformation:us-east-2:011797621610:stack/amplify-labs26citricsfeteama-dev-145823/d3ab3f40-f2d6-11ea-8cae-0aa2a0de9f8e",
+      "AmplifyAppId": "d2dc1dka01fxmc"
     },
-    "citrics": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-labs26citricsfeteama-citrics-133137-authRole",
-            "UnauthRoleArn": "arn:aws:iam::011797621610:role/amplify-labs26citricsfeteama-citrics-133137-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::011797621610:role/amplify-labs26citricsfeteama-citrics-133137-authRole",
-            "Region": "us-east-2",
-            "DeploymentBucketName": "amplify-labs26citricsfeteama-citrics-133137-deployment",
-            "UnauthRoleName": "amplify-labs26citricsfeteama-citrics-133137-unauthRole",
-            "StackName": "amplify-labs26citricsfeteama-citrics-133137",
-            "StackId": "arn:aws:cloudformation:us-east-2:011797621610:stack/amplify-labs26citricsfeteama-citrics-133137/0801e820-f45d-11ea-8dd6-0a1f3e272fa8",
-            "AmplifyAppId": "d2dc1dka01fxmc"
-        },
-        "categories": {
-            "hosting": {
-                "amplifyhosting": {
-                    "appId": "d2dc1dka01fxmc",
-                    "type": "manual"
-                }
-            }
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2dc1dka01fxmc",
+          "type": "manual"
         }
+      }
     }
+  },
+  "citrics": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-labs26citricsfeteama-citrics-133137-authRole",
+      "UnauthRoleArn": "arn:aws:iam::011797621610:role/amplify-labs26citricsfeteama-citrics-133137-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::011797621610:role/amplify-labs26citricsfeteama-citrics-133137-authRole",
+      "Region": "us-east-2",
+      "DeploymentBucketName": "amplify-labs26citricsfeteama-citrics-133137-deployment",
+      "UnauthRoleName": "amplify-labs26citricsfeteama-citrics-133137-unauthRole",
+      "StackName": "amplify-labs26citricsfeteama-citrics-133137",
+      "StackId": "arn:aws:cloudformation:us-east-2:011797621610:stack/amplify-labs26citricsfeteama-citrics-133137/0801e820-f45d-11ea-8dd6-0a1f3e272fa8",
+      "AmplifyAppId": "d2dc1dka01fxmc"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2dc1dka01fxmc",
+          "type": "manual"
+        }
+      }
+    }
+  }
 }
