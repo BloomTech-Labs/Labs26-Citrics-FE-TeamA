@@ -4,7 +4,7 @@ export default function StaticHomePage() {
   return (
     <section className="information">
       <div>
-        <i class="fas fa-server fa-5x"></i>
+        <i className="fas fa-server fa-5x"></i>
         <div>
           <h2>Data that Matters</h2>
           <p>
@@ -15,7 +15,7 @@ export default function StaticHomePage() {
         </div>
       </div>
       <div>
-        <i class="fas fa-chart-area fa-5x"></i>{' '}
+        <i className="fas fa-chart-area fa-5x"></i>{' '}
         <div>
           <h2>Visualize Comparisons</h2>
           <p>
@@ -25,7 +25,7 @@ export default function StaticHomePage() {
         </div>
       </div>
       <div>
-        <i class="far fa-calendar-plus fa-5x"></i>
+        <i className="far fa-calendar-plus fa-5x"></i>
         <div>
           <h2>Look Ahead</h2>
           <p>
