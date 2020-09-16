@@ -2,7 +2,7 @@
 // Needs to be above imports
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
-import { HomePage } from '../components/pages/Home';
+import RenderHomePage from '../components/pages/Home/RenderHomePage';
 import { LoadingComponent } from '../components/common';
 import { BrowserRouter as Router } from 'react-router-dom';
 window.matchMedia =
@@ -21,7 +21,7 @@ describe('<HomeContainer /> testing suite', () => {
   test('mounts a page', async () => {
     render(
       <Router>
-        <HomePage />
+        <RenderHomePage />
       </Router>
     );
   });
