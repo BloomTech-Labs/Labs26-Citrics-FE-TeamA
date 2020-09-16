@@ -50,24 +50,28 @@ function AutoCompleteInput() {
 
     Object.keys(cityDataArr).forEach(value => {
       // userInput capitalizes first letter of input to match api, w/o user having to do themselves
-      let userInput =
-        event.target.value.charAt(0).toUpperCase() +
-        event.target.value.slice(1);
-      // Checks if the user input matches each city, sliced from the beginning to the user input's word length
-      if (userInput === value.slice(0, i)) {
-        // logs the cities that come up for that match
-        console.log(value);
-        // Once something matches, push it into optionsArr
-        if (cityDataArr[value].length > 1) {
-          cityDataArr[value].map(value => {
-            // Multiple cities map and push
-            return optionsArr.push(value);
-          });
-        } else {
-          // single city push
-          optionsArr.push(cityDataArr[value][0]);
+      if (i > 0) {
+        let userInput =
+          event.target.value.charAt(0).toUpperCase() +
+          event.target.value.slice(1);
+        // Checks if the user input matches each city, sliced from the beginning to the user input's word length
+        if (userInput === value.slice(0, i)) {
+          // logs the cities that come up for that match
+          console.log(value);
+          // Once something matches, push it into optionsArr
+          if (cityDataArr[value].length > 1) {
+            cityDataArr[value].map(value => {
+              // Multiple cities map and push
+              return optionsArr.push(value);
+            });
+          } else {
+            // single city push
+            optionsArr.push(cityDataArr[value][0]);
+          }
+          setOptions(optionsArr);
         }
-        setOptions(optionsArr);
+      } else {
+        setOptions([]);
       }
     });
   };
@@ -86,6 +90,14 @@ function AutoCompleteInput() {
             enterButton
             onChange={event => handleCityInputChange(event)}
           />
+          {console.log(options.length)}
+          <div>
+            {options.length > 0 &&
+              options.map(value => {
+                console.log(value);
+                return <p>{value[0]}</p>;
+              })}
+          </div>
         </label>
       </form>
     </div>
