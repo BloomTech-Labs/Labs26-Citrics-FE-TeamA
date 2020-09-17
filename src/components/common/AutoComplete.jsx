@@ -5,14 +5,14 @@ import { SearchContext } from '../../state/contexts/ReportContext';
 
 
 function AutoCompleteInput() {
-  const citySearch = useContext(SearchContext);
+  let citySearch = useContext(SearchContext);
   // Input as search from ant design
   const { Search } = Input;
   // useState for input
   const [city, setCity] = useState({ city: '' });
   // useState for autocomplete options
   const [options, setOptions] = useState([]);
-  
+  citySearch = Object(citySearch);
   // console.log('CITY SEARCH',citySearch);
 
   const handleCityInputChange = event => {

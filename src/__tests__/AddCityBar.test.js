@@ -1,16 +1,23 @@
 import React from 'react';
-import AutoComplete from '../components/common/AutoComplete';
-import { render, fireEvent } from '@testing-library/react';
+import AddCityBar from '../components/common/AddCityBar';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
-const { getByPlaceholderText } = render(<AutoComplete />);
 test('AddCityBar should have placeholder text', () => {
+  const { getByPlaceholderText } = render(<AddCityBar />);
   expect(getByPlaceholderText(/Search city/i)).toBeInTheDocument();
 });
 test('Should add text to the input', async () => {
-  const { getByPlaceholderText, getByText } = render(<AutoComplete />);
+  const { rerender, getByDisplayValue, getByPlaceholderText } = render(
+    <AddCityBar />
+  );
+  expect(getByPlaceholderText(/Search city/i)).toBeInTheDocument();
+  await waitFor(() => {
+    rerender(<AddCityBar />);
+  });
   fireEvent.click(getByPlaceholderText(/search city/i));
-  await userEvent.type(getByPlaceholderText(/search city/i), 'Berkeley');
-
-  expect(getByPlaceholderText(/search city/i)).toHaveValue('Berkeley');
+  userEvent.type(getByPlaceholderText(/search city/i), 'Berkeley');
+  await waitFor(() => {
+    rerender(<AddCityBar />);
+  });
+  expect(getByDisplayValue(/Berkeley/i)).toBeInTheDocument();
 });
