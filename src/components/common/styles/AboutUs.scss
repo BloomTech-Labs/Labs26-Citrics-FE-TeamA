@@ -1,0 +1,33 @@
+.about-us-header {
+    background-image: url('./imgs/seattle-skyline.png');
+    background-size: cover;
+    background-attachment: fixed;
+    height: 50vh;
+    padding: 1%;
+}
+
+.about-us-title {
+    text-align: right;
+
+}
+
+.meet-the-team{
+    display: flex;
+    justify-content: flex-end;
+    font-weight: 600;
+    font-size: 6.4rem;
+    margin-right: 5%;
+    margin-top: 8%;
+}
+
+.team-name{
+    margin-left: 4%;
+    font-size: 1.8rem;
+}
+
+.members{
+    display: flex;
+    text-align: center;
+    margin: 1%;
+    font-size: 3rem;
+}

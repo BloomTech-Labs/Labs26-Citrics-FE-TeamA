@@ -6,9 +6,11 @@ import 'antd/dist/antd.less';
 import { BackTop } from 'antd';
 import { UpCircleTwoTone } from '@ant-design/icons';
 
-import NavBar from './components/common/NavBar';
 import { NotFoundPage } from './components/pages/NotFound';
 import RenderHomePage from './components/pages/Home/RenderHomePage';
+import AboutUs from './components/pages/About/AboutUs';
+
+import NavBar from './components/common/NavBar';
 import { LoadingComponent } from './components/common';
 
 import Amplify from 'aws-amplify';
@@ -42,6 +44,11 @@ function App() {
       <NavBar />
       <Switch>
         {/* any of the routes you need secured should be registered as Routes */}
+        <Route
+          exact
+          path="/about-us"
+          component={() => <AboutUs LoadingComponent={LoadingComponent} />}
+        />
         <Route
           exact
           path="/"
