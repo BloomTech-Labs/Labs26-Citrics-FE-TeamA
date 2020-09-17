@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './styles/CityReport.scss';
-import { ReportContext } from '../../state/contexts/ReportContext';
 import Plotly from './Plotly';
-import { fetchCityPlot } from '../../api/plotly';
-
-let thisCityDataArr = ['Tulsa', 'Oklahoma City'];
 
 function CityReport() {
   return (
@@ -12,7 +8,7 @@ function CityReport() {
       <div className="report-container">
         <div className="average-rent">
           <h1>Average Rent</h1>
-          <Plotly thisCityDataArr={thisCityDataArr} />;
+          <Plotly />;
         </div>
       </div>
     </div>

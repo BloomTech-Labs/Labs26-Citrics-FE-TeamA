@@ -42,16 +42,18 @@ function RenderHomePage() {
     // Push each city and state name into the cityDataArr[state]
     cityDataArr[value.city].push([value.city, value.state]);
   });
-
+  console.log('COMPARE LIST', compareList);
   return (
     <>
       <div className="colorTitle">
         <Title />
       </div>
       <SearchContext.Provider value={cityDataArr}>
-        <AddingCities />
+        <ReportContext.Provider value={{ compareList, setCompareList }}>
+          <AddingCities />
+        </ReportContext.Provider>
       </SearchContext.Provider>
-      {noSearch ? (
+      {!noSearch ? (
         <StaticHomePage />
       ) : (
         <ReportContext.Provider value={{ compareList, setCompareList }}>

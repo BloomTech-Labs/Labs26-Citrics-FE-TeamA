@@ -34,7 +34,7 @@ function AutoCompleteInput() {
         // Checks if the user input matches each city, sliced from the beginning to the user input's word length
         if (userInput === value.slice(0, i)) {
           // logs the cities that come up for that match
-          console.log('VALUE LOG', value);
+          // console.log('VALUE LOG', value);
           // Once something matches, push it into optionsArr
           if (citySearch[value].length > 1) {
             citySearch[value].map(value => {
@@ -55,7 +55,6 @@ function AutoCompleteInput() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log('EVENT', event);
   };
 
   return (
@@ -75,6 +74,7 @@ function AutoCompleteInput() {
                 return (
                   <p
                     onClick={() => {
+                      // CityReport city={value[0]}  state={value[1]}
                       setCompareList(citySearch[value[0]]);
                     }}
                   >
