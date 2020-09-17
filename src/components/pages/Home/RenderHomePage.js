@@ -15,7 +15,14 @@ function RenderHomePage() {
   const [error, setError] = useState('');
   const [cityData, setCityData] = useState([]);
   const [noSearch, setSearched] = useState([]);
-  const [compareList, setCompareList] = useState([]);
+  const [compareList, setCompareList] = useState({
+    city1: '',
+    state1: '',
+    city2: '',
+    state2: '',
+    city3: '',
+    state3: '',
+  });
 
   // An object of city data arrays
   const cityDataArr = {};

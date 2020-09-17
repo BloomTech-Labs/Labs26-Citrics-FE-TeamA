@@ -5,8 +5,8 @@ import { SearchContext } from '../../state/contexts/ReportContext';
 import { ReportContext } from '../../state/contexts/ReportContext';
 
 function AutoCompleteInput() {
-  let citySearch = useContext(SearchContext);
-  let {compareList, setCompareList} = useContext(ReportContext);
+  let citySearched = useContext(SearchContext);
+  let { compareList, setCompareList } = useContext(ReportContext);
 
   // Input as search from ant design
   const { Search } = Input;
@@ -15,7 +15,7 @@ function AutoCompleteInput() {
   // useState for autocomplete options
   const [options, setOptions] = useState([]);
 
-  citySearch = Object(citySearch);
+  citySearched = Object(citySearched);
   // console.log('CITY SEARCH',citySearch);
 
 
@@ -25,7 +25,7 @@ function AutoCompleteInput() {
     // Auto fill drop down options
     let optionsArr = [];
 
-    Object.keys(citySearch).forEach(value => {
+    Object.keys(citySearched).forEach(value => {
       // userInput capitalizes first letter of input to match api, w/o user having to do themselves
       if (i > 0) {
         let userInput =
@@ -36,14 +36,14 @@ function AutoCompleteInput() {
           // logs the cities that come up for that match
           // console.log('VALUE LOG', value);
           // Once something matches, push it into optionsArr
-          if (citySearch[value].length > 1) {
-            citySearch[value].map(value => {
+          if (citySearched[value].length > 1) {
+            citySearched[value].map(value => {
               // Multiple cities map and push
               return optionsArr.push(value);
             });
           } else {
             // single city push
-            optionsArr.push(citySearch[value][0]);
+            optionsArr.push(citySearched[value][0]);
           }
           setOptions(optionsArr);
         }
@@ -75,7 +75,11 @@ function AutoCompleteInput() {
                   <p
                     onClick={() => {
                       // CityReport city={value[0]}  state={value[1]}
-                      setCompareList(citySearch[value[0]]);
+                      setCompareList({
+                        ...compareList,
+                        city1: value[0],
+                        state1: value[1]
+                      });
                     }}
                   >
                     {value[0]}, {value[1]}
