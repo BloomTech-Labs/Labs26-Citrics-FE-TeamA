@@ -12,10 +12,9 @@ function AutoCompleteInput() {
   // useState for autocomplete options
   const [options, setOptions] = useState([]);
 
-  // console.log('CITY SEARCH', citySearch);
-  // console.log(options);
-
   citySearch = Object(citySearch);
+  // console.log('CITY SEARCH',citySearch);
+
 
   const handleCityInputChange = event => {
     setCity({ city: event.target.value });
