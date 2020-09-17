@@ -2,10 +2,12 @@ import React, { useState, useContext } from 'react';
 import { Input } from 'antd';
 import './styles/AutoComplete.scss';
 import { SearchContext } from '../../state/contexts/ReportContext';
+import { ReportContext } from '../../state/contexts/ReportContext';
 
 
 function AutoCompleteInput() {
   const citySearch = useContext(SearchContext);
+  const {compareList, setCompareList} = useContext(ReportContext);
   // Input as search from ant design
   const { Search } = Input;
   // useState for input
@@ -51,6 +53,7 @@ function AutoCompleteInput() {
 
   const handleSubmit = event => {
     event.preventDefault();
+    console.log('EVENT', event);
   };
 
   return (
@@ -66,11 +69,11 @@ function AutoCompleteInput() {
           <div className="autocomplete">
             {options.length > 0 &&
               options.map(value => {
-                console.log('VALUE',value);
+                // console.log('VALUE',value);
                 return (
                   <p
                     onClick={() => {
-                      console.log(citySearch[value[0]]);
+                      setCompareList(citySearch[value[0]]);
                     }}
                   >
                     {value[0]}, {value[1]}
