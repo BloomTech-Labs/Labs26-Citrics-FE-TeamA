@@ -17,11 +17,11 @@
     "enzyme": "^3.11.0",
     "indent-string": "^4.0.0",
     "node-sass": "^4.14.1",
-    "plotly.js": "^1.54.6",
+    "plotly.js": "^1.55.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-load-script": "0.0.6",
-    "react-plotly.js": "^2.4.0",
+    "react-plotly.js": "^2.5.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1"
   },
