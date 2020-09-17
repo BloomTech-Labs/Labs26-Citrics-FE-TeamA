@@ -8,7 +8,7 @@ test('AddCityBar should have placeholder text', () => {
   expect(getByPlaceholderText(/Search city/i)).toBeInTheDocument();
 });
 test('Should add text to the input', async () => {
-  const { debug, rerender, getByDisplayValue, getByPlaceholderText } = render(
+  const { rerender, getByDisplayValue, getByPlaceholderText } = render(
     <AddCityBar />
   );
 
@@ -17,9 +17,7 @@ test('Should add text to the input', async () => {
     rerender(<AddCityBar />);
   });
   fireEvent.click(getByPlaceholderText(/search city/i));
-  debug();
   userEvent.type(getByPlaceholderText(/search city/i), 'Berkeley');
-  debug();
   await waitFor(() => {
     rerender(<AddCityBar />);
   });
