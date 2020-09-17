@@ -4,18 +4,20 @@ import './styles/AutoComplete.scss';
 import { SearchContext } from '../../state/contexts/ReportContext';
 import { ReportContext } from '../../state/contexts/ReportContext';
 
-
 function AutoCompleteInput() {
-  const citySearch = useContext(SearchContext);
-  const {compareList, setCompareList} = useContext(ReportContext);
+  let citySearch = useContext(SearchContext);
+  let {compareList, setCompareList} = useContext(ReportContext);
+
   // Input as search from ant design
   const { Search } = Input;
   // useState for input
   const [city, setCity] = useState({ city: '' });
   // useState for autocomplete options
   const [options, setOptions] = useState([]);
-  
+
+  citySearch = Object(citySearch);
   // console.log('CITY SEARCH',citySearch);
+
 
   const handleCityInputChange = event => {
     setCity({ city: event.target.value });
@@ -32,7 +34,7 @@ function AutoCompleteInput() {
         // Checks if the user input matches each city, sliced from the beginning to the user input's word length
         if (userInput === value.slice(0, i)) {
           // logs the cities that come up for that match
-          console.log('VALUE LOG',value);
+          console.log('VALUE LOG', value);
           // Once something matches, push it into optionsArr
           if (citySearch[value].length > 1) {
             citySearch[value].map(value => {
