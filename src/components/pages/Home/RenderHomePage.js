@@ -14,7 +14,6 @@ function RenderHomePage() {
   // useState for axios errors
   const [error, setError] = useState('');
   const [cityData, setCityData] = useState([]);
-  const [noSearch, setSearched] = useState([]);
   const [compareList, setCompareList] = useState({
     city1: '',
     state1: '',
@@ -22,6 +21,7 @@ function RenderHomePage() {
     state2: '',
     city3: '',
     state3: '',
+    searched: false,
   });
 
   // An object of city data arrays
@@ -60,7 +60,7 @@ function RenderHomePage() {
           <AddingCities />
         </ReportContext.Provider>
       </SearchContext.Provider>
-      {!noSearch ? (
+      {compareList.searched === false ? (
         <StaticHomePage />
       ) : (
         <ReportContext.Provider value={{ compareList, setCompareList }}>
