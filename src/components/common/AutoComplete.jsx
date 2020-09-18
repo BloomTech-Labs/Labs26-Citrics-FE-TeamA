@@ -15,7 +15,6 @@ function AutoCompleteInput() {
   citySearch = Object(citySearch);
   // console.log('CITY SEARCH',citySearch);
 
-
   const handleCityInputChange = event => {
     setCity({ city: event.target.value });
     let i = event.target.value.length;
@@ -31,7 +30,7 @@ function AutoCompleteInput() {
         // Checks if the user input matches each city, sliced from the beginning to the user input's word length
         if (userInput === value.slice(0, i)) {
           // logs the cities that come up for that match
-          console.log('VALUE LOG', value);
+          // console.log('VALUE LOG', value);
           // Once something matches, push it into optionsArr
           if (citySearch[value].length > 1) {
             citySearch[value].map(value => {
@@ -49,7 +48,6 @@ function AutoCompleteInput() {
       }
     });
   };
-
   const handleSubmit = event => {
     event.preventDefault();
   };
@@ -59,19 +57,25 @@ function AutoCompleteInput() {
       <form onSubmit={event => handleSubmit(event)}>
         <label>
           <Search
+            id="autocomplete_input"
             type="text"
             placeholder="Search City"
             enterButton
+            value={city.city}
             onChange={event => handleCityInputChange(event)}
           />
           <div className="autocomplete">
             {options.length > 0 &&
               options.map(value => {
-                console.log('VALUE', value);
+                // console.log('VALUE',value);
                 return (
                   <p
-                    onClick={() => {
-                      console.log(citySearch[value[0]]);
+                    onClick={e => {
+                      setOptions([]);
+                      e.preventDefault();
+                      e.stopPropagation();
+                      console.log(city);
+                      setCity({ city: '' });
                     }}
                   >
                     {value[0]}, {value[1]}
