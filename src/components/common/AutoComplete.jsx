@@ -18,7 +18,6 @@ function AutoCompleteInput() {
   citySearched = Object(citySearched);
   // console.log('CITY SEARCH',citySearch);
 
-
   const handleCityInputChange = event => {
     setCity({ city: event.target.value });
     let i = event.target.value.length;
@@ -52,7 +51,6 @@ function AutoCompleteInput() {
       }
     });
   };
-
   const handleSubmit = event => {
     event.preventDefault();
   };
@@ -62,9 +60,11 @@ function AutoCompleteInput() {
       <form onSubmit={event => handleSubmit(event)}>
         <label>
           <Search
+            id="autocomplete_input"
             type="text"
             placeholder="Search City"
             enterButton
+            value={city.city}
             onChange={event => handleCityInputChange(event)}
           />
           <div className="autocomplete">
@@ -73,13 +73,17 @@ function AutoCompleteInput() {
                 // console.log('VALUE',value);
                 return (
                   <p
-                    onClick={() => {
+                    onClick={(e) => {
                       // CityReport city={value[0]}  state={value[1]}
+                      setOptions([]);
+                      e.preventDefault();
+                      e.stopPropagation();
                       setCompareList({
                         ...compareList,
                         city1: value[0],
                         state1: value[1]
                       });
+                      setCity({ city: '' });
                     }}
                   >
                     {value[0]}, {value[1]}
