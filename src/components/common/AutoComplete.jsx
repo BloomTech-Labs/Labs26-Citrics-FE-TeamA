@@ -2,11 +2,9 @@ import React, { useState, useContext } from 'react';
 import { Input } from 'antd';
 import './styles/AutoComplete.scss';
 import { SearchContext } from '../../state/contexts/ReportContext';
-import { ReportContext } from '../../state/contexts/ReportContext';
 
 function AutoCompleteInput() {
   let citySearch = useContext(SearchContext);
-  let { compareList, setCompareList } = useContext(ReportContext);
 
   // Input as search from ant design
   const { Search } = Input;
@@ -79,10 +77,6 @@ function AutoCompleteInput() {
                       e.stopPropagation();
                       console.log(city);
                       setCity({ city: '' });
-
-                      let arr = [...compareList];
-                      arr.push(citySearch[value[0]][0]);
-                      setCompareList(arr);
                     }}
                   >
                     {value[0]}, {value[1]}
