@@ -51,7 +51,6 @@ function AutoCompleteInput() {
       }
     });
   };
-
   const handleSubmit = event => {
     event.preventDefault();
   };
