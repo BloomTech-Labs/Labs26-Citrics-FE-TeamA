@@ -15,7 +15,7 @@ export default function Plotly() {
   const [walkCityData, setwalkCityData] = useState([]);
   const [weatherCityData, setweatherCityData] = useState([]);
   let { compareList } = useContext(ReportContext);
-  let content = (
+  let walk = (
     <div>
       <p>
         {walkCityData.city} Score: {walkCityData.walkability}
@@ -23,10 +23,13 @@ export default function Plotly() {
       <p>How fun it is to walk somewhere yenno?</p>
     </div>
   );
-  let content2 = (
+  let weather = (
     <div>
-      <p> </p>
-      <p>How fun it is to walk somewhere yenno?</p>
+      {/* <p>{weatherCityData.city} Forecast Today </p>
+      <p>Forecast: {weatherCityData.description}</p>
+      <p>Feels like: {weatherCityData.main_feels_like}</p>
+      <p>Temperature: {weatherCityData.main_temp}⁰F </p>
+      <p>Humidity: {weatherCityData.main_humidity}</p> */}
     </div>
   );
   // retrieves the data from DS API and sets to state;
@@ -42,8 +45,8 @@ export default function Plotly() {
 
     reportWeatherData(compareList.city1, compareList.state1)
       .then(res => {
-        console.log('reportWeatherData RES', res);
-        setweatherCityData(res);
+        console.log('reportWeatherData RES', res.data);
+        setweatherCityData(res.data);
       })
       .catch(err => {
         console.log(err);
@@ -59,22 +62,14 @@ export default function Plotly() {
       });
   }, [compareList]);
 
-  // let thisCityDataArr = [];
-  // console.log('thisCityDataArr -->', thisCityDataArr);
-  // thisCityData &&
-  //   Object.values(thisCityData).forEach(value => {
-  //     // console.log('thisCityDataArr Value',value);
-  //     thisCityDataArr.push(value);
-  //   });
-  console.log('WALK CITY DATA', walkCityData);
   return (
-    thisCityData && (
+    compareList && (
       <div>
         <Plot data={thisCityData.data} layout={thisCityData.layout} />
-        <Popover content={content} title="Walkability Score">
+        <Popover content={walk} title="Walkability Score" trigger="click">
           <Button type="primary">Walkability</Button>
         </Popover>
-        <Popover content={content2} title="Weather">
+        <Popover content={weather} title="Weather" trigger="click">
           <Button type="primary">Weather</Button>
         </Popover>
       </div>

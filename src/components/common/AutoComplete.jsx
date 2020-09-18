@@ -6,7 +6,8 @@ import { ReportContext } from '../../state/contexts/ReportContext';
 
 function AutoCompleteInput() {
   let citySearched = useContext(SearchContext);
-  let { compareList, setCompareList } = useContext(ReportContext);
+  let setCompareList = useContext(ReportContext);
+  let compareList = useContext(ReportContext);
 
   // Input as search from ant design
   const { Search } = Input;
