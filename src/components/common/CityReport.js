@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles/CityReport.scss';
 import { Table } from 'antd';
+import { ReportContext } from '../../state/contexts/ReportContext';
 
 const columns = [
   {
@@ -105,23 +106,33 @@ function CityReport() {
       <div className="report-container">
         <div className="average-rent">
           <h1>Average Rent</h1>
-          <Table columns={columns} dataSource={data} onChange={onChange} />
+          <ReportContext.Provider>
+            <Table columns={columns} dataSource={data} onChange={onChange} />
+          </ReportContext.Provider>
         </div>
         <div className="weather">
           <h1>Weather</h1>
-          <Table columns={columns} dataSource={data2} onChange={onChange} />
+          <ReportContext.Provider>
+            <Table columns={columns} dataSource={data2} onChange={onChange} />
+          </ReportContext.Provider>
         </div>
         <div className="weather">
           <h1>Weather</h1>
-          <Table columns={columns} dataSource={data2} onChange={onChange} />
+          <ReportContext.Provider>
+            <Table columns={columns} dataSource={data2} onChange={onChange} />
+          </ReportContext.Provider>
         </div>
         <div className="weather">
           <h1>Weather</h1>
-          <Table columns={columns} dataSource={data2} onChange={onChange} />
+          <ReportContext.Provider>
+            <Table columns={columns} dataSource={data2} onChange={onChange} />
+          </ReportContext.Provider>
         </div>
         <div className="weather">
           <h1>Weather</h1>
-          <Table columns={columns} dataSource={data2} onChange={onChange} />
+          <ReportContext.Provider>
+            <Table columns={columns} dataSource={data2} onChange={onChange} />
+          </ReportContext.Provider>
         </div>
       </div>
     </div>

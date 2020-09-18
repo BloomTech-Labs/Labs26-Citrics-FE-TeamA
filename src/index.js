@@ -6,10 +6,11 @@ import 'antd/dist/antd.less';
 import { BackTop } from 'antd';
 import { UpCircleTwoTone } from '@ant-design/icons';
 
+import { NotFoundPage } from './components/pages/NotFound';
+import RenderHomePage from './components/pages/Home/RenderHomePage';
+import AboutUs from './components/pages/About/AboutUs';
 
 import NavBar from './components/common/NavBar';
-import { NotFoundPage } from './components/pages/NotFound';
-import { HomePage } from './components/pages/Home';
 import { LoadingComponent } from './components/common';
 
 import Amplify from 'aws-amplify';
@@ -25,19 +26,18 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-
 function App() {
   // The reason to declare App this way is so that we can use any helper functions we'd need for business logic, in our case auth.
-    const style = {
-      height: 40,
-      width: 40,
-      lineHeight: '40px',
-      borderRadius: 4,
-      backgroundColor: '#1088e9',
-      color: '#fff',
-      textAlign: 'center',
-      fontSize: 30,
-    };
+  const style = {
+    height: 40,
+    width: 40,
+    lineHeight: '40px',
+    borderRadius: 4,
+    backgroundColor: '#1088e9',
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: 30,
+  };
 
   return (
     <Router>
@@ -46,13 +46,22 @@ function App() {
         {/* any of the routes you need secured should be registered as Routes */}
         <Route
           exact
+          path="/about-us"
+          component={() => <AboutUs LoadingComponent={LoadingComponent} />}
+        />
+        <Route
+          exact
           path="/"
-          component={() => <HomePage LoadingComponent={LoadingComponent} />}
+          component={() => (
+            <RenderHomePage LoadingComponent={LoadingComponent} />
+          )}
         />
         <Route component={NotFoundPage} />
       </Switch>
       <BackTop>
-        <div style={style} data-testid='scroll-to-top'><UpCircleTwoTone /></div>
+        <div style={style} data-testid="scroll-to-top">
+          <UpCircleTwoTone />
+        </div>
       </BackTop>
     </Router>
   );
