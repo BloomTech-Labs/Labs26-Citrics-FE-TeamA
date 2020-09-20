@@ -59,6 +59,7 @@ function AutoCompleteInput() {
     <div className="App">
       <form onSubmit={event => handleSubmit(event)}>
         <label>
+          {compareList.cities.length < 3 ? (
           <Search
             id="autocomplete_input"
             type="text"
@@ -67,6 +68,12 @@ function AutoCompleteInput() {
             value={city.city}
             onChange={event => handleCityInputChange(event)}
           />
+          ) : (
+            <h5>
+              Three cities selected already, please remove one to keep
+              comparing.
+            </h5>
+          )}
           <div className="autocomplete">
             {options.length > 0 &&
               options.map(value => {
