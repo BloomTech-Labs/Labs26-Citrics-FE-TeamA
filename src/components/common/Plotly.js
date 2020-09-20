@@ -34,32 +34,28 @@ export default function Plotly() {
   );
   // retrieves the data from DS API and sets to state;
   useEffect(() => {
-    reportRentData(compareList.city1, compareList.state1)
+    let lastCityAdded = compareList.cities[compareList.cities.length - 1];
+    let lastCityLength = lastCityAdded.length;
+    reportRentData(
+      lastCityAdded[lastCityLength - 2],
+      lastCityAdded[lastCityLength - 1]
+    )
       .then(res => {
-        console.log('reportRentData RES', res.data);
         setThisCityData(res);
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => {});
 
-    reportWeatherData(compareList.city1, compareList.state1)
+    reportWeatherData(lastCityAdded[0], lastCityAdded[1])
       .then(res => {
-        console.log('reportWeatherData RES', res.data);
-        setweatherCityData(res.data);
+        setweatherCityData(res);
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => {});
 
-    reportWalkData(compareList.city1, compareList.state1)
+    reportWalkData(lastCityAdded[0], lastCityAdded[1])
       .then(res => {
-        console.log('reportWalkData RES', res.data);
         setwalkCityData(res);
       })
-      .catch(err => {
-        console.log(err);
-      });
+      .catch(err => {});
   }, [compareList]);
 
   return (
