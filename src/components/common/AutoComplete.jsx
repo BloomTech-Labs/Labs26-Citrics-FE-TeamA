@@ -60,14 +60,14 @@ function AutoCompleteInput() {
       <form onSubmit={event => handleSubmit(event)}>
         <label>
           {compareList.cities.length < 3 ? (
-          <Search
-            id="autocomplete_input"
-            type="text"
-            placeholder="Search City"
-            enterButton
-            value={city.city}
-            onChange={event => handleCityInputChange(event)}
-          />
+            <Search
+              id="autocomplete_input"
+              type="text"
+              placeholder="Search City"
+              enterButton
+              value={city.city}
+              onChange={event => handleCityInputChange(event)}
+            />
           ) : (
             <h5>
               Three cities selected already, please remove one to keep
@@ -80,16 +80,16 @@ function AutoCompleteInput() {
                 // console.log('VALUE',value);
                 return (
                   <p
-                    onClick={(e) => {
+                    onClick={e => {
                       // CityReport city={value[0]}  state={value[1]}
+                      let filler = compareList.cities;
+                      filler.push(value);
                       setOptions([]);
                       e.preventDefault();
                       e.stopPropagation();
                       setCompareList({
-                        ...compareList,
-                        city1: value[0],
-                        state1: value[1],
-                        searched: true
+                        cities: filler,
+                        searched: true,
                       });
                       setCity({ city: '' });
                     }}
