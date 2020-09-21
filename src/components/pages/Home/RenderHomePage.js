@@ -29,7 +29,6 @@ function RenderHomePage() {
   const getRentalData = () => {
     fetchCityData()
       .then(response => {
-        // console.log('RESPONSE FROM FETCHCITY', response);
         setCityData(response);
       })
       .catch(err => {
@@ -44,7 +43,6 @@ function RenderHomePage() {
     // Push each city and state name into the cityDataArr[state]
     cityDataArr[value.city].push([value.city, value.state]);
   });
-  console.log('COMPARE LIST', compareList);
   return (
     <>
       <div className="colorTitle">

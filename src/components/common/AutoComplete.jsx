@@ -4,9 +4,8 @@ import './styles/AutoComplete.scss';
 import { SearchContext } from '../../state/contexts/ReportContext';
 import { ReportContext } from '../../state/contexts/ReportContext';
 
-function AutoCompleteInput() {
+function AutoCompleteInput(props) {
   let citySearched = useContext(SearchContext);
-  let { compareList, setCompareList } = useContext(ReportContext);
 
   // Input as search from ant design
   const { Search } = Input;
@@ -52,12 +51,11 @@ function AutoCompleteInput() {
   const handleSubmit = event => {
     event.preventDefault();
   };
-
   return (
     <div className="App">
       <form onSubmit={event => handleSubmit(event)}>
         <label>
-          {compareList.cities.length < 3 ? (
+          {props.compareList.cities.length < 3 ? (
             <Search
               id="autocomplete_input"
               type="text"
@@ -79,12 +77,12 @@ function AutoCompleteInput() {
                   <p
                     onClick={e => {
                       // CityReport city={value[0]}  state={value[1]}
-                      let filler = compareList.cities;
+                      let filler = props.compareList.cities;
                       filler.push(value);
                       setOptions([]);
                       e.preventDefault();
                       e.stopPropagation();
-                      setCompareList({
+                      props.setCompareList({
                         cities: filler,
                         searched: true,
                       });
