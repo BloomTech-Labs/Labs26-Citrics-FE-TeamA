@@ -11,10 +11,13 @@ import { Popover, Button } from 'antd';
 
 export default function Plotly() {
   //  State for plotly json info
-  const [thisCityData, setThisCityData] = useState([]);
+  const [thisCityData, setThisCityData] = useState({});
   const [walkCityData, setwalkCityData] = useState([]);
-  const [weatherCityData, setweatherCityData] = useState([]);
+  const [weatherCityData, setweatherCityData] = useState({});
+  const [renderThis, setRenderThis] = useState([]);
   let { compareList } = useContext(ReportContext);
+  let walkFill = {};
+  let weatherFill = {};
   let walk = (
     <div>
       <p>
