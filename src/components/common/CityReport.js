@@ -2,16 +2,21 @@ import React from 'react';
 import './styles/CityReport.scss';
 import Plotly from './Plotly';
 
-function CityReport() {
+function CityReport(props) {
+  let citySpace;
+  if (
+    props.compareList.cities !== undefined &&
+    props.compareList.cities.length === 1
+  ) {
+    citySpace = { alignItems: 'center' };
+  }
   return (
-    <div>
-      <div className="report-container">
-        <div className="average-rent">
-          <h1>Average Rent</h1>
-          <Plotly />
-        </div>
+    <section className="report-container" style={citySpace}>
+      <div className="average-rent">
+        <h1>Average Rent</h1>
+        <Plotly />
       </div>
-    </div>
+    </section>
   );
 }
 
