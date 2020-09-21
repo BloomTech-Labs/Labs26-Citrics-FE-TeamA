@@ -135,6 +135,110 @@ export default function Plotly() {
       .catch(err => {});
   }, [compareList]);
 
+  if (walkCityData.cityWalk1 !== undefined) {
+    walkFill[0] = [
+      <>
+        <h3>Walkability</h3>
+        <p>
+          {walkCityData.cityWalk1.city} Score:{' '}
+          {walkCityData.cityWalk1.walkability}
+        </p>{' '}
+        <p>How fun it is to walk somewhere yenno?</p>
+      </>,
+    ];
+  }
+  if (walkCityData.cityWalk2 !== undefined) {
+    walkFill[1] = [
+      <>
+        <h3>Walkability</h3>
+        <p>
+          {walkCityData.cityWalk2.city} Score:{' '}
+          {walkCityData.cityWalk2.walkability}
+        </p>{' '}
+        <p>How fun it is to walk somewhere yenno?</p>
+      </>,
+    ];
+  }
+  if (walkCityData.cityWalk3 !== undefined) {
+    walkFill[2] = [
+      <>
+        <h3>Walkability</h3>
+        <p>
+          {walkCityData.cityWalk3.city} Score:{' '}
+          {walkCityData.cityWalk3.walkability}
+        </p>{' '}
+        <p>How fun it is to walk somewhere yenno?</p>
+      </>,
+    ];
+  }
+
+  if (weatherCityData.cityWeather1 !== undefined) {
+    weatherFill[0] = [
+      <>
+        <h3>Weather</h3>
+        <p>
+          Today's Forecast: {weatherCityData.cityWeather1.main} for{' '}
+          {weatherCityData.cityWeather1.city}
+        </p>
+        <p>{weatherCityData.cityWeather1.description}</p>
+        <p>Cloud Percentage: {weatherCityData.cityWeather1.clouds_all}</p>
+        <p>Feels Like: {weatherCityData.cityWeather1.main_feels_like}</p>
+        <p>Humidity: {weatherCityData.cityWeather1.main_humidity}</p>
+        <p>Pressure: {weatherCityData.cityWeather1.main_pressure}</p>
+        <p>Temperature: {weatherCityData.cityWeather1.main_temp}</p>
+        <p>Max: {weatherCityData.cityWeather1.main_temp_max}</p>
+        <p>Min: {weatherCityData.cityWeather1.main_temp_min}</p>
+        <p>Visibility: {weatherCityData.cityWeather1.visibility}</p>
+        <p>Degree of wind direction: {weatherCityData.cityWeather1.wind_deg}</p>
+        <p>Wind Speed: {weatherCityData.cityWeather1.wind_speed}</p>
+      </>,
+    ];
+  }
+  if (weatherCityData.cityWeather2 !== undefined) {
+    weatherFill[1] = [
+      <>
+        <h3>Weather</h3>
+        <p>
+          Today's Forecast: {weatherCityData.cityWeather2.main} for{' '}
+          {weatherCityData.cityWeather2.city}
+        </p>
+        <p>{weatherCityData.cityWeather2.description}</p>
+        <p>Cloud Percentage: {weatherCityData.cityWeather2.clouds_all}</p>
+        <p>Feels Like: {weatherCityData.cityWeather2.main_feels_like}</p>
+        <p>Humidity: {weatherCityData.cityWeather2.main_humidity}</p>
+        <p>Pressure: {weatherCityData.cityWeather2.main_pressure}</p>
+        <p>Temperature: {weatherCityData.cityWeather2.main_temp}</p>
+        <p>Max: {weatherCityData.cityWeather2.main_temp_max}</p>
+        <p>Min: {weatherCityData.cityWeather2.main_temp_min}</p>
+        <p>Visibility: {weatherCityData.cityWeather2.visibility}</p>
+        <p>Degree of wind direction: {weatherCityData.cityWeather2.wind_deg}</p>
+        <p>Wind Speed: {weatherCityData.cityWeather2.wind_speed}</p>
+      </>,
+    ];
+  }
+  if (weatherCityData.cityWeather3 !== undefined) {
+    weatherFill[2] = [
+      <>
+        <h3>Weather</h3>
+        <p>
+          Today's Forecast: {weatherCityData.cityWeather3.main} for{' '}
+          {weatherCityData.cityWeather3.city}
+        </p>
+        <p>{weatherCityData.cityWeather3.description}</p>
+        <p>Cloud Percentage: {weatherCityData.cityWeather3.clouds_all}</p>
+        <p>Feels Like: {weatherCityData.cityWeather3.main_feels_like}</p>
+        <p>Humidity: {weatherCityData.cityWeather3.main_humidity}</p>
+        <p>Pressure: {weatherCityData.cityWeather3.main_pressure}</p>
+        <p>Temperature: {weatherCityData.cityWeather3.main_temp}</p>
+        <p>Max: {weatherCityData.cityWeather3.main_temp_max}</p>
+        <p>Min: {weatherCityData.cityWeather3.main_temp_min}</p>
+        <p>Visibility: {weatherCityData.cityWeather3.visibility}</p>
+        <p>Degree of wind direction: {weatherCityData.cityWeather3.wind_deg}</p>
+        <p>Wind Speed: {weatherCityData.cityWeather3.wind_speed}</p>
+      </>,
+    ];
+  }
+
   return (
     compareList && (
       <div>
