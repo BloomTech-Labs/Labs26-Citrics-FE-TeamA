@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { Input } from 'antd';
 import './styles/AutoComplete.scss';
 import { SearchContext } from '../../state/contexts/ReportContext';
-import { ReportContext } from '../../state/contexts/ReportContext';
 
 function AutoCompleteInput(props) {
   let citySearched = useContext(SearchContext);
@@ -75,6 +74,7 @@ function AutoCompleteInput(props) {
               options.map(value => {
                 return (
                   <p
+                    key={value[0] + value[1]}
                     onClick={e => {
                       // CityReport city={value[0]}  state={value[1]}
                       let filler = props.compareList.cities;

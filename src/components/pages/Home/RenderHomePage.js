@@ -48,6 +48,7 @@ function RenderHomePage() {
       <div className="colorTitle">
         <Title />
       </div>
+      {error && { error }}
       <SearchContext.Provider value={cityDataArr}>
         <ReportContext.Provider value={{ compareList, setCompareList }}>
           <AddingCities />
