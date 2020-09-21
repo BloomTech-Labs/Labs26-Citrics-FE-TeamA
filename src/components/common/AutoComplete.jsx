@@ -4,9 +4,8 @@ import './styles/AutoComplete.scss';
 import { SearchContext } from '../../state/contexts/ReportContext';
 import { ReportContext } from '../../state/contexts/ReportContext';
 
-function AutoCompleteInput() {
+function AutoCompleteInput(props) {
   let citySearched = useContext(SearchContext);
-  let { compareList, setCompareList } = useContext(ReportContext);
 
   // Input as search from ant design
   const { Search } = Input;
@@ -16,7 +15,6 @@ function AutoCompleteInput() {
   const [options, setOptions] = useState([]);
 
   citySearched = Object(citySearched);
-  // console.log('CITY SEARCH',citySearch);
 
   const handleCityInputChange = event => {
     setCity({ city: event.target.value });
@@ -33,7 +31,6 @@ function AutoCompleteInput() {
         // Checks if the user input matches each city, sliced from the beginning to the user input's word length
         if (userInput === value.slice(0, i)) {
           // logs the cities that come up for that match
-          // console.log('VALUE LOG', value);
           // Once something matches, push it into optionsArr
           if (citySearched[value].length > 1) {
             citySearched[value].map(value => {
@@ -54,35 +51,40 @@ function AutoCompleteInput() {
   const handleSubmit = event => {
     event.preventDefault();
   };
-
   return (
     <div className="App">
       <form onSubmit={event => handleSubmit(event)}>
         <label>
-          <Search
-            id="autocomplete_input"
-            type="text"
-            placeholder="Search City"
-            enterButton
-            value={city.city}
-            onChange={event => handleCityInputChange(event)}
-          />
+          {props.compareList.cities.length < 3 ? (
+            <Search
+              id="autocomplete_input"
+              type="text"
+              placeholder="Search City"
+              enterButton
+              value={city.city}
+              onChange={event => handleCityInputChange(event)}
+            />
+          ) : (
+            <h5>
+              Three cities selected already, please remove one to keep
+              comparing.
+            </h5>
+          )}
           <div className="autocomplete">
             {options.length > 0 &&
               options.map(value => {
-                // console.log('VALUE',value);
                 return (
                   <p
-                    onClick={(e) => {
+                    onClick={e => {
                       // CityReport city={value[0]}  state={value[1]}
+                      let filler = props.compareList.cities;
+                      filler.push(value);
                       setOptions([]);
                       e.preventDefault();
                       e.stopPropagation();
-                      setCompareList({
-                        ...compareList,
-                        city1: value[0],
-                        state1: value[1],
-                        searched: true
+                      props.setCompareList({
+                        cities: filler,
+                        searched: true,
                       });
                       setCity({ city: '' });
                     }}

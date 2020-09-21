@@ -8,7 +8,7 @@ function CityReport() {
       <div className="report-container">
         <div className="average-rent">
           <h1>Average Rent</h1>
-          <Plotly />;
+          <Plotly />
         </div>
       </div>
     </div>
