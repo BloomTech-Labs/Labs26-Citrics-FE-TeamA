@@ -7,33 +7,15 @@ import {
 } from '../../api/reportData';
 import { ReportContext } from '../../state/contexts/ReportContext';
 
-import { Popover, Button } from 'antd';
 export default function Plotly() {
   //  State for plotly json info
   const [thisCityData, setThisCityData] = useState({});
   const [walkCityData, setwalkCityData] = useState([]);
   const [weatherCityData, setweatherCityData] = useState({});
-  const [renderThis, setRenderThis] = useState([]);
   let { compareList } = useContext(ReportContext);
   let walkFill = {};
   let weatherFill = {};
-  let walk = (
-    <div>
-      <p>
-        {walkCityData.city} Score: {walkCityData.walkability}
-      </p>
-      <p>How fun it is to walk somewhere yenno?</p>
-    </div>
-  );
-  let weather = (
-    <div>
-      {/* <p>{weatherCityData.city} Forecast Today </p>
-      <p>Forecast: {weatherCityData.description}</p>
-      <p>Feels like: {weatherCityData.main_feels_like}</p>
-      <p>Temperature: {weatherCityData.main_temp}⁰F </p>
-      <p>Humidity: {weatherCityData.main_humidity}</p> */}
-    </div>
-  );
+
   // retrieves the data from DS API and sets to state;
   useEffect(() => {
     let lastCityAdded = compareList.cities[compareList.cities.length - 1];
