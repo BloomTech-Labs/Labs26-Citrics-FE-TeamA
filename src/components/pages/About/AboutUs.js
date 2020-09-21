@@ -28,7 +28,7 @@ export default function AboutUs() {
                   />
                 </div>
                 <h3>FName LName</h3>
-                <p class="member-role">Member Role</p>
+                <p className="member-role">Member Role</p>
                 <div className="member-social">Social Links</div>
                 <p className="member-bio">
                   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
@@ -49,7 +49,7 @@ export default function AboutUs() {
                   />
                 </div>
                 <h3>FName LName</h3>
-                <p class="member-role">Member Role</p>
+                <p className="member-role">Member Role</p>
                 <div className="member-social">Social Links</div>
                 <p className="member-bio">
                   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
@@ -70,7 +70,7 @@ export default function AboutUs() {
                   />
                 </div>
                 <h3>FName LName</h3>
-                <p class="member-role">Member Role</p>
+                <p className="member-role">Member Role</p>
                 <div className="member-social">Social Links</div>
                 <p className="member-bio">
                   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
@@ -91,7 +91,7 @@ export default function AboutUs() {
                   />
                 </div>
                 <h3>FName LName</h3>
-                <p class="member-role">Member Role</p>
+                <p className="member-role">Member Role</p>
                 <div className="member-social">Social Links</div>
                 <p className="member-bio">
                   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
@@ -120,7 +120,7 @@ export default function AboutUs() {
                   />
                 </div>
                 <h3>FName LName</h3>
-                <p class="member-role">Member Role</p>
+                <p className="member-role">Member Role</p>
                 <div className="member-social">Social Links</div>
                 <p className="member-bio">
                   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
@@ -141,7 +141,7 @@ export default function AboutUs() {
                   />
                 </div>
                 <h3>FName LName</h3>
-                <p class="member-role">Member Role</p>
+                <p className="member-role">Member Role</p>
                 <div className="member-social">Social Links</div>
                 <p className="member-bio">
                   Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
