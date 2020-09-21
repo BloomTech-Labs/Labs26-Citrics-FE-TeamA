@@ -109,7 +109,28 @@ export default function Plotly() {
 
     reportWalkData(lastCityAdded[0], lastCityAdded[1])
       .then(res => {
-        setwalkCityData(res);
+        if (!('cityWalk1' in walkCityData)) {
+          setwalkCityData({
+            cityWalk1: res,
+          });
+        } else if (
+          'cityWalk1' in walkCityData &&
+          !('cityWalk2' in walkCityData)
+        ) {
+          setwalkCityData({
+            cityWalk1: walkCityData.cityWalk1,
+            cityWalk2: res,
+          });
+        } else if (
+          'cityWalk2' in walkCityData &&
+          !('cityWalk3' in walkCityData)
+        ) {
+          setwalkCityData({
+            cityWalk1: walkCityData.cityWalk1,
+            cityWalk2: walkCityData.cityWalk2,
+            cityWalk3: res,
+          });
+        }
       })
       .catch(err => {});
   }, [compareList]);
