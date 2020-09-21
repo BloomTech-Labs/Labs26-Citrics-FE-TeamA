@@ -75,7 +75,32 @@ export default function Plotly() {
 
     reportWeatherData(lastCityAdded[0], lastCityAdded[1])
       .then(res => {
-        setweatherCityData(res);
+        if (!('cityWeather1' in weatherCityData)) {
+          setweatherCityData({
+            cityWeather1: res,
+          });
+        }
+
+        if (
+          'cityWeather1' in weatherCityData &&
+          !('cityWeather2' in weatherCityData)
+        ) {
+          setweatherCityData({
+            cityWeather1: weatherCityData.cityWeather1,
+            cityWeather2: res,
+          });
+        }
+
+        if (
+          'cityWeather2' in weatherCityData &&
+          !('cityWeather3' in weatherCityData)
+        ) {
+          setweatherCityData({
+            cityWeather1: weatherCityData.cityWeather1,
+            cityWeather2: weatherCityData.cityWeather2,
+            cityWeather3: res,
+          });
+        }
       })
       .catch(err => {});
 
