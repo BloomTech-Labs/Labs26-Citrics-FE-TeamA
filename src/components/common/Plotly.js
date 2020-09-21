@@ -51,8 +51,7 @@ export default function Plotly() {
         }
         if ('cityData1' in thisCityData && !('cityData2' in thisCityData)) {
           setThisCityData({
-            cityData1: thisCityData.cityData1,
-            cityLayout1: thisCityData.cityLayout1,
+            ...thisCityData,
             cityData2: res.data,
             cityLayout2: res.layout,
           });
@@ -63,10 +62,7 @@ export default function Plotly() {
           !('cityData3' in thisCityData)
         ) {
           setThisCityData({
-            cityData1: thisCityData.cityData1,
-            cityLayout1: thisCityData.cityLayout1,
-            cityData2: thisCityData.cityData2,
-            cityLayout2: thisCityData.cityLayout2,
+            ...thisCityData,
             cityData3: res.data,
             cityLayout3: res.layout,
           });
@@ -87,7 +83,7 @@ export default function Plotly() {
           !('cityWeather2' in weatherCityData)
         ) {
           setweatherCityData({
-            cityWeather1: weatherCityData.cityWeather1,
+            ...weatherCityData,
             cityWeather2: res,
           });
         }
@@ -97,8 +93,7 @@ export default function Plotly() {
           !('cityWeather3' in weatherCityData)
         ) {
           setweatherCityData({
-            cityWeather1: weatherCityData.cityWeather1,
-            cityWeather2: weatherCityData.cityWeather2,
+            ...weatherCityData,
             cityWeather3: res,
           });
         }
@@ -116,7 +111,7 @@ export default function Plotly() {
           !('cityWalk2' in walkCityData)
         ) {
           setwalkCityData({
-            cityWalk1: walkCityData.cityWalk1,
+            ...walkCityData,
             cityWalk2: res,
           });
         } else if (
@@ -124,8 +119,7 @@ export default function Plotly() {
           !('cityWalk3' in walkCityData)
         ) {
           setwalkCityData({
-            cityWalk1: walkCityData.cityWalk1,
-            cityWalk2: walkCityData.cityWalk2,
+            ...walkCityData,
             cityWalk3: res,
           });
         }
@@ -175,7 +169,7 @@ export default function Plotly() {
       <>
         <h3>Weather</h3>
         <p>
-          Today's Forecast: {weatherCityData.cityWeather1.main} for{' '}
+          Today's Forecast: {weatherCityData.cityWeather1.description} for{' '}
           {weatherCityData.cityWeather1.city}
         </p>
         <p>{weatherCityData.cityWeather1.description}</p>
