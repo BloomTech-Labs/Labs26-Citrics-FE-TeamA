@@ -8,7 +8,6 @@ import {
 import { ReportContext } from '../../state/contexts/ReportContext';
 
 import { Popover, Button } from 'antd';
-
 export default function Plotly() {
   //  State for plotly json info
   const [thisCityData, setThisCityData] = useState({});
@@ -44,7 +43,6 @@ export default function Plotly() {
       lastCityAdded[lastCityLength - 1]
     )
       .then(res => {
-        console.log('res', res);
         if (!('cityData1' in thisCityData)) {
           setThisCityData({
             cityData1: res.data,
@@ -240,16 +238,46 @@ export default function Plotly() {
   }
 
   return (
-    compareList && (
+    <div>
       <div>
-        <Plot data={thisCityData.data} layout={thisCityData.layout} />
-        <Popover content={walk} title="Walkability Score" trigger="click">
-          <Button type="primary">Walkability</Button>
-        </Popover>
-        <Popover content={weather} title="Weather" trigger="click">
-          <Button type="primary">Weather</Button>
-        </Popover>
+        {' '}
+        {thisCityData && (
+          <>
+            <Plot
+              data={thisCityData.cityData1}
+              layout={thisCityData.cityLayout1}
+            />{' '}
+            {!walkFill[0] ? <h2>Loading...</h2> : walkFill[0]}
+            {!weatherFill[0] ? <h2>Loading...</h2> : weatherFill[0]}
+          </>
+        )}
+      </div>{' '}
+      <div>
+        {' '}
+        {thisCityData.cityLayout2 !== undefined && (
+          <>
+            <Plot
+              data={thisCityData.cityData2}
+              layout={thisCityData.cityLayout2}
+            />
+            {!walkFill[1] ? <h2>Loading...</h2> : walkFill[1]}
+            {!weatherFill[1] ? <h2>Loading...</h2> : weatherFill[1]}
+          </>
+        )}
+      </div>{' '}
+      <div>
+        {' '}
+        {thisCityData.cityLayout3 !== undefined && (
+          <>
+            <Plot
+              data={thisCityData.cityData3}
+              layout={thisCityData.cityLayout3}
+            />
+            {!walkFill[2] ? <h2>Loading...</h2> : walkFill[2]}
+            {!weatherFill[2] ? <h2>Loading...</h2> : weatherFill[2]}
+          </>
+        )}
       </div>
-    )
+    </div>
   );
 }
