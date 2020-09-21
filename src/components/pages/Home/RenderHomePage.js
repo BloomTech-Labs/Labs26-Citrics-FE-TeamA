@@ -62,7 +62,6 @@ function RenderHomePage() {
           <CityReport />
         </ReportContext.Provider>
       )}
-      ;
     </>
     // if no search : <StaticHomePageComp/> ? <CityReport/>
   );
