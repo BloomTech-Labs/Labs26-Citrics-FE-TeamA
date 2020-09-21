@@ -14,14 +14,9 @@ function RenderHomePage() {
   // useState for axios errors
   const [error, setError] = useState('');
   const [cityData, setCityData] = useState([]);
-  const [noSearch, setSearched] = useState([]);
   const [compareList, setCompareList] = useState({
-    city1: '',
-    state1: '',
-    city2: '',
-    state2: '',
-    city3: '',
-    state3: '',
+    cities: [],
+    searched: false,
   });
 
   // An object of city data arrays
@@ -34,7 +29,6 @@ function RenderHomePage() {
   const getRentalData = () => {
     fetchCityData()
       .then(response => {
-        // console.log('RESPONSE FROM FETCHCITY', response);
         setCityData(response);
       })
       .catch(err => {
@@ -49,7 +43,6 @@ function RenderHomePage() {
     // Push each city and state name into the cityDataArr[state]
     cityDataArr[value.city].push([value.city, value.state]);
   });
-  console.log('COMPARE LIST', compareList);
   return (
     <>
       <div className="colorTitle">
@@ -60,14 +53,13 @@ function RenderHomePage() {
           <AddingCities />
         </ReportContext.Provider>
       </SearchContext.Provider>
-      {!noSearch ? (
+      {compareList.searched === false ? (
         <StaticHomePage />
       ) : (
         <ReportContext.Provider value={{ compareList, setCompareList }}>
           <CityReport />
         </ReportContext.Provider>
       )}
-      ;
     </>
     // if no search : <StaticHomePageComp/> ? <CityReport/>
   );
