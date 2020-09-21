@@ -41,7 +41,35 @@ export default function Plotly() {
       lastCityAdded[lastCityLength - 1]
     )
       .then(res => {
-        setThisCityData(res);
+        console.log('res', res);
+        if (!('cityData1' in thisCityData)) {
+          setThisCityData({
+            cityData1: res.data,
+            cityLayout1: res.layout,
+          });
+        }
+        if ('cityData1' in thisCityData && !('cityData2' in thisCityData)) {
+          setThisCityData({
+            cityData1: thisCityData.cityData1,
+            cityLayout1: thisCityData.cityLayout1,
+            cityData2: res.data,
+            cityLayout2: res.layout,
+          });
+        }
+        if (
+          'cityData1' in thisCityData &&
+          'cityData2' in thisCityData &&
+          !('cityData3' in thisCityData)
+        ) {
+          setThisCityData({
+            cityData1: thisCityData.cityData1,
+            cityLayout1: thisCityData.cityLayout1,
+            cityData2: thisCityData.cityData2,
+            cityLayout2: thisCityData.cityLayout2,
+            cityData3: res.data,
+            cityLayout3: res.layout,
+          });
+        }
       })
       .catch(err => {});
 
