@@ -1,33 +1,37 @@
+.about-us-section {
+    display: block;
+    width: 100%;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
 .about-us-header {
     background-image: url('./imgs/seattle-skyline.png');
+    background-repeat: no-repeat;
+    background-position: 100%;
     background-size: cover;
-    background-attachment: fixed;
-    height: 50vh;
-    padding: 1%;
-}
-
-.about-us-title {
-    text-align: right;
-
-}
-
-.meet-the-team{
+    height: 525px;
     display: flex;
-    justify-content: flex-end;
-    font-weight: 600;
-    font-size: 6.4rem;
-    margin-right: 5%;
-    margin-top: 8%;
+    justify-content: space-around;
+    width: 100%;
 }
 
-.team-name{
-    margin-left: 4%;
-    font-size: 1.8rem;
+.about-us-title-H1 {
+    font-weight: 700;
+    font-size: 6rem;
+    margin-left: 38%;
+    margin-block-start: 0.4em;
+    margin-block-end: 0.8em;
 }
 
-.members{
-    display: flex;
-    text-align: center;
-    margin: 1%;
-    font-size: 3rem;
+.member-pic {
+    width: 15vw;
+    height: 20vh;
+    img {
+        width: 100%;
+        height: auto;
+    }
 }
