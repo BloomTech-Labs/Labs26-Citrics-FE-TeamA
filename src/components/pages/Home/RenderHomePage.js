@@ -58,7 +58,7 @@ function RenderHomePage() {
         <StaticHomePage />
       ) : (
         <ReportContext.Provider value={{ compareList, setCompareList }}>
-          <CityReport />
+          <CityReport compareList={compareList} />
         </ReportContext.Provider>
       )}
     </>

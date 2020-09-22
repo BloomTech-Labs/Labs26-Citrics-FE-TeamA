@@ -1,12 +1,34 @@
-.report-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+.report-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  h3 {
+    text-align: center;
+  }
 }
-.average-rent{
-    width: 50%;
+.average-rent {
+  h1 {
+    text-align: center;
+  }
 }
-.weather{
-    width: 50%
+.weather {
+  width: 50%;
+}
+.cityDisplayPlot {
+  padding: 0 2% 0;
+  text-align: center;
+}
+.walkData {
+  p {
+    padding: 1%;
+  }
+}
+.weatherData {
+  div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    p {
+      padding: 1%;
+    }
+  }
 }
