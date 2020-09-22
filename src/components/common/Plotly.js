@@ -15,7 +15,7 @@ export default function Plotly() {
   const [walkCityData, setwalkCityData] = useState([]);
   const [weatherCityData, setweatherCityData] = useState({});
   const [unemployment, setUnemployment] = useState({});
-  let { compareList } = useContext(ReportContext);
+  let { compareList, setCompareList } = useContext(ReportContext);
   let walkFill = {};
   let weatherFill = {};
   let unemploymentFill = {};
@@ -260,26 +260,67 @@ export default function Plotly() {
   }
 
   function hideCity(event) {
-    // gets proper cityDisplayPlot to remove
-    let city1 = document.getElementById('city1');
-    let city2 = document.getElementById('city2');
-    let city3 = document.getElementById('city3');
-
     // id of button the user clicks
     let id = event.target.id;
-
-    // if btn user clicked matches btn id
-    if (id === 'btn1') {
-      // remove that city report by displaying none
-      city1.style.display = 'none';
-      // remove city from compareList
-      compareList.cities.splice(0, 1);
-    } else if (id === 'btn2') {
-      city2.style.display = 'none';
-      compareList.cities.splice(1, 1);
-    } else if (id === 'btn3') {
-      city3.style.display = 'none';
-      compareList.cities.splice(2, 1);
+    if (compareList.cities.length === 3) {
+      // copying citydata3 and citylayout3
+      let fillerData = thisCityData.cityData3;
+      let fillerLayout = thisCityData.cityLayout3;
+      // if btn user clicked matches btn id
+      if (id === 'btn1') {
+        // remove city from compareList
+        compareList.cities.splice(0, 1);
+        delete thisCityData.cityData3;
+        delete thisCityData.cityLayout3;
+        setThisCityData({
+          ...thisCityData,
+          cityData1: thisCityData.cityData2,
+          cityLayout1: thisCityData.cityLayout2,
+          cityData2: fillerData,
+          cityLayout2: fillerLayout,
+        });
+      } else if (id === 'btn2') {
+        compareList.cities.splice(1, 1);
+        delete thisCityData.cityData3;
+        delete thisCityData.cityLayout3;
+        setThisCityData({
+          ...thisCityData,
+          cityData2: fillerData,
+          cityLayout2: fillerLayout,
+        });
+      } else if (id === 'btn3') {
+        compareList.cities.splice(2, 1);
+        delete thisCityData.cityData3;
+        delete thisCityData.cityLayout3;
+      }
+    } else if (compareList.cities.length === 2) {
+      let fillerData = thisCityData.cityData2;
+      let fillerLayout = thisCityData.cityLayout2;
+      if (id === 'btn1') {
+        // remove city from compareList
+        compareList.cities.splice(0, 1);
+        delete thisCityData.cityData2;
+        delete thisCityData.cityLayout2;
+        setThisCityData({
+          cityData1: fillerData,
+          cityLayout1: fillerLayout,
+        });
+      } else if (id === 'btn2') {
+        compareList.cities.splice(1, 1);
+        delete thisCityData.cityData2;
+        delete thisCityData.cityLayout2;
+        setThisCityData({
+          ...thisCityData,
+        });
+      }
+    } else if (compareList.cities.length === 1) {
+      if (id === 'btn1') {
+        compareList.cities.splice(0, 1);
+        setCompareList({
+          cities: [],
+          searched: false,
+        });
+      }
     }
   }
 
