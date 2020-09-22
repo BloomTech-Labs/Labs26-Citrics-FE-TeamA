@@ -4,6 +4,7 @@ import {
   reportRentData,
   reportWeatherData,
   reportWalkData,
+  unemploymentData,
 } from '../../api/reportData';
 import { ReportContext } from '../../state/contexts/ReportContext';
 
@@ -12,14 +13,25 @@ export default function Plotly() {
   const [thisCityData, setThisCityData] = useState({});
   const [walkCityData, setwalkCityData] = useState([]);
   const [weatherCityData, setweatherCityData] = useState({});
+  const [unemployment, setUnemployment] = useState({});
   let { compareList } = useContext(ReportContext);
   let walkFill = {};
   let weatherFill = {};
+  let unemploymentFill = {};
 
   // retrieves the data from DS API and sets to state;
   useEffect(() => {
     let lastCityAdded = compareList.cities[compareList.cities.length - 1];
     let lastCityLength = lastCityAdded.length;
+    unemploymentData(lastCityAdded[lastCityLength - 1])
+      .then(response => {
+        if (!(compareList.cities.length in unemploymentFill)) {
+          unemploymentFill = unemployment;
+          unemploymentFill[compareList.cities.length - 1] = response;
+          setUnemployment(unemploymentFill);
+        }
+      })
+      .catch(err => {});
     reportRentData(
       lastCityAdded[lastCityLength - 2],
       lastCityAdded[lastCityLength - 1]
@@ -116,8 +128,7 @@ export default function Plotly() {
         <p>
           {walkCityData.cityWalk1.city} Score:{' '}
           {walkCityData.cityWalk1.walkability}
-        </p>{' '}
-        <p>How fun it is to walk somewhere yenno?</p>
+        </p>
       </>,
     ];
   }
@@ -128,8 +139,7 @@ export default function Plotly() {
         <p>
           {walkCityData.cityWalk2.city} Score:{' '}
           {walkCityData.cityWalk2.walkability}
-        </p>{' '}
-        <p>How fun it is to walk somewhere yenno?</p>
+        </p>
       </>,
     ];
   }
@@ -140,8 +150,7 @@ export default function Plotly() {
         <p>
           {walkCityData.cityWalk3.city} Score:{' '}
           {walkCityData.cityWalk3.walkability}
-        </p>{' '}
-        <p>How fun it is to walk somewhere yenno?</p>
+        </p>
       </>,
     ];
   }
@@ -154,17 +163,18 @@ export default function Plotly() {
           Today's Forecast: {weatherCityData.cityWeather1.description} for{' '}
           {weatherCityData.cityWeather1.city}
         </p>
-        <p>{weatherCityData.cityWeather1.description}</p>
         <p>Cloud Percentage: {weatherCityData.cityWeather1.clouds_all}</p>
-        <p>Feels Like: {weatherCityData.cityWeather1.main_feels_like}</p>
+        <p>
+          Feels Like: {weatherCityData.cityWeather1.imperial_main_feels_like}
+        </p>
         <p>Humidity: {weatherCityData.cityWeather1.main_humidity}</p>
         <p>Pressure: {weatherCityData.cityWeather1.main_pressure}</p>
-        <p>Temperature: {weatherCityData.cityWeather1.main_temp}</p>
-        <p>Max: {weatherCityData.cityWeather1.main_temp_max}</p>
-        <p>Min: {weatherCityData.cityWeather1.main_temp_min}</p>
-        <p>Visibility: {weatherCityData.cityWeather1.visibility}</p>
+        <p>Temperature: {weatherCityData.cityWeather1.imperial_main_temp}</p>
+        <p>Max: {weatherCityData.cityWeather1.imperial_main_temp_max}</p>
+        <p>Min: {weatherCityData.cityWeather1.imperial_main_temp_min}</p>
+        <p>Visibility: {weatherCityData.cityWeather1.imperial_visibility}</p>
         <p>Degree of wind direction: {weatherCityData.cityWeather1.wind_deg}</p>
-        <p>Wind Speed: {weatherCityData.cityWeather1.wind_speed}</p>
+        <p>Wind Speed: {weatherCityData.cityWeather1.imperial_wind_speed}</p>
       </>,
     ];
   }
@@ -178,15 +188,17 @@ export default function Plotly() {
         </p>
         <p>{weatherCityData.cityWeather2.description}</p>
         <p>Cloud Percentage: {weatherCityData.cityWeather2.clouds_all}</p>
-        <p>Feels Like: {weatherCityData.cityWeather2.main_feels_like}</p>
-        <p>Humidity: {weatherCityData.cityWeather2.main_humidity}</p>
-        <p>Pressure: {weatherCityData.cityWeather2.main_pressure}</p>
-        <p>Temperature: {weatherCityData.cityWeather2.main_temp}</p>
-        <p>Max: {weatherCityData.cityWeather2.main_temp_max}</p>
-        <p>Min: {weatherCityData.cityWeather2.main_temp_min}</p>
-        <p>Visibility: {weatherCityData.cityWeather2.visibility}</p>
+        <p>
+          Feels Like: {weatherCityData.cityWeather2.imperial_main_feels_like}
+        </p>
+        <p>Humidity: {weatherCityData.cityWeather2.imperial_main_humidity}</p>
+        <p>Pressure: {weatherCityData.cityWeather2.imperial_main_pressure}</p>
+        <p>Temperature: {weatherCityData.cityWeather2.imperial_main_temp}</p>
+        <p>Max: {weatherCityData.cityWeather2.imperial_main_temp_max}</p>
+        <p>Min: {weatherCityData.cityWeather2.imperial_main_temp_min}</p>
+        <p>Visibility: {weatherCityData.cityWeather2.imperial_visibility}</p>
         <p>Degree of wind direction: {weatherCityData.cityWeather2.wind_deg}</p>
-        <p>Wind Speed: {weatherCityData.cityWeather2.wind_speed}</p>
+        <p>Wind Speed: {weatherCityData.cityWeather2.imperial_wind_speed}</p>
       </>,
     ];
   }
@@ -200,15 +212,17 @@ export default function Plotly() {
         </p>
         <p>{weatherCityData.cityWeather3.description}</p>
         <p>Cloud Percentage: {weatherCityData.cityWeather3.clouds_all}</p>
-        <p>Feels Like: {weatherCityData.cityWeather3.main_feels_like}</p>
+        <p>
+          Feels Like: {weatherCityData.cityWeather3.imperial_main_feels_like}
+        </p>
         <p>Humidity: {weatherCityData.cityWeather3.main_humidity}</p>
         <p>Pressure: {weatherCityData.cityWeather3.main_pressure}</p>
-        <p>Temperature: {weatherCityData.cityWeather3.main_temp}</p>
-        <p>Max: {weatherCityData.cityWeather3.main_temp_max}</p>
-        <p>Min: {weatherCityData.cityWeather3.main_temp_min}</p>
-        <p>Visibility: {weatherCityData.cityWeather3.visibility}</p>
+        <p>Temperature: {weatherCityData.cityWeather3.imperial_main_temp}</p>
+        <p>Max: {weatherCityData.cityWeather3.imperial_main_temp_max}</p>
+        <p>Min: {weatherCityData.cityWeather3.imperial_main_temp_min}</p>
+        <p>Visibility: {weatherCityData.cityWeather3.imperial_visibility}</p>
         <p>Degree of wind direction: {weatherCityData.cityWeather3.wind_deg}</p>
-        <p>Wind Speed: {weatherCityData.cityWeather3.wind_speed}</p>
+        <p>Wind Speed: {weatherCityData.cityWeather3.imperial_wind_speed}</p>
       </>,
     ];
   }
