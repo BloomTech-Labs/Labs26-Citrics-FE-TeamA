@@ -326,82 +326,92 @@ export default function Plotly() {
           searched: false,
         });
       }
-  }
+    }
 
-  return (
-    <div style={gridStyle}>
-      {thisCityData && (
-        <div className="cityDisplayPlot" id="city1">
-          {!thisCityData.cityData1 ? (
-            <Loader />
-          ) : (
-            <div>
-              <button id="btn1" onClick={e => hideCity(e)}>
-                Remove
-              </button>
+    return (
+      <div style={gridStyle}>
+        {thisCityData && (
+          <div className="cityDisplayPlot" id="city1">
+            {!thisCityData.cityData1 ? (
+              <Loader />
+            ) : (
+              <div>
+                <button id="btn1" onClick={e => hideCity(e)}>
+                  Remove
+                </button>
+                <Plot
+                  data={thisCityData.cityData1}
+                  layout={thisCityData.cityLayout1}
+                />
+              </div>
+            )}
+            {!unemployment[0] ? (
+              <Loader />
+            ) : (
               <Plot
-                data={thisCityData.cityData1}
-                layout={thisCityData.cityLayout1}
+                data={unemployment[0].data}
+                layout={unemployment[0].layout}
               />
-            </div>
-          )}
-          {!unemployment[0] ? (
-            <Loader />
-          ) : (
-            <Plot data={unemployment[0].data} layout={unemployment[0].layout} />
-          )}
-          {!walkFill[0] ? <Loader /> : walkFill[0]}
-          {!weatherFill[0] ? <Loader /> : weatherFill[0]}
-        </div>
-      )}
-      {thisCityData.cityLayout2 !== undefined && (
-        <div className="cityDisplayPlot" id="city2">
-          {!thisCityData.cityData2 ? (
-            <Loader />
-          ) : (
-            <div>
-              <button id="btn2" onClick={e => hideCity(e)}>
-                Remove
-              </button>
+            )}
+            {!walkFill[0] ? <Loader /> : walkFill[0]}
+            {!weatherFill[0] ? <Loader /> : weatherFill[0]}
+          </div>
+        )}
+        {thisCityData.cityLayout2 !== undefined && (
+          <div className="cityDisplayPlot" id="city2">
+            {!thisCityData.cityData2 ? (
+              <Loader />
+            ) : (
+              <div>
+                <button id="btn2" onClick={e => hideCity(e)}>
+                  Remove
+                </button>
+                <Plot
+                  data={thisCityData.cityData2}
+                  layout={thisCityData.cityLayout2}
+                />
+              </div>
+            )}
+            {!unemployment[1] ? (
+              <Loader />
+            ) : (
               <Plot
-                data={thisCityData.cityData2}
-                layout={thisCityData.cityLayout2}
+                data={unemployment[1].data}
+                layout={unemployment[1].layout}
               />
-            </div>
-          )}
-          {!unemployment[1] ? (
-            <Loader />
-          ) : (
-            <Plot data={unemployment[1].data} layout={unemployment[1].layout} />
-          )}
-          {!walkFill[1] ? <Loader /> : walkFill[1]}
-          {!weatherFill[1] ? <Loader /> : weatherFill[1]}
-        </div>
-      )}
-      {thisCityData.cityLayout3 !== undefined && (
-        <div className="cityDisplayPlot" id="city3">
-          {!thisCityData.cityData2 ? (
-            <Loader />
-          ) : (
-            <div>
-              <button id="btn3" onClick={e => hideCity(e)}>
-                Remove
-              </button>
+            )}
+            {!walkFill[1] ? <Loader /> : walkFill[1]}
+            {!weatherFill[1] ? <Loader /> : weatherFill[1]}
+          </div>
+        )}
+        {thisCityData.cityLayout3 !== undefined && (
+          <div className="cityDisplayPlot" id="city3">
+            {!thisCityData.cityData2 ? (
+              <Loader />
+            ) : (
+              <div>
+                <button id="btn3" onClick={e => hideCity(e)}>
+                  Remove
+                </button>
+                <Plot
+                  data={thisCityData.cityData3}
+                  layout={thisCityData.cityLayout3}
+                />
+              </div>
+            )}
+            {!unemployment[2] ? (
+              <Loader />
+            ) : (
               <Plot
-                data={thisCityData.cityData3}
-                layout={thisCityData.cityLayout3}
+                data={unemployment[2].data}
+                layout={unemployment[2].layout}
               />
-            </div>
-          )}
-          {!unemployment[2] ? (
-            <Loader />
-          ) : (
-            <Plot data={unemployment[2].data} layout={unemployment[2].layout} />
-          )}
-          {!walkFill[2] ? <Loader /> : walkFill[2]}
-          {!weatherFill[2] ? <Loader /> : weatherFill[2]}
-        </div>
-      )}
-    </div>
-  );
+            )}
+            {!walkFill[2] ? <Loader /> : walkFill[2]}
+            {!weatherFill[2] ? <Loader /> : weatherFill[2]}
+          </div>
+        )}
+      </div>
+    );
+  }
 }
