@@ -19,7 +19,7 @@ test('AutoComplete should have placeholder text', () => {
     />
   );
 
-  expect(getByPlaceholderText(/Search city/i)).toBeInTheDocument();
+  expect(getByPlaceholderText(/Tulsa/i)).toBeInTheDocument();
 });
 
 test('AutoComplete should change text', async () => {
@@ -38,7 +38,7 @@ test('AutoComplete should change text', async () => {
     />
   );
 
-  expect(getByPlaceholderText(/Search city/i)).toBeInTheDocument();
+  expect(getByPlaceholderText(/Tulsa/i)).toBeInTheDocument();
   await waitFor(() => {
     rerender(
       <AutoComplete
@@ -55,8 +55,8 @@ test('AutoComplete should change text', async () => {
       />
     );
   });
-  fireEvent.click(getByPlaceholderText(/search city/i));
-  userEvent.type(getByPlaceholderText(/search city/i), 'Berkeley');
+  fireEvent.click(getByPlaceholderText(/Tulsa/i));
+  userEvent.type(getByPlaceholderText(/Tulsa/i), 'Berkeley');
   await waitFor(() => {
     rerender(
       <AutoComplete

@@ -36,7 +36,6 @@ export function unemploymentData(state) {
   return axios
     .get(`https://ds.citrics.dev/viz/${state}`)
     .then(response => {
-      console.log(JSON.parse(response.data));
       return JSON.parse(response.data);
     })
     .catch(err => {
