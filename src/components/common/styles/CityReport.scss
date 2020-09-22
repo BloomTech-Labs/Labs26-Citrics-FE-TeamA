@@ -14,15 +14,16 @@
 .weather {
   width: 50%;
 }
-.walkData {
+.cityDisplayPlot {
   padding: 0 2% 0;
+  text-align: center;
+}
+.walkData {
   p {
     padding: 1%;
-    margin: 0;
   }
 }
 .weatherData {
-  padding: 2%;
   div {
     display: grid;
     grid-template-columns: 1fr 1fr;

@@ -178,9 +178,7 @@ export default function Plotly() {
           <p>Humidity: {weatherCityData.cityWeather1.main_humidity}</p>
           <p>Pressure: {weatherCityData.cityWeather1.main_pressure}</p>
           <p>Visibility: {weatherCityData.cityWeather1.imperial_visibility}</p>
-          <p>
-            Degree of wind direction: {weatherCityData.cityWeather1.wind_deg}°
-          </p>
+          <p>Wind direction: {weatherCityData.cityWeather1.wind_deg}°</p>
           <p>
             Wind Speed: {weatherCityData.cityWeather1.imperial_wind_speed}mph
           </p>
@@ -197,7 +195,6 @@ export default function Plotly() {
             Today's Forecast: {weatherCityData.cityWeather2.main} for{' '}
             {weatherCityData.cityWeather2.city}
           </p>
-          <p>{weatherCityData.cityWeather2.description}</p>
           <p>Clouds Today: {weatherCityData.cityWeather2.clouds_all}%</p>{' '}
           <p>
             Temperature: {weatherCityData.cityWeather2.imperial_main_temp}°F
@@ -211,9 +208,7 @@ export default function Plotly() {
           <p>Humidity: {weatherCityData.cityWeather2.imperial_main_humidity}</p>
           <p>Pressure: {weatherCityData.cityWeather2.imperial_main_pressure}</p>
           <p>Visibility: {weatherCityData.cityWeather2.imperial_visibility}</p>
-          <p>
-            Degree of wind direction: {weatherCityData.cityWeather2.wind_deg}°
-          </p>
+          <p>Wind direction: {weatherCityData.cityWeather2.wind_deg}°</p>
           <p>
             Wind Speed: {weatherCityData.cityWeather2.imperial_wind_speed}mph
           </p>
@@ -230,7 +225,6 @@ export default function Plotly() {
             Today's Forecast: {weatherCityData.cityWeather3.main} for{' '}
             {weatherCityData.cityWeather3.city}
           </p>
-          <p>{weatherCityData.cityWeather3.description}</p>
           <p>Clouds Today: {weatherCityData.cityWeather3.clouds_all}</p>{' '}
           <p>
             Temperature: {weatherCityData.cityWeather3.imperial_main_temp}°F
@@ -244,9 +238,7 @@ export default function Plotly() {
           <p>Humidity: {weatherCityData.cityWeather3.main_humidity}</p>
           <p>Pressure: {weatherCityData.cityWeather3.main_pressure}</p>
           <p>Visibility: {weatherCityData.cityWeather3.imperial_visibility}</p>
-          <p>
-            Degree of wind direction: {weatherCityData.cityWeather3.wind_deg}°
-          </p>
+          <p>Wind direction: {weatherCityData.cityWeather3.wind_deg}°</p>
           <p>
             Wind Speed: {weatherCityData.cityWeather3.imperial_wind_speed}mph
           </p>
