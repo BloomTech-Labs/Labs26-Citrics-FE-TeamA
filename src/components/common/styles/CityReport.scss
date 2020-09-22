@@ -1,12 +1,13 @@
-.report-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+.report-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
-.average-rent{
-    width: 50%;
+.average-rent {
+  h1 {
+    text-align: center;
+  }
 }
-.weather{
-    width: 50%
+.weather {
+  width: 50%;
 }
