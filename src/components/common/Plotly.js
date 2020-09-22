@@ -262,14 +262,17 @@ export default function Plotly() {
   function hideCity(event) {
     // id of button the user clicks
     let id = event.target.id;
-    if (compareList.cities.length === 3) {
+    const length = compareList.cities.length;
+
+    // if 3 cities are being compared
+    if (length === 3) {
       // copying citydata3 and citylayout3
       let fillerData = thisCityData.cityData3;
       let fillerLayout = thisCityData.cityLayout3;
       // if btn user clicked matches btn id
       if (id === 'btn1') {
         // remove city from compareList
-        compareList.cities.splice(0, 1);
+        compareList.cities.shift();
         delete thisCityData.cityData3;
         delete thisCityData.cityLayout3;
         setThisCityData({
@@ -289,16 +292,17 @@ export default function Plotly() {
           cityLayout2: fillerLayout,
         });
       } else if (id === 'btn3') {
-        compareList.cities.splice(2, 1);
+        compareList.cities.pop();
         delete thisCityData.cityData3;
         delete thisCityData.cityLayout3;
       }
-    } else if (compareList.cities.length === 2) {
+      // if 2 cities are being compared
+    } else if (length === 2) {
       let fillerData = thisCityData.cityData2;
       let fillerLayout = thisCityData.cityLayout2;
       if (id === 'btn1') {
         // remove city from compareList
-        compareList.cities.splice(0, 1);
+        compareList.cities.shift();
         delete thisCityData.cityData2;
         delete thisCityData.cityLayout2;
         setThisCityData({
@@ -306,16 +310,17 @@ export default function Plotly() {
           cityLayout1: fillerLayout,
         });
       } else if (id === 'btn2') {
-        compareList.cities.splice(1, 1);
+        compareList.cities.pop();
         delete thisCityData.cityData2;
         delete thisCityData.cityLayout2;
         setThisCityData({
           ...thisCityData,
         });
-      }
-    } else if (compareList.cities.length === 1) {
+      } // if 1 city is being compared
+    } else if (length === 1) {
       if (id === 'btn1') {
-        compareList.cities.splice(0, 1);
+        // remove city and set state back to static component
+        compareList.cities.shift();
         setCompareList({
           cities: [],
           searched: false,
