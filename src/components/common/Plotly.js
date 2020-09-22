@@ -124,107 +124,134 @@ export default function Plotly() {
 
   if (walkCityData.cityWalk1 !== undefined) {
     walkFill[0] = [
-      <>
+      <div className="walkData">
         <h3>Walkability</h3>
         <p>
           {walkCityData.cityWalk1.city} Score:{' '}
           {walkCityData.cityWalk1.walkability}
         </p>
-      </>,
+      </div>,
     ];
   }
   if (walkCityData.cityWalk2 !== undefined) {
     walkFill[1] = [
-      <>
+      <div className="walkData">
         <h3>Walkability</h3>
         <p>
           {walkCityData.cityWalk2.city} Score:{' '}
           {walkCityData.cityWalk2.walkability}
         </p>
-      </>,
+      </div>,
     ];
   }
   if (walkCityData.cityWalk3 !== undefined) {
     walkFill[2] = [
-      <>
+      <div className="walkData">
         <h3>Walkability</h3>
         <p>
           {walkCityData.cityWalk3.city} Score:{' '}
           {walkCityData.cityWalk3.walkability}
         </p>
-      </>,
+      </div>,
     ];
   }
 
   if (weatherCityData.cityWeather1 !== undefined) {
     weatherFill[0] = [
-      <>
+      <div className="weatherData">
         <h3>Weather</h3>
-        <p>
-          Today's Forecast: {weatherCityData.cityWeather1.description} for{' '}
-          {weatherCityData.cityWeather1.city}
-        </p>
-        <p>Cloud Percentage: {weatherCityData.cityWeather1.clouds_all}</p>
-        <p>
-          Feels Like: {weatherCityData.cityWeather1.imperial_main_feels_like}
-        </p>
-        <p>Humidity: {weatherCityData.cityWeather1.main_humidity}</p>
-        <p>Pressure: {weatherCityData.cityWeather1.main_pressure}</p>
-        <p>Temperature: {weatherCityData.cityWeather1.imperial_main_temp}</p>
-        <p>Max: {weatherCityData.cityWeather1.imperial_main_temp_max}</p>
-        <p>Min: {weatherCityData.cityWeather1.imperial_main_temp_min}</p>
-        <p>Visibility: {weatherCityData.cityWeather1.imperial_visibility}</p>
-        <p>Degree of wind direction: {weatherCityData.cityWeather1.wind_deg}</p>
-        <p>Wind Speed: {weatherCityData.cityWeather1.imperial_wind_speed}</p>
-      </>,
+        <div>
+          <p>
+            Today's Forecast: {weatherCityData.cityWeather1.description} for{' '}
+            {weatherCityData.cityWeather1.city}
+          </p>
+          <p>Clouds Today: {weatherCityData.cityWeather1.clouds_all}%</p>
+          <p>
+            Temperature: {weatherCityData.cityWeather1.imperial_main_temp}°F
+          </p>
+          <p>
+            Feels Like: {weatherCityData.cityWeather1.imperial_main_feels_like}
+            °F
+          </p>{' '}
+          <p>Min: {weatherCityData.cityWeather1.imperial_main_temp_min}°F</p>
+          <p>Max: {weatherCityData.cityWeather1.imperial_main_temp_max}°F</p>
+          <p>Humidity: {weatherCityData.cityWeather1.main_humidity}</p>
+          <p>Pressure: {weatherCityData.cityWeather1.main_pressure}</p>
+          <p>Visibility: {weatherCityData.cityWeather1.imperial_visibility}</p>
+          <p>
+            Degree of wind direction: {weatherCityData.cityWeather1.wind_deg}°
+          </p>
+          <p>
+            Wind Speed: {weatherCityData.cityWeather1.imperial_wind_speed}mph
+          </p>
+        </div>
+      </div>,
     ];
   }
   if (weatherCityData.cityWeather2 !== undefined) {
     weatherFill[1] = [
-      <>
+      <div className="weatherData">
         <h3>Weather</h3>
-        <p>
-          Today's Forecast: {weatherCityData.cityWeather2.main} for{' '}
-          {weatherCityData.cityWeather2.city}
-        </p>
-        <p>{weatherCityData.cityWeather2.description}</p>
-        <p>Cloud Percentage: {weatherCityData.cityWeather2.clouds_all}</p>
-        <p>
-          Feels Like: {weatherCityData.cityWeather2.imperial_main_feels_like}
-        </p>
-        <p>Humidity: {weatherCityData.cityWeather2.imperial_main_humidity}</p>
-        <p>Pressure: {weatherCityData.cityWeather2.imperial_main_pressure}</p>
-        <p>Temperature: {weatherCityData.cityWeather2.imperial_main_temp}</p>
-        <p>Max: {weatherCityData.cityWeather2.imperial_main_temp_max}</p>
-        <p>Min: {weatherCityData.cityWeather2.imperial_main_temp_min}</p>
-        <p>Visibility: {weatherCityData.cityWeather2.imperial_visibility}</p>
-        <p>Degree of wind direction: {weatherCityData.cityWeather2.wind_deg}</p>
-        <p>Wind Speed: {weatherCityData.cityWeather2.imperial_wind_speed}</p>
-      </>,
+        <div>
+          <p>
+            Today's Forecast: {weatherCityData.cityWeather2.main} for{' '}
+            {weatherCityData.cityWeather2.city}
+          </p>
+          <p>{weatherCityData.cityWeather2.description}</p>
+          <p>Clouds Today: {weatherCityData.cityWeather2.clouds_all}%</p>{' '}
+          <p>
+            Temperature: {weatherCityData.cityWeather2.imperial_main_temp}°F
+          </p>
+          <p>
+            Feels Like: {weatherCityData.cityWeather2.imperial_main_feels_like}
+            °F
+          </p>{' '}
+          <p>Min: {weatherCityData.cityWeather2.imperial_main_temp_min}°F</p>
+          <p>Max: {weatherCityData.cityWeather2.imperial_main_temp_max}°F</p>
+          <p>Humidity: {weatherCityData.cityWeather2.imperial_main_humidity}</p>
+          <p>Pressure: {weatherCityData.cityWeather2.imperial_main_pressure}</p>
+          <p>Visibility: {weatherCityData.cityWeather2.imperial_visibility}</p>
+          <p>
+            Degree of wind direction: {weatherCityData.cityWeather2.wind_deg}°
+          </p>
+          <p>
+            Wind Speed: {weatherCityData.cityWeather2.imperial_wind_speed}mph
+          </p>
+        </div>
+      </div>,
     ];
   }
   if (weatherCityData.cityWeather3 !== undefined) {
     weatherFill[2] = [
-      <>
+      <div className="weatherData">
         <h3>Weather</h3>
-        <p>
-          Today's Forecast: {weatherCityData.cityWeather3.main} for{' '}
-          {weatherCityData.cityWeather3.city}
-        </p>
-        <p>{weatherCityData.cityWeather3.description}</p>
-        <p>Cloud Percentage: {weatherCityData.cityWeather3.clouds_all}</p>
-        <p>
-          Feels Like: {weatherCityData.cityWeather3.imperial_main_feels_like}
-        </p>
-        <p>Humidity: {weatherCityData.cityWeather3.main_humidity}</p>
-        <p>Pressure: {weatherCityData.cityWeather3.main_pressure}</p>
-        <p>Temperature: {weatherCityData.cityWeather3.imperial_main_temp}</p>
-        <p>Max: {weatherCityData.cityWeather3.imperial_main_temp_max}</p>
-        <p>Min: {weatherCityData.cityWeather3.imperial_main_temp_min}</p>
-        <p>Visibility: {weatherCityData.cityWeather3.imperial_visibility}</p>
-        <p>Degree of wind direction: {weatherCityData.cityWeather3.wind_deg}</p>
-        <p>Wind Speed: {weatherCityData.cityWeather3.imperial_wind_speed}</p>
-      </>,
+        <div>
+          <p>
+            Today's Forecast: {weatherCityData.cityWeather3.main} for{' '}
+            {weatherCityData.cityWeather3.city}
+          </p>
+          <p>{weatherCityData.cityWeather3.description}</p>
+          <p>Clouds Today: {weatherCityData.cityWeather3.clouds_all}</p>{' '}
+          <p>
+            Temperature: {weatherCityData.cityWeather3.imperial_main_temp}°F
+          </p>
+          <p>
+            Feels Like: {weatherCityData.cityWeather3.imperial_main_feels_like}
+            °F
+          </p>{' '}
+          <p>Min: {weatherCityData.cityWeather3.imperial_main_temp_min}°F</p>
+          <p>Max: {weatherCityData.cityWeather3.imperial_main_temp_max}°F</p>
+          <p>Humidity: {weatherCityData.cityWeather3.main_humidity}</p>
+          <p>Pressure: {weatherCityData.cityWeather3.main_pressure}</p>
+          <p>Visibility: {weatherCityData.cityWeather3.imperial_visibility}</p>
+          <p>
+            Degree of wind direction: {weatherCityData.cityWeather3.wind_deg}°
+          </p>
+          <p>
+            Wind Speed: {weatherCityData.cityWeather3.imperial_wind_speed}mph
+          </p>
+        </div>
+      </div>,
     ];
   }
   let gridStyle;
