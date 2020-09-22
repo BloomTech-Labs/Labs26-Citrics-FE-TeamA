@@ -52,13 +52,12 @@ function AutoCompleteInput(props) {
   };
   return (
     <div className="App">
-      <form onSubmit={event => handleSubmit(event)}>
-        <label>
-          {props.compareList.cities.length < 3 ? (
+      <h5>Search City: </h5>
             <Search
               id="autocomplete_input"
               type="text"
-              placeholder="Search City"
+        placeholder="Ex: Tulsa, OK"
+        value={city.city}
               enterButton
               value={city.city}
               onChange={event => handleCityInputChange(event)}
