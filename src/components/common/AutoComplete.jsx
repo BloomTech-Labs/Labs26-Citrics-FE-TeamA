@@ -62,20 +62,28 @@ function AutoCompleteInput(props) {
     });
     setCity({ city: '' });
   };
+  console.log(props.compareList.cities);
   return (
     <div className="App">
-      <h5>Search City: </h5>
-      <Search
-        id="autocomplete_input"
-        type="text"
-        placeholder="Ex: Tulsa, OK"
-        value={city.city}
-        enterButton
-        onChange={event => handleCityInputChange(event)}
-        onSearch={value => {
-          handleOnSearch(value);
-        }}
-      />
+      {props.compareList.cities.length === 3 ? (
+        <h4>Three cities selected. Please remove one to keep comparing.</h4>
+      ) : (
+        <div>
+          {' '}
+          <h5>Search City: </h5>
+          <Search
+            id="autocomplete_input"
+            type="text"
+            placeholder="Ex: Tulsa, OK"
+            value={city.city}
+            enterButton
+            onChange={event => handleCityInputChange(event)}
+            onSearch={value => {
+              handleOnSearch(value);
+            }}
+          />
+        </div>
+      )}
       <div className="autocomplete">
         {options.length > 0 &&
           options.map(value => {
