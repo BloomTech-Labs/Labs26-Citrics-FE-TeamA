@@ -260,19 +260,24 @@ export default function Plotly() {
   }
 
   function hideCity(event) {
+    // gets proper cityDisplayPlot to remove
     let city1 = document.getElementById('city1');
     let city2 = document.getElementById('city2');
     let city3 = document.getElementById('city3');
+
+    // id of button the user clicks
     let id = event.target.id;
+
+    // id of the remove buttons
     let btn1 = document.getElementById('btn1').id;
     let btn2 = document.getElementById('btn2').id;
     let btn3 = document.getElementById('btn3').id;
-    console.log('BUTTON ID EVENT', id);
-    console.log('BUTTON ID docuGET', btn1);
-    console.log('CITY1', city1);
 
+    // if btn user clicked matches btn id
     if (id === btn1) {
+      // remove that city report by displaying none
       city1.style.display = 'none';
+      // remove city from compareList
       compareList.cities.splice(0, 1);
     } else if (id === btn2) {
       city2.style.display = 'none';
@@ -283,7 +288,6 @@ export default function Plotly() {
     }
   }
 
-  console.log('compList.CITIES', compareList.cities);
   return (
     <div style={gridStyle}>
       {thisCityData && (
