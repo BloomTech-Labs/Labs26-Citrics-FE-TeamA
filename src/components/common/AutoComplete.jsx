@@ -47,54 +47,60 @@ function AutoCompleteInput(props) {
       }
     });
   };
-  const handleSubmit = event => {
-    event.preventDefault();
+  const handleOnSearch = value => {
+    let filler = props.compareList.cities;
+    let Arr = [
+      value[0].toUpperCase() + value.slice(1, -4).toLowerCase(),
+      value.slice(-2, value.length).toUpperCase(),
+    ];
+
+    filler.push(Arr);
+    setOptions([]);
+    props.setCompareList({
+      cities: filler,
+      searched: true,
+    });
+    setCity({ city: '' });
   };
   return (
     <div className="App">
       <h5>Search City: </h5>
-            <Search
-              id="autocomplete_input"
-              type="text"
+      <Search
+        id="autocomplete_input"
+        type="text"
         placeholder="Ex: Tulsa, OK"
         value={city.city}
-              enterButton
-              value={city.city}
-              onChange={event => handleCityInputChange(event)}
-            />
-          ) : (
-            <h5>
-              Three cities selected already, please remove one to keep
-              comparing.
-            </h5>
-          )}
-          <div className="autocomplete">
-            {options.length > 0 &&
-              options.map(value => {
-                return (
-                  <p
-                    key={value[0] + value[1]}
-                    onClick={e => {
-                      // CityReport city={value[0]}  state={value[1]}
-                      let filler = props.compareList.cities;
-                      filler.push(value);
-                      setOptions([]);
-                      e.preventDefault();
-                      e.stopPropagation();
-                      props.setCompareList({
-                        cities: filler,
-                        searched: true,
-                      });
-                      setCity({ city: '' });
-                    }}
-                  >
-                    {value[0]}, {value[1]}
-                  </p>
-                );
-              })}
-          </div>
-        </label>
-      </form>
+        enterButton
+        onChange={event => handleCityInputChange(event)}
+        onSearch={value => {
+          handleOnSearch(value);
+        }}
+      />
+      <div className="autocomplete">
+        {options.length > 0 &&
+          options.map(value => {
+            return (
+              <p
+                key={value[0] + value[1]}
+                onClick={event => {
+                  // CityReport city={value[0]}  state={value[1]}
+                  let filler = props.compareList.cities;
+                  filler.push(value);
+                  setOptions([]);
+                  event.preventDefault();
+                  event.stopPropagation();
+                  props.setCompareList({
+                    cities: filler,
+                    searched: true,
+                  });
+                  setCity({ city: '' });
+                }}
+              >
+                {value[0]}, {value[1]}
+              </p>
+            );
+          })}
+      </div>
     </div>
   );
 }
