@@ -258,17 +258,52 @@ export default function Plotly() {
       display: 'flex',
     };
   }
+
+  function hideCity(event) {
+    // gets proper cityDisplayPlot to remove
+    let city1 = document.getElementById('city1');
+    let city2 = document.getElementById('city2');
+    let city3 = document.getElementById('city3');
+
+    // id of button the user clicks
+    let id = event.target.id;
+
+    // id of the remove buttons
+    let btn1 = document.getElementById('btn1').id;
+    let btn2 = document.getElementById('btn2').id;
+    let btn3 = document.getElementById('btn3').id;
+
+    // if btn user clicked matches btn id
+    if (id === btn1) {
+      // remove that city report by displaying none
+      city1.style.display = 'none';
+      // remove city from compareList
+      compareList.cities.splice(0, 1);
+    } else if (id === btn2) {
+      city2.style.display = 'none';
+      compareList.cities.splice(1, 1);
+    } else if (id === btn3) {
+      city3.style.display = 'none';
+      compareList.cities.splice(2, 1);
+    }
+  }
+
   return (
     <div style={gridStyle}>
       {thisCityData && (
-        <div className="cityDisplayPlot">
+        <div className="cityDisplayPlot" id="city1">
           {!thisCityData.cityData1 ? (
             <Loader />
           ) : (
-            <Plot
-              data={thisCityData.cityData1}
-              layout={thisCityData.cityLayout1}
-            />
+            <div>
+              <button id="btn1" onClick={e => hideCity(e)}>
+                Remove
+              </button>
+              <Plot
+                data={thisCityData.cityData1}
+                layout={thisCityData.cityLayout1}
+              />
+            </div>
           )}
           {!unemployment[0] ? (
             <Loader />
@@ -280,14 +315,19 @@ export default function Plotly() {
         </div>
       )}
       {thisCityData.cityLayout2 !== undefined && (
-        <div className="cityDisplayPlot">
+        <div className="cityDisplayPlot" id="city2">
           {!thisCityData.cityData2 ? (
             <Loader />
           ) : (
-            <Plot
-              data={thisCityData.cityData2}
-              layout={thisCityData.cityLayout2}
-            />
+            <div>
+              <button id="btn2" onClick={e => hideCity(e)}>
+                Remove
+              </button>
+              <Plot
+                data={thisCityData.cityData2}
+                layout={thisCityData.cityLayout2}
+              />
+            </div>
           )}
           {!unemployment[1] ? (
             <Loader />
@@ -299,14 +339,19 @@ export default function Plotly() {
         </div>
       )}
       {thisCityData.cityLayout3 !== undefined && (
-        <div className="cityDisplayPlot">
+        <div className="cityDisplayPlot" id="city3">
           {!thisCityData.cityData2 ? (
             <Loader />
           ) : (
-            <Plot
-              data={thisCityData.cityData3}
-              layout={thisCityData.cityLayout3}
-            />
+            <div>
+              <button id="btn3" onClick={e => hideCity(e)}>
+                Remove
+              </button>
+              <Plot
+                data={thisCityData.cityData3}
+                layout={thisCityData.cityLayout3}
+              />
+            </div>
           )}
           {!unemployment[2] ? (
             <Loader />
