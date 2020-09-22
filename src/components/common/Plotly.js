@@ -326,7 +326,6 @@ export default function Plotly() {
           searched: false,
         });
       }
-    }
   }
 
   return (
