@@ -268,21 +268,16 @@ export default function Plotly() {
     // id of button the user clicks
     let id = event.target.id;
 
-    // id of the remove buttons
-    let btn1 = document.getElementById('btn1').id;
-    let btn2 = document.getElementById('btn2').id;
-    let btn3 = document.getElementById('btn3').id;
-
     // if btn user clicked matches btn id
-    if (id === btn1) {
+    if (id === 'btn1') {
       // remove that city report by displaying none
       city1.style.display = 'none';
       // remove city from compareList
       compareList.cities.splice(0, 1);
-    } else if (id === btn2) {
+    } else if (id === 'btn2') {
       city2.style.display = 'none';
       compareList.cities.splice(1, 1);
-    } else if (id === btn3) {
+    } else if (id === 'btn3') {
       city3.style.display = 'none';
       compareList.cities.splice(2, 1);
     }
