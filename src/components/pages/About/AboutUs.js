@@ -35,14 +35,14 @@ export default function AboutUs() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-github-square fa-3x" />
+                    <i className="fab fa-github-square fa-3x" />
                   </a>
                   <a
                     href="https://www.linkedin.com/in/vladmog/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-linkedin fa-3x" />
+                    <i className="fab fa-linkedin fa-3x" />
                   </a>
                 </div>
                 <p className="member-bio">
@@ -70,14 +70,14 @@ export default function AboutUs() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-github-square fa-3x" />
+                    <i className="fab fa-github-square fa-3x" />
                   </a>
                   <a
                     href="https://www.linkedin.com/in/Seanantosiak"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-linkedin fa-3x" />
+                    <i className="fab fa-linkedin fa-3x" />
                   </a>
                 </div>
                 <p className="member-bio">
@@ -113,14 +113,14 @@ export default function AboutUs() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-github-square fa-3x" />
+                    <i className="fab fa-github-square fa-3x" />
                   </a>
                   <a
                     href="https://www.linkedin.com/in/perezenting-michael/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-linkedin fa-3x" />
+                    <i className="fab fa-linkedin fa-3x" />
                   </a>
                 </div>
                 <p className="member-bio">
@@ -150,14 +150,14 @@ export default function AboutUs() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-github-square fa-3x" />
+                    <i className="fab fa-github-square fa-3x" />
                   </a>
                   <a
                     href="https://www.linkedin.com/in/toricruz-mendiola"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-linkedin fa-3x" />
+                    <i className="fab fa-linkedin fa-3x" />
                   </a>
                 </div>
                 <p className="member-bio">
@@ -195,14 +195,14 @@ export default function AboutUs() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-github-square fa-3x" />
+                    <i className="fab fa-github-square fa-3x" />
                   </a>
                   <a
                     href="https://www.linkedin.com/in/aaron-watkins-jr/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-linkedin fa-3x" />
+                    <i className="fab fa-linkedin fa-3x" />
                   </a>
                 </div>
                 <p className="member-bio">
@@ -230,14 +230,14 @@ export default function AboutUs() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-github-square fa-3x" />
+                    <i className="fab fa-github-square fa-3x" />
                   </a>
                   <a
                     href="https://www.linkedin.com/in/samuel-swank/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-linkedin fa-3x" />
+                    <i className="fab fa-linkedin fa-3x" />
                   </a>
                 </div>
                 <p className="member-bio">
@@ -266,14 +266,14 @@ export default function AboutUs() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-github-square fa-3x" />
+                    <i className="fab fa-github-square fa-3x" />
                   </a>
                   <a
                     href="https://www.linkedin.com/in/kbarrett96/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-linkedin fa-3x" />
+                    <i className="fab fa-linkedin fa-3x" />
                   </a>
                 </div>
                 <p className="member-bio">
@@ -302,14 +302,14 @@ export default function AboutUs() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-github-square fa-3x" />
+                    <i className="fab fa-github-square fa-3x" />
                   </a>
                   <a
                     href="https://www.linkedin.com/in/travisc-/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <i class="fab fa-linkedin fa-3x" />
+                    <i className="fab fa-linkedin fa-3x" />
                   </a>
                 </div>
                 <p className="member-bio">
