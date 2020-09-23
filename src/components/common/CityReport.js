@@ -12,8 +12,7 @@ function CityReport(props) {
   }
   return (
     <section className="report-container" style={citySpace}>
-      <div className="average-rent">
-        <h1>Average Rent</h1>
+      <div className="report-div">
         <Plotly />
       </div>
     </section>
