@@ -63,7 +63,7 @@ export default function Plotly() {
       }
     }
     fetchRentData();
-  }, [lastState, lastCity]);
+  }, [lastState, lastCity, lastCityAdded, compareList.cities]);
 
   // Gets the unemployment chart from the DS API
   useEffect(() => {
@@ -91,7 +91,7 @@ export default function Plotly() {
       }
     }
     fetchUnemploymentData();
-  }, [lastState]);
+  }, [lastState, compareList.cities]);
 
   // retrieves the data from DS API and sets to state;
   useEffect(() => {
@@ -303,19 +303,6 @@ export default function Plotly() {
         </div>
       </div>,
     ];
-  }
-  let gridStyle;
-  if (compareList.cities.length === 1) {
-    gridStyle = {
-      display: 'grid',
-      width: '100%',
-      margin: '0, auto',
-    };
-  } else {
-    gridStyle = {
-      display: 'flex',
-      justifyContent: 'space-around',
-    };
   }
 
   function hideCity(event) {
