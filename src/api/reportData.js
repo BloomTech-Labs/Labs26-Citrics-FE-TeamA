@@ -22,16 +22,6 @@ export function reportWeatherData(city, state) {
     });
 }
 
-export function reportRentData(city, state) {
-  return axios
-    .get(`https://ds.citrics.dev/rent_viz/${city}_${state}`)
-    .then(response => {
-      return JSON.parse(response.data);
-    })
-    .catch(err => {
-      return err;
-    });
-}
 export function unemploymentData(state) {
   return axios
     .get(`https://ds.citrics.dev/viz/${state}`)

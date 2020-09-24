@@ -6,61 +6,82 @@ import {
   reportWalkData,
   unemploymentData,
 } from '../../api/reportData';
+import axios from './../../api/dsapi';
 import { ReportContext } from '../../state/contexts/ReportContext';
 import Loader from './Loader';
 
 export default function Plotly() {
   //  State for plotly json info
   const [thisCityData, setThisCityData] = useState({});
-  const [walkCityData, setwalkCityData] = useState({});
+  const [walkCityData, setwalkCityData] = useState([]);
   const [weatherCityData, setweatherCityData] = useState({});
   const [unemployment, setUnemployment] = useState({});
   let { compareList, setCompareList } = useContext(ReportContext);
   let walkFill = {};
   let weatherFill = {};
   let unemploymentFill = {};
+  let lastCityAdded = compareList.cities[compareList.cities.length - 1];
+  let lastCityLength = lastCityAdded.length;
+  let lastCity = lastCityAdded[lastCityLength - 2];
+  let lastState = lastCityAdded[lastCityLength - 1];
+
+  // useEffect for fetching rent data viz from ds backend
+  // sets the cityData and cityLayout for following cities
+  useEffect(() => {
+    async function fetchRentData() {
+      if (compareList.cities.length === 1) {
+        const request = await axios.get(`/rent_viz2/${lastCity}_${lastState}`);
+        const rentData = JSON.parse(request.data);
+
+        setThisCityData({
+          cityData1: rentData.data,
+          cityLayout1: rentData.layout,
+        });
+      } else if (compareList.cities.length === 2) {
+        let firstCity = compareList.cities[compareList.cities.length - 2];
+        const request = await axios.get(
+          `/rent_viz2/${firstCity[0]}_${firstCity[1]}?city2=${lastCityAdded[0]}&statecode2=${lastCityAdded[1]}`
+        );
+
+        const rentData = JSON.parse(request.data);
+        setThisCityData({
+          cityData1: rentData.data,
+          cityLayout1: rentData.layout,
+        });
+      } else if (compareList.cities.length === 3) {
+        let firstCity = compareList.cities[compareList.cities.length - 3];
+        let secondCity = compareList.cities[compareList.cities.length - 2];
+        const request = await axios.get(
+          `/rent_viz2/${firstCity[0]}_${firstCity[1]}?city2=${secondCity[0]}&statecode2=${secondCity[1]}&city3=${lastCityAdded[0]}&statecode3=${lastCityAdded[1]}`
+        );
+
+        const rentData = JSON.parse(request.data);
+        setThisCityData({
+          cityData1: rentData.data,
+          cityLayout1: rentData.layout,
+        });
+      }
+    }
+    fetchRentData();
+  }, [lastState, lastCity]);
+
+  // Gets the unemployment chart from the DS API
+  // useEffect(() => {
+  //   async function fetchUnemploymentData() {
+  //     const request = await axios.get(`/viz/${lastState}`);
+  //     const unemploymentData = JSON.parse(request.data);
+  //   }
+  //   fetchUnemploymentData();
+  // }, [lastState]);
 
   // retrieves the data from DS API and sets to state;
   useEffect(() => {
-    let lastCityAdded = compareList.cities[compareList.cities.length - 1];
-    let lastCityLength = lastCityAdded.length;
     unemploymentData(lastCityAdded[lastCityLength - 1])
       .then(response => {
         if (!(compareList.cities.length in unemploymentFill)) {
           unemploymentFill = unemployment;
           unemploymentFill[compareList.cities.length - 1] = response;
           setUnemployment(unemploymentFill);
-        }
-      })
-      .catch(err => {});
-    reportRentData(
-      lastCityAdded[lastCityLength - 2],
-      lastCityAdded[lastCityLength - 1]
-    )
-      .then(res => {
-        if (!('cityData1' in thisCityData)) {
-          setThisCityData({
-            cityData1: res.data,
-            cityLayout1: res.layout,
-          });
-        }
-        if ('cityData1' in thisCityData && !('cityData2' in thisCityData)) {
-          setThisCityData({
-            ...thisCityData,
-            cityData2: res.data,
-            cityLayout2: res.layout,
-          });
-        }
-        if (
-          'cityData1' in thisCityData &&
-          'cityData2' in thisCityData &&
-          !('cityData3' in thisCityData)
-        ) {
-          setThisCityData({
-            ...thisCityData,
-            cityData3: res.data,
-            cityLayout3: res.layout,
-          });
         }
       })
       .catch(err => {});
@@ -144,6 +165,7 @@ export default function Plotly() {
       </div>,
     ];
   }
+
   if (walkCityData.cityWalk3 !== undefined) {
     walkFill[2] = [
       <div className="walkData">
@@ -155,6 +177,7 @@ export default function Plotly() {
       </div>,
     ];
   }
+
   let city1 = weatherCityData.cityWeather1;
   let city2 = weatherCityData.cityWeather2;
   let city3 = weatherCityData.cityWeather3;
@@ -277,10 +300,12 @@ export default function Plotly() {
     gridStyle = {
       display: 'grid',
       width: '100%',
+      margin: '0, auto',
     };
   } else {
     gridStyle = {
       display: 'flex',
+      justifyContent: 'space-around',
     };
   }
 
@@ -367,79 +392,92 @@ export default function Plotly() {
     }
   }
   return (
-    <div style={gridStyle}>
-      {thisCityData && (
-        <div className="cityDisplayPlot" id="city1">
-          {!thisCityData.cityData1 ? (
-            <Loader />
-          ) : (
-            <div>
-              <button id="btn1" onClick={e => hideCity(e)}>
-                Remove
-              </button>
-              <Plot
-                data={thisCityData.cityData1}
-                layout={thisCityData.cityLayout1}
-              />
-            </div>
-          )}
-          {!unemployment[0] ? (
-            <Loader />
-          ) : (
-            <Plot data={unemployment[0].data} layout={unemployment[0].layout} />
-          )}
-          {!walkFill[0] ? <Loader /> : walkFill[0]}
-          {!weatherFill[0] ? <Loader /> : weatherFill[0]}
+    <section>
+      {!thisCityData.cityData1 ? (
+        <Loader />
+      ) : (
+        <div>
+          <Plot
+            data={thisCityData.cityData1}
+            layout={thisCityData.cityLayout1}
+          />
         </div>
       )}
-      {thisCityData.cityLayout2 !== undefined && (
-        <div className="cityDisplayPlot" id="city2">
-          {!thisCityData.cityData2 ? (
-            <Loader />
-          ) : (
-            <div>
-              <button id="btn2" onClick={e => hideCity(e)}>
-                Remove
-              </button>
+
+      <div style={gridStyle}>
+        {thisCityData && (
+          <div className="cityDisplayPlot" id="city1">
+            {' '}
+            <button id="btn1" onClick={e => hideCity(e)}>
+              Remove
+            </button>
+            {!unemployment[0] ? (
+              <Loader />
+            ) : (
               <Plot
-                data={thisCityData.cityData2}
-                layout={thisCityData.cityLayout2}
+                data={unemployment[0].data}
+                layout={unemployment[0].layout}
               />
-            </div>
-          )}
-          {!unemployment[1] ? (
-            <Loader />
-          ) : (
-            <Plot data={unemployment[1].data} layout={unemployment[1].layout} />
-          )}
-          {!walkFill[1] ? <Loader /> : walkFill[1]}
-          {!weatherFill[1] ? <Loader /> : weatherFill[1]}
-        </div>
-      )}
-      {thisCityData.cityLayout3 !== undefined && (
-        <div className="cityDisplayPlot" id="city3">
-          {!thisCityData.cityData2 ? (
-            <Loader />
-          ) : (
-            <div>
-              <button id="btn3" onClick={e => hideCity(e)}>
-                Remove
-              </button>
+            )}
+            {!walkFill[0] ? <Loader /> : walkFill[0]}
+            {!weatherFill[0] ? <Loader /> : weatherFill[0]}
+          </div>
+        )}
+        {city2 !== undefined && (
+          <div className="cityDisplayPlot" id="city2">
+            {!thisCityData.cityData2 ? (
+              <Loader />
+            ) : (
+              <div>
+                <button id="btn2" onClick={e => hideCity(e)}>
+                  Remove
+                </button>
+                <Plot
+                  data={thisCityData.cityData2}
+                  layout={thisCityData.cityLayout2}
+                />
+              </div>
+            )}
+            {!unemployment[1] ? (
+              <Loader />
+            ) : (
               <Plot
-                data={thisCityData.cityData3}
-                layout={thisCityData.cityLayout3}
+                data={unemployment[1].data}
+                layout={unemployment[1].layout}
               />
-            </div>
-          )}
-          {!unemployment[2] ? (
-            <Loader />
-          ) : (
-            <Plot data={unemployment[2].data} layout={unemployment[2].layout} />
-          )}
-          {!walkFill[2] ? <Loader /> : walkFill[2]}
-          {!weatherFill[2] ? <Loader /> : weatherFill[2]}
-        </div>
-      )}
-    </div>
+            )}
+            {!walkFill[1] ? <Loader /> : walkFill[1]}
+            {!weatherFill[1] ? <Loader /> : weatherFill[1]}
+          </div>
+        )}
+        {city3 !== undefined && (
+          <div className="cityDisplayPlot" id="city3">
+            {!thisCityData.cityData2 ? (
+              <Loader />
+            ) : (
+              <div>
+                <button id="btn3" onClick={e => hideCity(e)}>
+                  Remove
+                </button>
+                <Plot
+                  data={thisCityData.cityData3}
+                  layout={thisCityData.cityLayout3}
+                />
+              </div>
+            )}
+            {!unemployment[2] ? (
+              <Loader />
+            ) : (
+              <Plot
+                data={unemployment[2].data}
+                layout={unemployment[2].layout}
+              />
+            )}
+            {!walkFill[2] ? <Loader /> : walkFill[2]}
+            {!weatherFill[2] ? <Loader /> : weatherFill[2]}
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
