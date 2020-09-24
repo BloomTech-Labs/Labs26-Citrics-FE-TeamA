@@ -66,26 +66,35 @@ export default function Plotly() {
   }, [lastState, lastCity]);
 
   // Gets the unemployment chart from the DS API
-  // useEffect(() => {
-  //   async function fetchUnemploymentData() {
-  //     const request = await axios.get(`/viz/${lastState}`);
-  //     const unemploymentData = JSON.parse(request.data);
-  //   }
-  //   fetchUnemploymentData();
-  // }, [lastState]);
+  useEffect(() => {
+    async function fetchUnemploymentData() {
+      if (compareList.cities.length === 1) {
+        const request = await axios.get(`/viz/${lastState}`);
+        const unemploymentData = JSON.parse(request.data);
+        setUnemployment(unemploymentData);
+      } else if (compareList.cities.length === 2) {
+        let firstState = compareList.cities[compareList.cities.length - 2][1];
+        const request = await axios.get(
+          `/viz/${firstState}?statecode2=${lastState}`
+        );
+        const unemploymentData = JSON.parse(request.data);
+        setUnemployment(unemploymentData);
+      } else if (compareList.cities.length === 3) {
+        let firstState = compareList.cities[compareList.cities.length - 3][1];
+        let secondState = compareList.cities[compareList.cities.length - 2][1];
+
+        const request = await axios.get(
+          `/viz/${firstState}?statecode2=${secondState}&statecode3=${lastState}`
+        );
+        const unemploymentData = JSON.parse(request.data);
+        setUnemployment(unemploymentData);
+      }
+    }
+    fetchUnemploymentData();
+  }, [lastState]);
 
   // retrieves the data from DS API and sets to state;
   useEffect(() => {
-    unemploymentData(lastCityAdded[lastCityLength - 1])
-      .then(response => {
-        if (!(compareList.cities.length in unemploymentFill)) {
-          unemploymentFill = unemployment;
-          unemploymentFill[compareList.cities.length - 1] = response;
-          setUnemployment(unemploymentFill);
-        }
-      })
-      .catch(err => {});
-
     reportWeatherData(lastCityAdded[0], lastCityAdded[1])
       .then(res => {
         if (!('cityWeather1' in weatherCityData)) {
@@ -403,76 +412,41 @@ export default function Plotly() {
           />
         </div>
       )}
+      {!('data' in unemployment) ? (
+        <Loader />
+      ) : (
+        <Plot data={unemployment.data} layout={unemployment.layout} />
+      )}
 
-      <div style={gridStyle}>
+      <div className="weathers">
         {thisCityData && (
           <div className="cityDisplayPlot" id="city1">
             {' '}
             <button id="btn1" onClick={e => hideCity(e)}>
               Remove
             </button>
-            {!unemployment[0] ? (
-              <Loader />
-            ) : (
-              <Plot
-                data={unemployment[0].data}
-                layout={unemployment[0].layout}
-              />
-            )}
             {!walkFill[0] ? <Loader /> : walkFill[0]}
             {!weatherFill[0] ? <Loader /> : weatherFill[0]}
           </div>
         )}
         {city2 !== undefined && (
           <div className="cityDisplayPlot" id="city2">
-            {!thisCityData.cityData2 ? (
-              <Loader />
-            ) : (
-              <div>
-                <button id="btn2" onClick={e => hideCity(e)}>
-                  Remove
-                </button>
-                <Plot
-                  data={thisCityData.cityData2}
-                  layout={thisCityData.cityLayout2}
-                />
-              </div>
-            )}
-            {!unemployment[1] ? (
-              <Loader />
-            ) : (
-              <Plot
-                data={unemployment[1].data}
-                layout={unemployment[1].layout}
-              />
-            )}
+            <div>
+              <button id="btn2" onClick={e => hideCity(e)}>
+                Remove
+              </button>
+            </div>
             {!walkFill[1] ? <Loader /> : walkFill[1]}
             {!weatherFill[1] ? <Loader /> : weatherFill[1]}
           </div>
         )}
         {city3 !== undefined && (
           <div className="cityDisplayPlot" id="city3">
-            {!thisCityData.cityData2 ? (
-              <Loader />
-            ) : (
-              <div>
-                <button id="btn3" onClick={e => hideCity(e)}>
-                  Remove
-                </button>
-                <Plot
-                  data={thisCityData.cityData3}
-                  layout={thisCityData.cityLayout3}
-                />
-              </div>
-            )}
-            {!unemployment[2] ? (
-              <Loader />
-            ) : (
-              <Plot
-                data={unemployment[2].data}
-                layout={unemployment[2].layout}
-              />
-            )}
+            <div>
+              <button id="btn3" onClick={e => hideCity(e)}>
+                Remove
+              </button>
+            </div>
             {!walkFill[2] ? <Loader /> : walkFill[2]}
             {!weatherFill[2] ? <Loader /> : weatherFill[2]}
           </div>
