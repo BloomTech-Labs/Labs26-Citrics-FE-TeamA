@@ -13,7 +13,7 @@
   }
 }
 .weather {
-  width: 50%;
+  width: auto;
 }
 .cityDisplayPlot {
   padding: 0 2% 0;
@@ -30,8 +30,8 @@
   border-radius: 30px;
   padding-top: 6%;
   color: white;
-  margin-left: 2%;
-  margin-right: 2%;
+  margin-left: 7%;
+  margin-right: 7%;
   div {
     padding: 1%;
     p {
@@ -40,19 +40,24 @@
   }
   h3 {
     color: white;
+    font-size: x-large;
+    text-shadow: 0 0 3px #000000;
   }
   .main-temperature{
+    padding-bottom: 0;
     h1 {
       font-size: 6rem;
       margin-bottom: 0;
       color: white;
+      text-shadow: 0 0 5px #000000;
     }
   }
   .other-temperature{
     display: flex;
     justify-content: space-between;
-    margin-left: 23%;
-    margin-right: 23%;
+    margin-left: 8.2vw;
+    margin-right: 8.2vw;
+    text-shadow: 0 0 5px #000000;
   }
   .weather-stat-div{
     display: flex;
@@ -62,10 +67,12 @@
     font-size: 1.2rem;
     .weather-stat-titles{
       text-align: left;
+      text-shadow: 0 0 3px #000000;
     }
     .weather-stat-nums{
       font-weight: bolder;
       text-align: right;
+      text-shadow: 0 0 5px #000000;
     }
   }
 }

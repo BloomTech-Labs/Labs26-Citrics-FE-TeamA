@@ -196,7 +196,7 @@ export default function Plotly() {
       </div>,
     ];
   }
-  if (weatherCityData.cityWeather2 !== undefined) {
+  if (city2 !== undefined) {
     weatherFill[1] = [
       <div className="weatherData">
         <h3>{city2.city}'s Weather</h3>
@@ -205,7 +205,7 @@ export default function Plotly() {
             <h1>{city2.imperial_main_temp}°</h1>
           </div>
           <div className="other-temperature">
-            <p>Feels Like: {city2.imperial_main_feels_like}°</p>
+            <p>Feels like {city2.imperial_main_feels_like}°</p>
             <p>
               {city2.imperial_main_temp_max}°/{city2.imperial_main_temp_min}°
             </p>
@@ -234,7 +234,7 @@ export default function Plotly() {
       </div>,
     ];
   }
-  if (weatherCityData.cityWeather3 !== undefined) {
+  if (city3 !== undefined) {
     weatherFill[2] = [
       <div className="weatherData">
         <h3>{city3.city}'s Weather</h3>
@@ -326,6 +326,9 @@ export default function Plotly() {
         delete thisCityData.cityLayout3;
         delete weatherCityData.cityWeather3;
         delete walkCityData.cityWalk3;
+        setThisCityData({
+          ...thisCityData,
+        });
       }
       // if 2 cities are being compared
     } else if (length === 2) {
