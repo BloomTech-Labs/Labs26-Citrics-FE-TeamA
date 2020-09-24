@@ -312,39 +312,32 @@ export default function Plotly() {
 
     // if 3 cities are being compared
     if (length === 3) {
-      // copying citydata3 and citylayout3
-      let fillerData = thisCityData.cityData3;
-      let fillerLayout = thisCityData.cityLayout3;
       // if btn user clicked matches btn id
       if (id === 'btn1') {
         // remove city from compareList
         compareList.cities.shift();
-        delete thisCityData.cityData3;
-        delete thisCityData.cityLayout3;
+        // delete thisCityData.cityData3;
+        // delete thisCityData.cityLayout3;
         delete weatherCityData.cityWeather3;
         delete walkCityData.cityWalk3;
         setThisCityData({
           ...thisCityData,
-          cityData1: thisCityData.cityData2,
-          cityLayout1: thisCityData.cityLayout2,
-          cityData2: fillerData,
-          cityLayout2: fillerLayout,
         });
       } else if (id === 'btn2') {
         compareList.cities.splice(1, 1);
-        delete thisCityData.cityData3;
-        delete thisCityData.cityLayout3;
+        // delete thisCityData.cityData3;
+        // delete thisCityData.cityLayout3;
         delete weatherCityData.cityWeather3;
         delete walkCityData.cityWalk3;
         setThisCityData({
           ...thisCityData,
-          cityData2: fillerData,
-          cityLayout2: fillerLayout,
+          // cityData2: fillerData,
+          // cityLayout2: fillerLayout,
         });
       } else if (id === 'btn3') {
         compareList.cities.pop();
-        delete thisCityData.cityData3;
-        delete thisCityData.cityLayout3;
+        // delete thisCityData.cityData3;
+        // delete thisCityData.cityLayout3;
         delete weatherCityData.cityWeather3;
         delete walkCityData.cityWalk3;
         setThisCityData({
@@ -353,23 +346,20 @@ export default function Plotly() {
       }
       // if 2 cities are being compared
     } else if (length === 2) {
-      let fillerData = thisCityData.cityData2;
-      let fillerLayout = thisCityData.cityLayout2;
       if (id === 'btn1') {
         // remove city from compareList
         compareList.cities.shift();
-        delete thisCityData.cityData2;
-        delete thisCityData.cityLayout2;
+        // delete thisCityData.cityData2;
+        // delete thisCityData.cityLayout2;
         delete weatherCityData.cityWeather2;
         delete walkCityData.cityWalk2;
         setThisCityData({
-          cityData1: fillerData,
-          cityLayout1: fillerLayout,
+          ...thisCityData,
         });
       } else if (id === 'btn2') {
         compareList.cities.pop();
-        delete thisCityData.cityData2;
-        delete thisCityData.cityLayout2;
+        // delete thisCityData.cityData2;
+        // delete thisCityData.cityLayout2;
         delete weatherCityData.cityWeather2;
         delete walkCityData.cityWalk2;
         setThisCityData({
@@ -387,6 +377,9 @@ export default function Plotly() {
       }
     }
   }
+  console.log('compareList.cities:', compareList.cities);
+  // console.log('compareList.cities.length:', compareList.cities.length);
+  console.log('thisCityData', thisCityData);
   return (
     <section>
       {!thisCityData.cityData1 ? (
@@ -409,7 +402,12 @@ export default function Plotly() {
         {thisCityData && (
           <div className="cityDisplayPlot" id="city1">
             {' '}
-            <button id="btn1" onClick={e => hideCity(e)}>
+            <button
+              id="btn1"
+              onClick={e => {
+                hideCity(e);
+              }}
+            >
               Remove
             </button>
             {!walkFill[0] ? <Loader /> : walkFill[0]}
@@ -419,7 +417,12 @@ export default function Plotly() {
         {city2 !== undefined && (
           <div className="cityDisplayPlot" id="city2">
             <div>
-              <button id="btn2" onClick={e => hideCity(e)}>
+              <button
+                id="btn2"
+                onClick={e => {
+                  hideCity(e);
+                }}
+              >
                 Remove
               </button>
             </div>
@@ -430,7 +433,12 @@ export default function Plotly() {
         {city3 !== undefined && (
           <div className="cityDisplayPlot" id="city3">
             <div>
-              <button id="btn3" onClick={e => hideCity(e)}>
+              <button
+                id="btn3"
+                onClick={e => {
+                  hideCity(e);
+                }}
+              >
                 Remove
               </button>
             </div>
