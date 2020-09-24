@@ -24,7 +24,7 @@ export default function AboutUs() {
                   <img
                     className="member-photo"
                     alt="default pic"
-                    src="https://i.ibb.co/k3rzB8P/default-prof-pic.jpg"
+                    src="https://i.ibb.co/8zttxTG/vlad-profile-pic.png"
                   />
                 </div>
                 <h3>Vladislav Mogilevskiy</h3>
@@ -59,7 +59,7 @@ export default function AboutUs() {
                   <img
                     className="member-photo"
                     alt="default pic"
-                    src="https://i.ibb.co/k3rzB8P/default-prof-pic.jpg"
+                    src="https://i.ibb.co/KDCZn2d/sean-antosiak-profile-pic.jpg"
                   />
                 </div>
                 <h3>Sean Antosiak</h3>
@@ -102,7 +102,7 @@ export default function AboutUs() {
                   <img
                     className="member-photo"
                     alt="default pic"
-                    src="https://i.ibb.co/k3rzB8P/default-prof-pic.jpg"
+                    src="https://i.ibb.co/QcQs8Ch/michael-perez-profile-pic.jpg"
                   />
                 </div>
                 <h3>Michael Perez</h3>
@@ -139,7 +139,7 @@ export default function AboutUs() {
                   <img
                     className="member-photo"
                     alt="default pic"
-                    src="https://i.ibb.co/k3rzB8P/default-prof-pic.jpg"
+                    src="https://i.ibb.co/jwYt5H6/profpic.jpg"
                   />
                 </div>
                 <h3>Toricruz Mendiola</h3>
@@ -184,7 +184,7 @@ export default function AboutUs() {
                   <img
                     className="member-photo"
                     alt="default pic"
-                    src="https://i.ibb.co/k3rzB8P/default-prof-pic.jpg"
+                    src="https://i.ibb.co/fHZJH5c/aaron-watkins-profile-pic.jpg"
                   />
                 </div>
                 <h3>Aaron Watkins</h3>
@@ -219,7 +219,7 @@ export default function AboutUs() {
                   <img
                     className="member-photo"
                     alt="default pic"
-                    src="https://i.ibb.co/k3rzB8P/default-prof-pic.jpg"
+                    src="https://i.ibb.co/YQ1zgbV/samuel-swank-profile-pic.jpg"
                   />
                 </div>
                 <h3>Samuel Swank</h3>
@@ -241,11 +241,12 @@ export default function AboutUs() {
                   </a>
                 </div>
                 <p className="member-bio">
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                  Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                  natoque penatibus et magnis dis parturient montes, nascetur
-                  ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-                  eu, pretium quis, sem. Nulla consequat massa quis enim. Donec.
+                  Samuel Swank is a Data Scientist with a background in
+                  econometrics currently attending Lambda School. Samuel is
+                  proficient in Python and its Data Science Libraries, NumPy,
+                  Pandas, MatplotLib, scikit-learn, TensorFlow, etc. Samuel also
+                  lived in Taiwan for 2 years and speaks Mandarin at a level
+                  that others describe as fluent.
                 </p>
               </div>
             </div>
@@ -255,7 +256,7 @@ export default function AboutUs() {
                   <img
                     className="member-photo"
                     alt="default pic"
-                    src="https://i.ibb.co/k3rzB8P/default-prof-pic.jpg"
+                    src="https://i.ibb.co/NTGbxMD/kenneth-barrett-profile-pic.jpg"
                   />
                 </div>
                 <h3>Kenneth Barrett</h3>
@@ -291,7 +292,7 @@ export default function AboutUs() {
                   <img
                     className="member-photo"
                     alt="default pic"
-                    src="https://i.ibb.co/k3rzB8P/default-prof-pic.jpg"
+                    src="https://i.ibb.co/XYM5zdw/travis-cain-profile-pic.jpg"
                   />
                 </div>
                 <h3>Travis Cain</h3>
