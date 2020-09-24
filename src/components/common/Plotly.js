@@ -156,6 +156,7 @@ export default function Plotly() {
       </div>,
     ];
   }
+
   if (walkCityData.cityWalk3 !== undefined) {
     walkFill[2] = [
       <div className="walkData">
@@ -168,92 +169,119 @@ export default function Plotly() {
     ];
   }
 
-  if (weatherCityData.cityWeather1 !== undefined) {
+  let city1 = weatherCityData.cityWeather1;
+  let city2 = weatherCityData.cityWeather2;
+  let city3 = weatherCityData.cityWeather3;
+  if (city1 !== undefined) {
     weatherFill[0] = [
       <div className="weatherData">
-        <h3>Weather</h3>
-        <div>
-          <p>
-            Today's Forecast: {weatherCityData.cityWeather1.description} for{' '}
-            {weatherCityData.cityWeather1.city}
-          </p>
-          <p>Clouds Today: {weatherCityData.cityWeather1.clouds_all}%</p>
-          <p>
-            Temperature: {weatherCityData.cityWeather1.imperial_main_temp}°F
-          </p>
-          <p>
-            Feels Like: {weatherCityData.cityWeather1.imperial_main_feels_like}
-            °F
-          </p>{' '}
-          <p>Min: {weatherCityData.cityWeather1.imperial_main_temp_min}°F</p>
-          <p>Max: {weatherCityData.cityWeather1.imperial_main_temp_max}°F</p>
-          <p>Humidity: {weatherCityData.cityWeather1.main_humidity}</p>
-          <p>Pressure: {weatherCityData.cityWeather1.main_pressure}</p>
-          <p>Visibility: {weatherCityData.cityWeather1.imperial_visibility}</p>
-          <p>Wind direction: {weatherCityData.cityWeather1.wind_deg}°</p>
-          <p>
-            Wind Speed: {weatherCityData.cityWeather1.imperial_wind_speed}mph
-          </p>
+        <h3>{city1.city}'s Weather</h3>
+        <div className="temperature-div">
+          <div className="main-temperature">
+            <h1>{city1.imperial_main_temp}°</h1>
+          </div>
+          <div className="other-temperature">
+            <p>Feels Like: {city1.imperial_main_feels_like}°</p>
+            <p>
+              {city1.imperial_main_temp_max}°/{city1.imperial_main_temp_min}°
+            </p>
+          </div>
+        </div>
+        <div className="weather-stat-div">
+          <div className="weather-stat-titles">
+            <p>Today's Forecast: </p>
+            <p>Clouds Today: </p>
+            <p>Humidity: </p>
+            <p>Pressure: </p>
+            <p>Visibility: </p>
+            <p>Wind direction: </p>
+            <p>Wind Speed: </p>
+          </div>
+          <div className="weather-stat-nums">
+            <p>{city1.description}</p>
+            <p>{city1.clouds_all}%</p>
+            <p>{city1.main_humidity}</p>
+            <p>{city1.main_pressure}</p>
+            <p>{city1.imperial_visibility}</p>
+            <p>{city1.wind_deg}°</p>
+            <p>{city1.imperial_wind_speed}mph</p>
+          </div>
         </div>
       </div>,
     ];
   }
-  if (weatherCityData.cityWeather2 !== undefined) {
+  if (city2 !== undefined) {
     weatherFill[1] = [
       <div className="weatherData">
-        <h3>Weather</h3>
-        <div>
-          <p>
-            Today's Forecast: {weatherCityData.cityWeather2.main} for{' '}
-            {weatherCityData.cityWeather2.city}
-          </p>
-          <p>Clouds Today: {weatherCityData.cityWeather2.clouds_all}%</p>{' '}
-          <p>
-            Temperature: {weatherCityData.cityWeather2.imperial_main_temp}°F
-          </p>
-          <p>
-            Feels Like: {weatherCityData.cityWeather2.imperial_main_feels_like}
-            °F
-          </p>{' '}
-          <p>Min: {weatherCityData.cityWeather2.imperial_main_temp_min}°F</p>
-          <p>Max: {weatherCityData.cityWeather2.imperial_main_temp_max}°F</p>
-          <p>Humidity: {weatherCityData.cityWeather2.imperial_main_humidity}</p>
-          <p>Pressure: {weatherCityData.cityWeather2.imperial_main_pressure}</p>
-          <p>Visibility: {weatherCityData.cityWeather2.imperial_visibility}</p>
-          <p>Wind direction: {weatherCityData.cityWeather2.wind_deg}°</p>
-          <p>
-            Wind Speed: {weatherCityData.cityWeather2.imperial_wind_speed}mph
-          </p>
+        <h3>{city2.city}'s Weather</h3>
+        <div className="temperature-div">
+          <div className="main-temperature">
+            <h1>{city2.imperial_main_temp}°</h1>
+          </div>
+          <div className="other-temperature">
+            <p>Feels like {city2.imperial_main_feels_like}°</p>
+            <p>
+              {city2.imperial_main_temp_max}°/{city2.imperial_main_temp_min}°
+            </p>
+          </div>
+        </div>
+        <div className="weather-stat-div">
+          <div className="weather-stat-titles">
+            <p>Today's Forecast: </p>
+            <p>Clouds Today: </p>
+            <p>Humidity: </p>
+            <p>Pressure: </p>
+            <p>Visibility: </p>
+            <p>Wind direction: </p>
+            <p>Wind Speed: </p>
+          </div>
+          <div className="weather-stat-nums">
+            <p>{city2.description}</p>
+            <p>{city2.clouds_all}%</p>
+            <p>{city2.main_humidity}</p>
+            <p>{city2.main_pressure}</p>
+            <p>{city2.imperial_visibility}</p>
+            <p>{city2.wind_deg}°</p>
+            <p>{city2.imperial_wind_speed}mph</p>
+          </div>
         </div>
       </div>,
     ];
   }
-  if (weatherCityData.cityWeather3 !== undefined) {
+  if (city3 !== undefined) {
     weatherFill[2] = [
       <div className="weatherData">
-        <h3>Weather</h3>
-        <div>
-          <p>
-            Today's Forecast: {weatherCityData.cityWeather3.main} for{' '}
-            {weatherCityData.cityWeather3.city}
-          </p>
-          <p>Clouds Today: {weatherCityData.cityWeather3.clouds_all}</p>{' '}
-          <p>
-            Temperature: {weatherCityData.cityWeather3.imperial_main_temp}°F
-          </p>
-          <p>
-            Feels Like: {weatherCityData.cityWeather3.imperial_main_feels_like}
-            °F
-          </p>{' '}
-          <p>Min: {weatherCityData.cityWeather3.imperial_main_temp_min}°F</p>
-          <p>Max: {weatherCityData.cityWeather3.imperial_main_temp_max}°F</p>
-          <p>Humidity: {weatherCityData.cityWeather3.main_humidity}</p>
-          <p>Pressure: {weatherCityData.cityWeather3.main_pressure}</p>
-          <p>Visibility: {weatherCityData.cityWeather3.imperial_visibility}</p>
-          <p>Wind direction: {weatherCityData.cityWeather3.wind_deg}°</p>
-          <p>
-            Wind Speed: {weatherCityData.cityWeather3.imperial_wind_speed}mph
-          </p>
+        <h3>{city3.city}'s Weather</h3>
+        <div className="temperature-div">
+          <div className="main-temperature">
+            <h1>{city3.imperial_main_temp}°</h1>
+          </div>
+          <div className="other-temperature">
+            <p>Feels Like: {city3.imperial_main_feels_like}°</p>
+            <p>
+              {city3.imperial_main_temp_max}°/{city3.imperial_main_temp_min}°
+            </p>
+          </div>
+        </div>
+        <div className="weather-stat-div">
+          <div className="weather-stat-titles">
+            <p>Today's Forecast: </p>
+            <p>Clouds Today: </p>
+            <p>Humidity: </p>
+            <p>Pressure: </p>
+            <p>Visibility: </p>
+            <p>Wind direction: </p>
+            <p>Wind Speed: </p>
+          </div>
+          <div className="weather-stat-nums">
+            <p>{city3.description}</p>
+            <p>{city3.clouds_all}%</p>
+            <p>{city3.main_humidity}</p>
+            <p>{city3.main_pressure}</p>
+            <p>{city3.imperial_visibility}</p>
+            <p>{city3.wind_deg}°</p>
+            <p>{city3.imperial_wind_speed}mph</p>
+          </div>
         </div>
       </div>,
     ];
@@ -288,6 +316,8 @@ export default function Plotly() {
         compareList.cities.shift();
         delete thisCityData.cityData3;
         delete thisCityData.cityLayout3;
+        delete weatherCityData.cityWeather3;
+        delete walkCityData.cityWalk3;
         setThisCityData({
           ...thisCityData,
           cityData1: thisCityData.cityData2,
@@ -299,6 +329,8 @@ export default function Plotly() {
         compareList.cities.splice(1, 1);
         delete thisCityData.cityData3;
         delete thisCityData.cityLayout3;
+        delete weatherCityData.cityWeather3;
+        delete walkCityData.cityWalk3;
         setThisCityData({
           ...thisCityData,
           cityData2: fillerData,
@@ -308,6 +340,11 @@ export default function Plotly() {
         compareList.cities.pop();
         delete thisCityData.cityData3;
         delete thisCityData.cityLayout3;
+        delete weatherCityData.cityWeather3;
+        delete walkCityData.cityWalk3;
+        setThisCityData({
+          ...thisCityData,
+        });
       }
       // if 2 cities are being compared
     } else if (length === 2) {
@@ -318,6 +355,8 @@ export default function Plotly() {
         compareList.cities.shift();
         delete thisCityData.cityData2;
         delete thisCityData.cityLayout2;
+        delete weatherCityData.cityWeather2;
+        delete walkCityData.cityWalk2;
         setThisCityData({
           cityData1: fillerData,
           cityLayout1: fillerLayout,
@@ -326,6 +365,8 @@ export default function Plotly() {
         compareList.cities.pop();
         delete thisCityData.cityData2;
         delete thisCityData.cityLayout2;
+        delete weatherCityData.cityWeather2;
+        delete walkCityData.cityWalk2;
         setThisCityData({
           ...thisCityData,
         });
@@ -341,7 +382,6 @@ export default function Plotly() {
       }
     }
   }
-
   return (
     <div style={gridStyle}>
       {thisCityData && (
