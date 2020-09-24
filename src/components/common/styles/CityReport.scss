@@ -1,3 +1,16 @@
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.report-div {
+  section {
+    text-align: center;
+  }
+}
 .report-container {
   display: flex;
   flex-direction: column;
@@ -15,11 +28,20 @@
 .weather {
   width: auto;
 }
+.weathers {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 15vw;
+}
 .cityDisplayPlot {
   padding: 0 2% 0;
   text-align: center;
+  transition: opacity 1s;
 }
-
+.fadeIn {
+  animation: all 2s ease-in-out;
+  // opacity: 0;
+}
 .walkData {
   p {
     padding: 1%;
@@ -43,7 +65,7 @@
     font-size: x-large;
     text-shadow: 0 0 3px #000000;
   }
-  .main-temperature{
+  .main-temperature {
     padding-bottom: 0;
     h1 {
       font-size: 6rem;
@@ -52,29 +74,27 @@
       text-shadow: 0 0 5px #000000;
     }
   }
-  .other-temperature{
+  .other-temperature {
     display: flex;
     justify-content: space-between;
     margin-left: 8.2vw;
     margin-right: 8.2vw;
     text-shadow: 0 0 5px #000000;
   }
-  .weather-stat-div{
+  .weather-stat-div {
     display: flex;
     justify-content: center;
     margin-left: 5%;
     margin-right: 5%;
     font-size: 1.2rem;
-    .weather-stat-titles{
+    .weather-stat-titles {
       text-align: left;
       text-shadow: 0 0 3px #000000;
     }
-    .weather-stat-nums{
+    .weather-stat-nums {
       font-weight: bolder;
       text-align: right;
       text-shadow: 0 0 5px #000000;
     }
   }
 }
-
-
