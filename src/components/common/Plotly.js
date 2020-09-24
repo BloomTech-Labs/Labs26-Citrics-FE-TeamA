@@ -29,44 +29,53 @@ export default function Plotly() {
   // sets the cityData and cityLayout for following cities
   useEffect(() => {
     async function fetchRentData() {
-      const request = await axios.get(`/rent_viz/${lastCity}_${lastState}`);
+      if (compareList.cities.length === 1) {
+        const request = await axios.get(`/rent_viz2/${lastCity}_${lastState}`);
+        const rentData = JSON.parse(request.data);
 
-      console.log('request.data', JSON.parse(request.data));
-      const rentData = JSON.parse(request.data);
-
-      if (!('cityData1' in thisCityData)) {
         setThisCityData({
           cityData1: rentData.data,
           cityLayout1: rentData.layout,
         });
-      }
-      if ('cityData1' in thisCityData && !('cityData2' in thisCityData)) {
+      } else if (compareList.cities.length === 2) {
+        let firstCity = compareList.cities[compareList.cities.length - 2];
+        const request = await axios.get(
+          `/rent_viz2/${firstCity[0]}_${firstCity[1]}?city2=${lastCityAdded[0]}&statecode2=${lastCityAdded[1]}`
+        );
+
+        const rentData = JSON.parse(request.data);
         setThisCityData({
-          ...thisCityData,
-          cityData2: rentData.data,
-          cityLayout2: rentData.layout,
+          cityData1: rentData.data,
+          cityLayout1: rentData.layout,
         });
-      }
-      if (
-        'cityData1' in thisCityData &&
-        'cityData2' in thisCityData &&
-        !('cityData3' in thisCityData)
-      ) {
+      } else if (compareList.cities.length === 3) {
+        let firstCity = compareList.cities[compareList.cities.length - 3];
+        let secondCity = compareList.cities[compareList.cities.length - 2];
+        const request = await axios.get(
+          `/rent_viz2/${firstCity[0]}_${firstCity[1]}?city2=${secondCity[0]}&statecode2=${secondCity[1]}&city3=${lastCityAdded[0]}&statecode3=${lastCityAdded[1]}`
+        );
+
+        const rentData = JSON.parse(request.data);
         setThisCityData({
-          ...thisCityData,
-          cityData3: rentData.data,
-          cityLayout3: rentData.layout,
+          cityData1: rentData.data,
+          cityLayout1: rentData.layout,
         });
       }
     }
     fetchRentData();
   }, [lastState, lastCity]);
 
+  // Gets the unemployment chart from the DS API
+  useEffect(() => {
+    async function fetchUnemploymentData() {
+      const request = await axios.get(`/viz/${lastState}`);
+      const unemploymentData = JSON.parse(request.data);
+    }
+    fetchUnemploymentData();
+  }, [lastState]);
+
   // retrieves the data from DS API and sets to state;
   useEffect(() => {
-    let lastCityAdded = compareList.cities[compareList.cities.length - 1];
-    let lastCityLength = lastCityAdded.length;
-
     unemploymentData(lastCityAdded[lastCityLength - 1])
       .then(response => {
         if (!(compareList.cities.length in unemploymentFill)) {
