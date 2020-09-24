@@ -10,16 +10,20 @@ function NavBar() {
   return (
     <Layout className="layout">
       <Header>
-        <Menu theme="dark" mode="horizontal">
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
           <Menu.Item key="1" className="link">
             <Link to="/">Home</Link>
           </Menu.Item>
           <Menu.Item key="2" className="link">
             <Link to="/about-us">About Us</Link>
           </Menu.Item>
-          <h1 className="title" selectable="false">
-            <Link to="/">Citrics</Link>
-          </h1>
+          <Link to="/">
+            <img
+              className="citrics-logo"
+              alt="citrics-logo"
+              src="https://i.ibb.co/ZM3PFF6/citrics-logo.png"
+            />
+          </Link>
         </Menu>
       </Header>
     </Layout>
