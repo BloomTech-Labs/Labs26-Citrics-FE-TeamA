@@ -118,7 +118,8 @@ export default function Plotly() {
         }
       })
       .catch(err => {});
-
+    console.log(lastCityAdded);
+    console.log('reportWalkData PRE: ', walkCityData);
     reportWalkData(lastCityAdded[0], lastCityAdded[1])
       .then(res => {
         if (!('cityWalk1' in walkCityData)) {
@@ -349,7 +350,12 @@ export default function Plotly() {
         let copyCity = compareList.cities[1];
         let copyWeather = weatherCityData.cityWeather2;
         let copyWalk = walkCityData.cityWalk2;
-
+        console.log(
+          'copyCity, copyWeather, copyWalk',
+          copyCity,
+          copyWeather,
+          copyWalk
+        );
         // remove city from compareList.cities
         compareList.cities.splice(0, 1);
 
@@ -361,9 +367,7 @@ export default function Plotly() {
         setweatherCityData({
           cityweather1: copyWeather,
         });
-        setwalkCityData({
-          cityWalk1: copyWalk,
-        });
+        setwalkCityData({});
 
         // setting compareList cities array to be city not clicked on
         setCompareList({
@@ -380,9 +384,7 @@ export default function Plotly() {
         setweatherCityData({
           cityweather1: weatherCityData.cityweather1,
         });
-        setwalkCityData({
-          cityWalk1: walkCityData.cityWalk1,
-        });
+        setwalkCityData({});
         setCompareList({
           ...compareList,
         });
