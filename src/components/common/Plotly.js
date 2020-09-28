@@ -320,26 +320,20 @@ export default function Plotly() {
           ...thisCityData,
         });
       } else if (id === 'btn2') {
-        // weatherCityData.cityWeather2 = weatherCityData.cityWeather3;
-        // delete weatherCityData.cityWeather3;
-        // let walkCopy = walkCityData;
-        // walkCopy.cityWalk2 = copyWalk;
-        // delete walkCopy.citywalk3;
-        // walkCityData.cityWalk2 = walkCityData.cityWalk3;
-        // delete walkCityData.cityWalk3;
-
-        // // setweatherCityData({
-        // //   cityWeather2: copyWeather,
-        // // });
-        // setwalkCityData({ walkCopy });
-        // setThisCityData({
-        //   ...thisCityData,
-        // });
-        compareList.cities = [
-          compareList.cities.slice(0, 1),
-          compareList.cities.slice(1, 2),
-        ];
-        setCompareList({ ...compareList });
+        delete weatherCityData.cityWeather2;
+        delete walkCityData.cityWalk2;
+        setweatherCityData({
+          cityWeather1: weatherCityData.cityWeather1,
+          cityWeather2: copyWeather,
+        });
+        setwalkCityData({
+          cityWalk1: walkCityData.cityWalk1,
+          cityWalk2: copyWalk,
+        });
+        setThisCityData({
+          ...thisCityData,
+        });
+        compareList.cities = [compareList.cities[0], compareList.cities[2]];
       } else if (id === 'btn3') {
         compareList.cities.pop();
         delete weatherCityData.cityWeather3;
