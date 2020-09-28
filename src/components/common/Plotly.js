@@ -31,6 +31,7 @@ export default function Plotly() {
   }
 
   function handleOk(e) {
+    e.preventDefault();
     setwalkCityData({
       ...walkCityData,
       visible: false,
@@ -38,6 +39,7 @@ export default function Plotly() {
   }
 
   function handleCancel(e) {
+    e.preventDefault();
     setwalkCityData({
       ...walkCityData,
       visible: false,
@@ -175,14 +177,30 @@ export default function Plotly() {
           What is walkscore?
         </Button>
         <Modal
-          title="Basic Modal"
+          title="Walkscore Info"
           visible={walkCityData.visible}
           onOk={handleOk}
           onCancel={handleCancel}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+          <h2>90-100: Walker's Paradise</h2>
+          <p>Daily errands do not require a car.</p>
+          <h2>70-89: Very Walkable</h2>
+          <p>Most errands can be accomplished on foot.</p>
+          <h2>50-69: Somewhat Walkable</h2>
+          <p>Some errands can be accomplished on foot.</p>
+          <h2>25-49: Car-Dependent</h2>
+          <p>Most errands require a car.</p>
+          <h2>0-24: Car-Dependent</h2>
+          <p>Almost all errands require a car.</p>
+          <p className="walkscore-source">
+            <a
+              href="https://www.walkscore.com/methodology.shtml"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Source
+            </a>
+          </p>
         </Modal>
       </div>,
     ];
@@ -190,22 +208,74 @@ export default function Plotly() {
   if (walkCityData.cityWalk2 !== undefined) {
     walkFill[1] = [
       <div className="walkData">
-        <h3>Walkability</h3>
-        <p>
-          {walkCityData.cityWalk2.city} Score:{' '}
-          {walkCityData.cityWalk2.walkability}
-        </p>
+        <h3>Walkscore</h3>
+        <p className="walkscore-num">{walkCityData.cityWalk2.walkability}</p>
+        <Button className="walkscore-btn" type="primary" onClick={showModal}>
+          What is walkscore?
+        </Button>
+        <Modal
+          title="Walkscore Info"
+          visible={walkCityData.visible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <h2>90-100: Walker's Paradise</h2>
+          <p>Daily errands do not require a car.</p>
+          <h2>70-89: Very Walkable</h2>
+          <p>Most errands can be accomplished on foot.</p>
+          <h2>50-69: Somewhat Walkable</h2>
+          <p>Some errands can be accomplished on foot.</p>
+          <h2>25-49: Car-Dependent</h2>
+          <p>Most errands require a car.</p>
+          <h2>0-24: Car-Dependent</h2>
+          <p>Almost all errands require a car.</p>
+          <p className="walkscore-source">
+            <a
+              href="https://www.walkscore.com/methodology.shtml"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Source
+            </a>
+          </p>
+        </Modal>
       </div>,
     ];
   }
   if (walkCityData.cityWalk3 !== undefined) {
     walkFill[2] = [
       <div className="walkData">
-        <h3>Walkability</h3>
-        <p>
-          {walkCityData.cityWalk3.city} Score:{' '}
-          {walkCityData.cityWalk3.walkability}
-        </p>
+        <h3>Walkscore</h3>
+        <p className="walkscore-num">{walkCityData.cityWalk3.walkability}</p>
+        <Button className="walkscore-btn" type="primary" onClick={showModal}>
+          What is walkscore?
+        </Button>
+        <Modal
+          title="Walkscore Info"
+          visible={walkCityData.visible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <h2>90-100: Walker's Paradise</h2>
+          <p>Daily errands do not require a car.</p>
+          <h2>70-89: Very Walkable</h2>
+          <p>Most errands can be accomplished on foot.</p>
+          <h2>50-69: Somewhat Walkable</h2>
+          <p>Some errands can be accomplished on foot.</p>
+          <h2>25-49: Car-Dependent</h2>
+          <p>Most errands require a car.</p>
+          <h2>0-24: Car-Dependent</h2>
+          <p>Almost all errands require a car.</p>
+          <p className="walkscore-source">
+            <a
+              href="https://www.walkscore.com/methodology.shtml"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Source
+            </a>
+          </p>
+        </Modal>
       </div>,
     ];
   }
@@ -317,7 +387,7 @@ export default function Plotly() {
           <div className="weather-stat-nums">
             <p>{city3.description}</p>
             <p>{city3.clouds_all}%</p>
-            <p>{city3.main_humidity}</p>
+            <p>{city3.main_humidity}%</p>
             <p>{city3.main_pressure}</p>
             <p>{city3.imperial_visibility}</p>
             <p>{city3.wind_deg}°</p>
@@ -449,22 +519,30 @@ export default function Plotly() {
       <div className="weathers">
         {thisCityData && (
           <div className="cityDisplayPlot" id="city1">
-            <button
-              className="remove-btn"
-              id="btn1"
-              onClick={e => {
-                hideCity(e);
-              }}
-            >
-              Remove {thisCityData.cityData1 && thisCityData.cityData1[0].name}
-            </button>
+            <div className="city-title">
+              <h1>
+                {thisCityData.cityData1 && thisCityData.cityData1[0].name}
+              </h1>
+              <button
+                className="remove-btn"
+                id="btn1"
+                onClick={e => {
+                  hideCity(e);
+                }}
+              >
+                Remove
+              </button>
+            </div>
             {!walkFill[0] ? <Loader /> : walkFill[0]}
             {!weatherFill[0] ? <Loader /> : weatherFill[0]}
           </div>
         )}
         {city2 !== undefined && (
           <div className="cityDisplayPlot" id="city2">
-            <div>
+            <div className="city-title">
+              <h1>
+                {thisCityData.cityData1 && thisCityData.cityData1[1].name}
+              </h1>
               <button
                 className="remove-btn"
                 id="btn2"
@@ -481,7 +559,10 @@ export default function Plotly() {
         )}
         {city3 !== undefined && (
           <div className="cityDisplayPlot" id="city3">
-            <div>
+            <div className="city-title">
+              <h1>
+                {thisCityData.cityData1 && thisCityData.cityData1[2].name}
+              </h1>
               <button
                 className="remove-btn"
                 id="btn3"
