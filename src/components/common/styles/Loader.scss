@@ -20,7 +20,13 @@
   display: block;
   width: 20%;
   height: 20%;
-  background-color: rgba(255, 123, 0, 0.301);
+  background: rgb(0, 104, 255);
+  background: linear-gradient(
+    3deg,
+    rgba(0, 104, 255, 0.5102415966386555) 0%,
+    rgba(45, 128, 249, 0.6783088235294117) 41%,
+    rgba(53, 53, 182, 0.6054796918767507) 100%
+  );
   border-radius: 100%;
   animation: sk-chase-dot-before 2s infinite ease-in-out both;
 }
