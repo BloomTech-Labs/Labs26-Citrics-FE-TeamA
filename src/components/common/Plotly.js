@@ -8,7 +8,7 @@ import Loader from './Loader';
 export default function Plotly() {
   //  State for plotly json info
   const [thisCityData, setThisCityData] = useState({});
-  const [walkCityData, setwalkCityData] = useState([]);
+  const [walkCityData, setwalkCityData] = useState({});
   const [weatherCityData, setweatherCityData] = useState({});
   const [unemployment, setUnemployment] = useState({});
   let { compareList, setCompareList } = useContext(ReportContext);
@@ -370,8 +370,9 @@ export default function Plotly() {
           cities: [copyCity],
         });
       } else if (id === 'btn2') {
+        let copyCity = compareList.cities[0];
         // remove city from compareList.cities
-        compareList.cities.splice(1, 1);
+        compareList.cities.pop();
 
         // delete walk/weather state for city 2
         delete weatherCityData.cityWeather2;
@@ -380,11 +381,9 @@ export default function Plotly() {
         setweatherCityData({
           cityweather1: weatherCityData.cityweather1,
         });
-        setwalkCityData({
-          cityWalk1: walkCityData.cityWalk1,
-        });
+        setwalkCityData({});
         setCompareList({
-          ...compareList,
+          cities: [copyCity],
         });
       } // if 1 city is being compared
     } else if (length === 1) {
@@ -400,9 +399,6 @@ export default function Plotly() {
       }
     }
   }
-  console.log('compareList.cities:', compareList.cities);
-  console.log('thisCityData', thisCityData);
-  console.log('walkcityData', walkCityData);
   return (
     <section>
       {!thisCityData.cityData1 ? (
