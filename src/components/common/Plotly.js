@@ -184,8 +184,7 @@ export default function Plotly() {
     console.log(cityNum, num);
     num -= 1;
     cityNum
-      ? // console.log(cityNum.imperial_main_temp)
-        cityNum.imperial_main_temp < 60
+      ? cityNum.imperial_main_temp < 60
         ? (classes[num] += ' tooCold')
         : cityNum.imperial_main_temp > 80
         ? (classes[num] += ' tooHot')
@@ -196,8 +195,6 @@ export default function Plotly() {
   getTempsToSetClass(city2, 2);
   getTempsToSetClass(city3, 3);
   console.log(classes);
-  // city2 ? console.log(city2.imperial_main_temp) : console.log('object');
-  // city3 ? console.log(city3.imperial_main_temp) : console.log('undefined');
   if (city1 !== undefined) {
     weatherFill[0] = [
       <div className="weatherData">
