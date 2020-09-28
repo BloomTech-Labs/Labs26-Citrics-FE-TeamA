@@ -64,7 +64,11 @@ function AutoCompleteInput(props) {
   };
   return (
     <div className="App">
-      <h5>Search City: </h5>
+      <div className="searchWithOptions">
+        {' '}
+        <h5>Search City: </h5>
+        <p>Advanced Search</p>
+      </div>{' '}
       <Search
         id="autocomplete_input"
         type="text"

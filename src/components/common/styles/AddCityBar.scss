@@ -17,3 +17,15 @@
     height: 5vh;
   }
 }
+.searchWithOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    color: rgb(78, 78, 245);
+    text-decoration: underline;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
