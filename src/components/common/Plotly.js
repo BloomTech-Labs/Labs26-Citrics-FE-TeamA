@@ -118,7 +118,6 @@ export default function Plotly() {
         }
       })
       .catch(err => {});
-
     reportWalkData(lastCityAdded[0], lastCityAdded[1])
       .then(res => {
         if (!('cityWalk1' in walkCityData)) {
@@ -315,24 +314,32 @@ export default function Plotly() {
         });
         setwalkCityData({
           cityWalk1: walkCityData.cityWalk2,
-          citywalk2: copyWalk,
-        });
-        setThisCityData({
-          ...thisCityData,
-        });
-      } else if (id === 'btn2') {
-        compareList.cities.splice(1, 1);
-        delete weatherCityData.cityWeather3;
-        delete walkCityData.cityWalk3;
-        setweatherCityData({
-          cityWeather2: copyWeather,
-        });
-        setwalkCityData({
           cityWalk2: copyWalk,
         });
         setThisCityData({
           ...thisCityData,
         });
+      } else if (id === 'btn2') {
+        // weatherCityData.cityWeather2 = weatherCityData.cityWeather3;
+        // delete weatherCityData.cityWeather3;
+        // let walkCopy = walkCityData;
+        // walkCopy.cityWalk2 = copyWalk;
+        // delete walkCopy.citywalk3;
+        // walkCityData.cityWalk2 = walkCityData.cityWalk3;
+        // delete walkCityData.cityWalk3;
+
+        // // setweatherCityData({
+        // //   cityWeather2: copyWeather,
+        // // });
+        // setwalkCityData({ walkCopy });
+        // setThisCityData({
+        //   ...thisCityData,
+        // });
+        compareList.cities = [
+          compareList.cities.slice(0, 1),
+          compareList.cities.slice(1, 2),
+        ];
+        setCompareList({ ...compareList });
       } else if (id === 'btn3') {
         compareList.cities.pop();
         delete weatherCityData.cityWeather3;
@@ -348,8 +355,6 @@ export default function Plotly() {
         // copying data that will be deleted upon state update
         let copyCity = compareList.cities[1];
         let copyWeather = weatherCityData.cityWeather2;
-        let copyWalk = walkCityData.cityWalk2;
-
         // remove city from compareList.cities
         compareList.cities.splice(0, 1);
 
@@ -361,9 +366,7 @@ export default function Plotly() {
         setweatherCityData({
           cityweather1: copyWeather,
         });
-        setwalkCityData({
-          cityWalk1: copyWalk,
-        });
+        setwalkCityData({});
 
         // setting compareList cities array to be city not clicked on
         setCompareList({
