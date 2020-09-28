@@ -530,7 +530,7 @@ export default function Plotly() {
                   hideCity(e);
                 }}
               >
-                Remove
+                x
               </button>
             </div>
             {!walkFill[0] ? <Loader /> : walkFill[0]}
