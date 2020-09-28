@@ -47,13 +47,46 @@
     padding: 1%;
   }
 }
+
+.walkData{
+  background-color: #fb8600e0;
+  border-radius: 20px;
+  color: white;
+  margin-left: 7%;
+  margin-right: 7%;
+  &:hover{
+    cursor: default;
+  }
+  h3 {
+    padding-top: 3%;
+    color: white;
+    font-size: x-large;
+    text-shadow: 0 0 3px #000000;
+  }
+  .walkscore-num {
+    text-shadow: 0 0 3px #000000;
+    font-size: 5rem;
+    margin-bottom: 2%;
+  }
+  .walkscore-btn{
+    margin-bottom: 3%;
+    border-radius: 15px;
+    background-color: #2586d7;
+    border-color: #2586d7;
+  }
+  margin-bottom: 3%;
+}
+
 .weatherData {
   background-color: #fb8600e0;
-  border-radius: 30px;
+  border-radius: 20px;
   padding-top: 6%;
   color: white;
   margin-left: 7%;
   margin-right: 7%;
+  &:hover{
+    cursor: default;
+  }
   div {
     padding: 1%;
     p {
@@ -97,4 +130,19 @@
       text-shadow: 0 0 5px #000000;
     }
   }
+}
+
+.remove-btn{
+  background-color: #ff0000;
+  color: white;
+  font-size: 1.5rem;
+  padding: 5px 50px;
+  border-radius: 14px;
+  margin-block-start: 0.5em;
+  margin-block-end: 0.5em;
+  cursor: pointer;
+  &:hover{
+    background-color: rgba(255, 0, 0, 0.692);
+  }
+  transition: ease-in-out 0.25s;
 }

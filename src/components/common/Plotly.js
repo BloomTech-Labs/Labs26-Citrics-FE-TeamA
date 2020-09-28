@@ -5,10 +5,14 @@ import axios from './../../api/dsapi';
 import { ReportContext } from '../../state/contexts/ReportContext';
 import Loader from './Loader';
 
+import { Modal, Button } from 'antd';
+
 export default function Plotly() {
   //  State for plotly json info
   const [thisCityData, setThisCityData] = useState({});
-  const [walkCityData, setwalkCityData] = useState({});
+  const [walkCityData, setwalkCityData] = useState({
+    visible: false,
+  });
   const [weatherCityData, setweatherCityData] = useState({});
   const [unemployment, setUnemployment] = useState({});
   let { compareList, setCompareList } = useContext(ReportContext);
@@ -18,6 +22,27 @@ export default function Plotly() {
   let lastCityLength = lastCityAdded.length;
   let lastCity = lastCityAdded[lastCityLength - 2];
   let lastState = lastCityAdded[lastCityLength - 1];
+
+  function showModal() {
+    setwalkCityData({
+      ...walkCityData,
+      visible: true,
+    });
+  }
+
+  function handleOk(e) {
+    setwalkCityData({
+      ...walkCityData,
+      visible: false,
+    });
+  }
+
+  function handleCancel(e) {
+    setwalkCityData({
+      ...walkCityData,
+      visible: false,
+    });
+  }
 
   // useEffect for fetching rent data viz from ds backend
   // sets the cityData and cityLayout for following cities
@@ -144,11 +169,21 @@ export default function Plotly() {
   if (walkCityData.cityWalk1 !== undefined) {
     walkFill[0] = [
       <div className="walkData">
-        <h3>Walkability</h3>
-        <p>
-          {walkCityData.cityWalk1.city} Score:{' '}
-          {walkCityData.cityWalk1.walkability}
-        </p>
+        <h3>Walkscore</h3>
+        <p className="walkscore-num">{walkCityData.cityWalk1.walkability}</p>
+        <Button className="walkscore-btn" type="primary" onClick={showModal}>
+          What is walkscore?
+        </Button>
+        <Modal
+          title="Basic Modal"
+          visible={walkCityData.visible}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        >
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Modal>
       </div>,
     ];
   }
@@ -181,7 +216,7 @@ export default function Plotly() {
   if (city1 !== undefined) {
     weatherFill[0] = [
       <div className="weatherData">
-        <h3>{city1.city}'s Weather</h3>
+        <h3>Weather</h3>
         <div className="temperature-div">
           <div className="main-temperature">
             <h1>{city1.imperial_main_temp}°</h1>
@@ -414,14 +449,14 @@ export default function Plotly() {
       <div className="weathers">
         {thisCityData && (
           <div className="cityDisplayPlot" id="city1">
-            {' '}
             <button
+              className="remove-btn"
               id="btn1"
               onClick={e => {
                 hideCity(e);
               }}
             >
-              Remove
+              Remove {thisCityData.cityData1 && thisCityData.cityData1[0].name}
             </button>
             {!walkFill[0] ? <Loader /> : walkFill[0]}
             {!weatherFill[0] ? <Loader /> : weatherFill[0]}
@@ -431,6 +466,7 @@ export default function Plotly() {
           <div className="cityDisplayPlot" id="city2">
             <div>
               <button
+                className="remove-btn"
                 id="btn2"
                 onClick={e => {
                   hideCity(e);
@@ -447,6 +483,7 @@ export default function Plotly() {
           <div className="cityDisplayPlot" id="city3">
             <div>
               <button
+                className="remove-btn"
                 id="btn3"
                 onClick={e => {
                   hideCity(e);
