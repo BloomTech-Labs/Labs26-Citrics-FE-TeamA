@@ -190,12 +190,32 @@ export default function Plotly() {
   let city1 = weatherCityData.cityWeather1;
   let city2 = weatherCityData.cityWeather2;
   let city3 = weatherCityData.cityWeather3;
+  let classes = ['main-temperature', 'main-temperature', 'main-temperature'];
+
+  function getTempsToSetClass(cityNum, num) {
+    console.log(cityNum, num);
+    num -= 1;
+    cityNum
+      ? // console.log(cityNum.imperial_main_temp)
+        cityNum.imperial_main_temp < 60
+        ? (classes[num] += ' tooCold')
+        : cityNum.imperial_main_temp > 80
+        ? (classes[num] += ' tooHot')
+        : (classes[num] += ' justRight')
+      : (classes[num] = ['main-temperature']);
+  }
+  getTempsToSetClass(city1, 1);
+  getTempsToSetClass(city2, 2);
+  getTempsToSetClass(city3, 3);
+  console.log(classes);
+  // city2 ? console.log(city2.imperial_main_temp) : console.log('object');
+  // city3 ? console.log(city3.imperial_main_temp) : console.log('undefined');
   if (city1 !== undefined) {
     weatherFill[0] = [
       <div className="weatherData">
         <h3>{city1.city}'s Weather</h3>
         <div className="temperature-div">
-          <div className="main-temperature">
+          <div className={classes[0]}>
             <h1>{city1.imperial_main_temp}°</h1>
           </div>
           <div className="other-temperature">
@@ -233,7 +253,7 @@ export default function Plotly() {
       <div className="weatherData">
         <h3>{city2.city}'s Weather</h3>
         <div className="temperature-div">
-          <div className="main-temperature">
+          <div className={classes[1]}>
             <h1>{city2.imperial_main_temp}°</h1>
           </div>
           <div className="other-temperature">
@@ -271,7 +291,7 @@ export default function Plotly() {
       <div className="weatherData">
         <h3>{city3.city}'s Weather</h3>
         <div className="temperature-div">
-          <div className="main-temperature">
+          <div className={classes[2]}>
             <h1>{city3.imperial_main_temp}°</h1>
           </div>
           <div className="other-temperature">
@@ -303,19 +323,6 @@ export default function Plotly() {
         </div>
       </div>,
     ];
-  }
-  let gridStyle;
-  if (compareList.cities.length === 1) {
-    gridStyle = {
-      display: 'grid',
-      width: '100%',
-      margin: '0, auto',
-    };
-  } else {
-    gridStyle = {
-      display: 'flex',
-      justifyContent: 'space-around',
-    };
   }
 
   function hideCity(event) {
