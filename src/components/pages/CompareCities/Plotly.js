@@ -149,7 +149,7 @@ export default function Plotly() {
       <div className="walkData">
         <h3>Walkscore</h3>
         <p className="walkscore-num">{walkCityData.cityWalk1.walkability}</p>
-        <WalkscoreInfo props={this.walkCitydata} />
+        <WalkscoreInfo walkCityData={walkCityData} />
       </div>,
     ];
   }
@@ -158,7 +158,7 @@ export default function Plotly() {
       <div className="walkData">
         <h3>Walkscore</h3>
         <p className="walkscore-num">{walkCityData.cityWalk2.walkability}</p>
-        <WalkscoreInfo props={this.walkCitydata} />
+        <WalkscoreInfo walkCityData={walkCityData} />
       </div>,
     ];
   }
@@ -167,7 +167,7 @@ export default function Plotly() {
       <div className="walkData">
         <h3>Walkscore</h3>
         <p className="walkscore-num">{walkCityData.cityWalk3.walkability}</p>
-        <WalkscoreInfo props={this.walkCitydata} />
+        <WalkscoreInfo walkCityData={walkCityData} />
       </div>,
     ];
   }
@@ -178,7 +178,6 @@ export default function Plotly() {
   let classes = ['main-temperature', 'main-temperature', 'main-temperature'];
 
   function getTempsToSetClass(cityNum, num) {
-    console.log(cityNum, num);
     num -= 1;
     cityNum
       ? cityNum.imperial_main_temp < 60
