@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Plot from 'react-plotly.js';
-import { reportWeatherData, reportWalkData } from '../../api/reportData';
-import axios from './../../api/dsapi';
-import { ReportContext } from '../../state/contexts/ReportContext';
-import Loader from './Loader';
-
-import { Modal, Button } from 'antd';
+import { reportWeatherData, reportWalkData } from '../../../api/reportData';
+import axios from '../../../api/dsapi';
+import { ReportContext } from '../../../state/contexts/ReportContext';
+import Loader from '../../common/Loader';
+import WalkscoreInfo from '../../common/WalkscoreInfo';
 
 export default function Plotly() {
   //  State for plotly json info
@@ -22,29 +21,6 @@ export default function Plotly() {
   let lastCityLength = lastCityAdded.length;
   let lastCity = lastCityAdded[lastCityLength - 2];
   let lastState = lastCityAdded[lastCityLength - 1];
-
-  function showModal() {
-    setwalkCityData({
-      ...walkCityData,
-      visible: true,
-    });
-  }
-
-  function handleOk(e) {
-    e.preventDefault();
-    setwalkCityData({
-      ...walkCityData,
-      visible: false,
-    });
-  }
-
-  function handleCancel(e) {
-    e.preventDefault();
-    setwalkCityData({
-      ...walkCityData,
-      visible: false,
-    });
-  }
 
   // useEffect for fetching rent data viz from ds backend
   // sets the cityData and cityLayout for following cities
@@ -173,35 +149,7 @@ export default function Plotly() {
       <div className="walkData">
         <h3>Walkscore</h3>
         <p className="walkscore-num">{walkCityData.cityWalk1.walkability}</p>
-        <Button className="walkscore-btn" type="primary" onClick={showModal}>
-          What is walkscore?
-        </Button>
-        <Modal
-          title="Walkscore Info"
-          visible={walkCityData.visible}
-          onOk={handleOk}
-          onCancel={handleCancel}
-        >
-          <h2>90-100: Walker's Paradise</h2>
-          <p>Daily errands do not require a car.</p>
-          <h2>70-89: Very Walkable</h2>
-          <p>Most errands can be accomplished on foot.</p>
-          <h2>50-69: Somewhat Walkable</h2>
-          <p>Some errands can be accomplished on foot.</p>
-          <h2>25-49: Car-Dependent</h2>
-          <p>Most errands require a car.</p>
-          <h2>0-24: Car-Dependent</h2>
-          <p>Almost all errands require a car.</p>
-          <p className="walkscore-source">
-            <a
-              href="https://www.walkscore.com/methodology.shtml"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Source
-            </a>
-          </p>
-        </Modal>
+        <WalkscoreInfo props={this.walkCitydata} />
       </div>,
     ];
   }
@@ -210,35 +158,7 @@ export default function Plotly() {
       <div className="walkData">
         <h3>Walkscore</h3>
         <p className="walkscore-num">{walkCityData.cityWalk2.walkability}</p>
-        <Button className="walkscore-btn" type="primary" onClick={showModal}>
-          What is walkscore?
-        </Button>
-        <Modal
-          title="Walkscore Info"
-          visible={walkCityData.visible}
-          onOk={handleOk}
-          onCancel={handleCancel}
-        >
-          <h2>90-100: Walker's Paradise</h2>
-          <p>Daily errands do not require a car.</p>
-          <h2>70-89: Very Walkable</h2>
-          <p>Most errands can be accomplished on foot.</p>
-          <h2>50-69: Somewhat Walkable</h2>
-          <p>Some errands can be accomplished on foot.</p>
-          <h2>25-49: Car-Dependent</h2>
-          <p>Most errands require a car.</p>
-          <h2>0-24: Car-Dependent</h2>
-          <p>Almost all errands require a car.</p>
-          <p className="walkscore-source">
-            <a
-              href="https://www.walkscore.com/methodology.shtml"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Source
-            </a>
-          </p>
-        </Modal>
+        <WalkscoreInfo props={this.walkCitydata} />
       </div>,
     ];
   }
@@ -247,35 +167,7 @@ export default function Plotly() {
       <div className="walkData">
         <h3>Walkscore</h3>
         <p className="walkscore-num">{walkCityData.cityWalk3.walkability}</p>
-        <Button className="walkscore-btn" type="primary" onClick={showModal}>
-          What is walkscore?
-        </Button>
-        <Modal
-          title="Walkscore Info"
-          visible={walkCityData.visible}
-          onOk={handleOk}
-          onCancel={handleCancel}
-        >
-          <h2>90-100: Walker's Paradise</h2>
-          <p>Daily errands do not require a car.</p>
-          <h2>70-89: Very Walkable</h2>
-          <p>Most errands can be accomplished on foot.</p>
-          <h2>50-69: Somewhat Walkable</h2>
-          <p>Some errands can be accomplished on foot.</p>
-          <h2>25-49: Car-Dependent</h2>
-          <p>Most errands require a car.</p>
-          <h2>0-24: Car-Dependent</h2>
-          <p>Almost all errands require a car.</p>
-          <p className="walkscore-source">
-            <a
-              href="https://www.walkscore.com/methodology.shtml"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Source
-            </a>
-          </p>
-        </Modal>
+        <WalkscoreInfo props={this.walkCitydata} />
       </div>,
     ];
   }
@@ -299,7 +191,6 @@ export default function Plotly() {
   getTempsToSetClass(city1, 1);
   getTempsToSetClass(city2, 2);
   getTempsToSetClass(city3, 3);
-  console.log(classes);
   if (city1 !== undefined) {
     weatherFill[0] = [
       <div className="weatherData">
@@ -567,7 +458,7 @@ export default function Plotly() {
                   hideCity(e);
                 }}
               >
-                Remove
+                x
               </button>
             </div>
             {!walkFill[1] ? <Loader /> : walkFill[1]}
@@ -587,7 +478,7 @@ export default function Plotly() {
                   hideCity(e);
                 }}
               >
-                Remove
+                x
               </button>
             </div>
             {!walkFill[2] ? <Loader /> : walkFill[2]}

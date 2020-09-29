@@ -11,7 +11,6 @@ import RenderHomePage from './components/pages/Home/RenderHomePage';
 import AboutUs from './components/pages/About/AboutUs';
 
 import NavBar from './components/common/NavBar';
-import { LoadingComponent } from './components/common';
 
 import Amplify from 'aws-amplify';
 import awsExports from './aws-exports';
@@ -42,18 +41,8 @@ function App() {
       <NavBar />
       <Switch>
         {/* any of the routes you need secured should be registered as Routes */}
-        <Route
-          exact
-          path="/about-us"
-          component={() => <AboutUs LoadingComponent={LoadingComponent} />}
-        />
-        <Route
-          exact
-          path="/"
-          component={() => (
-            <RenderHomePage LoadingComponent={LoadingComponent} />
-          )}
-        />
+        <Route exact path="/about-us" component={() => <AboutUs />} />
+        <Route exact path="/" component={() => <RenderHomePage />} />
         <Route component={NotFoundPage} />
       </Switch>
       <BackTop>
