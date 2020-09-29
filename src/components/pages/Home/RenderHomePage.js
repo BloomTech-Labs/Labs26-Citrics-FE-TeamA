@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import fetchCityData from '../../../api/cityData';
 
 import CityReport from '../../common/CityReport';
-import Title from '../../common/Title';
+import Title from '../Home/Title';
 import AddingCities from '../../common/AddingCities';
-import StaticHomePage from '../../common/StaticHomePage';
+import StaticHomePage from '../Home/StaticHomePage';
 
 import { SearchContext } from '../../../state/contexts/ReportContext';
 import { ReportContext } from '../../../state/contexts/ReportContext';

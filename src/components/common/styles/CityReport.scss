@@ -89,9 +89,10 @@
 }
 
 .weatherData {
+  background-color: #fb8600e0;
+  border-radius: 15px;
   background: rgba(0, 0, 57, 0.75);
   border: 6px outset rgb(197, 197, 236);
-  border-radius: 20px;
   margin-top: 5%;
   padding-top: 6%;
   padding-left: 3vw;
@@ -176,7 +177,7 @@
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
-
+}
 
 .city-title{
   display: flex;
@@ -193,8 +194,8 @@
   .remove-btn{
     background-color: red;
     border-color: red;
-    border-radius: 10px;
-    margin: 1vh 0;
+    border-radius: 50%;
+    margin: 1.55vh 0;
     color: white;
     cursor: pointer;
     p{
@@ -202,6 +203,7 @@
     }
     &:hover{
       background-color: rgb(248, 66, 66);
+      border-color: rgb(248, 66, 66);
     }
     transition: ease-in-out 0.25s;
   }

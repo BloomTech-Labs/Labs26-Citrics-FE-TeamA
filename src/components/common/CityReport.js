@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/CityReport.scss';
-import Plotly from './Plotly';
+import Plotly from '../pages/CompareCities/Plotly';
 
 function CityReport(props) {
   let citySpace;
