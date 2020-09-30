@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Plot from 'react-plotly.js';
-import { reportWeatherData, reportWalkData } from '../../../api/reportData';
 import axios from '../../../api/dsapi';
 import { ReportContext } from '../../../state/contexts/ReportContext';
 import Loader from '../../common/Loader';
@@ -123,7 +122,7 @@ export default function Plotly() {
       }
     }
     fetchWeatherData();
-  }, [lastState, lastCity]);
+  }, [lastState, lastCity, weatherCityData]);
 
   // retrieves the walk city data from DS API and sets to state
   useEffect(() => {
