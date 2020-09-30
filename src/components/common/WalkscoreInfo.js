@@ -3,7 +3,6 @@ import React from 'react';
 import { Modal, Button } from 'antd';
 
 export default function WalkscoreInfo(props) {
-  console.log(props, 'PROPS');
   function showModal() {
     props.setwalkCityData({
       ...props.walkCityData,
