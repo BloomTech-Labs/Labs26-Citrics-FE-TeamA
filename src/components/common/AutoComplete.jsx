@@ -40,8 +40,6 @@ function AutoCompleteInput(props) {
             });
           } else {
             // single city push
-            console.log(citySearched[value][0]);
-            console.log(props.compareList.cities[0]);
             optionsArr.push(citySearched[value][0]);
 
             function checkIfInCompareListForOptionsArr(indexNum) {
@@ -57,7 +55,6 @@ function AutoCompleteInput(props) {
             checkIfInCompareListForOptionsArr(0);
             checkIfInCompareListForOptionsArr(1);
             checkIfInCompareListForOptionsArr(2);
-            console.log(optionsArr);
             // delete citySearched[value][0];
           }
           setOptions(optionsArr);
