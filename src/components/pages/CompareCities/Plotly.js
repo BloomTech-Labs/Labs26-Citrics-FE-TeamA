@@ -7,7 +7,9 @@ import WalkData from './PlotlyHelpers/walkData';
 import UnemploymentPlot from './PlotlyHelpers/UnemploymentPlot';
 import RentPlot from './PlotlyHelpers/RentPlot';
 
-export default function Plotly() {
+export default function Plotly(props) {
+  let searching = props.searchOptions.searching;
+  let setSearching = props.searchOptions.setSearching;
   //  State for plotly json info
   const [thisCityData, setThisCityData] = useState({});
   const [walkCityData, setwalkCityData] = useState({
@@ -25,8 +27,11 @@ export default function Plotly() {
 
   // useEffect for fetching rent data viz from ds backend
   // sets the cityData and cityLayout for following cities
-
   useEffect(() => {
+    setSearching({
+      ...searching,
+      rent: true,
+    });
     async function fetchRentData() {
       if (compareList.cities.length === 1) {
         const request = await axios.get(`/rent_viz/${lastCity}_${lastState}`);
@@ -60,12 +65,20 @@ export default function Plotly() {
           cityLayout1: rentData.layout,
         });
       }
+      setSearching({
+        ...searching,
+        rent: true,
+      });
     }
     fetchRentData();
   }, [lastState, lastCity, lastCityAdded, compareList.cities]);
 
   // Gets the unemployment chart from the DS API
   useEffect(() => {
+    setSearching({
+      ...searching,
+      unemployment: true,
+    });
     async function fetchUnemploymentData() {
       if (compareList.cities.length === 1) {
         const request = await axios.get(`/viz/${lastState}`);
@@ -88,12 +101,20 @@ export default function Plotly() {
         const unemploymentData = JSON.parse(request.data);
         setUnemployment(unemploymentData);
       }
+      setSearching({
+        ...searching,
+        unemployment: false,
+      });
     }
     fetchUnemploymentData();
   }, [lastState, compareList.cities]);
 
   // retrieves the weather data from DS API
   useEffect(() => {
+    setSearching({
+      ...searching,
+      weather: true,
+    });
     async function fetchWeatherData() {
       const request = await axios.get(`/current/${lastCity}_${lastState}`);
 
@@ -123,12 +144,22 @@ export default function Plotly() {
           cityWeather3: res,
         });
       }
+      setSearching({
+        ...searching,
+        weather: false,
+      });
     }
     fetchWeatherData();
   }, [lastState, lastCity]);
 
   // retrieves the walk city data from DS API and sets to state
   useEffect(() => {
+    //  WALKABILITY IS NOT RETRIEVING AT THE MOMENT
+    //  UNCOMMENT WHEN WALKABILITY LINK WORKS
+    // setSearching({
+    //   ...searching,
+    //   walkability: true,
+    // });
     async function fetchWalkData() {
       const request = await axios.get(`/walkability/${lastCity}_${lastState}`);
 
@@ -150,6 +181,10 @@ export default function Plotly() {
           cityWalk3: res,
         });
       }
+      setSearching({
+        ...searching,
+        walkability: false,
+      });
     }
     fetchWalkData();
   }, [lastCity, lastState]);

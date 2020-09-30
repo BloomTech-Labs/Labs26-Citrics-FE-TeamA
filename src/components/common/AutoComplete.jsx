@@ -4,6 +4,7 @@ import './styles/AutoComplete.scss';
 import { SearchContext } from '../../state/contexts/ReportContext';
 
 function AutoCompleteInput(props) {
+  let searchOps = props.searchOptions;
   let citySearched = useContext(SearchContext);
 
   // Input as search from ant design
@@ -62,6 +63,11 @@ function AutoCompleteInput(props) {
     });
     setCity({ city: '' });
   };
+  let weather = searchOps.searching['weather'];
+  let rent = searchOps.searching['rent'];
+  let unemployment = searchOps.searching['unemployment'];
+  let walkability = searchOps.searching['walkability'];
+
   return (
     <div className="App">
       <div className="searchWithOptions">
@@ -69,17 +75,19 @@ function AutoCompleteInput(props) {
         <h5>Search City: </h5>
         <p>Advanced Search</p>
       </div>{' '}
-      <Search
-        id="autocomplete_input"
-        type="text"
-        placeholder="Ex: Tulsa, OK"
-        value={city.city}
-        enterButton
-        onChange={event => handleCityInputChange(event)}
-        onSearch={value => {
-          handleOnSearch(value);
-        }}
-      />
+      {weather !== true && rent !== true && unemployment !== true && (
+        <Search
+          id="autocomplete_input"
+          type="text"
+          placeholder="Ex: Tulsa, OK"
+          value={city.city}
+          enterButton
+          onChange={event => handleCityInputChange(event)}
+          onSearch={value => {
+            handleOnSearch(value);
+          }}
+        />
+      )}
       <div className="autocomplete">
         {options.length > 0 &&
           options.map(value => {
