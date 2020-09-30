@@ -100,17 +100,25 @@ function AutoCompleteInput(props) {
       rent !== true &&
       unemployment !== true &&
       walkability !== true ? (
-        <Search
-          id="autocomplete_input"
-          type="text"
-          placeholder="Ex: Tulsa, OK"
-          value={city.city}
-          enterButton
-          onChange={event => handleCityInputChange(event)}
-          onSearch={value => {
-            handleOnSearch(value);
-          }}
-        />
+        props.compareList.cities.length < 3 ? (
+          <Search
+            id="autocomplete_input"
+            type="text"
+            placeholder="Ex: Tulsa, OK"
+            value={city.city}
+            enterButton
+            onChange={event => handleCityInputChange(event)}
+            onSearch={value => {
+              handleOnSearch(value);
+            }}
+          />
+        ) : (
+          <div className="empty">
+            <p>
+              3 cities already selected, please remove one to continue comparing
+            </p>
+          </div>
+        )
       ) : (
         <NoSearch />
       )}
