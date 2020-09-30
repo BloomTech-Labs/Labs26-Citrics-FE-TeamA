@@ -27,6 +27,7 @@ export default function Plotly(props) {
 
   // useEffect for fetching rent data viz from ds backend
   // sets the cityData and cityLayout for following cities
+
   useEffect(() => {
     setSearching({
       ...searching,
@@ -117,7 +118,6 @@ export default function Plotly(props) {
     });
     async function fetchWeatherData() {
       const request = await axios.get(`/current/${lastCity}_${lastState}`);
-
       const res = JSON.parse(request.data);
       if (!('cityWeather1' in weatherCityData)) {
         setweatherCityData({
@@ -150,7 +150,7 @@ export default function Plotly(props) {
       });
     }
     fetchWeatherData();
-  }, [lastState, lastCity]);
+  }, [lastState, lastCity, weatherCityData]);
 
   // retrieves the walk city data from DS API and sets to state
   useEffect(() => {
@@ -162,7 +162,6 @@ export default function Plotly(props) {
     // });
     async function fetchWalkData() {
       const request = await axios.get(`/walkability/${lastCity}_${lastState}`);
-
       const res = JSON.parse(request.data);
       if (!('cityWalk1' in walkCityData)) {
         setwalkCityData({
@@ -189,32 +188,23 @@ export default function Plotly(props) {
     fetchWalkData();
   }, [lastCity, lastState]);
 
-  if (walkCityData.cityWalk1 !== undefined) {
-    walkFill[0] = [
-      <div className="walkData">
-        <h3>Walkscore</h3>
-        <p className="walkscore-num">{walkCityData.cityWalk1.walkability}</p>
-        <WalkscoreInfo walkCityData={walkCityData} />
-      </div>,
-    ];
-  }
-  if (walkCityData.cityWalk2 !== undefined) {
-    walkFill[1] = [
-      <div className="walkData">
-        <h3>Walkscore</h3>
-        <p className="walkscore-num">{walkCityData.cityWalk2.walkability}</p>
-        <WalkscoreInfo walkCityData={walkCityData} />
-      </div>,
-    ];
-  }
-  if (walkCityData.cityWalk3 !== undefined) {
-    walkFill[2] = [
-      <div className="walkData">
-        <h3>Walkscore</h3>
-        <p className="walkscore-num">{walkCityData.cityWalk3.walkability}</p>
-        <WalkscoreInfo walkCityData={walkCityData} />
-      </div>,
-    ];
+  let cityWalk1 = walkCityData.cityWalk1;
+  let cityWalk2 = walkCityData.cityWalk2;
+  let cityWalk3 = walkCityData.cityWalk3;
+
+  function dynamicWalkFill(cityNumber, number) {
+    if (cityNumber !== undefined) {
+      walkFill[number] = [
+        <div className="walkData">
+          <h3>Walkscore</h3>
+          <p className="walkscore-num">{cityNumber.walkability}</p>
+          <WalkscoreInfo
+            walkCityData={walkCityData}
+            setwalkCityData={setwalkCityData}
+          />
+        </div>,
+      ];
+    }
   }
 
   let city1 = weatherCityData.cityWeather1;
@@ -262,6 +252,9 @@ export default function Plotly(props) {
       ];
     }
   }
+  dynamicWalkFill(cityWalk1, 0);
+  dynamicWalkFill(cityWalk2, 1);
+  dynamicWalkFill(cityWalk3, 2);
   dynamicWeatherFill(city1, 0);
   dynamicWeatherFill(city2, 1);
   dynamicWeatherFill(city3, 2);
@@ -269,12 +262,13 @@ export default function Plotly(props) {
   function hideCity(event) {
     // id of button the user clicks
     let id = event.target.id;
+    let copyWeather2 = weatherCityData.cityWeather2;
+    let copyWeather3 = weatherCityData.cityWeather3;
+    let copyWalk3 = walkCityData.cityWalk3;
     const length = compareList.cities.length;
 
     // if 3 cities are being compared
     if (length === 3) {
-      let copyWeather = weatherCityData.cityWeather3;
-      let copyWalk = walkCityData.cityWalk3;
       // if btn user clicked matches btn id
       if (id === 'btn1') {
         // // remove city from compareList
@@ -282,26 +276,23 @@ export default function Plotly(props) {
         delete walkCityData.cityWalk3;
         setweatherCityData({
           cityWeather1: weatherCityData.cityWeather2,
-          cityWeather2: copyWeather,
+          cityWeather2: copyWeather3,
         });
         setwalkCityData({
           cityWalk1: walkCityData.cityWalk2,
-          cityWalk2: copyWalk,
+          cityWalk2: copyWalk3,
         });
-
         compareList.cities = compareList.cities.slice(1);
-
-        // setThisCityData({ ...thisCityData });
       } else if (id === 'btn2') {
         delete weatherCityData.cityWeather2;
         delete walkCityData.cityWalk2;
         setweatherCityData({
           cityWeather1: weatherCityData.cityWeather1,
-          cityWeather2: copyWeather,
+          cityWeather2: copyWeather3,
         });
         setwalkCityData({
           cityWalk1: walkCityData.cityWalk1,
-          cityWalk2: copyWalk,
+          cityWalk2: copyWalk3,
         });
         compareList.cities = [compareList.cities[0], compareList.cities[2]];
       } else if (id === 'btn3') {
@@ -318,20 +309,16 @@ export default function Plotly(props) {
       if (id === 'btn1') {
         // copying data that will be deleted upon state update
         let copyCity = compareList.cities[1];
-        let copyWeather = weatherCityData.cityWeather2;
         // remove city from compareList.cities
         compareList.cities.splice(0, 1);
-
         // delete walk/weather state for city 2
         delete weatherCityData.cityWeather2;
         delete walkCityData.cityWalk2;
-
         // updating cityweather/walk to replace old city1 data
         setweatherCityData({
-          cityweather1: copyWeather,
+          cityweather1: copyWeather2,
         });
         setwalkCityData({});
-
         // setting compareList cities array to be city not clicked on
         setCompareList({
           cities: [copyCity],
@@ -340,11 +327,9 @@ export default function Plotly(props) {
         let copyCity = compareList.cities[0];
         // remove city from compareList.cities
         compareList.cities.pop();
-
         // delete walk/weather state for city 2
         delete weatherCityData.cityWeather2;
         delete walkCityData.cityWalk2;
-
         setweatherCityData({
           cityweather1: weatherCityData.cityweather1,
         });
