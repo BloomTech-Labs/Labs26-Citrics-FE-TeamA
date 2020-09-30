@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useContext } from 'react';
-import Plot from 'react-plotly.js';
-import { reportWeatherData, reportWalkData } from '../../../api/reportData';
 import axios from '../../../api/dsapi';
 import { ReportContext } from '../../../state/contexts/ReportContext';
-import Loader from '../../common/Loader';
 import WalkscoreInfo from '../../common/WalkscoreInfo';
+import WeatherPlot from './PlotlyHelpers/weatherPlot';
+import WalkData from './PlotlyHelpers/walkData';
+import UnemploymentPlot from './PlotlyHelpers/UnemploymentPlot';
+import RentPlot from './PlotlyHelpers/RentPlot';
 
 export default function Plotly() {
   //  State for plotly json info
@@ -97,8 +98,6 @@ export default function Plotly() {
       const request = await axios.get(`/current/${lastCity}_${lastState}`);
 
       const res = JSON.parse(request.data);
-      console.log(res);
-      console.log('res', res);
       if (!('cityWeather1' in weatherCityData)) {
         setweatherCityData({
           cityWeather1: res,
@@ -134,8 +133,6 @@ export default function Plotly() {
       const request = await axios.get(`/walkability/${lastCity}_${lastState}`);
 
       const res = JSON.parse(request.data);
-      console.log(res);
-      console.log('res', res);
       if (!('cityWalk1' in walkCityData)) {
         setwalkCityData({
           cityWalk1: res,
@@ -334,85 +331,40 @@ export default function Plotly() {
       }
     }
   }
+
+  function dynamicMainData(cityNumber, number) {
+    return (
+      cityNumber !== undefined && (
+        <div className="cityDisplayPlot" id="cityNumber">
+          <div className="city-title">
+            <h1>
+              {thisCityData.cityData1 && thisCityData.cityData1[number].name}
+            </h1>
+            <button
+              className="remove-btn"
+              id="btn1"
+              onClick={e => {
+                hideCity(e);
+              }}
+            >
+              x
+            </button>
+          </div>
+          {/* <WalkData props={{ walkFill, number }} /> */}
+          <WeatherPlot props={{ weatherFill, number }} />
+        </div>
+      )
+    );
+  }
+
   return (
     <section>
-      {!thisCityData.cityData1 ? (
-        <Loader />
-      ) : (
-        <div>
-          <Plot
-            data={thisCityData.cityData1}
-            layout={thisCityData.cityLayout1}
-          />
-        </div>
-      )}
-      {!('data' in unemployment) ? (
-        <Loader />
-      ) : (
-        <Plot data={unemployment.data} layout={unemployment.layout} />
-      )}
-
+      <RentPlot thisCityData={thisCityData} />
+      <UnemploymentPlot unemployment={unemployment} />
       <div className="weathers">
-        {thisCityData && (
-          <div className="cityDisplayPlot" id="city1">
-            <div className="city-title">
-              <h1>
-                {thisCityData.cityData1 && thisCityData.cityData1[0].name}
-              </h1>
-              <button
-                className="remove-btn"
-                id="btn1"
-                onClick={e => {
-                  hideCity(e);
-                }}
-              >
-                x
-              </button>
-            </div>
-            {!walkFill[0] ? <Loader /> : walkFill[0]}
-            {!weatherFill[0] ? <Loader /> : weatherFill[0]}
-          </div>
-        )}
-        {city2 !== undefined && (
-          <div className="cityDisplayPlot" id="city2">
-            <div className="city-title">
-              <h1>
-                {thisCityData.cityData1 && thisCityData.cityData1[1].name}
-              </h1>
-              <button
-                className="remove-btn"
-                id="btn2"
-                onClick={e => {
-                  hideCity(e);
-                }}
-              >
-                x
-              </button>
-            </div>
-            {!walkFill[1] ? <Loader /> : walkFill[1]}
-            {!weatherFill[1] ? <Loader /> : weatherFill[1]}
-          </div>
-        )}
-        {city3 !== undefined && (
-          <div className="cityDisplayPlot" id="city3">
-            <div className="city-title">
-              <h1>
-                {thisCityData.cityData1 && thisCityData.cityData1[2].name}
-              </h1>
-              <button
-                className="remove-btn"
-                id="btn3"
-                onClick={e => {
-                  hideCity(e);
-                }}
-              >
-                x
-              </button>
-            </div>
-            {!walkFill[2] ? <Loader /> : walkFill[2]}
-            {!weatherFill[2] ? <Loader /> : weatherFill[2]}
-          </div>
-        )}
+        {dynamicMainData(city1, 0)}
+        {dynamicMainData(city2, 1)}
+        {dynamicMainData(city3, 2)}
       </div>
     </section>
   );
