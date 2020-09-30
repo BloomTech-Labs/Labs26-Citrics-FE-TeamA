@@ -2,10 +2,10 @@ import React from 'react';
 import AddCityBar from './AddCityBar';
 import './styles/AddCityBar.scss';
 
-export default function AddingCities() {
+export default function AddingCities(props) {
   return (
     <section className="addingCities">
-      <AddCityBar />
+      <AddCityBar searchOptions={props.searchOptions} />
     </section>
   );
 }

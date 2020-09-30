@@ -4,6 +4,7 @@ import './styles/AutoComplete.scss';
 import { SearchContext } from '../../state/contexts/ReportContext';
 
 function AutoCompleteInput(props) {
+  let searchOps = props.searchOptions;
   let citySearched = useContext(SearchContext);
 
   // Input as search from ant design
@@ -49,19 +50,27 @@ function AutoCompleteInput(props) {
   };
   const handleOnSearch = value => {
     let filler = props.compareList.cities;
+    // applys the city and state value properly capitalized as an array item.
     let Arr = [
       value[0].toUpperCase() + value.slice(1, -4).toLowerCase(),
       value.slice(-2, value.length).toUpperCase(),
     ];
-
+    // Filler to no change the compareList.cities array directly
     filler.push(Arr);
+    // Clear out the dropdown items list
     setOptions([]);
+    // Set new cities list as the filler array
     props.setCompareList({
       cities: filler,
       searched: true,
     });
     setCity({ city: '' });
   };
+  let weather = searchOps.searching['weather'];
+  let rent = searchOps.searching['rent'];
+  let unemployment = searchOps.searching['unemployment'];
+  let walkability = searchOps.searching['walkability'];
+
   return (
     <div className="App">
       <div className="searchWithOptions">
@@ -69,17 +78,19 @@ function AutoCompleteInput(props) {
         <h5>Search City: </h5>
         <p>Advanced Search</p>
       </div>{' '}
-      <Search
-        id="autocomplete_input"
-        type="text"
-        placeholder="Ex: Tulsa, OK"
-        value={city.city}
-        enterButton
-        onChange={event => handleCityInputChange(event)}
-        onSearch={value => {
-          handleOnSearch(value);
-        }}
-      />
+      {weather !== true && rent !== true && unemployment !== true && (
+        <Search
+          id="autocomplete_input"
+          type="text"
+          placeholder="Ex: Tulsa, OK"
+          value={city.city}
+          enterButton
+          onChange={event => handleCityInputChange(event)}
+          onSearch={value => {
+            handleOnSearch(value);
+          }}
+        />
+      )}
       <div className="autocomplete">
         {options.length > 0 &&
           options.map(value => {
