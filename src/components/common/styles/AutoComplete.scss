@@ -1,9 +1,25 @@
 * {
   box-sizing: border-box;
 }
-
-body {
+#root {
   font: 16px Arial;
+  background: rgb(238, 174, 174);
+  background: linear-gradient(
+    36deg,
+    rgba(255, 149, 0, 0.2) 0%,
+    rgba(0, 136, 255, 0.2) 100%
+  );
+  background-repeat: no-repeat;
+  animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /*the container must be positioned relative:*/

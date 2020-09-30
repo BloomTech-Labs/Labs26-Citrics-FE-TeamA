@@ -2,7 +2,8 @@
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   width: 90%;
-  margin: 3% auto;
+  padding: 3% 0;
+  margin: 0 auto;
   .ant-select {
     width: 80%;
     margin: 0 auto;
@@ -14,5 +15,17 @@
   .ant-input:first-child {
     font-size: 1.5rem;
     height: 5vh;
+  }
+}
+.searchWithOptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p {
+    color: rgb(78, 78, 245);
+    text-decoration: underline;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

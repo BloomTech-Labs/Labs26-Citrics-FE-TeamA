@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/StaticHomePage.scss';
+import '../../common/styles/StaticHomePage.scss';
 export default function StaticHomePage() {
   return (
     <section className="information">

@@ -1,7 +1,21 @@
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.report-div {
+  section {
+    text-align: center;
+  }
+}
 .report-container {
   display: flex;
   flex-direction: column;
   width: 100%;
+  *font-size: 62.5%;
   h3 {
     text-align: center;
   }
@@ -12,24 +26,186 @@
   }
 }
 .weather {
-  width: 50%;
+  width: auto;
+}
+.weathers {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 15vw;
 }
 .cityDisplayPlot {
-  padding: 0 2% 0;
+  width: 27vw;
+  padding: 0 2vw 0;
   text-align: center;
+  transition: opacity 1s;
 }
-
+.fadeIn {
+  animation: all 2s ease-in-out;
+}
 .walkData {
   p {
     padding: 1%;
   }
 }
+
+
+.walkData{
+  background-color: #fb8600e0;
+  border-radius: 20px;
+  color: white;
+  border-radius: 20px;
+  padding-top: 6%;
+  padding-left: 3vw;
+  padding-right: 3vw;
+  &:hover{
+    cursor: default;
+  }
+  h3 {
+    padding-top: 3%;
+    color: white;
+    font-size: x-large;
+    text-shadow: 0 0 3px #000000;
+  }
+  .walkscore-num {
+    text-shadow: 0 0 5px #000000;
+    font-size: 6rem;
+    margin-bottom: 2%;
+  }
+  .walkscore-btn{
+    font-size: 1rem;
+    border-radius: 15px;
+    background-color: #2081c3;
+    border-color: #2081c3;
+    margin-bottom: 3%;
+    margin-bottom: 2vh;
+    &:hover{
+      background-color: white;
+      border-color: #2081c3;
+      color: #2082c3;
+    }
+    transition: ease-in-out 0.25s;
+  }
+  margin-bottom: 3%;
+}
+
 .weatherData {
+  background-color: #fb8600e0;
+  border-radius: 15px;
+  background: rgba(0, 0, 57, 0.75);
+  border: 6px outset rgb(197, 197, 236);
+  margin-top: 5%;
+  padding-top: 6%;
+  padding-left: 3vw;
+  padding-right: 3vw;
+  color: white;
+  &:hover{
+    cursor: default;
+  }
   div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    padding: 1%;
     p {
       padding: 1%;
     }
   }
+  h3 {
+    color: white;
+    font-size: x-large;
+    text-shadow: 0 0 3px #000000;
+  }
+  .main-temperature {
+    padding-bottom: 0;
+    h1 {
+      font-size: 6rem;
+      margin-bottom: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  }
+  .other-temperature {
+    display: flex;
+    justify-content: space-evenly;
+    text-shadow: 0 0 5px #000000;
+    
+  }
+  .weather-stat-div {
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+    .weather-stat-titles {
+      text-align: left;
+      text-shadow: 0 0 3px #000000;
+    }
+    .weather-stat-nums {
+      font-weight: bolder;
+      text-align: right;
+      text-shadow: 0 0 5px #000000;
+    }
+  }
+}
+.justRight {
+  background: rgb(168, 230, 255);
+  background: linear-gradient(
+    rgb(168, 245, 255) 15%,
+    rgba(255, 213, 179, 1) 75%
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.tooHot {
+  background: rgb(43, 121, 255);
+  background: linear-gradient(
+    5deg,
+    rgb(255, 81, 0) 25%,
+    rgb(255, 230, 0) 35%,
+    rgb(255, 94, 0) 60%,
+    rgb(255, 10, 0) 91%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.tooCold {
+  background: rgb(0, 182, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 182, 255, 1) 0%,
+    rgba(218, 232, 255, 1) 66%,
+    rgb(156, 156, 156) 68%,
+    rgba(255, 255, 255, 1) 70%
+  );
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.city-title{
+  display: flex;
+  justify-content: space-evenly;
+  background-color: #fb8600e0;
+  font-weight: bold;
+  border-radius: 15px;
+  margin: 4% auto;
+  h1{
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 0;
+  }
+  .remove-btn{
+    background-color: red;
+    border-color: red;
+    border-radius: 50%;
+    margin: 1.55vh 0;
+    color: white;
+    cursor: pointer;
+    p{
+      margin-bottom: 0;
+    }
+    &:hover{
+      background-color: rgb(248, 66, 66);
+      border-color: rgb(248, 66, 66);
+    }
+    transition: ease-in-out 0.25s;
+  }
+
 }

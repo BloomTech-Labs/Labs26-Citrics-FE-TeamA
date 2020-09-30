@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/CityReport.scss';
-import Plotly from './Plotly';
+import Plotly from '../pages/CompareCities/Plotly';
 
 function CityReport(props) {
   let citySpace;
@@ -12,9 +12,8 @@ function CityReport(props) {
   }
   return (
     <section className="report-container" style={citySpace}>
-      <div className="average-rent">
-        <h1>Average Rent</h1>
-        <Plotly />
+      <div className="report-div">
+        <Plotly searchOptions={props.searchOptions} />
       </div>
     </section>
   );
