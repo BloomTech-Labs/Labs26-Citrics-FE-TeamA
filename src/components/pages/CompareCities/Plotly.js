@@ -24,10 +24,11 @@ export default function Plotly() {
 
   // useEffect for fetching rent data viz from ds backend
   // sets the cityData and cityLayout for following cities
+
   useEffect(() => {
     async function fetchRentData() {
       if (compareList.cities.length === 1) {
-        const request = await axios.get(`/rent_viz2/${lastCity}_${lastState}`);
+        const request = await axios.get(`/rent_viz/${lastCity}_${lastState}`);
         const rentData = JSON.parse(request.data);
 
         setThisCityData({
@@ -37,7 +38,7 @@ export default function Plotly() {
       } else if (compareList.cities.length === 2) {
         let firstCity = compareList.cities[compareList.cities.length - 2];
         const request = await axios.get(
-          `/rent_viz2/${firstCity[0]}_${firstCity[1]}?city2=${lastCityAdded[0]}&statecode2=${lastCityAdded[1]}`
+          `/rent_viz/${firstCity[0]}_${firstCity[1]}?city2=${lastCityAdded[0]}&statecode2=${lastCityAdded[1]}`
         );
 
         const rentData = JSON.parse(request.data);
@@ -49,7 +50,7 @@ export default function Plotly() {
         let firstCity = compareList.cities[compareList.cities.length - 3];
         let secondCity = compareList.cities[compareList.cities.length - 2];
         const request = await axios.get(
-          `/rent_viz2/${firstCity[0]}_${firstCity[1]}?city2=${secondCity[0]}&statecode2=${secondCity[1]}&city3=${lastCityAdded[0]}&statecode3=${lastCityAdded[1]}`
+          `/rent_viz/${firstCity[0]}_${firstCity[1]}?city2=${secondCity[0]}&statecode2=${secondCity[1]}&city3=${lastCityAdded[0]}&statecode3=${lastCityAdded[1]}`
         );
 
         const rentData = JSON.parse(request.data);
@@ -61,46 +62,6 @@ export default function Plotly() {
     }
     fetchRentData();
   }, [lastState, lastCity, lastCityAdded, compareList.cities]);
-
-  // UNCOMMENT AFTER DS CHANGES THE LINK TO RENT VIZ
-
-  // useEffect(() => {
-  //   async function fetchRentData() {
-  //     if (compareList.cities.length === 1) {
-  //       const request = await axios.get(`/rent_viz/${lastCity}_${lastState}`);
-  //       const rentData = JSON.parse(request.data);
-
-  //       setThisCityData({
-  //         cityData1: rentData.data,
-  //         cityLayout1: rentData.layout,
-  //       });
-  //     } else if (compareList.cities.length === 2) {
-  //       let firstCity = compareList.cities[compareList.cities.length - 2];
-  //       const request = await axios.get(
-  //         `/rent_viz/${firstCity[0]}_${firstCity[1]}?city2=${lastCityAdded[0]}&statecode2=${lastCityAdded[1]}`
-  //       );
-
-  //       const rentData = JSON.parse(request.data);
-  //       setThisCityData({
-  //         cityData1: rentData.data,
-  //         cityLayout1: rentData.layout,
-  //       });
-  //     } else if (compareList.cities.length === 3) {
-  //       let firstCity = compareList.cities[compareList.cities.length - 3];
-  //       let secondCity = compareList.cities[compareList.cities.length - 2];
-  //       const request = await axios.get(
-  //         `/rent_viz/${firstCity[0]}_${firstCity[1]}?city2=${secondCity[0]}&statecode2=${secondCity[1]}&city3=${lastCityAdded[0]}&statecode3=${lastCityAdded[1]}`
-  //       );
-
-  //       const rentData = JSON.parse(request.data);
-  //       setThisCityData({
-  //         cityData1: rentData.data,
-  //         cityLayout1: rentData.layout,
-  //       });
-  //     }
-  //   }
-  //   fetchRentData();
-  // }, [lastState, lastCity, lastCityAdded, compareList.cities]);
 
   // Gets the unemployment chart from the DS API
   useEffect(() => {
@@ -196,32 +157,23 @@ export default function Plotly() {
     fetchWalkData();
   }, [lastCity, lastState]);
 
-  if (walkCityData.cityWalk1 !== undefined) {
-    walkFill[0] = [
-      <div className="walkData">
-        <h3>Walkscore</h3>
-        <p className="walkscore-num">{walkCityData.cityWalk1.walkability}</p>
-        <WalkscoreInfo walkCityData={walkCityData} />
-      </div>,
-    ];
-  }
-  if (walkCityData.cityWalk2 !== undefined) {
-    walkFill[1] = [
-      <div className="walkData">
-        <h3>Walkscore</h3>
-        <p className="walkscore-num">{walkCityData.cityWalk2.walkability}</p>
-        <WalkscoreInfo walkCityData={walkCityData} />
-      </div>,
-    ];
-  }
-  if (walkCityData.cityWalk3 !== undefined) {
-    walkFill[2] = [
-      <div className="walkData">
-        <h3>Walkscore</h3>
-        <p className="walkscore-num">{walkCityData.cityWalk3.walkability}</p>
-        <WalkscoreInfo walkCityData={walkCityData} />
-      </div>,
-    ];
+  let cityWalk1 = walkCityData.cityWalk1;
+  let cityWalk2 = walkCityData.cityWalk2;
+  let cityWalk3 = walkCityData.cityWalk3;
+
+  function dynamicWalkFill(cityNumber, number) {
+    if (cityNumber !== undefined) {
+      walkFill[number] = [
+        <div className="walkData">
+          <h3>Walkscore</h3>
+          <p className="walkscore-num">{cityNumber.walkability}</p>
+          <WalkscoreInfo
+            walkCityData={walkCityData}
+            setwalkCityData={setwalkCityData}
+          />
+        </div>,
+      ];
+    }
   }
 
   let city1 = weatherCityData.cityWeather1;
@@ -283,6 +235,9 @@ export default function Plotly() {
       ];
     }
   }
+  dynamicWalkFill(cityWalk1, 0);
+  dynamicWalkFill(cityWalk2, 1);
+  dynamicWalkFill(cityWalk3, 2);
   dynamicWeatherFill(city1, 0);
   dynamicWeatherFill(city2, 1);
   dynamicWeatherFill(city3, 2);
