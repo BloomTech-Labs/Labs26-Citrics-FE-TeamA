@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 context('Search bar is able to find cities', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/');
@@ -16,14 +18,15 @@ context('Search bar is able to find cities', () => {
 
   it('Selects and views two cities', () => {
     cy.wait(2000);
+    cy.get('.ant-input').click();
+    cy.wait(2000);
     cy.get('.ant-input')
-      .click()
       .type('Tulsa, OK')
       .should('have.value', 'Tulsa, OK');
     cy.contains('Tulsa, OK').click();
     cy.contains('Tulsa, OK');
+    cy.get('.ant-input').click();
     cy.get('.ant-input')
-      .click()
       .type('Seattle, WA')
       .should('have.value', 'Seattle, WA');
     cy.contains('Seattle, WA').click();
@@ -32,26 +35,27 @@ context('Search bar is able to find cities', () => {
   });
 
   it('Selects and views three cities', () => {
+    cy.wait(2500);
+    cy.get('.ant-input').click();
     cy.wait(2000);
     cy.get('.ant-input')
-      .click()
       .type('Tulsa, OK')
       .should('have.value', 'Tulsa, OK');
     cy.contains('Tulsa, OK').click();
     cy.contains('Tulsa, OK');
-    cy.wait(3500);
+    cy.wait(2500);
 
+    cy.get('.ant-input').click();
     cy.get('.ant-input')
-      .click()
       .type('Seattle, WA')
       .should('have.value', 'Seattle, WA');
     cy.contains('Seattle, WA').click();
     cy.contains('Tulsa, OK');
     cy.contains('Seattle, WA');
-    cy.wait(3500);
+    cy.wait(2500);
 
+    cy.get('.ant-input').click();
     cy.get('.ant-input')
-      .click()
       .type('Los Angeles')
       .should('have.value', 'Los Angeles');
     cy.contains('Los Angeles').click();

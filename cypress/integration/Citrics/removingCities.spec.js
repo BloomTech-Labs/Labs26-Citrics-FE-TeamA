@@ -15,18 +15,20 @@ context('Removes cities from comparison list', () => {
     cy.contains('Tulsa, OK').click();
     cy.contains('Tulsa, OK');
     cy.contains('Weather');
+    cy.get('.remove-btn').click();
+    cy.contains('Visualize Comparisons');
   });
 
   //    2 city removal
   it('Selects and views two cities, removes first city', () => {
-    cy.wait(2000);
+    cy.wait(1000);
+    cy.get('.ant-input').click();
+    cy.wait(3000);
     cy.get('.ant-input')
-      .click()
       .type('Tulsa, OK')
       .should('have.value', 'Tulsa, OK');
     cy.contains('Tulsa, OK').click();
     cy.contains('Tulsa, OK');
-    cy.wait(3500);
 
     cy.get('.ant-input')
       .click()
@@ -35,7 +37,7 @@ context('Removes cities from comparison list', () => {
     cy.contains('Seattle, WA').click();
     cy.contains('Tulsa, OK');
     cy.contains('Seattle, WA');
-    cy.wait(3500);
+    cy.wait(2500);
   });
 
   it('Selects and views two cities, removes second city', () => {
@@ -46,7 +48,7 @@ context('Removes cities from comparison list', () => {
       .should('have.value', 'Tulsa, OK');
     cy.contains('Tulsa, OK').click();
     cy.contains('Tulsa, OK');
-    cy.wait(3500);
+    cy.wait(2500);
 
     cy.get('.ant-input')
       .click()
@@ -55,7 +57,7 @@ context('Removes cities from comparison list', () => {
     cy.contains('Seattle, WA').click();
     cy.contains('Tulsa, OK');
     cy.contains('Seattle, WA');
-    cy.wait(3500);
+    cy.wait(2500);
   });
 
   //    3 city removal
@@ -68,7 +70,7 @@ context('Removes cities from comparison list', () => {
       .should('have.value', 'Tulsa, OK');
     cy.contains('Tulsa, OK').click();
     cy.contains('Tulsa, OK');
-    cy.wait(3500);
+    cy.wait(2500);
 
     cy.get('.ant-input')
       .click()
@@ -77,7 +79,7 @@ context('Removes cities from comparison list', () => {
     cy.contains('Seattle, WA').click();
     cy.contains('Tulsa, OK');
     cy.contains('Seattle, WA');
-    cy.wait(3500);
+    cy.wait(2500);
 
     cy.get('.ant-input')
       .click()
@@ -98,7 +100,7 @@ context('Removes cities from comparison list', () => {
       .should('have.value', 'Tulsa, OK');
     cy.contains('Tulsa, OK').click();
     cy.contains('Tulsa, OK');
-    cy.wait(3500);
+    cy.wait(2500);
 
     cy.get('.ant-input')
       .click()
@@ -107,7 +109,7 @@ context('Removes cities from comparison list', () => {
     cy.contains('Seattle, WA').click();
     cy.contains('Tulsa, OK');
     cy.contains('Seattle, WA');
-    cy.wait(3500);
+    cy.wait(2500);
 
     cy.get('.ant-input')
       .click()
@@ -128,7 +130,7 @@ context('Removes cities from comparison list', () => {
       .should('have.value', 'Tulsa, OK');
     cy.contains('Tulsa, OK').click();
     cy.contains('Tulsa, OK');
-    cy.wait(3500);
+    cy.wait(2500);
 
     cy.get('.ant-input')
       .click()
@@ -137,7 +139,7 @@ context('Removes cities from comparison list', () => {
     cy.contains('Seattle, WA').click();
     cy.contains('Tulsa, OK');
     cy.contains('Seattle, WA');
-    cy.wait(3500);
+    cy.wait(2500);
 
     cy.get('.ant-input')
       .click()
