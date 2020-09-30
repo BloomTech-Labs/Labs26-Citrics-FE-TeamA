@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Input } from 'antd';
 import './styles/AutoComplete.scss';
 import { SearchContext } from '../../state/contexts/ReportContext';
+import NoSearch from './NoSearch';
 
 function AutoCompleteInput(props) {
   let searchOps = props.searchOptions;
@@ -40,6 +41,21 @@ function AutoCompleteInput(props) {
           } else {
             // single city push
             optionsArr.push(citySearched[value][0]);
+
+            function checkIfInCompareListForOptionsArr(indexNum) {
+              if (props.compareList.cities[indexNum] !== undefined) {
+                optionsArr = optionsArr.filter(
+                  city =>
+                    city[0] + city[1] !==
+                    props.compareList.cities[indexNum][0] +
+                      props.compareList.cities[indexNum][1]
+                );
+              }
+            }
+            checkIfInCompareListForOptionsArr(0);
+            checkIfInCompareListForOptionsArr(1);
+            checkIfInCompareListForOptionsArr(2);
+            // delete citySearched[value][0];
           }
           setOptions(optionsArr);
         }
@@ -70,7 +86,6 @@ function AutoCompleteInput(props) {
   let rent = searchOps.searching['rent'];
   let unemployment = searchOps.searching['unemployment'];
   let walkability = searchOps.searching['walkability'];
-
   return (
     <div className="App">
       <div className="searchWithOptions">
@@ -78,18 +93,31 @@ function AutoCompleteInput(props) {
         <h5>Search City: </h5>
         <p>Advanced Search</p>
       </div>{' '}
-      {weather !== true && rent !== true && unemployment !== true && (
-        <Search
-          id="autocomplete_input"
-          type="text"
-          placeholder="Ex: Tulsa, OK"
-          value={city.city}
-          enterButton
-          onChange={event => handleCityInputChange(event)}
-          onSearch={value => {
-            handleOnSearch(value);
-          }}
-        />
+      {weather !== true &&
+      rent !== true &&
+      unemployment !== true &&
+      walkability !== true ? (
+        props.compareList.cities.length < 3 ? (
+          <Search
+            id="autocomplete_input"
+            type="text"
+            placeholder="Ex: Tulsa, OK"
+            value={city.city}
+            enterButton
+            onChange={event => handleCityInputChange(event)}
+            onSearch={value => {
+              handleOnSearch(value);
+            }}
+          />
+        ) : (
+          <div className="empty">
+            <p>
+              3 cities already selected, please remove one to continue comparing
+            </p>
+          </div>
+        )
+      ) : (
+        <NoSearch />
       )}
       <div className="autocomplete">
         {options.length > 0 &&
