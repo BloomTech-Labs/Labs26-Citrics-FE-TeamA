@@ -18,6 +18,7 @@ export default function RenderHomePage() {
     cities: [],
     searched: false,
   });
+  // State to set search bar active depending on api responses.
   const [searching, setSearching] = useState({
     weather: false,
     rent: false,

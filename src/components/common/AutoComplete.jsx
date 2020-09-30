@@ -50,13 +50,16 @@ function AutoCompleteInput(props) {
   };
   const handleOnSearch = value => {
     let filler = props.compareList.cities;
+    // applys the city and state value properly capitalized as an array item.
     let Arr = [
       value[0].toUpperCase() + value.slice(1, -4).toLowerCase(),
       value.slice(-2, value.length).toUpperCase(),
     ];
-
+    // Filler to no change the compareList.cities array directly
     filler.push(Arr);
+    // Clear out the dropdown items list
     setOptions([]);
+    // Set new cities list as the filler array
     props.setCompareList({
       cities: filler,
       searched: true,
