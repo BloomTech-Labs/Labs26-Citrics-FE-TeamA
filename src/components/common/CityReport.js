@@ -13,7 +13,7 @@ function CityReport(props) {
   return (
     <section className="report-container" style={citySpace}>
       <div className="report-div">
-        <Plotly />
+        <Plotly searchOptions={props.searchOptions} />
       </div>
     </section>
   );

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import './styles/AddCityBar.scss';
 import AutoCompleteInput from './AutoComplete';
 import { ReportContext } from '../../state/contexts/ReportContext';
-const AddCityBar = () => {
+const AddCityBar = props => {
   // Search bar for adding cities
   let { compareList } = useContext(ReportContext);
   let { setCompareList } = useContext(ReportContext);
@@ -11,6 +11,7 @@ const AddCityBar = () => {
     <AutoCompleteInput
       compareList={compareList}
       setCompareList={setCompareList}
+      searchOptions={props.searchOptions}
     />
   );
 };

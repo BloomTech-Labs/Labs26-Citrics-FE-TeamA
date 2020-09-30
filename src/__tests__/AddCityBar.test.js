@@ -16,6 +16,14 @@ test('AutoComplete should have placeholder text', () => {
       setCompareList={() => {
         return 'yes';
       }}
+      searchOptions={{
+        searching: {
+          weather: false,
+          rent: false,
+          unemployment: false,
+          walkability: false,
+        },
+      }}
     />
   );
 
@@ -35,6 +43,14 @@ test('AutoComplete should change text', async () => {
       setCompareList={() => {
         return 'yes';
       }}
+      searchOptions={{
+        searching: {
+          weather: false,
+          rent: false,
+          unemployment: false,
+          walkability: false,
+        },
+      }}
     />
   );
 
@@ -51,6 +67,14 @@ test('AutoComplete should change text', async () => {
         }}
         setCompareList={() => {
           return 'yes';
+        }}
+        searchOptions={{
+          searching: {
+            weather: false,
+            rent: false,
+            unemployment: false,
+            walkability: false,
+          },
         }}
       />
     );
@@ -69,6 +93,14 @@ test('AutoComplete should change text', async () => {
         }}
         setCompareList={() => {
           return 'yes';
+        }}
+        searchOptions={{
+          searching: {
+            weather: false,
+            rent: false,
+            unemployment: false,
+            walkability: false,
+          },
         }}
       />
     );
