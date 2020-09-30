@@ -9,7 +9,7 @@ import StaticHomePage from '../Home/StaticHomePage';
 import { SearchContext } from '../../../state/contexts/ReportContext';
 import { ReportContext } from '../../../state/contexts/ReportContext';
 
-function RenderHomePage() {
+export default function RenderHomePage() {
   // state of home page. default state is StaticHomePageComp
   // useState for axios errors
   const [error, setError] = useState('');
@@ -62,7 +62,5 @@ function RenderHomePage() {
         </ReportContext.Provider>
       )}
     </>
-    // if no search : <StaticHomePageComp/> ? <CityReport/>
   );
 }
-export default RenderHomePage;
