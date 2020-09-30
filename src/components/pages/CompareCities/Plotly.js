@@ -188,28 +188,14 @@ export default function Plotly() {
   let city1 = weatherCityData.cityWeather1;
   let city2 = weatherCityData.cityWeather2;
   let city3 = weatherCityData.cityWeather3;
-  let classes = ['main-temperature', 'main-temperature', 'main-temperature'];
 
-  function getTempsToSetClass(cityNum, num) {
-    num -= 1;
-    cityNum
-      ? cityNum.imperial_main_temp < 60
-        ? (classes[num] += ' tooCold')
-        : cityNum.imperial_main_temp > 80
-        ? (classes[num] += ' tooHot')
-        : (classes[num] += ' justRight')
-      : (classes[num] = ['main-temperature']);
-  }
-  getTempsToSetClass(city1, 1);
-  getTempsToSetClass(city2, 2);
-  getTempsToSetClass(city3, 3);
   function dynamicWeatherFill(cityNumber, number) {
     if (cityNumber !== undefined) {
       weatherFill[number] = [
         <div className="weatherData">
           <h3>Weather</h3>
           <div className="temperature-div">
-            <div className={classes[number]}>
+            <div className="main-temperature">
               <h1>{cityNumber.imperial_main_temp}°</h1>
             </div>
             <div className="other-temperature">
