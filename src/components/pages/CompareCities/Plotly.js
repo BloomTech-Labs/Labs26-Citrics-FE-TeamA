@@ -62,6 +62,46 @@ export default function Plotly() {
     fetchRentData();
   }, [lastState, lastCity, lastCityAdded, compareList.cities]);
 
+  // UNCOMMENT AFTER DS CHANGES THE LINK TO RENT VIZ
+
+  // useEffect(() => {
+  //   async function fetchRentData() {
+  //     if (compareList.cities.length === 1) {
+  //       const request = await axios.get(`/rent_viz/${lastCity}_${lastState}`);
+  //       const rentData = JSON.parse(request.data);
+
+  //       setThisCityData({
+  //         cityData1: rentData.data,
+  //         cityLayout1: rentData.layout,
+  //       });
+  //     } else if (compareList.cities.length === 2) {
+  //       let firstCity = compareList.cities[compareList.cities.length - 2];
+  //       const request = await axios.get(
+  //         `/rent_viz/${firstCity[0]}_${firstCity[1]}?city2=${lastCityAdded[0]}&statecode2=${lastCityAdded[1]}`
+  //       );
+
+  //       const rentData = JSON.parse(request.data);
+  //       setThisCityData({
+  //         cityData1: rentData.data,
+  //         cityLayout1: rentData.layout,
+  //       });
+  //     } else if (compareList.cities.length === 3) {
+  //       let firstCity = compareList.cities[compareList.cities.length - 3];
+  //       let secondCity = compareList.cities[compareList.cities.length - 2];
+  //       const request = await axios.get(
+  //         `/rent_viz/${firstCity[0]}_${firstCity[1]}?city2=${secondCity[0]}&statecode2=${secondCity[1]}&city3=${lastCityAdded[0]}&statecode3=${lastCityAdded[1]}`
+  //       );
+
+  //       const rentData = JSON.parse(request.data);
+  //       setThisCityData({
+  //         cityData1: rentData.data,
+  //         cityLayout1: rentData.layout,
+  //       });
+  //     }
+  //   }
+  //   fetchRentData();
+  // }, [lastState, lastCity, lastCityAdded, compareList.cities]);
+
   // Gets the unemployment chart from the DS API
   useEffect(() => {
     async function fetchUnemploymentData() {
@@ -90,59 +130,71 @@ export default function Plotly() {
     fetchUnemploymentData();
   }, [lastState, compareList.cities]);
 
-  // retrieves the data from DS API and sets to state;
+  // retrieves the weather data from DS API
   useEffect(() => {
-    reportWeatherData(lastCityAdded[0], lastCityAdded[1])
-      .then(res => {
-        if (!('cityWeather1' in weatherCityData)) {
-          setweatherCityData({
-            cityWeather1: res,
-          });
-        }
+    async function fetchWeatherData() {
+      const request = await axios.get(`/current/${lastCity}_${lastState}`);
 
-        if (
-          'cityWeather1' in weatherCityData &&
-          !('cityWeather2' in weatherCityData)
-        ) {
-          setweatherCityData({
-            ...weatherCityData,
-            cityWeather2: res,
-          });
-        }
+      const res = JSON.parse(request.data);
+      console.log(res);
+      console.log('res', res);
+      if (!('cityWeather1' in weatherCityData)) {
+        setweatherCityData({
+          cityWeather1: res,
+        });
+      }
 
-        if (
-          'cityWeather2' in weatherCityData &&
-          !('cityWeather3' in weatherCityData)
-        ) {
-          setweatherCityData({
-            ...weatherCityData,
-            cityWeather3: res,
-          });
-        }
-      })
-      .catch(err => {});
-    reportWalkData(lastCityAdded[0], lastCityAdded[1])
-      .then(res => {
-        if (!('cityWalk1' in walkCityData)) {
-          setwalkCityData({
-            cityWalk1: res,
-          });
-        }
-        if ('cityWalk1' in walkCityData && !('cityWalk2' in walkCityData)) {
-          setwalkCityData({
-            ...walkCityData,
-            cityWalk2: res,
-          });
-        }
-        if ('cityWalk2' in walkCityData && !('cityWalk3' in walkCityData)) {
-          setwalkCityData({
-            ...walkCityData,
-            cityWalk3: res,
-          });
-        }
-      })
-      .catch(err => {});
-  }, [compareList]);
+      if (
+        'cityWeather1' in weatherCityData &&
+        !('cityWeather2' in weatherCityData)
+      ) {
+        setweatherCityData({
+          ...weatherCityData,
+          cityWeather2: res,
+        });
+      }
+
+      if (
+        'cityWeather2' in weatherCityData &&
+        !('cityWeather3' in weatherCityData)
+      ) {
+        setweatherCityData({
+          ...weatherCityData,
+          cityWeather3: res,
+        });
+      }
+    }
+    fetchWeatherData();
+  }, [lastState, lastCity]);
+
+  // retrieves the walk city data from DS API and sets to state
+  useEffect(() => {
+    async function fetchWalkData() {
+      const request = await axios.get(`/walkability/${lastCity}_${lastState}`);
+
+      const res = JSON.parse(request.data);
+      console.log(res);
+      console.log('res', res);
+      if (!('cityWalk1' in walkCityData)) {
+        setwalkCityData({
+          cityWalk1: res,
+        });
+      }
+      if ('cityWalk1' in walkCityData && !('cityWalk2' in walkCityData)) {
+        setwalkCityData({
+          ...walkCityData,
+          cityWalk2: res,
+        });
+      }
+      if ('cityWalk2' in walkCityData && !('cityWalk3' in walkCityData)) {
+        setwalkCityData({
+          ...walkCityData,
+          cityWalk3: res,
+        });
+      }
+    }
+    fetchWalkData();
+  }, [lastCity, lastState]);
 
   if (walkCityData.cityWalk1 !== undefined) {
     walkFill[0] = [
@@ -190,120 +242,50 @@ export default function Plotly() {
   getTempsToSetClass(city1, 1);
   getTempsToSetClass(city2, 2);
   getTempsToSetClass(city3, 3);
-  if (city1 !== undefined) {
-    weatherFill[0] = [
-      <div className="weatherData">
-        <h3>Weather</h3>
-        <div className="temperature-div">
-          <div className={classes[0]}>
-            <h1>{city1.imperial_main_temp}°</h1>
+  function dynamicWeatherFill(cityNumber, number) {
+    if (cityNumber !== undefined) {
+      weatherFill[number] = [
+        <div className="weatherData">
+          <h3>Weather</h3>
+          <div className="temperature-div">
+            <div className={classes[number]}>
+              <h1>{cityNumber.imperial_main_temp}°</h1>
+            </div>
+            <div className="other-temperature">
+              <p>Feels Like: {cityNumber.imperial_main_feels_like}°</p>
+              <p>
+                {cityNumber.imperial_main_temp_max}°/
+                {cityNumber.imperial_main_temp_min}°
+              </p>
+            </div>
           </div>
-          <div className="other-temperature">
-            <p>Feels Like: {city1.imperial_main_feels_like}°</p>
-            <p>
-              {city1.imperial_main_temp_max}°/{city1.imperial_main_temp_min}°
-            </p>
+          <div className="weather-stat-div">
+            <div className="weather-stat-titles">
+              <p>Today's Forecast: </p>
+              <p>Clouds Today: </p>
+              <p>Humidity: </p>
+              <p>Pressure: </p>
+              <p>Visibility: </p>
+              <p>Wind direction: </p>
+              <p>Wind Speed: </p>
+            </div>
+            <div className="weather-stat-nums">
+              <p>{cityNumber.description}</p>
+              <p>{cityNumber.clouds_all}%</p>
+              <p>{cityNumber.main_humidity}</p>
+              <p>{cityNumber.main_pressure}</p>
+              <p>{cityNumber.imperial_visibility}</p>
+              <p>{cityNumber.wind_deg}°</p>
+              <p>{cityNumber.imperial_wind_speed}mph</p>
+            </div>
           </div>
-        </div>
-        <div className="weather-stat-div">
-          <div className="weather-stat-titles">
-            <p>Today's Forecast: </p>
-            <p>Clouds Today: </p>
-            <p>Humidity: </p>
-            <p>Pressure: </p>
-            <p>Visibility: </p>
-            <p>Wind direction: </p>
-            <p>Wind Speed: </p>
-          </div>
-          <div className="weather-stat-nums">
-            <p>{city1.description}</p>
-            <p>{city1.clouds_all}%</p>
-            <p>{city1.main_humidity}</p>
-            <p>{city1.main_pressure}</p>
-            <p>{city1.imperial_visibility}</p>
-            <p>{city1.wind_deg}°</p>
-            <p>{city1.imperial_wind_speed}mph</p>
-          </div>
-        </div>
-      </div>,
-    ];
+        </div>,
+      ];
+    }
   }
-  if (city2 !== undefined) {
-    weatherFill[1] = [
-      <div className="weatherData">
-        <h3>{city2.city}'s Weather</h3>
-        <div className="temperature-div">
-          <div className={classes[1]}>
-            <h1>{city2.imperial_main_temp}°</h1>
-          </div>
-          <div className="other-temperature">
-            <p>Feels like {city2.imperial_main_feels_like}°</p>
-            <p>
-              {city2.imperial_main_temp_max}°/{city2.imperial_main_temp_min}°
-            </p>
-          </div>
-        </div>
-        <div className="weather-stat-div">
-          <div className="weather-stat-titles">
-            <p>Today's Forecast: </p>
-            <p>Clouds Today: </p>
-            <p>Humidity: </p>
-            <p>Pressure: </p>
-            <p>Visibility: </p>
-            <p>Wind direction: </p>
-            <p>Wind Speed: </p>
-          </div>
-          <div className="weather-stat-nums">
-            <p>{city2.description}</p>
-            <p>{city2.clouds_all}%</p>
-            <p>{city2.main_humidity}</p>
-            <p>{city2.main_pressure}</p>
-            <p>{city2.imperial_visibility}</p>
-            <p>{city2.wind_deg}°</p>
-            <p>{city2.imperial_wind_speed}mph</p>
-          </div>
-        </div>
-      </div>,
-    ];
-  }
-  if (city3 !== undefined) {
-    weatherFill[2] = [
-      <div className="weatherData">
-        <h3>{city3.city}'s Weather</h3>
-        <div className="temperature-div">
-          <div className={classes[2]}>
-            <h1>{city3.imperial_main_temp}°</h1>
-          </div>
-          <div className="other-temperature">
-            <p>Feels Like: {city3.imperial_main_feels_like}°</p>
-            <p>
-              {city3.imperial_main_temp_max}°/{city3.imperial_main_temp_min}°
-            </p>
-          </div>
-        </div>
-        <div className="weather-stat-div">
-          <div className="weather-stat-titles">
-            <p>Today's Forecast: </p>
-            <p>Clouds Today: </p>
-            <p>Humidity: </p>
-            <p>Pressure: </p>
-            <p>Visibility: </p>
-            <p>Wind direction: </p>
-            <p>Wind Speed: </p>
-          </div>
-          <div className="weather-stat-nums">
-            <p>{city3.description}</p>
-            <p>{city3.clouds_all}%</p>
-            <p>{city3.main_humidity}%</p>
-            <p>{city3.main_pressure}</p>
-            <p>{city3.imperial_visibility}</p>
-            <p>{city3.wind_deg}°</p>
-            <p>{city3.imperial_wind_speed}mph</p>
-          </div>
-        </div>
-      </div>,
-    ];
-  }
+  dynamicWeatherFill(city1, 0);
+  dynamicWeatherFill(city2, 1);
+  dynamicWeatherFill(city3, 2);
 
   function hideCity(event) {
     // id of button the user clicks
