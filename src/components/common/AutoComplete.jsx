@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Input } from 'antd';
 import './styles/AutoComplete.scss';
 import { SearchContext } from '../../state/contexts/ReportContext';
+import NoSearch from './NoSearch';
 
 function AutoCompleteInput(props) {
   let searchOps = props.searchOptions;
@@ -39,7 +40,25 @@ function AutoCompleteInput(props) {
             });
           } else {
             // single city push
+            console.log(citySearched[value][0]);
+            console.log(props.compareList.cities[0]);
             optionsArr.push(citySearched[value][0]);
+
+            function checkIfInCompareListForOptionsArr(indexNum) {
+              if (props.compareList.cities[indexNum] !== undefined) {
+                optionsArr = optionsArr.filter(
+                  city =>
+                    city[0] + city[1] !==
+                    props.compareList.cities[indexNum][0] +
+                      props.compareList.cities[indexNum][1]
+                );
+              }
+            }
+            checkIfInCompareListForOptionsArr(0);
+            checkIfInCompareListForOptionsArr(1);
+            checkIfInCompareListForOptionsArr(2);
+            console.log(optionsArr);
+            // delete citySearched[value][0];
           }
           setOptions(optionsArr);
         }
@@ -70,7 +89,6 @@ function AutoCompleteInput(props) {
   let rent = searchOps.searching['rent'];
   let unemployment = searchOps.searching['unemployment'];
   let walkability = searchOps.searching['walkability'];
-
   return (
     <div className="App">
       <div className="searchWithOptions">
@@ -78,7 +96,10 @@ function AutoCompleteInput(props) {
         <h5>Search City: </h5>
         <p>Advanced Search</p>
       </div>{' '}
-      {weather !== true && rent !== true && unemployment !== true && (
+      {weather !== true &&
+      rent !== true &&
+      unemployment !== true &&
+      walkability !== true ? (
         <Search
           id="autocomplete_input"
           type="text"
@@ -90,6 +111,8 @@ function AutoCompleteInput(props) {
             handleOnSearch(value);
           }}
         />
+      ) : (
+        <NoSearch />
       )}
       <div className="autocomplete">
         {options.length > 0 &&
