@@ -3,13 +3,13 @@ import Loader from '../../../common/Loader';
 import Plot from 'react-plotly.js';
 
 export default function RentPlot(props) {
-  return !props.thisCityData.cityData1 ? (
+  return !props.thisCityData.cityData ? (
     <Loader />
   ) : (
     <div>
       <Plot
-        data={props.thisCityData.cityData1}
-        layout={props.thisCityData.cityLayout1}
+        data={props.thisCityData.cityData}
+        layout={props.thisCityData.cityLayout}
       />
     </div>
   );
