@@ -1,11 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
-import Plot from 'react-plotly.js';
 import axios from '../../../api/dsapi';
 import { ReportContext } from '../../../state/contexts/ReportContext';
-import Loader from '../../common/Loader';
 import WalkscoreInfo from '../../common/WalkscoreInfo';
+import WeatherPlot from './PlotlyHelpers/weatherPlot';
+import WalkData from './PlotlyHelpers/walkData';
+import UnemploymentPlot from './PlotlyHelpers/UnemploymentPlot';
+import RentPlot from './PlotlyHelpers/RentPlot';
 
-export default function Plotly() {
+export default function Plotly(props) {
+  let searching = props.searchOptions.searching;
+  let setSearching = props.searchOptions.setSearching;
   //  State for plotly json info
   const [thisCityData, setThisCityData] = useState({});
   const [walkCityData, setwalkCityData] = useState({
@@ -22,14 +26,18 @@ export default function Plotly() {
   let lastState = lastCityAdded[lastCityLength - 1];
 
   // useEffect for fetching rent data viz from ds backend
-  // sets the cityData and cityLayout for following cities
-
+  // sets the cityData and cityLayout for following cities into thisCityData
   useEffect(() => {
+    // For search bar loading knowledge
+
+    setSearching({
+      ...searching,
+      rent: true,
+    });
     async function fetchRentData() {
       if (compareList.cities.length === 1) {
         const request = await axios.get(`/rent_viz/${lastCity}_${lastState}`);
         const rentData = JSON.parse(request.data);
-
         setThisCityData({
           cityData1: rentData.data,
           cityLayout1: rentData.layout,
@@ -58,12 +66,21 @@ export default function Plotly() {
           cityLayout1: rentData.layout,
         });
       }
+      setSearching({
+        ...searching,
+        rent: true,
+      });
     }
     fetchRentData();
   }, [lastState, lastCity, lastCityAdded, compareList.cities]);
 
-  // Gets the unemployment chart from the DS API
+  // Gets the unemployment chart from the DS API, sets it to unemployment
   useEffect(() => {
+    // For search bar loading knowledge
+    setSearching({
+      ...searching,
+      unemployment: true,
+    });
     async function fetchUnemploymentData() {
       if (compareList.cities.length === 1) {
         const request = await axios.get(`/viz/${lastState}`);
@@ -86,12 +103,21 @@ export default function Plotly() {
         const unemploymentData = JSON.parse(request.data);
         setUnemployment(unemploymentData);
       }
+      setSearching({
+        ...searching,
+        unemployment: false,
+      });
     }
     fetchUnemploymentData();
   }, [lastState, compareList.cities]);
 
-  // retrieves the weather data from DS API
+  // retrieves the weather data from DS API, sets it to weatherCityData
   useEffect(() => {
+    // For search bar loading knowledge
+    setSearching({
+      ...searching,
+      weather: true,
+    });
     async function fetchWeatherData() {
       const request = await axios.get(`/current/${lastCity}_${lastState}`);
       const res = JSON.parse(request.data);
@@ -120,12 +146,23 @@ export default function Plotly() {
           cityWeather3: res,
         });
       }
+      setSearching({
+        ...searching,
+        weather: false,
+      });
     }
     fetchWeatherData();
-  }, [lastState, lastCity, weatherCityData]);
+  }, [lastState, lastCity]);
 
-  // retrieves the walk city data from DS API and sets to state
+  // retrieves the walk city data from DS API and sets it to walkCityData
   useEffect(() => {
+    //  WALKABILITY IS NOT RETRIEVING AT THE MOMENT
+    //  UNCOMMENT WHEN WALKABILITY LINK WORKS
+    // For search bar loading knowledge
+    // setSearching({
+    //   ...searching,
+    //   walkability: true,
+    // });
     async function fetchWalkData() {
       const request = await axios.get(`/walkability/${lastCity}_${lastState}`);
       const res = JSON.parse(request.data);
@@ -146,6 +183,10 @@ export default function Plotly() {
           cityWalk3: res,
         });
       }
+      setSearching({
+        ...searching,
+        walkability: false,
+      });
     }
     fetchWalkData();
   }, [lastCity, lastState]);
@@ -153,7 +194,10 @@ export default function Plotly() {
   let cityWalk1 = walkCityData.cityWalk1;
   let cityWalk2 = walkCityData.cityWalk2;
   let cityWalk3 = walkCityData.cityWalk3;
-
+  let city1 = weatherCityData.cityWeather1;
+  let city2 = weatherCityData.cityWeather2;
+  let city3 = weatherCityData.cityWeather3;
+  //  Sets render data for walk response
   function dynamicWalkFill(cityNumber, number) {
     if (cityNumber !== undefined) {
       walkFill[number] = [
@@ -168,32 +212,14 @@ export default function Plotly() {
       ];
     }
   }
-
-  let city1 = weatherCityData.cityWeather1;
-  let city2 = weatherCityData.cityWeather2;
-  let city3 = weatherCityData.cityWeather3;
-  let classes = ['main-temperature', 'main-temperature', 'main-temperature'];
-
-  function getTempsToSetClass(cityNum, num) {
-    num -= 1;
-    cityNum
-      ? cityNum.imperial_main_temp < 60
-        ? (classes[num] += ' tooCold')
-        : cityNum.imperial_main_temp > 80
-        ? (classes[num] += ' tooHot')
-        : (classes[num] += ' justRight')
-      : (classes[num] = ['main-temperature']);
-  }
-  getTempsToSetClass(city1, 1);
-  getTempsToSetClass(city2, 2);
-  getTempsToSetClass(city3, 3);
+  // Sets render data for weather from weather response
   function dynamicWeatherFill(cityNumber, number) {
     if (cityNumber !== undefined) {
       weatherFill[number] = [
         <div className="weatherData">
           <h3>Weather</h3>
           <div className="temperature-div">
-            <div className={classes[number]}>
+            <div className="main-temperature">
               <h1>{cityNumber.imperial_main_temp}°</h1>
             </div>
             <div className="other-temperature">
@@ -227,6 +253,31 @@ export default function Plotly() {
         </div>,
       ];
     }
+  }
+
+  function dynamicMainData(cityNumber, number) {
+    return (
+      cityNumber !== undefined && (
+        <div className="cityDisplayPlot" id="cityNumber">
+          <div className="city-title">
+            <h1>
+              {thisCityData.cityData1 && thisCityData.cityData1[number].name}
+            </h1>
+            <button
+              className="remove-btn"
+              id="btn1"
+              onClick={e => {
+                hideCity(e);
+              }}
+            >
+              x
+            </button>
+          </div>
+          {/* <WalkData props={{ walkFill, number }} /> */}
+          <WeatherPlot props={{ weatherFill, number }} />
+        </div>
+      )
+    );
   }
   dynamicWalkFill(cityWalk1, 0);
   dynamicWalkFill(cityWalk2, 1);
@@ -327,85 +378,15 @@ export default function Plotly() {
       }
     }
   }
+
   return (
     <section>
-      {!thisCityData.cityData1 ? (
-        <Loader />
-      ) : (
-        <div>
-          <Plot
-            data={thisCityData.cityData1}
-            layout={thisCityData.cityLayout1}
-          />
-        </div>
-      )}
-      {!('data' in unemployment) ? (
-        <Loader />
-      ) : (
-        <Plot data={unemployment.data} layout={unemployment.layout} />
-      )}
-
+      <RentPlot thisCityData={thisCityData} />
+      <UnemploymentPlot unemployment={unemployment} />
       <div className="weathers">
-        {thisCityData && (
-          <div className="cityDisplayPlot" id="city1">
-            <div className="city-title">
-              <h1>
-                {thisCityData.cityData1 && thisCityData.cityData1[0].name}
-              </h1>
-              <button
-                className="remove-btn"
-                id="btn1"
-                onClick={e => {
-                  hideCity(e);
-                }}
-              >
-                x
-              </button>
-            </div>
-            {!walkFill[0] ? <Loader /> : walkFill[0]}
-            {!weatherFill[0] ? <Loader /> : weatherFill[0]}
-          </div>
-        )}
-        {city2 !== undefined && (
-          <div className="cityDisplayPlot" id="city2">
-            <div className="city-title">
-              <h1>
-                {thisCityData.cityData1 && thisCityData.cityData1[1].name}
-              </h1>
-              <button
-                className="remove-btn"
-                id="btn2"
-                onClick={e => {
-                  hideCity(e);
-                }}
-              >
-                x
-              </button>
-            </div>
-            {!walkFill[1] ? <Loader /> : walkFill[1]}
-            {!weatherFill[1] ? <Loader /> : weatherFill[1]}
-          </div>
-        )}
-        {city3 !== undefined && (
-          <div className="cityDisplayPlot" id="city3">
-            <div className="city-title">
-              <h1>
-                {thisCityData.cityData1 && thisCityData.cityData1[2].name}
-              </h1>
-              <button
-                className="remove-btn"
-                id="btn3"
-                onClick={e => {
-                  hideCity(e);
-                }}
-              >
-                x
-              </button>
-            </div>
-            {!walkFill[2] ? <Loader /> : walkFill[2]}
-            {!weatherFill[2] ? <Loader /> : weatherFill[2]}
-          </div>
-        )}
+        {dynamicMainData(city1, 0)}
+        {dynamicMainData(city2, 1)}
+        {dynamicMainData(city3, 2)}
       </div>
     </section>
   );

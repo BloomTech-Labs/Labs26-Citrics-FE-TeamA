@@ -18,6 +18,13 @@ export default function RenderHomePage() {
     cities: [],
     searched: false,
   });
+  // State to set search bar active depending on api responses.
+  const [searching, setSearching] = useState({
+    weather: false,
+    rent: false,
+    unemployment: false,
+    walkability: false,
+  });
 
   // An object of city data arrays
   const cityDataArr = {};
@@ -51,14 +58,17 @@ export default function RenderHomePage() {
       {error && { error }}
       <SearchContext.Provider value={cityDataArr}>
         <ReportContext.Provider value={{ compareList, setCompareList }}>
-          <AddingCities />
+          <AddingCities searchOptions={{ searching }} />
         </ReportContext.Provider>
       </SearchContext.Provider>
       {compareList.searched === false ? (
         <StaticHomePage />
       ) : (
         <ReportContext.Provider value={{ compareList, setCompareList }}>
-          <CityReport compareList={compareList} />
+          <CityReport
+            compareList={compareList}
+            searchOptions={{ searching, setSearching }}
+          />
         </ReportContext.Provider>
       )}
     </>

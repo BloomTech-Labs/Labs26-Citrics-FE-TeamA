@@ -3,8 +3,10 @@ import { Input } from 'antd';
 import './styles/AutoComplete.scss';
 import { SearchContext } from '../../state/contexts/ReportContext';
 import AdvSearch from './AdvSearch';
+import NoSearch from './NoSearch';
 
 function AutoCompleteInput(props) {
+  let searchOps = props.searchOptions;
   let citySearched = useContext(SearchContext);
 
   // Input as search from ant design
@@ -40,6 +42,21 @@ function AutoCompleteInput(props) {
           } else {
             // single city push
             optionsArr.push(citySearched[value][0]);
+
+            function checkIfInCompareListForOptionsArr(indexNum) {
+              if (props.compareList.cities[indexNum] !== undefined) {
+                optionsArr = optionsArr.filter(
+                  city =>
+                    city[0] + city[1] !==
+                    props.compareList.cities[indexNum][0] +
+                      props.compareList.cities[indexNum][1]
+                );
+              }
+            }
+            checkIfInCompareListForOptionsArr(0);
+            checkIfInCompareListForOptionsArr(1);
+            checkIfInCompareListForOptionsArr(2);
+            // delete citySearched[value][0];
           }
           setOptions(optionsArr);
         }
@@ -50,19 +67,26 @@ function AutoCompleteInput(props) {
   };
   const handleOnSearch = value => {
     let filler = props.compareList.cities;
+    // applys the city and state value properly capitalized as an array item.
     let Arr = [
       value[0].toUpperCase() + value.slice(1, -4).toLowerCase(),
       value.slice(-2, value.length).toUpperCase(),
     ];
-
+    // Filler to no change the compareList.cities array directly
     filler.push(Arr);
+    // Clear out the dropdown items list
     setOptions([]);
+    // Set new cities list as the filler array
     props.setCompareList({
       cities: filler,
       searched: true,
     });
     setCity({ city: '' });
   };
+  let weather = searchOps.searching['weather'];
+  let rent = searchOps.searching['rent'];
+  let unemployment = searchOps.searching['unemployment'];
+  let walkability = searchOps.searching['walkability'];
   return (
     <div className="App">
       <div className="searchWithOptions">
@@ -70,17 +94,32 @@ function AutoCompleteInput(props) {
         <h5>Search City: </h5>
         <AdvSearch/>
       </div>{' '}
-      <Search
-        id="autocomplete_input"
-        type="text"
-        placeholder="Ex: Tulsa, OK"
-        value={city.city}
-        enterButton
-        onChange={event => handleCityInputChange(event)}
-        onSearch={value => {
-          handleOnSearch(value);
-        }}
-      />
+      {weather !== true &&
+      rent !== true &&
+      unemployment !== true &&
+      walkability !== true ? (
+        props.compareList.cities.length < 3 ? (
+          <Search
+            id="autocomplete_input"
+            type="text"
+            placeholder="Ex: Tulsa, OK"
+            value={city.city}
+            enterButton
+            onChange={event => handleCityInputChange(event)}
+            onSearch={value => {
+              handleOnSearch(value);
+            }}
+          />
+        ) : (
+          <div className="empty">
+            <p>
+              3 cities already selected, please remove one to continue comparing
+            </p>
+          </div>
+        )
+      ) : (
+        <NoSearch />
+      )}
       <div className="autocomplete">
         {options.length > 0 &&
           options.map(value => {
