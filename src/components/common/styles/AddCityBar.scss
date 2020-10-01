@@ -21,10 +21,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  .adv-search-btn {
+  #adv-search-btn {
     background-color: #4e4ef5;
     border-color: #4e4ef5;
     width: 11vw;
+    display: block;
     &:hover {
       cursor: pointer;
       background-color: white;
@@ -32,6 +33,12 @@
     }
   }
 }
+
+#form-container{
+  display: none;
+  justify-content: flex-start;
+}
+
 .empty {
   font-size: 1.5rem;
   height: 5vh;
@@ -56,4 +63,17 @@
     position: relative;
     animation: sk-chase 2.5s infinite linear both;
   }
+}
+
+.input-symbol {
+  position: relative;
+}
+.input-symbol input {
+  padding-left:18px;
+}
+.input-symbol:before {
+  position: absolute;
+  top: 0;
+  content:"$";
+  left: 7px;
 }
