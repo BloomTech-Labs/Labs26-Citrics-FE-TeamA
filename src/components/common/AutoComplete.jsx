@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Input } from 'antd';
 import './styles/AutoComplete.scss';
 import { SearchContext } from '../../state/contexts/ReportContext';
+import AdvSearch from './AdvSearch';
 
 function AutoCompleteInput(props) {
   let citySearched = useContext(SearchContext);
@@ -67,7 +68,7 @@ function AutoCompleteInput(props) {
       <div className="searchWithOptions">
         {' '}
         <h5>Search City: </h5>
-        <p>Advanced Search</p>
+        <AdvSearch/>
       </div>{' '}
       <Search
         id="autocomplete_input"

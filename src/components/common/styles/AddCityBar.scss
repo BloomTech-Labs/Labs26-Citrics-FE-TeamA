@@ -21,11 +21,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  p {
-    color: rgb(78, 78, 245);
-    text-decoration: underline;
+  .adv-search-btn {
+    background-color: #4e4ef5;
+    border-color: #4e4ef5;
+    width: 11vw;
     &:hover {
       cursor: pointer;
+      background-color: white;
+      color: #4e4ef5;
     }
   }
 }
