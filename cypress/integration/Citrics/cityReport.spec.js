@@ -6,8 +6,9 @@ context('Search bar is able to find cities', () => {
   });
 
   it('Selects and views Tulsa, OK', () => {
-    cy.wait(2000);
+    cy.wait(2500);
     cy.get('.ant-input').click();
+    cy.wait(1500);
     cy.get('.ant-input')
       .type('Tulsa, OK')
       .should('have.value', 'Tulsa, OK');
@@ -26,6 +27,7 @@ context('Search bar is able to find cities', () => {
     cy.contains('Tulsa, OK').click();
     cy.contains('Tulsa, OK');
     cy.get('.ant-input').click();
+    cy.wait(2500);
     cy.get('.ant-input')
       .type('Seattle, WA')
       .should('have.value', 'Seattle, WA');
@@ -46,6 +48,8 @@ context('Search bar is able to find cities', () => {
     cy.wait(2500);
 
     cy.get('.ant-input').click();
+    cy.wait(2500);
+
     cy.get('.ant-input')
       .type('Seattle, WA')
       .should('have.value', 'Seattle, WA');
