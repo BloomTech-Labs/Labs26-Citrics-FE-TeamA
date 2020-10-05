@@ -37,6 +37,7 @@ context('Search bar is able to find cities', () => {
       .should('have.value', 'Seattle, WA'); // Click on Seattle from the dropdown from the search.
     cy.contains('Seattle, WA').click(); // Wait for data to retrieve from DS API
     cy.wait(3000); // Seattle, WA should be in the document.
+    cy.contains('Tulsa, OK');
     cy.contains('Seattle, WA');
   });
 
@@ -65,7 +66,7 @@ context('Search bar is able to find cities', () => {
       .type('Los Angeles')
       .should('have.value', 'Los Angeles'); // Click on 'Los Angeles from the dropdown on the search bar results
     cy.contains('Los Angeles').click();
-    cy.wait(3000); // wait for data to render, all three cities added should display
+    cy.wait(3500); // wait for data to render, all three cities added should display
     cy.contains('Tulsa, OK');
     cy.contains('Seattle, WA');
     cy.contains('Los Angeles, CA');
