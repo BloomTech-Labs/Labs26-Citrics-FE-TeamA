@@ -18,13 +18,6 @@ export default function WalkscoreInfo(props) {
     });
   }
 
-  function handleCancel(e) {
-    e.preventDefault();
-    props.setwalkCityData({
-      ...props.walkCityData,
-      visible: false,
-    });
-  }
   return (
     <>
       <Button className="walkscore-btn" type="primary" onClick={showModal}>
@@ -34,7 +27,7 @@ export default function WalkscoreInfo(props) {
         title="Walkscore Info"
         visible={props.walkCityData.visible}
         onOk={handleOk}
-        onCancel={handleCancel}
+        cancelButtonProps={{ style: { display: 'none' } }}
       >
         <h2>90-100: Walker's Paradise</h2>
         <p>Daily errands do not require a car.</p>
