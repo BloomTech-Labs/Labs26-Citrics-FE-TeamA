@@ -4,16 +4,16 @@ import { Modal, Button } from 'antd';
 
 export default function WalkscoreInfo(props) {
   function showModal() {
-    props.setwalkCityData({
-      ...props.walkCityData,
+    props.setWalk({
+      ...props.walk,
       visible: true,
     });
   }
 
   function handleOk(e) {
     e.preventDefault();
-    props.setwalkCityData({
-      ...props.walkCityData,
+    props.setWalk({
+      ...props.walk,
       visible: false,
     });
   }
@@ -25,7 +25,7 @@ export default function WalkscoreInfo(props) {
       </Button>
       <Modal
         title="Walkscore Info"
-        visible={props.walkCityData.visible}
+        visible={props.walk.visible}
         onOk={handleOk}
         cancelButtonProps={{ style: { display: 'none' } }}
       >
