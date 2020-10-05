@@ -437,7 +437,7 @@ export default function Plotly(props) {
     <section>
       <RentPlot thisCityData={thisCityData} />
       <RentPredictViz rentPredictViz={rentPredict} />
-      {/* <UnemploymentPlot unemployment={unemployment} /> */}
+      <UnemploymentPlot unemployment={unemployment} />
       {/* <JobIndustryViz jobViz={jobIndustryViz} /> */}
       <div className="weathers">
         {dynamicMainData(thisCityData.cityData, 0)}
