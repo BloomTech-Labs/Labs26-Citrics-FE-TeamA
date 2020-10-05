@@ -3,10 +3,10 @@ import Loader from '../../../common/Loader';
 export default function WeatherPlot(props) {
   return (
     <>
-      {!props.props.weatherFill[props.props.number] ? (
+      {!props.weather.weatherFill[props.weather.number] ? (
         <Loader />
       ) : (
-        props.props.weatherFill[props.props.number]
+        props.weather.weatherFill[props.weather.number]
       )}
     </>
   );

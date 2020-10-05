@@ -24,6 +24,7 @@ export default function RenderHomePage() {
     rent: false,
     unemployment: false,
     walkability: false,
+    rentpredict: false,
   });
 
   // An object of city data arrays

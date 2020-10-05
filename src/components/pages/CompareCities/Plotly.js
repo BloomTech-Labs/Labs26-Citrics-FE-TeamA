@@ -2,10 +2,13 @@ import React, { useEffect, useState, useContext } from 'react';
 import axios from '../../../api/dsapi';
 import { ReportContext } from '../../../state/contexts/ReportContext';
 import WalkscoreInfo from '../../common/WalkscoreInfo';
+
+// Plotly Helper Components
 import WeatherPlot from './PlotlyHelpers/weatherPlot';
 import WalkData from './PlotlyHelpers/walkData';
 import UnemploymentPlot from './PlotlyHelpers/UnemploymentPlot';
 import RentPlot from './PlotlyHelpers/RentPlot';
+import RentPredictViz from './PlotlyHelpers/RentPredictViz';
 
 export default function Plotly(props) {
   let searching = props.searchOptions.searching;
@@ -17,6 +20,7 @@ export default function Plotly(props) {
   });
   const [weatherCityData, setWeatherCityData] = useState({});
   const [unemployment, setUnemployment] = useState({});
+  const [rentPredict, setRentPredict] = useState({});
   let { compareList, setCompareList } = useContext(ReportContext);
   let walkFill = {};
   let weatherFill = {};
@@ -190,6 +194,27 @@ export default function Plotly(props) {
     fetchWalkData();
   }, [lastCity, lastState]);
 
+  // retrieves the rental predict viz graph from the DS API
+  useEffect(() => {
+    // For search bar loading
+    setSearching({
+      ...searching,
+      rentpredict: true,
+    });
+    async function fetchRentalPredictViz() {
+      if (compareList.cities.length === 1) {
+        const request = await axios.get(
+          `/rental/predict/viz/${lastCity}_${lastState}`
+        );
+        const rentPredict = JSON.parse(request.data);
+        setRentPredict({
+          rentPredictData: rentPredict.data,
+          rentPredictLayout: rentPredict.layout,
+        });
+      }
+    }
+    fetchRentalPredictViz();
+  }, [lastCity, lastState, lastCityAdded, compareList.cities]);
   let cityWalk1 = walkCityData.cityWalk1;
   let cityWalk2 = walkCityData.cityWalk2;
   let cityWalk3 = walkCityData.cityWalk3;
@@ -203,10 +228,7 @@ export default function Plotly(props) {
         <div className="walkData" key={cityNumber}>
           <h3>Walkscore</h3>
           <p className="walkscore-num">{cityNumber.walkability}</p>
-          <WalkscoreInfo
-            walkCityData={walkCityData}
-            setWalkCityData={setWalkCityData}
-          />
+          <WalkscoreInfo walk={walkCityData} setWalk={setWalkCityData} />
         </div>,
       ];
     }
@@ -272,8 +294,8 @@ export default function Plotly(props) {
               x
             </button>
           </div>
-          <WalkData props={{ walkFill, number }} />
-          <WeatherPlot props={{ weatherFill, number }} />
+          <WalkData walk={{ walkFill, number }} />
+          <WeatherPlot weather={{ weatherFill, number }} />
         </div>
       )
     );
@@ -389,11 +411,12 @@ export default function Plotly(props) {
       weather: false,
     });
   }
-
+  console.log('rentPREDICT', rentPredict);
   return (
     <section>
       <RentPlot thisCityData={thisCityData} />
       <UnemploymentPlot unemployment={unemployment} />
+      <RentPredictViz rentPredictViz={rentPredict} />
       <div className="weathers">
         {dynamicMainData(thisCityData.cityData, 0)}
         {dynamicMainData(city2, 1)}
