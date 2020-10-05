@@ -131,20 +131,18 @@ export default function Plotly(props) {
         setWeatherCityData({
           cityWeather1: res,
         });
-      }
-
-      if (
+      } else if (
         'cityWeather1' in weatherCityData &&
-        !('cityWeather2' in weatherCityData)
+        !('cityWeather2' in weatherCityData) &&
+        compareList.cities.length === 2
       ) {
         setWeatherCityData({
           ...weatherCityData,
           cityWeather2: res,
         });
-      }
-
-      if (
+      } else if (
         'cityWeather2' in weatherCityData &&
+        compareList.cities.length === 3 &&
         (!('cityWeather3' in weatherCityData) ||
           weatherCityData['cityWeather3'] === undefined)
       ) {
@@ -175,14 +173,21 @@ export default function Plotly(props) {
         setWalkCityData({
           cityWalk1: res,
         });
-      }
-      if ('cityWalk1' in walkCityData && !('cityWalk2' in walkCityData)) {
+      } else if (
+        'cityWalk1' in walkCityData &&
+        !('cityWalk2' in walkCityData) &&
+        compareList.cities.length === 2
+      ) {
         setWalkCityData({
           ...walkCityData,
           cityWalk2: res,
         });
-      }
-      if ('cityWalk2' in walkCityData && !('cityWalk3' in walkCityData)) {
+      } else if (
+        'cityWalk2' in walkCityData &&
+        compareList.cities.length === 3 &&
+        (!('cityWalk3' in walkCityData) ||
+          walkCityData['cityWalk3'] === undefined)
+      ) {
         setWalkCityData({
           ...walkCityData,
           cityWalk3: res,
@@ -370,16 +375,13 @@ export default function Plotly(props) {
         compareList.cities = [compareList.cities[0], compareList.cities[2]];
       } else if (id === 'btn3') {
         compareList.cities.pop();
-        setWeatherCityData({
-          ...weatherCityData,
-          cityWeather3: undefined,
-        });
         setWalkCityData({
           ...walkCityData,
           cityWalk3: undefined,
         });
-        setThisCityData({
-          ...thisCityData,
+        setWeatherCityData({
+          ...weatherCityData,
+          cityWeather3: undefined,
         });
       }
       // if 2 cities are being compared
@@ -426,7 +428,12 @@ export default function Plotly(props) {
       }
     }
     setSearching({
-      ...searching,
+      rent: false,
+      unemployment: false,
+      walkability: false,
+      weather: false,
+    });
+    setSearching({
       rent: false,
       unemployment: false,
       walkability: false,
