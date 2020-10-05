@@ -129,7 +129,8 @@ export default function Plotly(props) {
 
       if (
         'cityWeather1' in weatherCityData &&
-        !('cityWeather2' in weatherCityData)
+        !('cityWeather2' in weatherCityData) &&
+        compareList.cities.length === 2
       ) {
         setWeatherCityData({
           ...weatherCityData,
@@ -139,6 +140,7 @@ export default function Plotly(props) {
 
       if (
         'cityWeather2' in weatherCityData &&
+        compareList.cities.length === 3 &&
         (!('cityWeather3' in weatherCityData) ||
           weatherCityData['cityWeather3'] === undefined)
       ) {
@@ -169,14 +171,18 @@ export default function Plotly(props) {
         setWalkCityData({
           cityWalk1: res,
         });
-      }
-      if ('cityWalk1' in walkCityData && !('cityWalk2' in walkCityData)) {
+      } else if (
+        'cityWalk1' in walkCityData &&
+        !('cityWalk2' in walkCityData)
+      ) {
         setWalkCityData({
           ...walkCityData,
           cityWalk2: res,
         });
-      }
-      if ('cityWalk2' in walkCityData && !('cityWalk3' in walkCityData)) {
+      } else if (
+        walkCityData['cityWalk3'] === undefined ||
+        ('cityWalk2' in walkCityData && !('cityWalk3' in walkCityData))
+      ) {
         setWalkCityData({
           ...walkCityData,
           cityWalk3: res,
@@ -334,9 +340,6 @@ export default function Plotly(props) {
           ...walkCityData,
           cityWalk3: undefined,
         });
-        setThisCityData({
-          ...thisCityData,
-        });
       }
       // if 2 cities are being compared
     } else if (length === 2) {
@@ -382,14 +385,18 @@ export default function Plotly(props) {
       }
     }
     setSearching({
-      ...searching,
+      rent: false,
+      unemployment: false,
+      walkability: false,
+      weather: false,
+    });
+    setSearching({
       rent: false,
       unemployment: false,
       walkability: false,
       weather: false,
     });
   }
-
   return (
     <section>
       <RentPlot thisCityData={thisCityData} />

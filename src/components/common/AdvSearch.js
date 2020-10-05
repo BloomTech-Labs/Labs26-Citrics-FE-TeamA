@@ -11,7 +11,6 @@ export default function AdvSearch() {
     submitted: false,
   };
   const [searchCities, setSearchCities] = useState(reset);
-  console.log('searchCities State', searchCities);
 
   let selectTags = document.getElementsByTagName('select');
   let select = selectTags.length;

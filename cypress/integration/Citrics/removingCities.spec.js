@@ -75,8 +75,10 @@ context('Remove button does indeed remove selected city', () => {
     cy.contains('Tulsa, OK');
   });
 
+  // THREE CITIES HERE
+
   function threeCityAdd() {
-    cy.wait(3500); // await for the search bar info to load
+    cy.wait(2500); // await for the search bar info to load
     // type 'Tulsa, OK' into the search bar
     cy.get('.ant-input')
       .type('Tulsa, OK')
@@ -86,7 +88,7 @@ context('Remove button does indeed remove selected city', () => {
     cy.wait(2000); // make sure 'Tulsa, OK' and the weather card show up
     cy.contains('Tulsa, OK'); // click on the search bar
     cy.get('.ant-input').click();
-    cy.wait(2500); // type in Seattle, WA
+    cy.wait(2000); // type in Seattle, WA
     cy.get('.ant-input')
       .type('Seattle, WA')
       .should('have.value', 'Seattle, WA'); // Click on Seattle from the dropdown from the search.
@@ -104,7 +106,7 @@ context('Remove button does indeed remove selected city', () => {
     cy.contains('Seattle, WA');
     cy.contains('Los Angeles, CA');
   }
-  // THREE CITIES HERE
+
   it('Selects and views three cities, removes first city leaving last two', () => {
     threeCityAdd();
     cy.wait(3000);
@@ -131,8 +133,9 @@ context('Remove button does indeed remove selected city', () => {
     cy.wait(3500);
     cy.get('#btn3').click(); // Click on the remove button
     cy.wait(1000);
-    // Should have Seattle, WA and LA, CA but not Tulsa, OK
+    // Should have Tulsa, OK and Seattle, WA but not Los Angeles, CA
     cy.contains('Tulsa, OK');
     cy.contains('Seattle, WA');
+    cy.wait(3000);
   });
 });
