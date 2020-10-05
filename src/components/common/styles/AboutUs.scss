@@ -21,15 +21,12 @@
     h1 {
         color: rgba(0, 0, 0, 0.7);
         text-align: center;
+        font-weight: 700;
+        font-size: 6rem;
+        margin-left: 38%;
+        margin-block-start: 0.4em;
+        margin-block-end: 0.8em;
     }
-}
-
-.about-us-title-H1 {
-    font-weight: 700;
-    font-size: 6rem;
-    margin-left: 38%;
-    margin-block-start: 0.4em;
-    margin-block-end: 0.8em;
 }
 
 .member-pic {
@@ -91,13 +88,11 @@
     }
     
     .card-container {
-        display: grid;
-        grid-template-columns: repeat(1, 1fr);
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
         .card{
-            display: flex;
-            justify-content: center;
-            margin-inline-start: 10%;
-            margin-inline-end: 20%;
+            margin-inline-start: 5%;
             margin-block-end: 5%;
         }
     }
@@ -114,16 +109,14 @@
         h1 {
             color: rgba(0, 0, 0, 0.7);
             text-align: center;
+            font-weight: 700;
+            font-size: 4rem;
+            margin-left: 38%;
+            margin-block-start: 0.4em;
+            margin-block-end: 0.8em;
         }
     }
     
-    .about-us-title-H1 {
-        font-weight: 700;
-        font-size: 4rem;
-        margin-left: 38%;
-        margin-block-start: 0.4em;
-        margin-block-end: 0.8em;
-    }
     
     .member-pic {
         width: 35vw;
@@ -139,10 +132,12 @@
             display: block;
             margin-block-start: 0.2em;
             margin-block-end: 0.7em;
+            width: 85%;
+            font-size: 1.2rem;
         }
         h3 {
             display: block;
-            font-size: 1.5em;
+            font-size: 2.5em;
             margin-block-start: 0.5em;
             margin-block-end: 0em;
             font-weight: bold;
@@ -153,13 +148,13 @@
         margin-top: 3%;
         margin-block-end: 1em;
         h2{
-            font-size: 2.5em;
+            font-size: 3.5em;
             font-weight: bolder;
             margin-bottom: 0;
             margin-inline-start: 5%;
         }
         span{
-            font-size: 1.5em;
+            font-size: 1.85em;
             margin-inline-start: 5%;
             color: black;
         }
@@ -188,8 +183,9 @@
     }
     
     .card-container {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
     }
     
     .about-us-header {
@@ -197,26 +193,23 @@
         background-repeat: no-repeat;
         background-position: 100%;
         background-size: cover;
-        height: 525px;
+        height: 300px;
         display: flex;
         justify-content: space-around;
         width: 100%;
         h1 {
             color: rgba(0, 0, 0, 0.7);
             text-align: center;
+            font-weight: 700;
+            font-size: 3.5rem;
+            margin-block-start: 0.2em;
+            margin-block-end: 0.4em;
+            text-align: center;
         }
     }
     
-    .about-us-title-H1 {
-        font-weight: 700;
-        font-size: 6rem;
-        margin-left: 38%;
-        margin-block-start: 0.4em;
-        margin-block-end: 0.8em;
-    }
-    
     .member-pic {
-        width: 13vw;
+        width: 50vw;
         img {
             border-radius: 10px;
             width: 100%;
@@ -246,6 +239,7 @@
             font-size: 2.5em;
             font-weight: bolder;
             margin-bottom: 0;
+            margin-inline-end: 0.5em;
         }
         span{
             font-size: 1.5em;
