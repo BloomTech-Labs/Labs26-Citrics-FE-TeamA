@@ -9,6 +9,7 @@ import WalkData from './PlotlyHelpers/walkData';
 import UnemploymentPlot from './PlotlyHelpers/UnemploymentPlot';
 import RentPlot from './PlotlyHelpers/RentPlot';
 import RentPredictViz from './PlotlyHelpers/RentPredictViz';
+import JobIndustryViz from './PlotlyHelpers/JobIndustryViz';
 
 export default function Plotly(props) {
   let searching = props.searchOptions.searching;
@@ -21,6 +22,7 @@ export default function Plotly(props) {
   const [weatherCityData, setWeatherCityData] = useState({});
   const [unemployment, setUnemployment] = useState({});
   const [rentPredict, setRentPredict] = useState({});
+  const [jobIndustryViz, setJobIndustryViz] = useState({});
   let { compareList, setCompareList } = useContext(ReportContext);
   let walkFill = {};
   let weatherFill = {};
@@ -220,6 +222,26 @@ export default function Plotly(props) {
     }
     fetchRentalPredictViz();
   }, [lastCity, lastState, lastCityAdded, compareList.cities]);
+
+  // retrieves the BLS viz view chart graph viz from DS API
+  // useEffect(() => {
+  //   setSearching({
+  //     ...searching,
+  //     jobviz: true
+  //   });
+  //   async function fetchJobIndustryViz() {
+  //     if (compareList.cities.length === 1) {
+  //       const request = axios.get(`/bls_viz/${lastCity}_${lastState}`);
+  //       const jobViz = JSON.parse(request.data);
+  //       setJobIndustryViz({
+  //         jobVizData: jobViz.data,
+  //         jobVizLayout: jobViz.layout
+  //       });
+  //     }
+  //   }
+  //   fetchJobIndustryViz();
+  // }, [lastCity, lastState, lastCityAdded, compareList.cities]);
+
   let cityWalk1 = walkCityData.cityWalk1;
   let cityWalk2 = walkCityData.cityWalk2;
   let cityWalk3 = walkCityData.cityWalk3;
@@ -421,8 +443,9 @@ export default function Plotly(props) {
   return (
     <section>
       <RentPlot thisCityData={thisCityData} />
-      <UnemploymentPlot unemployment={unemployment} />
       <RentPredictViz rentPredictViz={rentPredict} />
+      <UnemploymentPlot unemployment={unemployment} />
+      {/* <JobIndustryViz jobViz={jobIndustryViz} /> */}
       <div className="weathers">
         {dynamicMainData(thisCityData.cityData, 0)}
         {dynamicMainData(city2, 1)}

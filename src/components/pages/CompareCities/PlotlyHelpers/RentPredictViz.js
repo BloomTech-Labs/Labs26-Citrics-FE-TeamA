@@ -3,7 +3,9 @@ import Loader from '../../../common/Loader';
 import Plot from 'react-plotly.js';
 
 export default function RentPredictViz(props) {
-  return (
+  return !props.rentPredictViz.rentPredictData ? (
+    <Loader />
+  ) : (
     <div>
       <Plot
         data={props.rentPredictViz.rentPredictData}
