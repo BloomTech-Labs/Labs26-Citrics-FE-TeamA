@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Input } from 'antd';
 import './styles/AutoComplete.scss';
 import { SearchContext } from '../../state/contexts/ReportContext';
+import AdvSearch from './AdvSearch';
 import NoSearch from './NoSearch';
 
 function AutoCompleteInput(props) {
@@ -88,10 +89,9 @@ function AutoCompleteInput(props) {
   let walkability = searchOps.searching['walkability'];
   return (
     <div className="App">
+      <AdvSearch/>
       <div className="searchWithOptions">
-        {' '}
         <h5>Search City: </h5>
-        <p>Advanced Search</p>
       </div>{' '}
       {weather !== true &&
       rent !== true &&

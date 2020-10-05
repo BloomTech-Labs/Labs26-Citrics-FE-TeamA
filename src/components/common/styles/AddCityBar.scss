@@ -21,14 +21,83 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  p {
-    color: rgb(78, 78, 245);
-    text-decoration: underline;
+}
+
+.adv-search-div-container{
+  text-align: -webkit-right;
+  .adv-form-container{
+    text-align: -webkit-right;
+  }
+}
+
+.ant-btn.ant-btn-primary.adv-search-btn {
+  background-color: #4e4ef5;
+  border-color: #4e4ef5;
+  border-radius: 5px;
+  width: 8vw;
+  display: block;
+  &:hover {
+    cursor: pointer;
+    background-color: white;
+    color: #4e4ef5;
+  }
+  &.show{
+    margin-bottom: -3%;
+  }
+  &.search{
+    margin: 0 1%;
+  }
+  &.cancel{
+    background-color: red;
+    border-color: red;
+    border-radius: 5px;
     &:hover {
       cursor: pointer;
+      background-color: white;
+      color: red;
     }
   }
 }
+
+
+.adv-question-container{
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5% 0;
+  .label{
+    font-size: 1.6rem;
+    margin: 1% 0;
+  }
+  .adv-dropdown-select{
+    width: 20vw;
+    height: 4vh;
+    background-color: #8080802f;
+    border-radius: 5px;
+  }
+  .adv-dropdown-budget{
+    width: 20vw;
+    height: 4vh;
+    background-color: #8080802f;
+    border-radius: 5px;
+    border-color: gray;
+  }
+}
+
+
+#form-container{
+  display: none;
+  background-color: white;
+  border-radius: 8px;
+  padding: 2% 5%;
+  h2, p{
+    text-align: center;
+  }
+  .adv-search-buttons{
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
 .empty {
   font-size: 1.5rem;
   height: 5vh;
@@ -53,4 +122,17 @@
     position: relative;
     animation: sk-chase 2.5s infinite linear both;
   }
+}
+
+.input-symbol {
+  position: relative;
+}
+.input-symbol input {
+  padding-left:18px;
+}
+.input-symbol:before {
+  position: absolute;
+  top: 0;
+  content:"$";
+  left: 7px;
 }
