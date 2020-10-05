@@ -39,9 +39,7 @@
     "format": "prettier --write 'src/**/*.{js,jsx,css,scss}'",
     "storybook": "start-storybook",
     "deploy-storybook": "storybook-to-ghpages",
-    "build:prod": "docker build -t perezident/testing_docker .",
-    "start:prod": "docker run --rm -d -p 80:80 --name running-zen perezident/testing_docker",
-    "stop:prod": "docker stop running-zen"
+    "e2e": "cypress open"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -88,6 +86,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^10.2.1",
     "@testing-library/user-event": "^7.2.1",
+    "cypress": "^5.3.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-react-hooks": "^4.0.4",
     "husky": "^4.2.5",

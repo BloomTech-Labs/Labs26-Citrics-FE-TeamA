@@ -19,6 +19,7 @@ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste
 
 ![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
 ![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
+![cypress](https://img.shields.io/badge/cypress-%5E4.14.1-orange?style=flat-square)
 ![aws-amplify](https://img.shields.io/badge/aws--amplify-%5E3.1.1-darkblue?style=flat-square)
 ![axios](https://img.shields.io/badge/axios-%5E0.19.2-yellow?style=flat-square)
 ![ant-design](https://img.shields.io/badge/ant--design-%5E4.2.2-red?style=flat-square)
