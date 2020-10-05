@@ -89,10 +89,9 @@ function AutoCompleteInput(props) {
   let walkability = searchOps.searching['walkability'];
   return (
     <div className="App">
+      <AdvSearch/>
       <div className="searchWithOptions">
-        {' '}
         <h5>Search City: </h5>
-        <AdvSearch/>
       </div>{' '}
       {weather !== true &&
       rent !== true &&
