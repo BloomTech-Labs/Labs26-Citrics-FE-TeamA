@@ -15,3 +15,9 @@
     font-size: 1.5rem;
   }
 }
+@media (max-width: 800px) {
+  .information {
+    grid-template-columns: none;
+    padding-bottom: 15%;
+  }
+}

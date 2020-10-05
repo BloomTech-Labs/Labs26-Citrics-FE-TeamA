@@ -48,8 +48,7 @@
   }
 }
 
-
-.walkData{
+.walkData {
   background-color: #fb8600e0;
   border-radius: 20px;
   color: white;
@@ -57,7 +56,7 @@
   padding-top: 6%;
   padding-left: 3vw;
   padding-right: 3vw;
-  &:hover{
+  &:hover {
     cursor: default;
   }
   h3 {
@@ -71,14 +70,14 @@
     font-size: 6rem;
     margin-bottom: 2%;
   }
-  .walkscore-btn{
+  .walkscore-btn {
     font-size: 1rem;
     border-radius: 15px;
     background-color: #2081c3;
     border-color: #2081c3;
     margin-bottom: 3%;
     margin-bottom: 2vh;
-    &:hover{
+    &:hover {
       background-color: white;
       border-color: #2081c3;
       color: #2082c3;
@@ -98,7 +97,7 @@
   padding-left: 3vw;
   padding-right: 3vw;
   color: white;
-  &:hover{
+  &:hover {
     cursor: default;
   }
   div {
@@ -124,7 +123,6 @@
     display: flex;
     justify-content: space-evenly;
     text-shadow: 0 0 5px #000000;
-    
   }
   .weather-stat-div {
     display: flex;
@@ -179,33 +177,32 @@
   background-clip: text;
 }
 
-.city-title{
+.city-title {
   display: flex;
   justify-content: space-evenly;
   background-color: #fb8600e0;
   font-weight: bold;
   border-radius: 15px;
   margin: 4% auto;
-  h1{
+  h1 {
     color: white;
     font-size: 3rem;
     margin-bottom: 0;
   }
-  .remove-btn{
+  .remove-btn {
     background-color: red;
     border-color: red;
     border-radius: 50%;
     margin: 1.55vh 0;
     color: white;
     cursor: pointer;
-    p{
+    p {
       margin-bottom: 0;
     }
-    &:hover{
+    &:hover {
       background-color: rgb(248, 66, 66);
       border-color: rgb(248, 66, 66);
     }
     transition: ease-in-out 0.25s;
   }
-
 }
