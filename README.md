@@ -44,7 +44,7 @@ You can find the deployed project at [a.citrics.dev](https://a.citrics.dev/).
 
 #### Front end deployed to `AWS`
 
-#### [Data Science API](http://26-citrics-a-ds.eba-tjpigfip.us-east-1.elasticbeanstalk.com/#/) built using:
+#### [Data Science API](https://ds.citrics.dev/) built using:
 
 #### 🚫 back end framework goes here
 
@@ -109,4 +109,4 @@ Remember that this project is licensed under the MIT license, and by submitting 
 
 ## Data Science Documentation
 
-See [Backend Documentation](http://26-citrics-a-ds.eba-tjpigfip.us-east-1.elasticbeanstalk.com/#/) for details on the backend of our project.
+See [Backend Documentation](https://ds.citrics.dev/) for details on the backend of our project.
