@@ -1,0 +1,27 @@
+section.adv-results-section{
+    margin-inline-start: 6em;
+    margin-inline-end: 6em;
+    box-shadow: 0px 0 4px #000000cc;
+    border-radius: 8px;
+    padding: 1% 2%;
+}
+
+.adv-results-card{
+    background-color: #4e4ef525;
+    border: 1px solid #4e4ef5;
+    border-radius: 8px;
+    margin-block-start: 1%;
+    margin-block-end: 1%;
+    padding: 1%
+}
+
+i{
+    padding-right: 2%;
+}
+
+.results-info-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-inline-start: 2em;
+    margin-block-start: 1em;
+}
