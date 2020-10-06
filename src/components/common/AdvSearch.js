@@ -6,7 +6,7 @@ export default function AdvSearch() {
   const reset = {
     population: '',
     climate: '',
-    budget: 0,
+    budget: '',
     homesize: '',
     submitted: false,
   };
@@ -73,6 +73,7 @@ export default function AdvSearch() {
               <div className="adv-dropdown">
                 <select
                   name="population"
+                  id="population"
                   className="adv-dropdown-select"
                   onChange={handleChange}
                   defaultValue={'DEFAULT'}
@@ -94,6 +95,7 @@ export default function AdvSearch() {
               <div className="adv-dropdown">
                 <select
                   name="climate"
+                  id="climate"
                   className="adv-dropdown-select"
                   onChange={handleChange}
                   defaultValue={'DEFAULT'}
@@ -116,9 +118,10 @@ export default function AdvSearch() {
                   <input
                     type="number"
                     name="budget"
+                    id="budget"
+                    className="adv-dropdown-budget"
                     min="0"
                     step="50"
-                    className="adv-dropdown-budget"
                     value={searchCities.budget}
                     onChange={handleChange}
                   />
@@ -132,6 +135,7 @@ export default function AdvSearch() {
               <div className="adv-dropdown">
                 <select
                   name="homesize"
+                  id="homesize"
                   className="adv-dropdown-select"
                   onChange={handleChange}
                   defaultValue={'DEFAULT'}
