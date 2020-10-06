@@ -4,7 +4,7 @@ For steps on how to work with this repository [please see here](https://docs.lab
 
 # Citrics
 
-You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+You can find the deployed project at [a.citrics.dev](https://a.citrics.dev/).
 
 ## Contributors
 
@@ -44,7 +44,7 @@ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste
 
 #### Front end deployed to `AWS`
 
-#### [Back end](🚫link to back end repo here) built using:
+#### [Data Science API](https://ds.citrics.dev/) built using:
 
 #### 🚫 back end framework goes here
 
@@ -56,17 +56,6 @@ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste
 
 # APIs
 
-## Authentication API here
-
-🚫Replace text below with a description of the API
-
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
-
-## Payment API here
-
-🚫Replace text below with a description of the API
-
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
 
 ## Misc API here
 
@@ -76,15 +65,15 @@ You can do anything your heart can imagine. In life you need colors. This is whe
 
 # Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
 
-## Other Scripts
+## Scripts
 
-🚫replace these examples with your own
+> Enter `npm  command_name` into your terminal to run scripts below 
 
     * build - creates a build of the application
     * start - starts the production server after a build is created
     * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+    * e2e - opens cypress GUI 
 
 # Contributing
 
@@ -118,6 +107,6 @@ Remember that this project is licensed under the MIT license, and by submitting 
 - Include the relevant issue number, if applicable.
 - You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
 
-## Documentation
+## Data Science Documentation
 
-See [Backend Documentation](🚫*link to your backend API SWAGGER DOCS here*) for details on the backend of our project.
+See [Backend Documentation](https://ds.citrics.dev/) for details on the backend of our project.
