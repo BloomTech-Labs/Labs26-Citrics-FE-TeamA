@@ -74,7 +74,7 @@ export default function Plotly(props) {
       }
       setSearching({
         ...searching,
-        rent: true,
+        rent: false,
       });
     }
     fetchRentData();
@@ -219,6 +219,10 @@ export default function Plotly(props) {
           rentPredictLayout: rentPredict.layout,
         });
       }
+      setSearching({
+        ...searching,
+        rentpredict: false,
+      });
     }
     fetchRentalPredictViz();
   }, [lastCity, lastState, lastCityAdded, compareList.cities]);

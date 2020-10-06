@@ -89,15 +89,15 @@ function AutoCompleteInput(props) {
   let walkability = searchOps.searching['walkability'];
   return (
     <div className="App">
-      <AdvSearch/>
+      <AdvSearch />
       <div className="searchWithOptions">
         <h5>Search City: </h5>
-      </div>{' '}
-      {weather !== true &&
-      rent !== true &&
-      unemployment !== true &&
-      walkability !== true ? (
-        props.compareList.cities.length < 3 ? (
+      </div>
+      {props.compareList.cities.length < 3 ? (
+        weather !== true &&
+        rent !== true &&
+        unemployment !== true &&
+        walkability !== true ? (
           <Search
             id="autocomplete_input"
             type="text"
@@ -110,14 +110,14 @@ function AutoCompleteInput(props) {
             }}
           />
         ) : (
-          <div className="empty">
-            <p>
-              3 cities already selected, please remove one to continue comparing
-            </p>
-          </div>
+          <NoSearch />
         )
       ) : (
-        <NoSearch />
+        <div className="empty">
+          <p>
+            3 cities already selected, please remove one to continue comparing
+          </p>
+        </div>
       )}
       <div className="autocomplete">
         {options.length > 0 &&
