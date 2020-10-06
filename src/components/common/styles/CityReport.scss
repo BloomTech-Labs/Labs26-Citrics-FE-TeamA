@@ -210,7 +210,6 @@
   }
 }
 .vizs {
-  border: 2px solid red;
   display: grid;
   grid-template-columns: 49% 49%;
   gap: 2%;
@@ -221,7 +220,6 @@
 }
 @media (max-width: 1050px) {
   .vizs {
-    border: 2px solid grey;
     grid-template-columns: 100%;
   }
   .cityDisplayPlot {
