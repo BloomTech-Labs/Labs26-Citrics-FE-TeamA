@@ -285,20 +285,25 @@ export default function Plotly(props) {
           <div className="weather-stat-div">
             <div className="weather-stat-titles">
               <p>Today's Forecast: </p>
-              <p>Clouds Today: </p>
-              <p>Humidity: </p>
-              <p>Pressure: </p>
-              <p>Visibility: </p>
-              <p>Wind direction: </p>
-              <p>Wind Speed: </p>
-            </div>
-            <div className="weather-stat-nums">
               <p>{cityNumber.description}</p>
+
+              <p>Clouds Today: </p>
               <p>{cityNumber.clouds_all}%</p>
+
+              <p>Humidity: </p>
               <p>{cityNumber.main_humidity}</p>
+
+              <p>Pressure: </p>
               <p>{cityNumber.main_pressure}</p>
+
+              <p>Visibility: </p>
               <p>{cityNumber.imperial_visibility}</p>
+
+              <p>Wind direction: </p>
               <p>{cityNumber.wind_deg}°</p>
+
+              <p>Wind Speed: </p>
+
               <p>{cityNumber.imperial_wind_speed}mph</p>
             </div>
           </div>

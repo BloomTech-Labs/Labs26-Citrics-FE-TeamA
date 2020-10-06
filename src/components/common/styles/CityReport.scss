@@ -125,15 +125,20 @@
     text-shadow: 0 0 5px #000000;
   }
   .weather-stat-div {
-    display: grid;
-    grid-template-columns: 63% 24%;
-    gap: 2%;
-    width: 110%;
-    margin: 5% auto;
     font-size: 1.2rem;
-    .weather-stat-titles {
+    p:nth-child(odd) {
       text-align: left;
+      width: 110%;
+    }
+    p:nth-child(even) {
+      text-align: right;
+    }
+    .weather-stat-titles {
       text-shadow: 0 0 3px #000000;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      border: 1px solid red;
     }
     .weather-stat-nums {
       font-weight: bolder;
@@ -239,13 +244,6 @@
     .main-temperature h1 {
       font-size: 4.5rem;
     }
-    .weather-stat-div {
-      display: grid;
-      grid-template-columns: 63% 24%;
-      gap: 2%;
-      width: 110%;
-      margin: 5% auto;
-    }
   }
   .weathers {
     margin: 0;
@@ -255,5 +253,13 @@
     .walkscore-num {
       font-size: 4rem;
     }
+  }
+}
+@media (max-width: 500px) {
+  .vizs {
+    transform: scale(0.6);
+    margin: -35% -25%;
+    padding: 0;
+    text-align: left;
   }
 }
