@@ -6,11 +6,9 @@ export default function RentPredictViz(props) {
   return !props.rentPredictViz.rentPredictData ? (
     <Loader />
   ) : (
-    <div>
-      <Plot
-        data={props.rentPredictViz.rentPredictData}
-        layout={props.rentPredictViz.rentPredictLayout}
-      />
-    </div>
+    <Plot
+      data={props.rentPredictViz.rentPredictData}
+      layout={props.rentPredictViz.rentPredictLayout}
+    />
   );
 }

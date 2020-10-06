@@ -31,7 +31,7 @@ export default function Plotly(props) {
   let lastCity = lastCityAdded[lastCityLength - 2];
   let lastState = lastCityAdded[lastCityLength - 1];
 
-  // useEffect for fetching rent data viz from ds backend
+  // useEffect for fetching ---RENT--- data viz from ds backend
   // sets the cityData and cityLayout for following cities into thisCityData
   useEffect(() => {
     // For search bar loading knowledge
@@ -80,7 +80,7 @@ export default function Plotly(props) {
     fetchRentData();
   }, [lastState, lastCity, lastCityAdded, compareList.cities]);
 
-  // Gets the unemployment chart from the DS API, sets it to unemployment
+  // Gets the ---UNEMPLOYMENT--- chart from the DS API, sets it to unemployment
   useEffect(() => {
     // For search bar loading knowledge
     setSearching({
@@ -117,7 +117,7 @@ export default function Plotly(props) {
     fetchUnemploymentData();
   }, [lastState, compareList.cities]);
 
-  // retrieves the weather data from DS API, sets it to weatherCityData
+  // retrieves the ---WEATHER--- data from DS API, sets it to weatherCityData
   useEffect(() => {
     // For search bar loading knowledge
     setSearching({
@@ -159,7 +159,7 @@ export default function Plotly(props) {
     fetchWeatherData();
   }, [lastState, lastCity]);
 
-  // retrieves the walk city data from DS API and sets it to walkCityData
+  // retrieves the ---WALK--- city data from DS API and sets it to walkCityData
   useEffect(() => {
     // For search bar loading knowledge
     setSearching({
@@ -201,7 +201,7 @@ export default function Plotly(props) {
     fetchWalkData();
   }, [lastCity, lastState]);
 
-  // retrieves the rental predict viz graph from the DS API
+  // retrieves the ---RENTAL PREDICT--- viz graph from the DS API
   useEffect(() => {
     // For search bar loading
     setSearching({
@@ -306,10 +306,17 @@ export default function Plotly(props) {
       ];
     }
   }
+  let cityDisplayPlot = 'cityDisplayPlot';
+  let cityDisplayTab = 'cityDisplayPlot cityDisplayTablet';
   function dynamicMainData(cityNumber, number) {
     return (
       cityNumber !== undefined && (
-        <div className="cityDisplayPlot" id="cityNumber">
+        <div
+          className={
+            compareList.cities.length === 1 ? cityDisplayTab : cityDisplayPlot
+          }
+          id="cityNumber"
+        >
           <div className="city-title">
             <h1>
               {thisCityData.cityData[number] !== undefined &&
@@ -446,10 +453,12 @@ export default function Plotly(props) {
   }
   return (
     <section>
-      <RentPlot thisCityData={thisCityData} />
-      <RentPredictViz rentPredictViz={rentPredict} />
-      <UnemploymentPlot unemployment={unemployment} />
-      {/* <JobIndustryViz jobViz={jobIndustryViz} /> */}
+      <div className="vizs">
+        <RentPlot thisCityData={thisCityData} />
+        <RentPredictViz rentPredictViz={rentPredict} />
+        <UnemploymentPlot unemployment={unemployment} />
+        {/* <JobIndustryViz jobViz={jobIndustryViz} /> */}
+      </div>
       <div className="weathers">
         {dynamicMainData(thisCityData.cityData, 0)}
         {dynamicMainData(city2, 1)}
