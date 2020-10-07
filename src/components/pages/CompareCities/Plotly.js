@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import axios from '../../../api/dsapi';
 import { ReportContext } from '../../../state/contexts/ReportContext';
 import WalkscoreInfo from '../../common/WalkscoreInfo';
-
 // Plotly Helper Components
 import WeatherPlot from './PlotlyHelpers/weatherPlot';
 import WalkData from './PlotlyHelpers/walkData';
@@ -10,7 +9,6 @@ import UnemploymentPlot from './PlotlyHelpers/UnemploymentPlot';
 import RentPlot from './PlotlyHelpers/RentPlot';
 import RentPredictViz from './PlotlyHelpers/RentPredictViz';
 import JobIndustryViz from './PlotlyHelpers/JobIndustryViz';
-
 export default function Plotly(props) {
   let searching = props.searchOptions.searching;
   let setSearching = props.searchOptions.setSearching;
@@ -30,12 +28,10 @@ export default function Plotly(props) {
   let lastCityLength = lastCityAdded.length;
   let lastCity = lastCityAdded[lastCityLength - 2];
   let lastState = lastCityAdded[lastCityLength - 1];
-
-  // useEffect for fetching rent data viz from ds backend
+  // useEffect for fetching ---RENT--- data viz from ds backend
   // sets the cityData and cityLayout for following cities into thisCityData
   useEffect(() => {
     // For search bar loading knowledge
-
     setSearching({
       ...searching,
       rent: true,
@@ -53,7 +49,6 @@ export default function Plotly(props) {
         const request = await axios.get(
           `/rent_viz/${firstCity[0]}_${firstCity[1]}?city2=${lastCityAdded[0]}&statecode2=${lastCityAdded[1]}`
         );
-
         const rentData = JSON.parse(request.data);
         setThisCityData({
           cityData: rentData.data,
@@ -65,7 +60,6 @@ export default function Plotly(props) {
         const request = await axios.get(
           `/rent_viz/${firstCity[0]}_${firstCity[1]}?city2=${secondCity[0]}&statecode2=${secondCity[1]}&city3=${lastCityAdded[0]}&statecode3=${lastCityAdded[1]}`
         );
-
         const rentData = JSON.parse(request.data);
         setThisCityData({
           cityData: rentData.data,
@@ -79,8 +73,7 @@ export default function Plotly(props) {
     }
     fetchRentData();
   }, [lastState, lastCity, lastCityAdded, compareList.cities]);
-
-  // Gets the unemployment chart from the DS API, sets it to unemployment
+  // Gets the ---UNEMPLOYMENT--- chart from the DS API, sets it to unemployment
   useEffect(() => {
     // For search bar loading knowledge
     setSearching({
@@ -102,7 +95,6 @@ export default function Plotly(props) {
       } else if (compareList.cities.length === 3) {
         let firstState = compareList.cities[compareList.cities.length - 3][1];
         let secondState = compareList.cities[compareList.cities.length - 2][1];
-
         const request = await axios.get(
           `/viz/${firstState}?statecode2=${secondState}&statecode3=${lastState}`
         );
@@ -116,8 +108,7 @@ export default function Plotly(props) {
     }
     fetchUnemploymentData();
   }, [lastState, compareList.cities]);
-
-  // retrieves the weather data from DS API, sets it to weatherCityData
+  // retrieves the ---WEATHER--- data from DS API, sets it to weatherCityData
   useEffect(() => {
     // For search bar loading knowledge
     setSearching({
@@ -158,8 +149,7 @@ export default function Plotly(props) {
     }
     fetchWeatherData();
   }, [lastState, lastCity]);
-
-  // retrieves the walk city data from DS API and sets it to walkCityData
+  // retrieves the ---WALK--- city data from DS API and sets it to walkCityData
   useEffect(() => {
     // For search bar loading knowledge
     setSearching({
@@ -200,8 +190,7 @@ export default function Plotly(props) {
     }
     fetchWalkData();
   }, [lastCity, lastState]);
-
-  // retrieves the rental predict viz graph from the DS API
+  // retrieves the ---RENTAL PREDICT--- viz graph from the DS API
   useEffect(() => {
     // For search bar loading
     setSearching({
@@ -226,7 +215,6 @@ export default function Plotly(props) {
     }
     fetchRentalPredictViz();
   }, [lastCity, lastState, lastCityAdded, compareList.cities]);
-
   // retrieves the BLS viz view chart graph viz from DS API
   // useEffect(() => {
   //   setSearching({
@@ -245,7 +233,6 @@ export default function Plotly(props) {
   //   }
   //   fetchJobIndustryViz();
   // }, [lastCity, lastState, lastCityAdded, compareList.cities]);
-
   let cityWalk1 = walkCityData.cityWalk1;
   let cityWalk2 = walkCityData.cityWalk2;
   let cityWalk3 = walkCityData.cityWalk3;
@@ -285,20 +272,18 @@ export default function Plotly(props) {
           <div className="weather-stat-div">
             <div className="weather-stat-titles">
               <p>Today's Forecast: </p>
-              <p>Clouds Today: </p>
-              <p>Humidity: </p>
-              <p>Pressure: </p>
-              <p>Visibility: </p>
-              <p>Wind direction: </p>
-              <p>Wind Speed: </p>
-            </div>
-            <div className="weather-stat-nums">
               <p>{cityNumber.description}</p>
+              <p>Clouds Today: </p>
               <p>{cityNumber.clouds_all}%</p>
+              <p>Humidity: </p>
               <p>{cityNumber.main_humidity}</p>
+              <p>Pressure: </p>
               <p>{cityNumber.main_pressure}</p>
+              <p>Visibility: </p>
               <p>{cityNumber.imperial_visibility}</p>
+              <p>Wind direction: </p>
               <p>{cityNumber.wind_deg}°</p>
+              <p>Wind Speed: </p>
               <p>{cityNumber.imperial_wind_speed}mph</p>
             </div>
           </div>
@@ -306,10 +291,17 @@ export default function Plotly(props) {
       ];
     }
   }
+  let cityDisplayPlot = 'cityDisplayPlot';
+  let cityDisplayTab = 'cityDisplayPlot cityDisplayTablet';
   function dynamicMainData(cityNumber, number) {
     return (
       cityNumber !== undefined && (
-        <div className="cityDisplayPlot" id="cityNumber">
+        <div
+          className={
+            compareList.cities.length === 1 ? cityDisplayTab : cityDisplayPlot
+          }
+          id="cityNumber"
+        >
           <div className="city-title">
             <h1>
               {thisCityData.cityData[number] !== undefined &&
@@ -337,7 +329,6 @@ export default function Plotly(props) {
   dynamicWeatherFill(city1, 0);
   dynamicWeatherFill(city2, 1);
   dynamicWeatherFill(city3, 2);
-
   function hideCity(event) {
     // id of button the user clicks
     let id = event.target.id;
@@ -348,7 +339,6 @@ export default function Plotly(props) {
     let copyWalk2 = walkCityData.cityWalk2;
     let copyWalk3 = walkCityData.cityWalk3;
     const length = compareList.cities.length;
-
     // if 3 cities are being compared
     if (length === 3) {
       // if btn user clicked matches btn id
@@ -446,10 +436,12 @@ export default function Plotly(props) {
   }
   return (
     <section>
-      <RentPlot thisCityData={thisCityData} />
-      <RentPredictViz rentPredictViz={rentPredict} />
-      <UnemploymentPlot unemployment={unemployment} />
-      {/* <JobIndustryViz jobViz={jobIndustryViz} /> */}
+      <div className="vizs">
+        <RentPlot thisCityData={thisCityData} />
+        <RentPredictViz rentPredictViz={rentPredict} />
+        <UnemploymentPlot unemployment={unemployment} />
+        {/* <JobIndustryViz jobViz={jobIndustryViz} /> */}
+      </div>
       <div className="weathers">
         {dynamicMainData(thisCityData.cityData, 0)}
         {dynamicMainData(city2, 1)}
