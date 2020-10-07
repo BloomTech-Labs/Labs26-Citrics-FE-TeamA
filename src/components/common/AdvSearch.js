@@ -130,7 +130,9 @@ export default function AdvSearch() {
             </div>
             <div className="adv-question-container">
               <div className="label">
-                <label>4. What's the largest housing type you prefer?</label>
+                <label>
+                  4. What is the minimum number of bedrooms you need?
+                </label>
               </div>
               <div className="adv-dropdown">
                 <select
