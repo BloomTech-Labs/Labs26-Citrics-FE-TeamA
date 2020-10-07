@@ -30,7 +30,7 @@ export default function StaticHomePage() {
           <h2>Look Ahead</h2>
           <p>
             Based on historic city data, we layout predictions for you of what
-            the city wide metrics will look like, up to 5 years in advance.{' '}
+            the city wide metrics will look like, up to 2 years in advance.{' '}
           </p>
         </div>
       </div>
