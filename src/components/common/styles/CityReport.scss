@@ -175,7 +175,27 @@
   -webkit-background-clip: text;
   background-clip: text;
 }
+.Clouds {
+  background: linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)),
+    url('./imgs/Cloud-48501.gif');
 
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.Haze {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url('./imgs/fog_mist.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 70%;
+}
+.Clear {
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    url('./imgs/sunny.gif');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-x: 60%;
+}
 .city-title {
   display: flex;
   justify-content: space-evenly;
@@ -266,6 +286,7 @@
   .weatherData {
     border: none;
     border-radius: 0;
+    width: 100%;
     div {
       p {
         margin: 0;

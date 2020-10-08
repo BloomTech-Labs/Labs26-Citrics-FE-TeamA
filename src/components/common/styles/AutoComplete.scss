@@ -64,11 +64,13 @@ input[type='submit'] {
 }
 
 .autocomplete p {
+  overflow-y: hidden;
   padding: 1%;
   cursor: pointer;
   background-color: #fff;
   border-bottom: 1px solid #d4d4d4;
   width: 85vw;
+  margin: 0;
 }
 
 /*when hovering an item:*/
@@ -94,7 +96,7 @@ h4 {
   color: blue;
 }
 @media (max-width: 500px) {
-  .addingCities {
+  #root .addingCities {
     p {
       font-size: 1rem;
     }
