@@ -1,11 +1,16 @@
 // height: 10px; prevents bottom of content leaking down past bottom border
 .citrics-logo {
-    margin-top: 1vh;
-    float: right;
-  }
+  margin-top: 1vh;
+  float: right;
+}
 
 .link {
   font-size: large;
   font-weight: bold;
-  letter-spacing: .15ch;
+  letter-spacing: 0.15ch;
+}
+@media (max-width: 500px) {
+  .ant-layout-header {
+    padding: 0 1%;
+  }
 }

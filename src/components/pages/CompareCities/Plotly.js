@@ -255,7 +255,10 @@ export default function Plotly(props) {
   function dynamicWeatherFill(cityNumber, number) {
     if (cityNumber !== undefined) {
       weatherFill[number] = [
-        <div className="weatherData" key={cityNumber}>
+        <div
+          className={`weatherData ${cityNumber.description}`}
+          key={cityNumber}
+        >
           <h3>Weather</h3>
           <div className="temperature-div">
             <div className="main-temperature">
