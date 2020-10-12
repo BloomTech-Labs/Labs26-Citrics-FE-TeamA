@@ -182,7 +182,7 @@
   $backgroundPosX,
   $backgroundPosY
 ) {
-  background: linear-gradient($backgroundGradient1, $backgroundGradient2),
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)),
     url($backgroundUrl);
   background-repeat: no-repeat;
   background-size: cover;
@@ -190,50 +190,20 @@
   background-position-y: $backgroundPosY;
 }
 .Clouds {
-  @include backgroundGifs(
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.1),
-    './imgs/Cloud-48501.gif',
-    auto,
-    auto
-  );
+  @include backgroundGifs('./imgs/Cloud-48501.gif', auto, auto);
 }
 .Haze,
 .Mist {
-  @include backgroundGifs(
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.1),
-    './imgs/fog_mist.gif',
-    auto,
-    auto
-  );
+  @include backgroundGifs('./imgs/fog_mist.gif', auto, auto);
 }
 .Clear {
-  @include backgroundGifs(
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.1),
-    './imgs/sunny.gif',
-    auto,
-    60%
-  );
+  @include backgroundGifs('./imgs/sunny.gif', auto, 60%);
 }
 .Rain {
-  @include backgroundGifs(
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.1),
-    './imgs/rain.gif',
-    auto,
-    auto
-  );
+  @include backgroundGifs('./imgs/rain.gif', auto, auto);
 }
 .Snowing {
-  @include backgroundGifs(
-    rgba(0, 0, 0, 0.4),
-    rgba(0, 0, 0, 0.1),
-    './imgs/snowfall.gif',
-    auto,
-    auto
-  );
+  @include backgroundGifs('./imgs/snowfall.gif', auto, auto);
 }
 
 .city-title {
