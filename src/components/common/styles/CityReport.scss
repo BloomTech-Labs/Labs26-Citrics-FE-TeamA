@@ -86,7 +86,7 @@
   }
   margin-bottom: 3%;
 }
-span.ant-modal-close-x{
+span.ant-modal-close-x {
   opacity: 0;
   cursor: default;
 }
@@ -242,6 +242,9 @@ span.ant-modal-close-x{
   div {
     margin: 0 auto;
   }
+}
+.jobViz {
+  display: grid;
 }
 @media (max-width: 1050px) {
   .vizs {

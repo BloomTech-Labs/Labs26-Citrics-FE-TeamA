@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import axios from '../../../../api/dsapi';
 import Loader from '../../../common/Loader';
 import Plot from 'react-plotly.js';
-
+import Slider from 'infinite-react-carousel';
 export default function JobIndustryViz({
   jobViz,
   searching,
@@ -54,7 +54,6 @@ export default function JobIndustryViz({
     lastCityState.lastCityAdded,
     compareList,
   ]);
-
   function dynamicJobViz(data, layout) {
     if (data !== undefined) {
       return (
@@ -64,15 +63,19 @@ export default function JobIndustryViz({
       );
     }
   }
-
+  const settings = {
+    slidesToShow: 3,
+  };
   return !jobViz.jobVizData ? (
     <Loader />
   ) : (
-    <>
-      {dynamicJobViz(jobViz.jobVizData, jobViz.jobVizLayout)}
-      {dynamicJobViz(jobViz.jobVizData2, jobViz.jobVizLayout2)}
-      {dynamicJobViz(jobViz.jobVizData3, jobViz.jobVizLayout3)}
-    </>
+    <div className="jobViz">
+      <Slider {...settings}>
+        {dynamicJobViz(jobViz.jobVizData, jobViz.jobVizLayout)}
+        {dynamicJobViz(jobViz.jobVizData2, jobViz.jobVizLayout2)}
+        {dynamicJobViz(jobViz.jobVizData3, jobViz.jobVizLayout3)}
+      </Slider>
+    </div>
     // eslint-disable-next-line semi
   );
 }
