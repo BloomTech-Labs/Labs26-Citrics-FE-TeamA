@@ -8,7 +8,6 @@ export default function AdvSearch() {
     climate: '',
     budget: '',
     homesize: '',
-    submitted: false,
   };
   const [searchCities, setSearchCities] = useState(reset);
 
@@ -28,8 +27,7 @@ export default function AdvSearch() {
     }
   }
 
-  function hideForm(e) {
-    e.preventDefault();
+  function hideForm() {
     document.getElementById('adv-search-btn').style.display = 'block';
     document.getElementById('form-container').style.display = 'none';
     resetHelper();
@@ -44,8 +42,10 @@ export default function AdvSearch() {
     });
   }
 
-  function handleSubmit() {
-    resetHelper();
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log('this is state we will submit',searchCities);
+    hideForm();
   }
 
   return (
@@ -157,7 +157,7 @@ export default function AdvSearch() {
               <Button
                 type="primary"
                 className="adv-search-btn search"
-                onSubmit={handleSubmit}
+                onClick={handleSubmit}
               >
                 Search
               </Button>

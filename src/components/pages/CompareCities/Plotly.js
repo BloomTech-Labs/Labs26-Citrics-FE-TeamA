@@ -191,48 +191,70 @@ export default function Plotly(props) {
     fetchWalkData();
   }, [lastCity, lastState]);
   // retrieves the ---RENTAL PREDICT--- viz graph from the DS API
-  useEffect(() => {
-    // For search bar loading
-    setSearching({
-      ...searching,
-      rentpredict: true,
-    });
-    async function fetchRentalPredictViz() {
-      if (compareList.cities.length === 1) {
-        const request = await axios.get(
-          `/rental/predict/viz/${lastCity}_${lastState}`
-        );
-        const rentPredict = JSON.parse(request.data);
-        setRentPredict({
-          rentPredictData: rentPredict.data,
-          rentPredictLayout: rentPredict.layout,
-        });
-      }
-      setSearching({
-        ...searching,
-        rentpredict: false,
-      });
-    }
-    fetchRentalPredictViz();
-  }, [lastCity, lastState, lastCityAdded, compareList.cities]);
-  // retrieves the BLS viz view chart graph viz from DS API
   // useEffect(() => {
+  //   // For search bar loading
   //   setSearching({
   //     ...searching,
-  //     jobviz: true
+  //     rentpredict: true,
   //   });
-  //   async function fetchJobIndustryViz() {
+  //   async function fetchRentalPredictViz() {
   //     if (compareList.cities.length === 1) {
-  //       const request = axios.get(`/bls_viz/${lastCity}_${lastState}`);
-  //       const jobViz = JSON.parse(request.data);
-  //       setJobIndustryViz({
-  //         jobVizData: jobViz.data,
-  //         jobVizLayout: jobViz.layout
+  //       const request = await axios.get(
+  //         `/rental/predict/viz/${lastCity}_${lastState}`
+  //       );
+  //       const rentPredict = JSON.parse(request.data);
+  //       setRentPredict({
+  //         rentPredictData: rentPredict.data,
+  //         rentPredictLayout: rentPredict.layout,
   //       });
   //     }
+  //     setSearching({
+  //       ...searching,
+  //       rentpredict: false,
+  //     });
   //   }
-  //   fetchJobIndustryViz();
+  //   fetchRentalPredictViz();
   // }, [lastCity, lastState, lastCityAdded, compareList.cities]);
+
+  // retrieves the BLS viz view chart graph viz from DS API
+  useEffect(() => {
+    setSearching({
+      ...searching,
+      jobviz: true
+    });
+    async function fetchJobIndustryViz() {
+      const request = await axios.get(`/bls_viz/${lastCity}_${lastState}`);
+      const jobViz = JSON.parse(request.data);
+      if (!('jobVizData' in jobIndustryViz)) {
+        setJobIndustryViz({
+          jobVizData: jobViz.data,
+          jobVizLayout: jobViz.layout
+        });
+      } else if (
+        'jobVizData' in jobIndustryViz &&
+        !('jobVizData2' in jobIndustryViz) &&
+        compareList.cities.length === 2
+        ) {
+        setJobIndustryViz({
+          ...jobIndustryViz,
+          jobVizData2: jobViz.data,
+          jobVizLayout2: jobViz.layout
+        });
+      } else if (
+        'jobVizData2' in jobIndustryViz &&
+        !('jobVizData3' in jobIndustryViz) &&
+        compareList.cities.length === 3
+      ) {
+        setJobIndustryViz({
+          ...jobIndustryViz,
+          jobVizData3: jobViz.data,
+          jobVizLayout3: jobViz.layout
+        });
+      }
+    }
+    fetchJobIndustryViz();
+  }, [lastCity, lastState, lastCityAdded, compareList.cities]);
+
   let cityWalk1 = walkCityData.cityWalk1;
   let cityWalk2 = walkCityData.cityWalk2;
   let cityWalk3 = walkCityData.cityWalk3;
@@ -294,6 +316,7 @@ export default function Plotly(props) {
       ];
     }
   }
+
   let cityDisplayPlot = 'cityDisplayPlot';
   let cityDisplayTab = 'cityDisplayPlot cityDisplayTablet';
   function dynamicMainData(cityNumber, number) {
@@ -441,12 +464,12 @@ export default function Plotly(props) {
     <section>
       <div className="vizs">
         <RentPlot thisCityData={thisCityData} />
-        <RentPredictViz rentPredictViz={rentPredict} />
+        {/* <RentPredictViz rentPredictViz={rentPredict} /> */}
         <UnemploymentPlot unemployment={unemployment} />
-        {/* <JobIndustryViz jobViz={jobIndustryViz} /> */}
+        <JobIndustryViz jobViz={jobIndustryViz} />
       </div>
       <div className="weathers">
-        {dynamicMainData(thisCityData.cityData, 0)}
+        {dynamicMainData(city1, 0)}
         {dynamicMainData(city2, 1)}
         {dynamicMainData(city3, 2)}
       </div>
