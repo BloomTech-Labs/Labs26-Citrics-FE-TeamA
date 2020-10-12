@@ -10,8 +10,6 @@ import RentPlot from './PlotlyHelpers/RentPlot';
 import RentPredictViz from './PlotlyHelpers/RentPredictViz';
 import JobIndustryViz from './PlotlyHelpers/JobIndustryViz';
 export default function Plotly(props) {
-  let searching = props.searchOptions.searching;
-  let setSearching = props.searchOptions.setSearching;
   //  State for plotly json info
   const [thisCityData, setThisCityData] = useState({});
   const [walkCityData, setWalkCityData] = useState({
@@ -21,7 +19,9 @@ export default function Plotly(props) {
   const [unemployment, setUnemployment] = useState({});
   const [rentPredict, setRentPredict] = useState({});
   const [jobIndustryViz, setJobIndustryViz] = useState({});
-  let { compareList, setCompareList } = useContext(ReportContext);
+  let { compareList, setCompareList, searching, setSearching } = useContext(
+    ReportContext
+  );
   let walkFill = {};
   let weatherFill = {};
   let lastCityAdded = compareList.cities[compareList.cities.length - 1];
@@ -217,43 +217,6 @@ export default function Plotly(props) {
   // }, [lastCity, lastState, lastCityAdded, compareList.cities]);
 
   // retrieves the BLS viz view chart graph viz from DS API
-  useEffect(() => {
-    setSearching({
-      ...searching,
-      jobviz: true
-    });
-    async function fetchJobIndustryViz() {
-      const request = await axios.get(`/bls_viz/${lastCity}_${lastState}`);
-      const jobViz = JSON.parse(request.data);
-      if (!('jobVizData' in jobIndustryViz)) {
-        setJobIndustryViz({
-          jobVizData: jobViz.data,
-          jobVizLayout: jobViz.layout
-        });
-      } else if (
-        'jobVizData' in jobIndustryViz &&
-        !('jobVizData2' in jobIndustryViz) &&
-        compareList.cities.length === 2
-        ) {
-        setJobIndustryViz({
-          ...jobIndustryViz,
-          jobVizData2: jobViz.data,
-          jobVizLayout2: jobViz.layout
-        });
-      } else if (
-        'jobVizData2' in jobIndustryViz &&
-        !('jobVizData3' in jobIndustryViz) &&
-        compareList.cities.length === 3
-      ) {
-        setJobIndustryViz({
-          ...jobIndustryViz,
-          jobVizData3: jobViz.data,
-          jobVizLayout3: jobViz.layout
-        });
-      }
-    }
-    fetchJobIndustryViz();
-  }, [lastCity, lastState, lastCityAdded, compareList.cities]);
 
   let cityWalk1 = walkCityData.cityWalk1;
   let cityWalk2 = walkCityData.cityWalk2;
@@ -296,7 +259,9 @@ export default function Plotly(props) {
           </div>
           <div className="weather-stat-div">
             <div className="weather-stat-titles">
-              <p>Today's Forecast: </p>
+              <p>
+                Today's <br /> Forecast:{' '}
+              </p>
               <p>{cityNumber.description}</p>
               <p>Clouds Today: </p>
               <p>{cityNumber.clouds_all}%</p>
@@ -466,7 +431,13 @@ export default function Plotly(props) {
         <RentPlot thisCityData={thisCityData} />
         {/* <RentPredictViz rentPredictViz={rentPredict} /> */}
         <UnemploymentPlot unemployment={unemployment} />
-        <JobIndustryViz jobViz={jobIndustryViz} />
+        <JobIndustryViz
+          jobViz={jobIndustryViz}
+          searching={{ searching, setSearching }}
+          lastCityState={{ lastCity, lastState, lastCityAdded }}
+          compareList={compareList.cities}
+          jobIndustryViz={{ jobIndustryViz, setJobIndustryViz }}
+        />
       </div>
       <div className="weathers">
         {dynamicMainData(city1, 0)}
