@@ -179,27 +179,31 @@ span.ant-modal-close-x{
   -webkit-background-clip: text;
   background-clip: text;
 }
-.Clouds {
-  background: linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)),
-    url('./imgs/Cloud-48501.gif');
-
+@mixin backgroundGifs($backgroundUrl, $backgroundPosX, $backgroundPosY) {
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)),
+    url($backgroundUrl);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position-y: $backgroundPosY;
+  background-position-y: $backgroundPosY;
 }
-.Haze {
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url('./imgs/fog_mist.gif');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position-y: 70%;
+.Clouds {
+  @include backgroundGifs('./imgs/Cloud-48501.gif', auto, auto);
+}
+.Haze,
+.Mist {
+  @include backgroundGifs('./imgs/fog_mist.gif', auto, auto);
 }
 .Clear {
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url('./imgs/sunny.gif');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position-x: 60%;
+  @include backgroundGifs('./imgs/sunny.gif', auto, 60%);
 }
+.Rain {
+  @include backgroundGifs('./imgs/rain.gif', auto, auto);
+}
+.Snowing {
+  @include backgroundGifs('./imgs/snowfall.gif', auto, auto);
+}
+
 .city-title {
   display: flex;
   justify-content: space-evenly;

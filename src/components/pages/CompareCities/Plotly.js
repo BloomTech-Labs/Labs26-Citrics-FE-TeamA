@@ -236,6 +236,22 @@ export default function Plotly(props) {
       ];
     }
   }
+  let classes = ['main-temperature', 'main-temperature', 'main-temperature'];
+
+  function getTempsToSetClass(cityNum, num) {
+    console.log(cityNum, num);
+    num -= 1;
+    cityNum
+      ? cityNum.imperial_main_temp < 60
+        ? (classes[num] += ' tooCold')
+        : cityNum.imperial_main_temp > 80
+        ? (classes[num] += ' tooHot')
+        : (classes[num] += ' justRight')
+      : (classes[num] = ['main-temperature']);
+  }
+  getTempsToSetClass(city1, 1);
+  getTempsToSetClass(city2, 2);
+  getTempsToSetClass(city3, 3);
   // Sets render data for weather from weather response
   function dynamicWeatherFill(cityNumber, number) {
     if (cityNumber !== undefined) {
@@ -247,7 +263,9 @@ export default function Plotly(props) {
           <h3>Weather</h3>
           <div className="temperature-div">
             <div className="main-temperature">
-              <h1>{cityNumber.imperial_main_temp}°</h1>
+              <h1 className={classes[number]}>
+                {cityNumber.imperial_main_temp}°
+              </h1>
             </div>
             <div className="other-temperature">
               <p>Feels Like: {cityNumber.imperial_main_feels_like}°</p>
