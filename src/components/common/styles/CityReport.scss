@@ -175,27 +175,67 @@
   -webkit-background-clip: text;
   background-clip: text;
 }
-.Clouds {
-  background: linear-gradient(rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.12)),
-    url('./imgs/Cloud-48501.gif');
-
+@mixin backgroundGifs(
+  $backgroundGradient1,
+  $backgroundGradient2,
+  $backgroundUrl,
+  $backgroundPosX,
+  $backgroundPosY
+) {
+  background: linear-gradient($backgroundGradient1, $backgroundGradient2),
+    url($backgroundUrl);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position-y: $backgroundPosY;
+  background-position-y: $backgroundPosY;
 }
-.Haze {
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url('./imgs/fog_mist.gif');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position-y: 70%;
+.Clouds {
+  @include backgroundGifs(
+    rgba(0, 0, 0, 0.12),
+    rgba(0, 0, 0, 0.12),
+    './imgs/Cloud-48501.gif',
+    auto,
+    auto
+  );
+}
+.Haze,
+.Mist {
+  @include backgroundGifs(
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2),
+    './imgs/fog_mist.gif',
+    auto,
+    auto
+  );
 }
 .Clear {
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-    url('./imgs/sunny.gif');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position-x: 60%;
+  @include backgroundGifs(
+    rgba(0, 0, 0, 0.12),
+    rgba(0, 0, 0, 0.12),
+    './imgs/sunny.gif',
+    auto,
+    60%
+  );
 }
+.Rain {
+  @include backgroundGifs(
+    rgba(0, 0, 0, 0.12),
+    rgba(0, 0, 0, 0.12),
+    './imgs/rain.gif',
+    auto,
+    auto
+  );
+}
+.Snowing {
+  @include backgroundGifs(
+    rgba(0, 0, 0, 0.12),
+    rgba(0, 0, 0, 0.12),
+    './imgs/snowfall.gif',
+    auto,
+    auto
+  );
+}
+
 .city-title {
   display: flex;
   justify-content: space-evenly;
