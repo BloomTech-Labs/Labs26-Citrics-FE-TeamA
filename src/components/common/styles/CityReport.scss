@@ -175,13 +175,7 @@
   -webkit-background-clip: text;
   background-clip: text;
 }
-@mixin backgroundGifs(
-  $backgroundGradient1,
-  $backgroundGradient2,
-  $backgroundUrl,
-  $backgroundPosX,
-  $backgroundPosY
-) {
+@mixin backgroundGifs($backgroundUrl, $backgroundPosX, $backgroundPosY) {
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1)),
     url($backgroundUrl);
   background-repeat: no-repeat;
