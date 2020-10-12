@@ -191,8 +191,8 @@
 }
 .Clouds {
   @include backgroundGifs(
-    rgba(0, 0, 0, 0.12),
-    rgba(0, 0, 0, 0.12),
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.1),
     './imgs/Cloud-48501.gif',
     auto,
     auto
@@ -201,8 +201,8 @@
 .Haze,
 .Mist {
   @include backgroundGifs(
-    rgba(0, 0, 0, 0.2),
-    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.1),
     './imgs/fog_mist.gif',
     auto,
     auto
@@ -210,8 +210,8 @@
 }
 .Clear {
   @include backgroundGifs(
-    rgba(0, 0, 0, 0.12),
-    rgba(0, 0, 0, 0.12),
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.1),
     './imgs/sunny.gif',
     auto,
     60%
@@ -219,8 +219,8 @@
 }
 .Rain {
   @include backgroundGifs(
-    rgba(0, 0, 0, 0.12),
-    rgba(0, 0, 0, 0.12),
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.1),
     './imgs/rain.gif',
     auto,
     auto
@@ -228,8 +228,8 @@
 }
 .Snowing {
   @include backgroundGifs(
-    rgba(0, 0, 0, 0.12),
-    rgba(0, 0, 0, 0.12),
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.1),
     './imgs/snowfall.gif',
     auto,
     auto
