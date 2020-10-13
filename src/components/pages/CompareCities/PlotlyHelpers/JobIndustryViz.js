@@ -54,6 +54,7 @@ export default function JobIndustryViz({
     lastCityState.lastCityAdded,
     compareList,
   ]);
+
   function dynamicJobViz(data, layout) {
     if (data !== undefined) {
       return (
@@ -63,14 +64,14 @@ export default function JobIndustryViz({
       );
     }
   }
-  
+
   return !jobViz.jobVizData ? (
     <Loader />
   ) : (
-    <div >
-        {dynamicJobViz(jobViz.jobVizData, jobViz.jobVizLayout)}
-        {dynamicJobViz(jobViz.jobVizData2, jobViz.jobVizLayout2)}
-        {dynamicJobViz(jobViz.jobVizData3, jobViz.jobVizLayout3)}
+    <div className="jobViz">
+      {dynamicJobViz(jobViz.jobVizData, jobViz.jobVizLayout)}
+      {dynamicJobViz(jobViz.jobVizData2, jobViz.jobVizLayout2)}
+      {dynamicJobViz(jobViz.jobVizData3, jobViz.jobVizLayout3)}
     </div>
     // eslint-disable-next-line semi
   );
