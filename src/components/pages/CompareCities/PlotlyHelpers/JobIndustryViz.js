@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from '../../../../api/dsapi';
 import Loader from '../../../common/Loader';
 import Plot from 'react-plotly.js';
-import Slider from 'infinite-react-carousel';
+
 export default function JobIndustryViz({
   jobViz,
   searching,
@@ -63,18 +63,14 @@ export default function JobIndustryViz({
       );
     }
   }
-  const settings = {
-    slidesToShow: 3,
-  };
+  
   return !jobViz.jobVizData ? (
     <Loader />
   ) : (
-    <div className="jobViz">
-      <Slider {...settings}>
+    <div >
         {dynamicJobViz(jobViz.jobVizData, jobViz.jobVizLayout)}
         {dynamicJobViz(jobViz.jobVizData2, jobViz.jobVizLayout2)}
         {dynamicJobViz(jobViz.jobVizData3, jobViz.jobVizLayout3)}
-      </Slider>
     </div>
     // eslint-disable-next-line semi
   );
