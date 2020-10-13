@@ -9,6 +9,7 @@ export default function WeatherPredictViz({
   lastCityState,
   searching,
 }) {
+  const setWeatherPredict = weatherPrediction.setWeatherPredict;
   useEffect(() => {
     // For search bar loading knowledge
     searching.setSearching({
@@ -21,7 +22,7 @@ export default function WeatherPredictViz({
           `/weather/predict/viz/${lastCityState.lastCity}_${lastCityState.lastState}`
         );
         const weatherPredictData = JSON.parse(request.data);
-        weatherPrediction.setWeatherPredict({
+        setWeatherPredict({
           weatherPredictionData: weatherPredictData.data,
           weatherPredictionLayout: weatherPredictData.layout,
         });
@@ -31,7 +32,7 @@ export default function WeatherPredictViz({
           `/weather/predict/viz/${firstCity[0]}_${firstCity[1]}?city2=${lastCityState.lastCityAdded[0]}&state2=${lastCityState.lastCityAdded[1]}`
         );
         const weatherPredictData = JSON.parse(request.data);
-        weatherPrediction.setWeatherPredict({
+        setWeatherPredict({
           weatherPredictionData: weatherPredictData.data,
           weatherPredictionLayout: weatherPredictData.layout,
         });
@@ -42,7 +43,7 @@ export default function WeatherPredictViz({
           `/weather/predict/viz/${firstCity[0]}_${firstCity[1]}?city2=${secondCity[0]}&state2=${secondCity[1]}&city3=${lastCityState.lastCityAdded[0]}&state3=${lastCityState.lastCityAdded[1]}`
         );
         const weatherPredictData = JSON.parse(request.data);
-        weatherPrediction.setWeatherPredict({
+        setWeatherPredict({
           weatherPredictionData: weatherPredictData.data,
           weatherPredictionLayout: weatherPredictData.layout,
         });
@@ -59,14 +60,15 @@ export default function WeatherPredictViz({
     lastCityState.lastCityAdded,
     compareList,
   ]);
-  return weatherPrediction.weatherPredict !== {} ? (
-    <Loader />
-  ) : (
+  const weatherPredictRes = weatherPrediction.weatherPredict;
+  return weatherPredictRes !== {} ? (
     <div>
       <Plot
-        data={weatherPrediction.weatherPredict.weatherPredictionData}
-        layout={weatherPrediction.weatherPredict.weatherPredictionLayout}
+        data={weatherPredictRes.weatherPredictionData}
+        layout={weatherPredictRes.weatherPredictionLayout}
       />
     </div>
+  ) : (
+    <Loader />
   );
 }
