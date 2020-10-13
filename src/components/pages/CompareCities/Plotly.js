@@ -9,6 +9,7 @@ import UnemploymentPlot from './PlotlyHelpers/UnemploymentPlot';
 import RentPlot from './PlotlyHelpers/RentPlot';
 import RentPredictViz from './PlotlyHelpers/RentPredictViz';
 import JobIndustryViz from './PlotlyHelpers/JobIndustryViz';
+import WeatherPredictViz from './PlotlyHelpers/WeatherPredict';
 export default function Plotly(props) {
   //  State for plotly json info
   const [thisCityData, setThisCityData] = useState({});
@@ -19,6 +20,7 @@ export default function Plotly(props) {
   const [unemployment, setUnemployment] = useState({});
   const [rentPredict, setRentPredict] = useState({});
   const [jobIndustryViz, setJobIndustryViz] = useState({});
+  const [weatherPredict, setWeatherPredict] = useState({});
   let { compareList, setCompareList, searching, setSearching } = useContext(
     ReportContext
   );
@@ -295,7 +297,6 @@ export default function Plotly(props) {
       ];
     }
   }
-
   let cityDisplayPlot = 'cityDisplayPlot';
   let cityDisplayTab = 'cityDisplayPlot cityDisplayTablet';
   function dynamicMainData(cityNumber, number) {
@@ -308,10 +309,7 @@ export default function Plotly(props) {
           id="cityNumber"
         >
           <div className="city-title">
-            <h1>
-              {thisCityData.cityData[number] !== undefined &&
-                thisCityData.cityData[number].name}
-            </h1>
+            <h1>{cityNumber.city}</h1>
             <button
               className="remove-btn"
               id={'btn' + (number + 1)}
@@ -445,14 +443,20 @@ export default function Plotly(props) {
         <RentPlot thisCityData={thisCityData} />
         {/* <RentPredictViz rentPredictViz={rentPredict} /> */}
         <UnemploymentPlot unemployment={unemployment} />
-        <JobIndustryViz
-          jobViz={jobIndustryViz}
-          searching={{ searching, setSearching }}
-          lastCityState={{ lastCity, lastState, lastCityAdded }}
+        <WeatherPredictViz
+          weatherPrediction={{ weatherPredict, setWeatherPredict }}
           compareList={compareList.cities}
-          jobIndustryViz={{ jobIndustryViz, setJobIndustryViz }}
+          lastCityState={{ lastCity, lastState, lastCityAdded }}
+          searching={{ searching, setSearching }}
         />
       </div>
+      <JobIndustryViz
+        jobViz={jobIndustryViz}
+        searching={{ searching, setSearching }}
+        lastCityState={{ lastCity, lastState, lastCityAdded }}
+        compareList={compareList.cities}
+        jobIndustryViz={{ jobIndustryViz, setJobIndustryViz }}
+      />
       <div className="weathers">
         {dynamicMainData(city1, 0)}
         {dynamicMainData(city2, 1)}
