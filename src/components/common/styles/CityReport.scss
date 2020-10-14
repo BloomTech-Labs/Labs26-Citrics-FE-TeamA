@@ -47,7 +47,18 @@
     padding: 1%;
   }
 }
-
+.rentalFill {
+  h3 {
+    font-size: 3rem;
+    font-weight: 700;
+  }
+  h5 {
+    font-size: 1.8rem;
+  }
+  .rentalData {
+    display: flex;
+  }
+}
 .walkData {
   background: rgba(255, 163, 59, 0.699);
   border: 6px outset rgb(197, 197, 236);
@@ -244,7 +255,7 @@ span.ant-modal-close-x {
   }
 }
 .jobViz {
-  display: grid;
+  display: none;
 }
 @media (max-width: 1050px) {
   .vizs {
