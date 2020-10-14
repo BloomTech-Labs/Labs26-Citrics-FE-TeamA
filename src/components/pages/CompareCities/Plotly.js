@@ -8,6 +8,7 @@ import WalkData from './PlotlyHelpers/walkData';
 import UnemploymentPlot from './PlotlyHelpers/UnemploymentPlot';
 import RentPlot from './PlotlyHelpers/RentPlot';
 import RentPredictViz from './PlotlyHelpers/RentPredictViz';
+import RentPredict from './PlotlyHelpers/RentPredict';
 import JobIndustryViz from './PlotlyHelpers/JobIndustryViz';
 import WeatherPredictViz from './PlotlyHelpers/WeatherPredict';
 export default function Plotly(props) {
@@ -441,7 +442,11 @@ export default function Plotly(props) {
     <section>
       <div className="vizs">
         <RentPlot thisCityData={thisCityData} />
-        {/* <RentPredictViz rentPredictViz={rentPredict} /> */}
+        {/* <RentPredictViz
+          compareList={compareList.cities}
+          lastCityState={{ lastCity, lastState, lastCityAdded }}
+          searching={{ searching, setSearching }}
+        /> */}
         <UnemploymentPlot unemployment={unemployment} />
         <WeatherPredictViz
           weatherPrediction={{ weatherPredict, setWeatherPredict }}
@@ -456,6 +461,11 @@ export default function Plotly(props) {
         lastCityState={{ lastCity, lastState, lastCityAdded }}
         compareList={compareList.cities}
         jobIndustryViz={{ jobIndustryViz, setJobIndustryViz }}
+      />
+      <RentPredict
+        compareList={compareList.cities}
+        lastCityState={{ lastCity, lastState, lastCityAdded }}
+        searching={{ searching, setSearching }}
       />
       <div className="weathers">
         {dynamicMainData(city1, 0)}
