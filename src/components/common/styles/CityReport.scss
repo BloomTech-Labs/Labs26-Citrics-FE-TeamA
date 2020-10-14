@@ -47,15 +47,23 @@
     padding: 1%;
   }
 }
+
 .rentalPredict {
   display: flex;
-  justify-content: space-evenly;
-  .rentalFill:first-child {
-    .rentalPredictData {
-      .yaxis {
-        display: grid;
+  justify-content: space-around;
+  margin: 0 15vw;
+  .rentalFill:nth-child(2),
+  .rentalFill:nth-child(3) {
+    .yaxis {
+      h5,
+      p {
+        color: rgba(0, 0, 0, 0.1);
       }
     }
+  }
+  .rentalFill:first-child .rentalPredictData {
+    display: grid;
+    grid-template-columns: 49.5% 1fr 1fr;
   }
   .rentalFill {
     h3 {
@@ -63,22 +71,36 @@
       font-weight: 700;
     }
     h5 {
+      border-bottom: 1px solid black;
       font-size: 1.8rem;
     }
-    display: flex;
-    flex-direction: column;
+    p {
+      margin: 0;
+    }
+    p:nth-child(odd) {
+      // border: 1px solid red;
+      background-color: white;
+    }
+
+    p:nth-child(even) {
+      // border: 1px solid blue;
+      background-color: black;
+      color: white;
+    }
+
+    display: grid;
     width: 100%;
 
     .rentalPredictData {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1% 1fr 1fr;
       div {
         display: grid;
         grid-template-rows: repeat(6, 1fr);
+        width: 100%;
       }
       .yaxis {
         text-align: left;
-        display: none;
       }
     }
   }
