@@ -55,16 +55,16 @@ export default function RentPredict({
             <div className="nextYear">
               <h5>{nextYear}</h5>
               <p>{rentalPredictData[index].Studio[nextYear]}</p>
-              <p>{rentalPredictData[index].oner[nextYear]}</p>
-              <p>{rentalPredictData[index].twor[nextYear]}</p>
+              <p>{rentalPredictData[index].onebr[nextYear]}</p>
+              <p>{rentalPredictData[index].twobr[nextYear]}</p>
               <p>{rentalPredictData[index].threebr[nextYear]}</p>
               <p>{rentalPredictData[index].fourbr[nextYear]}</p>
             </div>
             <div className="twoYearsOut">
               <h5>{secondYearOut}</h5>
               <p>{rentalPredictData[index].Studio[secondYearOut]}</p>
-              <p>{rentalPredictData[index].oner[secondYearOut]}</p>
-              <p>{rentalPredictData[index].twor[secondYearOut]}</p>
+              <p>{rentalPredictData[index].onebr[secondYearOut]}</p>
+              <p>{rentalPredictData[index].twobr[secondYearOut]}</p>
               <p>{rentalPredictData[index].threebr[secondYearOut]}</p>
               <p>{rentalPredictData[index].fourbr[secondYearOut]}</p>
             </div>
@@ -76,7 +76,6 @@ export default function RentPredict({
   dynamicRentPredict(rentalPredictData, 0);
   dynamicRentPredict(rentalPredictData, 1);
   dynamicRentPredict(rentalPredictData, 2);
-  console.log(rentalPredictData);
   return (
     <div className="rentalPredict">
       {rentalFill[0] && rentalFill[0]}
