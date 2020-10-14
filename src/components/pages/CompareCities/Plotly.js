@@ -9,7 +9,7 @@ import UnemploymentPlot from './PlotlyHelpers/UnemploymentPlot';
 import RentPlot from './PlotlyHelpers/RentPlot';
 import RentPredictViz from './PlotlyHelpers/RentPredictViz';
 import RentPredict from './PlotlyHelpers/RentPredict';
-import JobIndustryViz from './PlotlyHelpers/JobIndustryViz';
+import JobIndustryViz from './PlotlyHelpers/JobIndustry';
 import WeatherPredictViz from './PlotlyHelpers/WeatherPredict';
 export default function Plotly(props) {
   //  State for plotly json info
@@ -20,7 +20,7 @@ export default function Plotly(props) {
   const [weatherCityData, setWeatherCityData] = useState({});
   const [unemployment, setUnemployment] = useState({});
   const [rentPredict, setRentPredict] = useState({});
-  const [jobIndustryViz, setJobIndustryViz] = useState({});
+  const [jobIndustry, setJobIndustry] = useState({});
   const [weatherPredict, setWeatherPredict] = useState({});
   let { compareList, setCompareList, searching, setSearching } = useContext(
     ReportContext
@@ -456,11 +456,10 @@ export default function Plotly(props) {
         />
       </div>
       <JobIndustryViz
-        jobViz={jobIndustryViz}
         searching={{ searching, setSearching }}
         lastCityState={{ lastCity, lastState, lastCityAdded }}
         compareList={compareList.cities}
-        jobIndustryViz={{ jobIndustryViz, setJobIndustryViz }}
+        jobTable={{ jobIndustry, setJobIndustry }}
       />
       <RentPredict
         compareList={compareList.cities}
