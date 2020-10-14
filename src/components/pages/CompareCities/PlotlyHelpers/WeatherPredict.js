@@ -32,6 +32,7 @@ export default function WeatherPredictViz({
           `/weather/predict/viz/${firstCity[0]}_${firstCity[1]}?city2=${lastCityState.lastCityAdded[0]}&state2=${lastCityState.lastCityAdded[1]}`
         );
         const weatherPredictData = JSON.parse(request.data);
+
         setWeatherPredict({
           weatherPredictionData: weatherPredictData.data,
           weatherPredictionLayout: weatherPredictData.layout,

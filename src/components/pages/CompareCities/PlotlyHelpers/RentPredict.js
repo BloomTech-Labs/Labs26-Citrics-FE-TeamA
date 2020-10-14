@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Loader from '../../../common/Loader';
 import axios from '../../../../api/dsapi';
-
 // /rental/predict/
-export default function RentPredict({ compareList, lastCityState, searching }) {
+export default function RentPredict({
+  compareList,
+  lastCityState,
+  searching,
+  number,
+}) {
   const [rentalPredictData, setRentalPredictData] = useState([]);
   useEffect(() => {
     //   For search bar loading knowledge
@@ -26,7 +30,6 @@ export default function RentPredict({ compareList, lastCityState, searching }) {
     }
     fetchRentalPredict();
   }, [lastCityState.lastCity, lastCityState.lastState]);
-
   let rentalFill = {};
   const currentYear = new Date().getFullYear();
   const nextYear = currentYear + 1;
@@ -40,31 +43,29 @@ export default function RentPredict({ compareList, lastCityState, searching }) {
       rentalFill[index] = [
         <section className="rentalFill" key={index}>
           <h3>{currentCity}</h3>
-          <div className="rentalData">
+          <div className="rentalPredictData">
+            <div className="yaxis">
+              <br />
+              <p>Studio</p>
+              <p>1 Bedroom</p>
+              <p>2 Bedroom</p>
+              <p>3 Bedroom</p>
+              <p>4 Bedroom</p>
+            </div>
             <div className="nextYear">
               <h5>{nextYear}</h5>
-              <p>Studio</p>
               <p>{rentalPredictData[index].Studio[nextYear]}</p>
-              <p>1 Bedroom</p>
-              <p>{rentalPredictData[index].oner[nextYear]}</p>
-              <p>2 Bedroom</p>
-              <p>{rentalPredictData[index].twor[nextYear]}</p>
-              <p>3 Bedroom</p>
+              <p>{rentalPredictData[index].onebr[nextYear]}</p>
+              <p>{rentalPredictData[index].twobr[nextYear]}</p>
               <p>{rentalPredictData[index].threebr[nextYear]}</p>
-              <p>4 Bedroom</p>
               <p>{rentalPredictData[index].fourbr[nextYear]}</p>
             </div>
             <div className="twoYearsOut">
               <h5>{secondYearOut}</h5>
-              <p>Studio</p>
               <p>{rentalPredictData[index].Studio[secondYearOut]}</p>
-              <p>1 Bedroom</p>
-              <p>{rentalPredictData[index].oner[secondYearOut]}</p>
-              <p>2 Bedroom</p>
-              <p>{rentalPredictData[index].twor[secondYearOut]}</p>
-              <p>3 Bedroom</p>
+              <p>{rentalPredictData[index].onebr[secondYearOut]}</p>
+              <p>{rentalPredictData[index].twobr[secondYearOut]}</p>
               <p>{rentalPredictData[index].threebr[secondYearOut]}</p>
-              <p>4 Bedroom</p>
               <p>{rentalPredictData[index].fourbr[secondYearOut]}</p>
             </div>
           </div>
@@ -72,13 +73,11 @@ export default function RentPredict({ compareList, lastCityState, searching }) {
       ];
     }
   }
-
   dynamicRentPredict(rentalPredictData, 0);
   dynamicRentPredict(rentalPredictData, 1);
   dynamicRentPredict(rentalPredictData, 2);
-
   return (
-    <div>
+    <div className="rentalPredict">
       {rentalFill[0] && rentalFill[0]}
       {rentalFill[1] && rentalFill[1]}
       {rentalFill[2] && rentalFill[2]}

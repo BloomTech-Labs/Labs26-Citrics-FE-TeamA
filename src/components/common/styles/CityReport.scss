@@ -47,16 +47,40 @@
     padding: 1%;
   }
 }
-.rentalFill {
-  h3 {
-    font-size: 3rem;
-    font-weight: 700;
+.rentalPredict {
+  display: flex;
+  justify-content: space-evenly;
+  .rentalFill:first-child {
+    .rentalPredictData {
+      .yaxis {
+        display: grid;
+      }
+    }
   }
-  h5 {
-    font-size: 1.8rem;
-  }
-  .rentalData {
+  .rentalFill {
+    h3 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+    h5 {
+      font-size: 1.8rem;
+    }
     display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .rentalPredictData {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      div {
+        display: grid;
+        grid-template-rows: repeat(6, 1fr);
+      }
+      .yaxis {
+        text-align: left;
+        display: none;
+      }
+    }
   }
 }
 .walkData {
