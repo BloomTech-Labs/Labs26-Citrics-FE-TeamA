@@ -65,6 +65,11 @@
   .rentalFill:first-child .rentalPredictData {
     display: grid;
     grid-template-columns: 49.5% 1fr 1fr;
+    .yaxis {
+      p {
+        padding-left: 1vw;
+      }
+    }
   }
   .rentalFill {
     h3 {
