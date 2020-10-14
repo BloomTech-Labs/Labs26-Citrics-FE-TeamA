@@ -27,7 +27,6 @@ export default function RentPredict({ compareList, lastCityState, searching }) {
     fetchRentalPredict();
   }, [lastCityState.lastCity, lastCityState.lastState]);
 
-  console.log(rentalPredictData);
   let rentalFill = {};
   const currentYear = new Date().getFullYear();
   const nextYear = currentYear + 1;
