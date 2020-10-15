@@ -6,12 +6,13 @@ export default function RentPredict({
   compareList,
   lastCityState,
   searching,
-  number,
   rentalData,
 }) {
+  // State items to make for easier use.
   const rentalFill = rentalData.rentalFill;
   const rentalPredictData = rentalData.rentalPredictData;
   const setRentalPredictData = rentalData.setRentalPredictData;
+  // On last city changes, run this useEffect to pull the rental predict json data.
   useEffect(() => {
     async function fetchRentalPredict() {
       const request = await axios.get(
@@ -27,12 +28,16 @@ export default function RentPredict({
   const currentYear = new Date().getFullYear();
   const nextYear = currentYear + 1;
   const secondYearOut = currentYear + 2;
+  // Makes the jsx text for each rental predict item and their index.
+  // Gets set to rentalFill
   function dynamicRentPredict(rentalPredictData, index) {
     if (index in rentalPredictData) {
+      // Current city in an array format
       let currentCity =
         rentalPredictData[index].city[currentYear + 1] +
         ', ' +
         rentalPredictData[index].state[currentYear + 1];
+      // for every index, make a rental fill object containing the jsx to render.
       rentalFill[index] = [
         <section className="rentalFill" key={index}>
           <h3>{currentCity}</h3>
@@ -77,16 +82,25 @@ export default function RentPredict({
       ];
     }
   }
+  // checks the length of the compare list and runs functions to set the rentalFill
+  // Some additional checks to make sure the rentalFill and rentalPredictData are matching compareList
+  if (compareList.length === 1) {
+    dynamicRentPredict(rentalPredictData, 0);
+    rentalPredictData.length > 1 &&
+      setRentalPredictData([rentalPredictData[0]]);
+  }
 
-  dynamicRentPredict(rentalPredictData, 0);
-  dynamicRentPredict(rentalPredictData, 1);
-  dynamicRentPredict(rentalPredictData, 2);
+  compareList.length === 2 &&
+    rentalPredictData.length > 2 &&
+    setRentalPredictData(rentalPredictData.slice(0, 2));
+  compareList.length === 2 && dynamicRentPredict(rentalPredictData, 1);
+  compareList.length === 3 && dynamicRentPredict(rentalPredictData, 2);
 
   return (
     <div className="rentalPredict">
-      {rentalFill[0] && rentalFill[0]}
-      {rentalFill[1] && rentalFill[1]}
-      {rentalFill[2] && rentalFill[2]}
+      {rentalFill[0] && compareList.length >= 1 && rentalFill[0]}
+      {rentalFill[1] && compareList.length >= 2 && rentalFill[1]}
+      {rentalFill[2] && compareList.length >= 3 && rentalFill[2]}
     </div>
   );
 }

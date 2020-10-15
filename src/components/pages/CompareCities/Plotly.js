@@ -27,7 +27,7 @@ export default function Plotly(props) {
   let { compareList, setCompareList, searching, setSearching } = useContext(
     ReportContext
   );
-  let rentalFill = {};
+  const [rentalFill, setRentalFill] = useState({});
   let walkFill = {};
   let weatherFill = {};
   let lastCityAdded = compareList.cities[compareList.cities.length - 1];
@@ -399,7 +399,9 @@ export default function Plotly(props) {
       // copy weather/walk data to be set as city1 data
       if (id === 'btn1') {
         delete rentalFill[0];
-        setRentalPredictData([rentalPredictData[1]]);
+        rentalPredictData[0] = rentalPredictData.pop();
+
+        // setRentalPredictData([rentalPredictData[1]]);
         setWeatherCityData({
           // // updating cityweather/walk to replace old city1 data
           cityWeather1: copyWeather2,
@@ -416,8 +418,7 @@ export default function Plotly(props) {
         });
       } else if (id === 'btn2') {
         setRentalPredictData([rentalPredictData[0]]);
-        delete rentalFill[1];
-
+        setRentalFill({});
         let firstCityState = compareList.cities[0];
         setWeatherCityData({
           cityweather1: copyWeather1,
@@ -476,7 +477,11 @@ export default function Plotly(props) {
         compareList={compareList.cities}
         lastCityState={{ lastCity, lastState, lastCityAdded }}
         searching={{ searching, setSearching }}
-        rentalData={{ rentalFill, rentalPredictData, setRentalPredictData }}
+        rentalData={{
+          rentalFill,
+          rentalPredictData,
+          setRentalPredictData,
+        }}
       />
       <div className="weathers">
         {dynamicMainData(city1, 0)}
