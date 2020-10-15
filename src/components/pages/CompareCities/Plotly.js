@@ -7,7 +7,6 @@ import WeatherPlot from './PlotlyHelpers/weatherPlot';
 import WalkData from './PlotlyHelpers/walkData';
 import UnemploymentPlot from './PlotlyHelpers/UnemploymentPlot';
 import RentPlot from './PlotlyHelpers/RentPlot';
-import RentPredictViz from './PlotlyHelpers/RentPredictViz';
 import RentPredict from './PlotlyHelpers/RentPredict';
 import JobIndustryViz from './PlotlyHelpers/JobIndustry';
 import WeatherPredictViz from './PlotlyHelpers/WeatherPredict';
@@ -193,33 +192,6 @@ export default function Plotly(props) {
     }
     fetchWalkData();
   }, [lastCity, lastState]);
-  // retrieves the ---RENTAL PREDICT--- viz graph from the DS API
-  // useEffect(() => {
-  //   // For search bar loading
-  //   setSearching({
-  //     ...searching,
-  //     rentpredict: true,
-  //   });
-  //   async function fetchRentalPredictViz() {
-  //     if (compareList.cities.length === 1) {
-  //       const request = await axios.get(
-  //         `/rental/predict/viz/${lastCity}_${lastState}`
-  //       );
-  //       const rentPredict = JSON.parse(request.data);
-  //       setRentPredict({
-  //         rentPredictData: rentPredict.data,
-  //         rentPredictLayout: rentPredict.layout,
-  //       });
-  //     }
-  //     setSearching({
-  //       ...searching,
-  //       rentpredict: false,
-  //     });
-  //   }
-  //   fetchRentalPredictViz();
-  // }, [lastCity, lastState, lastCityAdded, compareList.cities]);
-
-  // retrieves the BLS viz view chart graph viz from DS API
 
   let cityWalk1 = walkCityData.cityWalk1;
   let cityWalk2 = walkCityData.cityWalk2;

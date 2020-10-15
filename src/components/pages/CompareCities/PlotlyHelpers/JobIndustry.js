@@ -24,7 +24,7 @@ export default function JobIndustryViz({
         });
         return items;
       }
-      console.log(firstFive(jobIndustryInfo), 'first 5 invoked');
+      // console.log(firstFive(jobIndustryInfo), 'first 5 invoked');
       if (!('occ1' in jobTable.jobIndustry)) {
         jobTable.setJobIndustry({
           occ1: jobIndustryInfo[0].occ_title,
@@ -61,7 +61,7 @@ export default function JobIndustryViz({
     lastCityState.lastCityAdded,
     compareList,
   ]);
-  console.log(jobTable.jobIndustry);
+  // console.log(jobTable.jobIndustry);
   function dynamicJobViz(data, layout) {
     if (data !== undefined) {
       return (
