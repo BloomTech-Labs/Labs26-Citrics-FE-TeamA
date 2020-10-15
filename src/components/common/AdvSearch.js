@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import axios from '../../api/dsapi';
 
 import { Button } from 'antd';
+import { ReportContext } from '../../state/contexts/ReportContext';
 
 export default function AdvSearch() {
   const reset = {
@@ -10,6 +12,9 @@ export default function AdvSearch() {
     homesize: '',
   };
   const [searchCities, setSearchCities] = useState(reset);
+  const [advSearchResults, setAdvSearchResults] = useState([]);
+  let compareContext = useContext(ReportContext);
+  let randomCities = [];
 
   let selectTags = document.getElementsByTagName('select');
   let select = selectTags.length;
@@ -44,10 +49,59 @@ export default function AdvSearch() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log('this is state we will submit',searchCities);
-    hideForm();
-  }
+    // fetch cities that match users preferences
+    axios.get(`/adv_search/${searchCities.population}_${searchCities.homesize}_${searchCities.budget}_${searchCities.climate}`)
+      .then(res => {
+        // select 3 random cities from that response
+        let advSearchData = JSON.parse(res.data).sort(() => Math.random() - Math.random()).slice(0, 3);
+        // pass those 3 cities into advSearchResults
+        setAdvSearchResults(advSearchData);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+      hideForm();
+    }
+    // if advSearchResults not empty
+    if (advSearchResults[2] !== undefined){
+      advSearchResults.map(idx => {
+        // push city + state names to randomCities array
+        return randomCities.push([idx.city,idx.state]);
+      });
+    }
 
+    useEffect(() => {
+      async function fetchThreeCities(){
+        // when advSearchResults is full
+        if(await advSearchResults.length !== 0){
+          // push random city names into compareList.cities array to begin search functions
+          compareContext.setCompareList({
+            ...compareContext.compareList,
+            cities: [randomCities[0]],
+            searched: true
+          });
+          // space out cities being added to allow different stat cards to appear correctly
+          // these times are currently the shortest we could trim to at the moment
+          setTimeout(() => {
+            compareContext.setCompareList({
+              ...compareContext.compareList,
+              cities: [randomCities[0], randomCities[1]],
+            searched: true
+            });
+          }, 2200);
+          setTimeout(() => {
+            compareContext.setCompareList({
+              ...compareContext.compareList,
+              cities: [randomCities[0], randomCities[1], randomCities[2]],
+              searched: true
+            });
+          }, 4500);
+        }
+
+      }
+      fetchThreeCities();
+    },[advSearchResults]);
+    
   return (
     <div className="adv-search-div-container">
       <Button
@@ -145,11 +199,11 @@ export default function AdvSearch() {
                   <option value="DEFAULT" disabled>
                     -- Select an Option --
                   </option>
-                  <option value="studio">Studio</option>
-                  <option value="1br">1 bedroom</option>
-                  <option value="2br">2 bedroom</option>
-                  <option value="3br">3 bedroom</option>
-                  <option value="4br">4 bedroom</option>
+                  <option value="0">Studio</option>
+                  <option value="1">1 bedroom</option>
+                  <option value="2">2 bedroom</option>
+                  <option value="3">3 bedroom</option>
+                  <option value="4">4 bedroom</option>
                 </select>
               </div>
             </div>

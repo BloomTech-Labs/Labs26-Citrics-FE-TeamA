@@ -68,11 +68,9 @@ export default function JobIndustryViz({
     }
   }
 
-  return !jobTable.jobVizData ? (
-    <Loader />
-  ) : (
+  return  (
     <div className="jobViz">
-      {dynamicJobViz(jobTable.jobVizData, jobTable.jobVizLayout)}
+      {/* {dynamicJobViz(jobTable.jobVizData, jobTable.jobVizLayout)} */}
     </div>
     // eslint-disable-next-line semi
   );
