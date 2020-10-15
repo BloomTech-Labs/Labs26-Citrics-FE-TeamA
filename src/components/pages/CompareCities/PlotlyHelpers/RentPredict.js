@@ -7,8 +7,11 @@ export default function RentPredict({
   lastCityState,
   searching,
   number,
+  rentalData,
 }) {
-  const [rentalPredictData, setRentalPredictData] = useState([]);
+  const rentalFill = rentalData.rentalFill;
+  const rentalPredictData = rentalData.rentalPredictData;
+  const setRentalPredictData = rentalData.setRentalPredictData;
   useEffect(() => {
     async function fetchRentalPredict() {
       const request = await axios.get(
@@ -21,7 +24,6 @@ export default function RentPredict({
     }
     fetchRentalPredict();
   }, [lastCityState.lastCity, lastCityState.lastState]);
-  let rentalFill = {};
   const currentYear = new Date().getFullYear();
   const nextYear = currentYear + 1;
   const secondYearOut = currentYear + 2;
@@ -75,9 +77,11 @@ export default function RentPredict({
       ];
     }
   }
+
   dynamicRentPredict(rentalPredictData, 0);
   dynamicRentPredict(rentalPredictData, 1);
   dynamicRentPredict(rentalPredictData, 2);
+
   return (
     <div className="rentalPredict">
       {rentalFill[0] && rentalFill[0]}
