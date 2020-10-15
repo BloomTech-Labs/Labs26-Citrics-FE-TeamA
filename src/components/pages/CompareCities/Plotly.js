@@ -23,7 +23,6 @@ export default function Plotly(props) {
   const [jobIndustry, setJobIndustry] = useState({});
   const [weatherPredict, setWeatherPredict] = useState({});
   const [rentalPredictData, setRentalPredictData] = useState([]);
-
   let { compareList, setCompareList, searching, setSearching } = useContext(
     ReportContext
   );
@@ -336,8 +335,6 @@ export default function Plotly(props) {
   dynamicWeatherFill(city1, 0);
   dynamicWeatherFill(city2, 1);
   dynamicWeatherFill(city3, 2);
-  console.log('rentalPredictData', rentalPredictData);
-  console.log('rentalFill', rentalFill);
   function hideCity(event) {
     // id of button the user clicks
     let id = event.target.id;
@@ -371,7 +368,6 @@ export default function Plotly(props) {
         delete walkCityData.cityWalk2;
         delete rentalFill[1];
         setRentalPredictData([rentalPredictData[0], rentalPredictData[2]]);
-
         setWeatherCityData({
           cityWeather1: weatherCityData.cityWeather1,
           cityWeather2: copyWeather3,
@@ -400,7 +396,6 @@ export default function Plotly(props) {
       if (id === 'btn1') {
         delete rentalFill[0];
         rentalPredictData[0] = rentalPredictData.pop();
-
         // setRentalPredictData([rentalPredictData[1]]);
         setWeatherCityData({
           // // updating cityweather/walk to replace old city1 data
