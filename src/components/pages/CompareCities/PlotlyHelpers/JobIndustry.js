@@ -18,7 +18,7 @@ export default function JobIndustryViz({
         `/bls_jobs/${lastCityState.lastCity}_${lastCityState.lastState}`
       );
       const jobIndustryInfo = JSON.parse(request.data);
-      function firstFive(arr){
+      function firstFive(arr) {
         let items = arr.slice(0, 5).map(job => {
           return job;
         });
@@ -31,7 +31,7 @@ export default function JobIndustryViz({
           ann_wage: jobIndustryInfo[0].annual_wage,
           hr_wage: jobIndustryInfo[0].hourly_wage,
         });
-      } 
+      }
       // else if (
       //   'jobVizData' in jobIndustryViz.jobIndustryViz &&
       //   !('jobVizData2' in jobIndustryViz.jobIndustryViz) &&
@@ -64,10 +64,7 @@ export default function JobIndustryViz({
   // console.log(jobTable.jobIndustry);
   function dynamicJobViz(data, layout) {
     if (data !== undefined) {
-      return (
-        <div>
-        </div>
-      );
+      return <div></div>;
     }
   }
 

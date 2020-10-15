@@ -10,11 +10,6 @@ export default function RentPredict({
 }) {
   const [rentalPredictData, setRentalPredictData] = useState([]);
   useEffect(() => {
-    //   For search bar loading knowledge
-    //   setSearching({
-    //     ...searching,
-    //     walkability: true,
-    //   });
     async function fetchRentalPredict() {
       const request = await axios.get(
         `/rental/predict/${lastCityState.lastCity}_${lastCityState.lastState}`
@@ -23,10 +18,6 @@ export default function RentPredict({
       const filler = rentalPredictData;
       filler.push(res);
       setRentalPredictData(filler);
-      // setSearching({
-      //   ...searching,
-      //   walkability: false,
-      // });
     }
     fetchRentalPredict();
   }, [lastCityState.lastCity, lastCityState.lastState]);
@@ -44,14 +35,25 @@ export default function RentPredict({
         <section className="rentalFill" key={index}>
           <h3>{currentCity}</h3>
           <div className="rentalPredictData">
-            <div className="yaxis">
-              <br />
-              <p>Studio</p>
-              <p>1 Bedroom</p>
-              <p>2 Bedroom</p>
-              <p>3 Bedroom</p>
-              <p>4 Bedroom</p>
-            </div>
+            {rentalPredictData[index] === rentalPredictData[0] ? (
+              <div className="yaxis">
+                <h5># of Rooms</h5>
+                <p>Studio</p>
+                <p>1 Bedroom</p>
+                <p>2 Bedroom</p>
+                <p>3 Bedroom</p>
+                <p>4 Bedroom</p>
+              </div>
+            ) : (
+              <div className="yaxis">
+                <h5> </h5>
+                <p> </p>
+                <p> </p>
+                <p> </p>
+                <p> </p>
+                <p> </p>
+              </div>
+            )}
             <div className="nextYear">
               <h5>{nextYear}</h5>
               <p>{rentalPredictData[index].Studio[nextYear]}</p>
