@@ -26,6 +26,7 @@ export default function RenderHomePage() {
     walkability: false,
     rentpredict: false,
     jobviz: false,
+    weatherPredictViz: false,
   });
 
   // An object of city data arrays
@@ -66,11 +67,10 @@ export default function RenderHomePage() {
       {compareList.searched === false ? (
         <StaticHomePage />
       ) : (
-        <ReportContext.Provider value={{ compareList, setCompareList }}>
-          <CityReport
-            compareList={compareList}
-            searchOptions={{ searching, setSearching }}
-          />
+        <ReportContext.Provider
+          value={{ compareList, setCompareList, searching, setSearching }}
+        >
+          <CityReport compareList={compareList} />
         </ReportContext.Provider>
       )}
     </>

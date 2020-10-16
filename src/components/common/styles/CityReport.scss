@@ -30,12 +30,11 @@
 }
 .weathers {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 0 15vw;
   padding-bottom: 4%;
 }
 .cityDisplayPlot {
-  padding: 0 2vw 0;
   text-align: center;
   transition: opacity 1s;
 }
@@ -48,6 +47,68 @@
   }
 }
 
+.rentalPredict {
+  border: 6px outset #c5c5ec;
+  border-radius: 15px;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 15vw;
+  .rentalFill:nth-child(2),
+  .rentalFill:nth-child(3) {
+    .yaxis {
+      h5,
+      p {
+        color: rgba(0, 0, 0, 0.1);
+      }
+    }
+  }
+  .rentalFill:first-child .rentalPredictData {
+    display: grid;
+    grid-template-columns: 49.5% 1fr 1fr;
+    .yaxis {
+      p {
+        padding-left: 1vw;
+      }
+    }
+  }
+  .rentalFill {
+    h3 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+    h5 {
+      font-size: 1.8rem;
+    }
+    p {
+      margin: 0;
+      padding: 2vh 0;
+    }
+    p:nth-child(odd) {
+      background-color: rgba(255, 255, 255, 0.212);
+    }
+
+    p:nth-child(even) {
+      background-color: rgba(0, 0, 0, 0.171);
+    }
+
+    display: grid;
+    width: 100%;
+
+    .rentalPredictData {
+      display: grid;
+      grid-template-columns: 1% 1fr 1fr;
+      div {
+        display: grid;
+        grid-template-rows: repeat(6, 1fr);
+        width: 100%;
+        // align-items: center;
+      }
+      .yaxis {
+        text-align: left;
+      }
+    }
+  }
+}
 .walkData {
   background: rgba(255, 163, 59, 0.699);
   border: 6px outset rgb(197, 197, 236);
@@ -85,6 +146,10 @@
     transition: ease-in-out 0.25s;
   }
   margin-bottom: 3%;
+}
+span.ant-modal-close-x {
+  opacity: 0;
+  cursor: default;
 }
 
 .weatherData {

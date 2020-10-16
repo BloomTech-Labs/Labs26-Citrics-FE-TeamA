@@ -7,11 +7,10 @@ import WeatherPlot from './PlotlyHelpers/weatherPlot';
 import WalkData from './PlotlyHelpers/walkData';
 import UnemploymentPlot from './PlotlyHelpers/UnemploymentPlot';
 import RentPlot from './PlotlyHelpers/RentPlot';
-import RentPredictViz from './PlotlyHelpers/RentPredictViz';
-import JobIndustryViz from './PlotlyHelpers/JobIndustryViz';
+import RentPredict from './PlotlyHelpers/RentPredict';
+import JobIndustryViz from './PlotlyHelpers/JobIndustry';
+import WeatherPredictViz from './PlotlyHelpers/WeatherPredict';
 export default function Plotly(props) {
-  let searching = props.searchOptions.searching;
-  let setSearching = props.searchOptions.setSearching;
   //  State for plotly json info
   const [thisCityData, setThisCityData] = useState({});
   const [walkCityData, setWalkCityData] = useState({
@@ -20,8 +19,11 @@ export default function Plotly(props) {
   const [weatherCityData, setWeatherCityData] = useState({});
   const [unemployment, setUnemployment] = useState({});
   const [rentPredict, setRentPredict] = useState({});
-  const [jobIndustryViz, setJobIndustryViz] = useState({});
-  let { compareList, setCompareList } = useContext(ReportContext);
+  const [jobIndustry, setJobIndustry] = useState({});
+  const [weatherPredict, setWeatherPredict] = useState({});
+  let { compareList, setCompareList, searching, setSearching } = useContext(
+    ReportContext
+  );
   let walkFill = {};
   let weatherFill = {};
   let lastCityAdded = compareList.cities[compareList.cities.length - 1];
@@ -190,49 +192,7 @@ export default function Plotly(props) {
     }
     fetchWalkData();
   }, [lastCity, lastState]);
-  // retrieves the ---RENTAL PREDICT--- viz graph from the DS API
-  useEffect(() => {
-    // For search bar loading
-    setSearching({
-      ...searching,
-      rentpredict: true,
-    });
-    async function fetchRentalPredictViz() {
-      if (compareList.cities.length === 1) {
-        const request = await axios.get(
-          `/rental/predict/viz/${lastCity}_${lastState}`
-        );
-        const rentPredict = JSON.parse(request.data);
-        setRentPredict({
-          rentPredictData: rentPredict.data,
-          rentPredictLayout: rentPredict.layout,
-        });
-      }
-      setSearching({
-        ...searching,
-        rentpredict: false,
-      });
-    }
-    fetchRentalPredictViz();
-  }, [lastCity, lastState, lastCityAdded, compareList.cities]);
-  // retrieves the BLS viz view chart graph viz from DS API
-  // useEffect(() => {
-  //   setSearching({
-  //     ...searching,
-  //     jobviz: true
-  //   });
-  //   async function fetchJobIndustryViz() {
-  //     if (compareList.cities.length === 1) {
-  //       const request = axios.get(`/bls_viz/${lastCity}_${lastState}`);
-  //       const jobViz = JSON.parse(request.data);
-  //       setJobIndustryViz({
-  //         jobVizData: jobViz.data,
-  //         jobVizLayout: jobViz.layout
-  //       });
-  //     }
-  //   }
-  //   fetchJobIndustryViz();
-  // }, [lastCity, lastState, lastCityAdded, compareList.cities]);
+
   let cityWalk1 = walkCityData.cityWalk1;
   let cityWalk2 = walkCityData.cityWalk2;
   let cityWalk3 = walkCityData.cityWalk3;
@@ -251,18 +211,16 @@ export default function Plotly(props) {
       ];
     }
   }
-  let classes = ['main-temperature', 'main-temperature', 'main-temperature'];
-
+  let tempClass = ['main-temperature', 'main-temperature', 'main-temperature'];
   function getTempsToSetClass(cityNum, num) {
-    console.log(cityNum, num);
     num -= 1;
     cityNum
       ? cityNum.imperial_main_temp < 60
-        ? (classes[num] += ' tooCold')
+        ? (tempClass[num] += ' tooCold')
         : cityNum.imperial_main_temp > 80
-        ? (classes[num] += ' tooHot')
-        : (classes[num] += ' justRight')
-      : (classes[num] = ['main-temperature']);
+        ? (tempClass[num] += ' tooHot')
+        : (tempClass[num] += ' justRight')
+      : (tempClass[num] = ['main-temperature']);
   }
   getTempsToSetClass(city1, 1);
   getTempsToSetClass(city2, 2);
@@ -277,10 +235,8 @@ export default function Plotly(props) {
         >
           <h3>Weather</h3>
           <div className="temperature-div">
-            <div className="main-temperature">
-              <h1 className={classes[number]}>
-                {cityNumber.imperial_main_temp}°
-              </h1>
+            <div className={tempClass[number]}>
+              <h1>{cityNumber.imperial_main_temp}°</h1>
             </div>
             <div className="other-temperature">
               <p>Feels Like: {cityNumber.imperial_main_feels_like}°</p>
@@ -292,7 +248,9 @@ export default function Plotly(props) {
           </div>
           <div className="weather-stat-div">
             <div className="weather-stat-titles">
-              <p>Today's Forecast: </p>
+              <p>
+                Today's <br /> Forecast:{' '}
+              </p>
               <p>{cityNumber.description}</p>
               <p>Clouds Today: </p>
               <p>{cityNumber.clouds_all}%</p>
@@ -324,10 +282,7 @@ export default function Plotly(props) {
           id="cityNumber"
         >
           <div className="city-title">
-            <h1>
-              {thisCityData.cityData[number] !== undefined &&
-                thisCityData.cityData[number].name}
-            </h1>
+            <h1>{cityNumber.city}</h1>
             <button
               className="remove-btn"
               id={'btn' + (number + 1)}
@@ -459,12 +414,32 @@ export default function Plotly(props) {
     <section>
       <div className="vizs">
         <RentPlot thisCityData={thisCityData} />
-        <RentPredictViz rentPredictViz={rentPredict} />
+        {/* <RentPredictViz
+          compareList={compareList.cities}
+          lastCityState={{ lastCity, lastState, lastCityAdded }}
+          searching={{ searching, setSearching }}
+        /> */}
         <UnemploymentPlot unemployment={unemployment} />
-        {/* <JobIndustryViz jobViz={jobIndustryViz} /> */}
+        <WeatherPredictViz
+          weatherPrediction={{ weatherPredict, setWeatherPredict }}
+          compareList={compareList.cities}
+          lastCityState={{ lastCity, lastState, lastCityAdded }}
+          searching={{ searching, setSearching }}
+        />
       </div>
+      <JobIndustryViz
+        searching={{ searching, setSearching }}
+        lastCityState={{ lastCity, lastState, lastCityAdded }}
+        compareList={compareList.cities}
+        jobTable={{ jobIndustry, setJobIndustry }}
+      />
+      <RentPredict
+        compareList={compareList.cities}
+        lastCityState={{ lastCity, lastState, lastCityAdded }}
+        searching={{ searching, setSearching }}
+      />
       <div className="weathers">
-        {dynamicMainData(thisCityData.cityData, 0)}
+        {dynamicMainData(city1, 0)}
         {dynamicMainData(city2, 1)}
         {dynamicMainData(city3, 2)}
       </div>
