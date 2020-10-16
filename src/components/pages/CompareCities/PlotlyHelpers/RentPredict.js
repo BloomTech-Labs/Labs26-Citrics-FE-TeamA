@@ -96,11 +96,13 @@ export default function RentPredict({
   compareList.length === 2 && dynamicRentPredict(rentalPredictData, 1);
   compareList.length === 3 && dynamicRentPredict(rentalPredictData, 2);
 
-  return (
+  return rentalFill[0] ? (
     <div className="rentalPredict">
       {rentalFill[0] && compareList.length >= 1 && rentalFill[0]}
       {rentalFill[1] && compareList.length >= 2 && rentalFill[1]}
       {rentalFill[2] && compareList.length >= 3 && rentalFill[2]}
     </div>
+  ) : (
+    <Loader />
   );
 }
