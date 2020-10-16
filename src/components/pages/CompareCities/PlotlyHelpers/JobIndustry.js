@@ -8,6 +8,7 @@ export default function JobIndustryViz({
   compareList,
   jobTable,
 }) {
+  console.log(jobTable);
   useEffect(() => {
     searching.setSearching({
       ...searching,
@@ -24,6 +25,7 @@ export default function JobIndustryViz({
         });
         return items;
       }
+      // console.log(firstFive(jobIndustryInfo), 'first 5 invoked');
       if (!('occ1' in jobTable.jobIndustry)) {
         jobTable.setJobIndustry({
           occ1: jobIndustryInfo[0].occ_title,
@@ -66,11 +68,9 @@ export default function JobIndustryViz({
     }
   }
 
-  return !jobTable.jobVizData ? (
-    <Loader />
-  ) : (
+  return (
     <div className="jobViz">
-      {dynamicJobViz(jobTable.jobVizData, jobTable.jobVizLayout)}
+      {/* {dynamicJobViz(jobTable.jobVizData, jobTable.jobVizLayout)} */}
     </div>
     // eslint-disable-next-line semi
   );
