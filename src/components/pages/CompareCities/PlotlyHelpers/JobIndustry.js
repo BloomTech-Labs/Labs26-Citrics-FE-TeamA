@@ -8,6 +8,7 @@ export default function JobIndustryViz({
   compareList,
   jobTable,
 }) {
+  console.log(jobTable);
   useEffect(() => {
     searching.setSearching({
       ...searching,
@@ -61,14 +62,13 @@ export default function JobIndustryViz({
     lastCityState.lastCityAdded,
     compareList,
   ]);
-  // console.log(jobTable.jobIndustry);
   function dynamicJobViz(data, layout) {
     if (data !== undefined) {
       return <div></div>;
     }
   }
 
-  return  (
+  return (
     <div className="jobViz">
       {/* {dynamicJobViz(jobTable.jobVizData, jobTable.jobVizLayout)} */}
     </div>

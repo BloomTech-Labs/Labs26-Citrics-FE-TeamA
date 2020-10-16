@@ -50,58 +50,62 @@ export default function AdvSearch() {
   function handleSubmit(e) {
     e.preventDefault();
     // fetch cities that match users preferences
-    axios.get(`/adv_search/${searchCities.population}_${searchCities.homesize}_${searchCities.budget}_${searchCities.climate}`)
+    axios
+      .get(
+        `/adv_search/${searchCities.population}_${searchCities.homesize}_${searchCities.budget}_${searchCities.climate}`
+      )
       .then(res => {
         // select 3 random cities from that response
-        let advSearchData = JSON.parse(res.data).sort(() => Math.random() - Math.random()).slice(0, 3);
+        let advSearchData = JSON.parse(res.data)
+          .sort(() => Math.random() - Math.random())
+          .slice(0, 3);
         // pass those 3 cities into advSearchResults
         setAdvSearchResults(advSearchData);
       })
       .catch(err => {
         console.log(err);
       });
-      hideForm();
-    }
-    // if advSearchResults not empty
-    if (advSearchResults[2] !== undefined){
-      advSearchResults.map(idx => {
-        // push city + state names to randomCities array
-        return randomCities.push([idx.city,idx.state]);
-      });
-    }
+    hideForm();
+  }
+  // if advSearchResults not empty
+  if (advSearchResults[2] !== undefined) {
+    advSearchResults.map(idx => {
+      // push city + state names to randomCities array
+      return randomCities.push([idx.city, idx.state]);
+    });
+  }
 
-    useEffect(() => {
-      async function fetchThreeCities(){
-        // when advSearchResults is full
-        if(await advSearchResults.length !== 0){
-          // push random city names into compareList.cities array to begin search functions
+  useEffect(() => {
+    async function fetchThreeCities() {
+      // when advSearchResults is full
+      if ((await advSearchResults.length) !== 0) {
+        // push random city names into compareList.cities array to begin search functions
+        compareContext.setCompareList({
+          ...compareContext.compareList,
+          cities: [randomCities[0]],
+          searched: true,
+        });
+        // space out cities being added to allow different stat cards to appear correctly
+        // these times are currently the shortest we could trim to at the moment
+        setTimeout(() => {
           compareContext.setCompareList({
             ...compareContext.compareList,
-            cities: [randomCities[0]],
-            searched: true
+            cities: [randomCities[0], randomCities[1]],
+            searched: true,
           });
-          // space out cities being added to allow different stat cards to appear correctly
-          // these times are currently the shortest we could trim to at the moment
-          setTimeout(() => {
-            compareContext.setCompareList({
-              ...compareContext.compareList,
-              cities: [randomCities[0], randomCities[1]],
-            searched: true
-            });
-          }, 2200);
-          setTimeout(() => {
-            compareContext.setCompareList({
-              ...compareContext.compareList,
-              cities: [randomCities[0], randomCities[1], randomCities[2]],
-              searched: true
-            });
-          }, 4500);
-        }
-
+        }, 2200);
+        setTimeout(() => {
+          compareContext.setCompareList({
+            ...compareContext.compareList,
+            cities: [randomCities[0], randomCities[1], randomCities[2]],
+            searched: true,
+          });
+        }, 4500);
       }
-      fetchThreeCities();
-    },[advSearchResults]);
-    
+    }
+    fetchThreeCities();
+  }, [advSearchResults]);
+
   return (
     <div className="adv-search-div-container">
       <Button

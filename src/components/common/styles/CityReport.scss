@@ -30,7 +30,7 @@
 }
 .weathers {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin: 0 15vw;
   padding-bottom: 4%;
 }
@@ -40,11 +40,6 @@
 }
 .fadeIn {
   animation: all 2s ease-in-out;
-}
-.walkData {
-  p {
-    padding: 1%;
-  }
 }
 
 .rentalPredict {
@@ -110,13 +105,14 @@
   }
 }
 .walkData {
+  p {
+    padding: 1%;
+  }
   background: rgba(255, 163, 59, 0.699);
   border: 6px outset rgb(197, 197, 236);
   color: white;
   border-radius: 20px;
   padding-top: 6%;
-  padding-left: 3vw;
-  padding-right: 3vw;
   &:hover {
     cursor: default;
   }
