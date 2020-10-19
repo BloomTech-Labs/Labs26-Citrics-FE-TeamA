@@ -61,14 +61,21 @@ export default function AdvSearch() {
           .slice(0, 3);
         // pass those 3 cities into advSearchResults
         setAdvSearchResults(advSearchData);
+        hideForm();
       })
       .catch(err => {
         console.log(
           'WWHHHOOOOOOAAAAAA, LOOOOKKKSSSS LIKE YOU ERRRRRROOOOORRRRREEEDDD OOOOUUUUUUTTTTTT!!!!'
         );
+        document.getElementById('form-container').classList.add('error');
+        setTimeout(() => {
+          document.getElementById('form-container').classList.remove('error');
+          alert('We cannot find any cities based on your preferences, please try again!');
+        }, 700);
+        setSearchCities(reset);
+        resetHelper();
         console.log(err);
       });
-    hideForm();
   }
   // if advSearchResults not empty
   if (advSearchResults[2] !== undefined) {
@@ -119,7 +126,7 @@ export default function AdvSearch() {
       >
         Advanced Search
       </Button>
-      <div className="form-container" id="form-container">
+      <div id="form-container">
         <h2>Find Your Preferred City</h2>
         <div className="adv-form-container">
           <p>
