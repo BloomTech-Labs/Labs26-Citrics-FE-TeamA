@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { URL } from './dsapi';
+import { NewURL } from './dsapi';
 export default function fetchCityData() {
   return axios
-    .get(URL + 'rent_city_state/')
+    .get(NewURL + 'rent_city_state/')
     .then(response => {
       return JSON.parse(response.data);
     })
