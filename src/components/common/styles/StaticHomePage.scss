@@ -15,6 +15,9 @@
     font-size: 1.5rem;
   }
 }
+.emptyImg {
+  height: 15vh;
+}
 @media (max-width: 800px) {
   .information {
     grid-template-columns: none;

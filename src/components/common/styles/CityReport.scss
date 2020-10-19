@@ -37,23 +37,25 @@
 .cityDisplayPlot {
   text-align: center;
   transition: opacity 1s;
+  width: 45%;
+  padding: 0 2vw;
 }
 .fadeIn {
   animation: all 2s ease-in-out;
 }
-
 .rentalPredict {
   border: 6px outset #c5c5ec;
   border-radius: 15px;
   display: flex;
   justify-content: space-around;
-  margin: 0 15vw;
+  margin: 0 5vw;
   .rentalFill:nth-child(2),
   .rentalFill:nth-child(3) {
     .yaxis {
       h5,
       p {
         color: rgba(0, 0, 0, 0.1);
+        font-size: 0;
       }
     }
   }
@@ -78,17 +80,11 @@
       margin: 0;
       padding: 2vh 0;
     }
-    p:nth-child(odd) {
-      background-color: rgba(255, 255, 255, 0.212);
-    }
-
     p:nth-child(even) {
-      background-color: rgba(0, 0, 0, 0.171);
+      background-color: rgba(255, 255, 255, 0.4);
     }
-
     display: grid;
     width: 100%;
-
     .rentalPredictData {
       display: grid;
       grid-template-columns: 1% 1fr 1fr;
@@ -124,7 +120,7 @@
   }
   .walkscore-num {
     text-shadow: 0 0 5px #000000;
-    font-size: 5.5rem;
+    font-size: 5rem;
     margin-bottom: 2%;
   }
   .walkscore-btn {
@@ -147,7 +143,6 @@ span.ant-modal-close-x {
   opacity: 0;
   cursor: default;
 }
-
 .weatherData {
   border-radius: 15px;
   background: rgba(255, 163, 59, 0.699);
@@ -241,26 +236,32 @@ span.ant-modal-close-x {
     url($backgroundUrl);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position-y: $backgroundPosY;
+  background-position-x: $backgroundPosX;
   background-position-y: $backgroundPosY;
 }
 .Clouds {
-  @include backgroundGifs('./imgs/Cloud-48501.gif', auto, auto);
+  @include backgroundGifs('./imgs/Cloud-48501.gif', left, auto);
+}
+.Few.Clouds {
+  @include backgroundGifs('./imgs/Cloud-48501.gif', center, auto);
+}
+.Scattered.Clouds {
+  @include backgroundGifs('./imgs/Cloud-48501.gif', center, auto);
 }
 .Haze,
 .Mist {
   @include backgroundGifs('./imgs/fog_mist.gif', auto, auto);
 }
 .Clear {
-  @include backgroundGifs('./imgs/sunny.gif', auto, 60%);
+  @include backgroundGifs('./imgs/sunny.gif', 55%, 50%);
 }
-.Rain {
+.Rain,
+.Drizzle {
   @include backgroundGifs('./imgs/rain.gif', auto, auto);
 }
 .Snowing {
   @include backgroundGifs('./imgs/snowfall.gif', auto, auto);
 }
-
 .city-title {
   display: flex;
   justify-content: space-evenly;
@@ -271,7 +272,7 @@ span.ant-modal-close-x {
   margin: 4% auto;
   h1 {
     color: white;
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     margin: auto 0;
   }
   .remove-btn {
@@ -301,6 +302,20 @@ span.ant-modal-close-x {
   }
 }
 @media (max-width: 1050px) {
+  .rentalPredict {
+    margin: 0 3vw;
+  }
+  .rentalPredict .rentalFill {
+    h3 {
+      font-size: 2rem;
+    }
+    h5 {
+      font-size: 1.4rem;
+    }
+    p {
+      padding: 1vh 0;
+    }
+  }
   .vizs {
     grid-template-columns: 100%;
   }
@@ -315,7 +330,6 @@ span.ant-modal-close-x {
     width: 60%;
     margin: auto;
   }
-
   .weatherData {
     padding: 5% 0%;
     .main-temperature h1 {
@@ -333,6 +347,21 @@ span.ant-modal-close-x {
   }
 }
 @media (max-width: 500px) {
+  .rentalPredict {
+    margin: 0;
+  }
+  .rentalPredict .rentalFill {
+    h3 {
+      font-size: 1.2rem;
+    }
+    h5 {
+      font-size: 0.8rem;
+    }
+    p {
+      font-size: 1rem;
+      padding: 1vh 0;
+    }
+  }
   .vizs {
     transform: scale(0.6);
     margin: -35% -25%;
@@ -381,7 +410,6 @@ span.ant-modal-close-x {
   .walkData {
     border-radius: 0;
     border: none;
-
     padding: 3px;
     .walkscore-num {
       font-size: 2rem;
@@ -408,12 +436,10 @@ span.ant-modal-close-x {
     h3 {
       opacity: 0;
     }
-
     .weather-stat-titles {
       p:nth-child(odd) {
         opacity: 0;
       }
-
       p:last-child {
         margin-bottom: 0;
       }
