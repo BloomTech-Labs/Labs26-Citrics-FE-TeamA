@@ -19,7 +19,6 @@ export default function Plotly(props) {
   });
   const [weatherCityData, setWeatherCityData] = useState({});
   const [unemployment, setUnemployment] = useState({});
-  // const [rentPredict, setRentPredict] = useState({});   LOOOOOOOOKKK
   const [jobIndustry, setJobIndustry] = useState({});
   const [weatherPredict, setWeatherPredict] = useState({});
   const [rentalPredictData, setRentalPredictData] = useState([]);
