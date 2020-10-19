@@ -62,7 +62,6 @@ export default function WeatherPredictViz({
     compareList,
   ]);
   const weatherPredictRes = weatherPrediction.weatherPredict;
-  console.log(weatherPredictRes);
   return weatherPredictRes.weatherPredictionData ? (
     <div>
       <Plot
