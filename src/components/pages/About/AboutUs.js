@@ -316,7 +316,7 @@ export default function AboutUs() {
                 <p className="member-bio">
                   Data Scientist with a passion for data analytics, data
                   prediction and sports. Enjoy problem solving and working with
-                  others
+                  others.
                 </p>
               </div>
             </div>

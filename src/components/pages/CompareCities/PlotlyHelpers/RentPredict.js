@@ -42,25 +42,15 @@ export default function RentPredict({
         <section className="rentalFill" key={index}>
           <h3>{currentCity}</h3>
           <div className="rentalPredictData">
-            {rentalPredictData[index] === rentalPredictData[0] ? (
-              <div className="yaxis">
-                <h5># of Rooms</h5>
-                <p>Studio</p>
-                <p>1 Bedroom</p>
-                <p>2 Bedroom</p>
-                <p>3 Bedroom</p>
-                <p>4 Bedroom</p>
-              </div>
-            ) : (
-              <div className="yaxis">
-                <h5> </h5>
-                <p> </p>
-                <p> </p>
-                <p> </p>
-                <p> </p>
-                <p> </p>
-              </div>
-            )}
+            <div className="yaxis">
+              <h5># of Rooms</h5>
+              <p>Studio</p>
+              <p>1 Bedroom</p>
+              <p>2 Bedroom</p>
+              <p>3 Bedroom</p>
+              <p>4 Bedroom</p>
+            </div>
+
             <div className="nextYear">
               <h5>{nextYear}</h5>
               <p>{rentalPredictData[index].Studio[nextYear]}</p>
@@ -89,14 +79,12 @@ export default function RentPredict({
     rentalPredictData.length > 1 &&
       setRentalPredictData([rentalPredictData[0]]);
   }
-
   compareList.length === 2 &&
     rentalPredictData.length > 2 &&
     setRentalPredictData(rentalPredictData.slice(0, 2));
   compareList.length === 2 && dynamicRentPredict(rentalPredictData, 1);
   compareList.length === 3 && dynamicRentPredict(rentalPredictData, 2);
-
-  return rentalFill[0] ? (
+  return rentalFill[0] || rentalFill[1] ? (
     <div className="rentalPredict">
       {rentalFill[0] && compareList.length >= 1 && rentalFill[0]}
       {rentalFill[1] && compareList.length >= 2 && rentalFill[1]}

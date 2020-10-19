@@ -24,7 +24,7 @@ export default function RenderHomePage() {
     rent: false,
     unemployment: false,
     walkability: false,
-    rentpredict: false,
+    rentPredict: false,
     jobviz: false,
     weatherPredictViz: false,
   });
@@ -39,6 +39,7 @@ export default function RenderHomePage() {
   const getRentalData = () => {
     fetchCityData()
       .then(response => {
+        console.log(response);
         setCityData(response);
       })
       .catch(err => {
@@ -46,6 +47,7 @@ export default function RenderHomePage() {
       });
   };
   // For each item in cityData array, if it is not in the dicitonary cityDataArr yet, make an array for that city name
+
   cityData.forEach(value => {
     if (!(value.city in cityDataArr)) {
       cityDataArr[value.city] = [];
@@ -65,7 +67,10 @@ export default function RenderHomePage() {
         </ReportContext.Provider>
       </SearchContext.Provider>
       {compareList.searched === false ? (
-        <StaticHomePage />
+        <>
+          <StaticHomePage />
+          <div className="colorTitle emptyImg"></div>
+        </>
       ) : (
         <ReportContext.Provider
           value={{ compareList, setCompareList, searching, setSearching }}

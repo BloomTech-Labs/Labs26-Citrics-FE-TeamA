@@ -1,8 +1,64 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Loader from '../../../common/Loader';
 import Plot from 'react-plotly.js';
+import axios from '../../../../api/dsapi';
 
 export default function RentPlot(props) {
+  // setting up prop variables
+  let searching = props.rentPlotOptions.searching;
+  let setSearching = props.rentPlotOptions.setSearching;
+  let compareList = props.rentPlotOptions.compareList;
+  let lastCity = props.rentPlotOptions.lastCity;
+  let lastState = props.rentPlotOptions.lastState;
+  let lastCityAdded = props.rentPlotOptions.lastCityAdded;
+  let setThisCityData = props.rentPlotOptions.setThisCityData;
+  console.log(props);
+  // useEffect for fetching ---RENT--- data viz from ds backend
+  // sets the cityData and cityLayout for following cities into thisCityData
+  useEffect(() => {
+    // For search bar loading knowledge
+    setSearching({
+      ...searching,
+      rent: true,
+    });
+    async function fetchRentData() {
+      if (compareList.cities.length === 1) {
+        const request = await axios.get(`/rent_viz/${lastCity}_${lastState}`);
+        const rentData = JSON.parse(request.data);
+        setThisCityData({
+          cityData: rentData.data,
+          cityLayout: rentData.layout,
+        });
+      } else if (compareList.cities.length === 2) {
+        let firstCity = compareList.cities[compareList.cities.length - 2];
+        const request = await axios.get(
+          `/rent_viz/${firstCity[0]}_${firstCity[1]}?cityWeather2=${lastCityAdded[0]}&statecode2=${lastCityAdded[1]}`
+        );
+        const rentData = JSON.parse(request.data);
+        setThisCityData({
+          cityData: rentData.data,
+          cityLayout: rentData.layout,
+        });
+      } else if (compareList.cities.length === 3) {
+        let firstCity = compareList.cities[compareList.cities.length - 3];
+        let secondCity = compareList.cities[compareList.cities.length - 2];
+        const request = await axios.get(
+          `/rent_viz/${firstCity[0]}_${firstCity[1]}?cityWeather2=${secondCity[0]}&statecode2=${secondCity[1]}&cityWeather3=${lastCityAdded[0]}&statecode3=${lastCityAdded[1]}`
+        );
+        const rentData = JSON.parse(request.data);
+        setThisCityData({
+          cityData: rentData.data,
+          cityLayout: rentData.layout,
+        });
+      }
+      setSearching({
+        ...searching,
+        rent: false,
+      });
+    }
+    fetchRentData();
+  }, [lastState, lastCity, lastCityAdded, compareList.cities]);
+
   return !props.thisCityData.cityData ? (
     <Loader />
   ) : (

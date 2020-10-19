@@ -46,9 +46,9 @@ export default function AdvSearch() {
       [name]: value,
     });
   }
-
   function handleSubmit(e) {
     e.preventDefault();
+    compareContext.setCompareList({ cities: [], searched: false });
     // fetch cities that match users preferences
     axios
       .get(
@@ -63,6 +63,9 @@ export default function AdvSearch() {
         setAdvSearchResults(advSearchData);
       })
       .catch(err => {
+        console.log(
+          'WWHHHOOOOOOAAAAAA, LOOOOKKKSSSS LIKE YOU ERRRRRROOOOORRRRREEEDDD OOOOUUUUUUTTTTTT!!!!'
+        );
         console.log(err);
       });
     hideForm();
@@ -93,14 +96,14 @@ export default function AdvSearch() {
             cities: [randomCities[0], randomCities[1]],
             searched: true,
           });
-        }, 2200);
+        }, 4000);
         setTimeout(() => {
           compareContext.setCompareList({
             ...compareContext.compareList,
             cities: [randomCities[0], randomCities[1], randomCities[2]],
             searched: true,
           });
-        }, 4500);
+        }, 8000);
       }
     }
     fetchThreeCities();
@@ -120,7 +123,7 @@ export default function AdvSearch() {
         <h2>Find Your Preferred City</h2>
         <div className="adv-form-container">
           <p>
-            Based off your answers provided in this form, we will display 5
+            Based off your answers provided in this form, we will display 3
             cities that match your desired options.
           </p>
           <form>
