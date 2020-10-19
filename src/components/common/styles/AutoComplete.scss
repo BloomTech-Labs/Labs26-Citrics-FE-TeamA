@@ -22,9 +22,21 @@
     opacity: 1;
   }
 }
-
+.autocomplete .focus {
+  background-color: rgb(255, 152, 152);
+  font-weight: 600;
+}
 /*the container must be positioned relative:*/
 .autocomplete {
+  p {
+    overflow-y: hidden;
+    padding: 1%;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+    width: 90vw;
+    margin: 0;
+  }
   position: relative;
   position: absolute;
   z-index: 99;
@@ -63,16 +75,6 @@ input[type='submit'] {
   right: 0;
 }
 
-.autocomplete p {
-  overflow-y: hidden;
-  padding: 1%;
-  cursor: pointer;
-  background-color: #fff;
-  border-bottom: 1px solid #d4d4d4;
-  width: 85vw;
-  margin: 0;
-}
-
 /*when hovering an item:*/
 .autocomplete p:hover {
   background-color: #e9e9e9;
@@ -101,4 +103,7 @@ h4 {
       font-size: 1rem;
     }
   }
+}
+.ant-input-group-wrapper {
+  width: 90vw;
 }
