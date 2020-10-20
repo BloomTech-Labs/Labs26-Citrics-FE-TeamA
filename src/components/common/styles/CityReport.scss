@@ -301,6 +301,33 @@ span.ant-modal-close-x {
     margin: 0 auto;
   }
 }
+
+.popData {
+  p {
+    padding: 1%;
+  }
+  background: rgba(255, 163, 59, 0.699);
+  border: 6px outset rgb(197, 197, 236);
+  color: white;
+  border-radius: 20px;
+  padding-top: 6%;
+  &:hover {
+    cursor: default;
+  }
+  h3 {
+    padding-top: 3%;
+    color: white;
+    font-size: x-large;
+    text-shadow: 0 0 3px #000000;
+  }
+  .pop-num {
+    text-shadow: 0 0 5px #000000;
+    font-size: 5rem;
+    margin-bottom: 2%;
+  }
+  margin-bottom: 3%;
+}
+
 @media (max-width: 1050px) {
   .rentalPredict {
     margin: 0 3vw;

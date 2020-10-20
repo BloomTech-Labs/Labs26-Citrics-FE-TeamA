@@ -39,7 +39,6 @@ export default function RenderHomePage() {
   const getRentalData = () => {
     fetchCityData()
       .then(response => {
-        console.log(response);
         setCityData(response);
       })
       .catch(err => {

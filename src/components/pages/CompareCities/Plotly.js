@@ -11,12 +11,14 @@ import RentPredict from './PlotlyHelpers/RentPredict';
 import JobIndustryViz from './PlotlyHelpers/JobIndustry';
 import WeatherPredictViz from './PlotlyHelpers/WeatherPredict';
 import HideCity from './PlotlyHelpers/hideCity';
+import PopData from './PlotlyHelpers/PopData';
 export default function Plotly(props) {
   //  useState for all the different components
   const [thisCityData, setThisCityData] = useState({});
   const [walkCityData, setWalkCityData] = useState({
     visible: false,
   });
+  const [popData, setPopData] = useState([]);
   const [weatherCityData, setWeatherCityData] = useState({});
   const [unemployment, setUnemployment] = useState({});
   const [jobIndustry, setJobIndustry] = useState({});
@@ -26,6 +28,7 @@ export default function Plotly(props) {
   let { compareList, setCompareList, searching, setSearching } = useContext(
     ReportContext
   );
+  let popFill = {};
   let walkFill = {};
   let weatherFill = {};
   let lastCityAdded = compareList.cities[compareList.cities.length - 1];
@@ -117,7 +120,12 @@ export default function Plotly(props) {
     });
     async function fetchWalkData() {
       const request = await axios.get(`/walkability/${lastCity}_${lastState}`);
+      const popReq = await axios.get(`/census/${lastCity}_${lastState}`);
       const res = JSON.parse(request.data);
+      const popRes = JSON.parse(popReq.data);
+      const popFiller = popData;
+      popFiller.push(popRes);
+      setPopData(popFiller);
       if (!('cityWalk1' in walkCityData)) {
         setWalkCityData({
           cityWalk1: res,
@@ -168,6 +176,19 @@ export default function Plotly(props) {
       ];
     }
   }
+
+  function dynamicPopFill(number) {
+    if (popData[number] !== undefined) {
+      let num = popData[number][0].popestimate2019.toLocaleString("en-US");
+      popFill[number] = [
+        <div className='popData' key={number}>
+          <h3>Population</h3>
+          <p className='pop-num'>{num}</p>
+        </div>
+      ];
+    }
+  }
+
   let tempClass = ['main-temperature', 'main-temperature', 'main-temperature'];
   function getTempsToSetClass(cityNum, num) {
     num -= 1;
@@ -263,12 +284,16 @@ export default function Plotly(props) {
               x
             </button>
           </div>
+          <PopData population={{ popFill, number }}/>
           <WalkData walk={{ walkFill, number }} />
           <WeatherData weather={{ weatherFill, number }} />
         </div>
       )
     );
   }
+  dynamicPopFill(0);
+  dynamicPopFill(1);
+  dynamicPopFill(2);
   dynamicWalkFill(cityWalk1, 0);
   dynamicWalkFill(cityWalk2, 1);
   dynamicWalkFill(cityWalk3, 2);
