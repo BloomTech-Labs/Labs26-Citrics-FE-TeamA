@@ -6,6 +6,9 @@ export default function hideCity(event, hideCityOptions) {
   let setWeatherCityData = hideCityOptions.setWeatherCityData;
   let walkCityData = hideCityOptions.walkCityData;
   let setWalkCityData = hideCityOptions.setWalkCityData;
+  let popData = hideCityOptions.popData;
+  let setPopData = hideCityOptions.setPopData;
+  let popFill = hideCityOptions.popFill;
   let rentalFill = hideCityOptions.rentalFill;
   let setRentalFill = hideCityOptions.setRentalFill;
   let rentalPredictData = hideCityOptions.rentalPredictData;
@@ -35,8 +38,12 @@ export default function hideCity(event, hideCityOptions) {
       delete weatherCityData.cityWeather3;
       delete walkCityData.cityWalk3;
       rentalFill[0] = rentalFill[1];
+      popFill[0] = popFill[1];
       delete rentalFill[1];
+      delete popFill[1];
       rentalFill[1] = rentalFill[2];
+      popFill[1] = popFill[2];
+      delete popFill[2];
       delete rentalFill[2];
 
       jobFill[0] = jobFill[1];
@@ -44,6 +51,7 @@ export default function hideCity(event, hideCityOptions) {
       jobFill[1] = jobFill[2];
       delete jobFill[2];
 
+      setPopData(popData.slice(1));
       setRentalPredictData(rentalPredictData.slice(1));
       setJobIndustry(jobIndustry.slice(1));
 
@@ -61,6 +69,8 @@ export default function hideCity(event, hideCityOptions) {
       delete walkCityData.cityWalk2;
       delete rentalFill[1];
       delete jobFill[1];
+      delete popFill[1];
+      setPopData([popData[0], popData[2]]);
       setRentalPredictData([rentalPredictData[0], rentalPredictData[2]]);
       setJobIndustry([jobIndustry[0], jobIndustry[2]]);
       setWeatherCityData({
@@ -75,6 +85,8 @@ export default function hideCity(event, hideCityOptions) {
     } else if (id === 'btn3') {
       delete rentalFill[2];
       delete jobFill[2];
+      delete popFill[2];
+      setPopData(popData.slice(0, 2));
       setRentalPredictData(rentalPredictData.slice(0, 2));
       setJobIndustry(jobIndustry.slice(0, 2));
       compareList.cities.pop();
@@ -93,6 +105,8 @@ export default function hideCity(event, hideCityOptions) {
     if (id === 'btn1') {
       delete rentalFill[0];
       delete jobFill[0];
+      delete popFill[0];
+      popData[0] = popData.pop();
       rentalPredictData[0] = rentalPredictData.pop();
       jobIndustry[0] = jobIndustry.pop();
       // setRentalPredictData([rentalPredictData[1]]);
@@ -111,8 +125,10 @@ export default function hideCity(event, hideCityOptions) {
         searched: true,
       });
     } else if (id === 'btn2') {
+      setPopData([popData[0]]);
       setRentalPredictData([rentalPredictData[0]]);
       setJobIndustry([jobIndustry[0]]);
+      popFill = {};
       setRentalFill({});
       setJobFill({});
       let firstCityState = compareList.cities[0];

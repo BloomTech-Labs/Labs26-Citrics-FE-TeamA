@@ -37,7 +37,7 @@
 .cityDisplayPlot {
   text-align: center;
   transition: opacity 1s;
-  width: 45%;
+  width: 50%;
   padding: 0 2vw;
 }
 .fadeIn {
@@ -352,6 +352,30 @@ span.ant-modal-close-x {
       font-size: 1.3rem;
     }
   }
+.popData {
+  p {
+    padding: 1%;
+  }
+  background: rgba(255, 163, 59, 0.699);
+  border: 6px outset rgb(197, 197, 236);
+  color: white;
+  border-radius: 20px;
+  padding-top: 6%;
+  &:hover {
+    cursor: default;
+  }
+  h3 {
+    padding-top: 3%;
+    color: white;
+    font-size: x-large;
+    text-shadow: 0 0 3px #000000;
+  }
+  .pop-num {
+    text-shadow: 0 0 5px #000000;
+    font-size: 4rem;
+    margin-bottom: 2%;
+  }
+  margin-bottom: 3%;
 }
 
 @media (max-width: 1050px) {

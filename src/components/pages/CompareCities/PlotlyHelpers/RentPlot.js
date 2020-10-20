@@ -30,8 +30,9 @@ export default function RentPlot(props) {
         });
       } else if (compareList.cities.length === 2) {
         let firstCity = compareList.cities[compareList.cities.length - 2];
+        console.log('first city', firstCity);
         const request = await axios.get(
-          `/rent_viz/${firstCity[0]}_${firstCity[1]}?cityWeather2=${lastCityAdded[0]}&statecode2=${lastCityAdded[1]}`
+          `/rent_viz/${firstCity[0]}_${firstCity[1]}?city2=${lastCityAdded[0]}&statecode2=${lastCityAdded[1]}`
         );
         const rentData = JSON.parse(request.data);
         setThisCityData({
@@ -42,7 +43,7 @@ export default function RentPlot(props) {
         let firstCity = compareList.cities[compareList.cities.length - 3];
         let secondCity = compareList.cities[compareList.cities.length - 2];
         const request = await axios.get(
-          `/rent_viz/${firstCity[0]}_${firstCity[1]}?cityWeather2=${secondCity[0]}&statecode2=${secondCity[1]}&cityWeather3=${lastCityAdded[0]}&statecode3=${lastCityAdded[1]}`
+          `/rent_viz/${firstCity[0]}_${firstCity[1]}?city2=${secondCity[0]}&statecode2=${secondCity[1]}&city3=${lastCityAdded[0]}&statecode3=${lastCityAdded[1]}`
         );
         const rentData = JSON.parse(request.data);
         setThisCityData({
