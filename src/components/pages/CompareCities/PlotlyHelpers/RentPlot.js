@@ -12,7 +12,6 @@ export default function RentPlot(props) {
   let lastState = props.rentPlotOptions.lastState;
   let lastCityAdded = props.rentPlotOptions.lastCityAdded;
   let setThisCityData = props.rentPlotOptions.setThisCityData;
-  console.log(props);
   // useEffect for fetching ---RENT--- data viz from ds backend
   // sets the cityData and cityLayout for following cities into thisCityData
   useEffect(() => {
@@ -62,7 +61,7 @@ export default function RentPlot(props) {
   return !props.thisCityData.cityData ? (
     <Loader />
   ) : (
-    <div>
+    <div className="rentPlotViz">
       <Plot
         data={props.thisCityData.cityData}
         layout={props.thisCityData.cityLayout}
