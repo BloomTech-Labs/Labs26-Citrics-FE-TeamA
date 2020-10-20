@@ -312,6 +312,48 @@ span.ant-modal-close-x {
     margin: 0 auto;
   }
 }
+
+.jobViz {
+  display: flex;
+  border: 6px outset rgb(197, 197, 236);
+  flex-direction: row;
+  border-radius: 15px;
+  margin: auto;
+  width: fit-content;
+  .jobInfo {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+
+    p {
+      margin: 0.5em;
+      font-size: 1.5rem;
+    }
+  }
+  .jobInfo:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  .jobInfo:first-child {
+    h6 {
+      font-weight: 800;
+    }
+    font-weight: 800;
+  }
+  .jobSubViz {
+    grid-template-rows: 1.2fr repeat(10, 1fr);
+    display: grid;
+    h4 {
+      color: black;
+      font-size: 2.5rem;
+    }
+    h6 {
+      text-align: left;
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+  }
+}
+
 @media (max-width: 1050px) {
   .rentalPredict {
     margin: 0 3vw;
@@ -356,45 +398,12 @@ span.ant-modal-close-x {
       font-size: 4rem;
     }
   }
-}
-
-.jobViz {
-  display: flex;
-  border: 6px outset rgb(197, 197, 236);
-  flex-direction: row;
-  border-radius: 15px;
-  margin: auto;
-  width: fit-content;
-  .jobInfo {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    align-items: center;
-
-    p {
-      margin: 0.5em;
-      font-size: 1.5rem;
-    }
-  }
-  .jobInfo:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.5);
-  }
-  .jobInfo:first-child {
-    h6 {
-      font-weight: 800;
-    }
-    font-weight: 800;
-  }
-  .jobSubViz {
-    grid-template-rows: 1.2fr repeat(10, 1fr);
-    display: grid;
-    h4 {
-      color: black;
-      font-size: 2.5rem;
-    }
-    h6 {
-      text-align: left;
-      font-weight: 600;
-      font-size: 1.3rem;
+  .jobViz {
+    flex-direction: column;
+    padding: 1%;
+    .jobSubViz {
+      padding: 1vh 0 2vh;
+      border-bottom: 1px dotted black;
     }
   }
 }
@@ -500,5 +509,15 @@ span.ant-modal-close-x {
   }
   .ant-back-top {
     bottom: 3px;
+  }
+  .jobViz {
+    .jobInfo {
+      p {
+        font-size: 1.2rem;
+      }
+      h6 {
+        font-size: 1.1rem;
+      }
+    }
   }
 }
