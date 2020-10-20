@@ -8,6 +8,9 @@ export default function JobIndustryViz({
   compareList,
   jobTable,
 }) {
+  let jobFill = jobTable.jobFill;
+  let jobIndustry = jobTable.jobIndustry;
+  let setJobIndustry = jobTable.setJobIndustry;
   useEffect(() => {
     searching.setSearching({
       ...searching,
@@ -18,40 +21,9 @@ export default function JobIndustryViz({
         `/bls_jobs/${lastCityState.lastCity}_${lastCityState.lastState}`
       );
       const jobIndustryInfo = JSON.parse(request.data);
-      function firstFive(arr) {
-        let items = arr.slice(0, 5).map(job => {
-          return job;
-        });
-        return items;
-      }
-      if (!('occ1' in jobTable.jobIndustry)) {
-        jobTable.setJobIndustry({
-          occ1: jobIndustryInfo[0].occ_title,
-          ann_wage: jobIndustryInfo[0].annual_wage,
-          hr_wage: jobIndustryInfo[0].hourly_wage,
-        });
-      }
-      // else if (
-      //   'jobVizData' in jobIndustryViz.jobIndustryViz &&
-      //   !('jobVizData2' in jobIndustryViz.jobIndustryViz) &&
-      //   compareList.length === 2
-      // ) {
-      //   jobIndustryViz.setJobIndustryViz({
-      //     ...jobIndustryViz.jobIndustryViz,
-      //     jobVizData2: jobViz.data,
-      //     jobVizLayout2: jobViz.layout,
-      //   });
-      // } else if (
-      //   'jobVizData2' in jobIndustryViz.jobIndustryViz &&
-      //   !('jobVizData3' in jobIndustryViz.jobIndustryViz) &&
-      //   compareList.length === 3
-      // ) {
-      //   jobIndustryViz.setJobIndustryViz({
-      //     ...jobIndustryViz.jobIndustryViz,
-      //     jobVizData3: jobViz.data,
-      //     jobVizLayout3: jobViz.layout,
-      //   });
-      // }
+      let filler = jobIndustry;
+      filler.push(jobIndustryInfo);
+      setJobIndustry(filler);
     }
     fetchJobIndustry();
   }, [
@@ -60,14 +32,62 @@ export default function JobIndustryViz({
     lastCityState.lastCityAdded,
     compareList,
   ]);
-  function dynamicJobViz(data, layout) {
-    if (data !== undefined) {
-      return <div></div>;
+  jobIndustry[0] && console.log(jobIndustry);
+  function dynamicJobFill(jobIndustryInfo, index) {
+    if (index in jobIndustry) {
+      jobFill[index] = [
+        <div className="jobSubViz">
+          {jobIndustry[index] && (
+            <div className="jobInfo">
+              <h6>
+                Job Industry for {compareList[index] && compareList[index][0]}
+              </h6>
+              <p>Hourly Wage</p>
+              <p>Annual Wage</p>
+            </div>
+          )}
+          {jobIndustry[index] &&
+            jobIndustry[index].map((value, index) => {
+              return (
+                <div className="jobInfo" key={index}>
+                  <h6>
+                    {value.occ_title
+                      .replace('Technicians', 'Techs')
+                      .replace(/Representatives/g, 'Reps')
+                      .replace(/Computer/g, 'Comp.')
+                      .replace(/Developers/, 'Devs')}
+                  </h6>
+                  <p>
+                    $
+                    {value.hourly_wage > 0
+                      ? value.hourly_wage.toFixed(2)
+                      : (value.annual_wage / 2080).toFixed(2)}
+                  </p>{' '}
+                  <p>${value.annual_wage.toLocaleString('en-US')}</p>{' '}
+                </div>
+              );
+            })}
+        </div>,
+      ];
     }
   }
+  console.log(jobFill);
+  if (compareList.length === 1) {
+    dynamicJobFill(jobIndustry, 0);
+    jobIndustry.length > 1 && setJobIndustry([jobIndustry[0]]);
+  }
 
+  compareList.length === 2 &&
+    jobIndustry.length > 2 &&
+    setJobIndustry(jobIndustry.slice(0, 2));
+  compareList.length === 2 && dynamicJobFill(jobIndustry, 1);
+  compareList.length === 3 && dynamicJobFill(jobIndustry, 2);
   return (
     <div className="jobViz">
+      {jobFill[0] && compareList.length >= 1 && jobFill[0]}
+      {jobFill[1] && compareList.length >= 2 && jobFill[1]}
+      {jobFill[2] && compareList.length >= 3 && jobFill[2]}
+
       {/* {dynamicJobViz(jobTable.jobVizData, jobTable.jobVizLayout)} */}
     </div>
     // eslint-disable-next-line semi

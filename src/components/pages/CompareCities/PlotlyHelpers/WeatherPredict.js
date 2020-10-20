@@ -63,7 +63,7 @@ export default function WeatherPredictViz({
   ]);
   const weatherPredictRes = weatherPrediction.weatherPredict;
   return weatherPredictRes.weatherPredictionData ? (
-    <div>
+    <div className="weatherPlotViz">
       <Plot
         data={weatherPredictRes.weatherPredictionData}
         layout={weatherPredictRes.weatherPredictionLayout}

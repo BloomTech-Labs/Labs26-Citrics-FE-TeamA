@@ -62,7 +62,7 @@ export default function RentPlot(props) {
   return !props.thisCityData.cityData ? (
     <Loader />
   ) : (
-    <div>
+    <div className="rentPlotViz">
       <Plot
         data={props.thisCityData.cityData}
         layout={props.thisCityData.cityLayout}

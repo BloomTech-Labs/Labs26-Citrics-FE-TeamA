@@ -70,7 +70,9 @@ export default function AdvSearch() {
         document.getElementById('form-container').classList.add('error');
         setTimeout(() => {
           document.getElementById('form-container').classList.remove('error');
-          alert('We cannot find any cities based on your preferences, please try again!');
+          alert(
+            'We cannot find any cities based on your preferences, please try again!'
+          );
         }, 700);
         setSearchCities(reset);
         resetHelper();

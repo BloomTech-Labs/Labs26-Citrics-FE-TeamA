@@ -10,7 +10,7 @@ import RentPlot from './PlotlyHelpers/RentPlot';
 import RentPredict from './PlotlyHelpers/RentPredict';
 import JobIndustryViz from './PlotlyHelpers/JobIndustry';
 import WeatherPredictViz from './PlotlyHelpers/WeatherPredict';
-import HideCity from './PlotlyHelpers/hideCity';
+import hideCity from './PlotlyHelpers/hideCity';
 import PopData from './PlotlyHelpers/PopData';
 export default function Plotly(props) {
   //  useState for all the different components
@@ -21,7 +21,8 @@ export default function Plotly(props) {
   const [popData, setPopData] = useState([]);
   const [weatherCityData, setWeatherCityData] = useState({});
   const [unemployment, setUnemployment] = useState({});
-  const [jobIndustry, setJobIndustry] = useState({});
+  const [jobIndustry, setJobIndustry] = useState([]);
+  const [jobFill, setJobFill] = useState({});
   const [weatherPredict, setWeatherPredict] = useState({});
   const [rentalPredictData, setRentalPredictData] = useState([]);
   const [rentalFill, setRentalFill] = useState({});
@@ -179,12 +180,12 @@ export default function Plotly(props) {
 
   function dynamicPopFill(number) {
     if (popData[number] !== undefined) {
-      let num = popData[number][0].popestimate2019.toLocaleString("en-US");
+      let num = popData[number][0].popestimate2019.toLocaleString('en-US');
       popFill[number] = [
-        <div className='popData' key={number}>
+        <div className="popData" key={number}>
           <h3>Population</h3>
-          <p className='pop-num'>{num}</p>
-        </div>
+          <p className="pop-num">{num}</p>
+        </div>,
       ];
     }
   }
@@ -265,6 +266,10 @@ export default function Plotly(props) {
     rentalPredictData,
     setRentalPredictData,
     setSearching,
+    jobIndustry,
+    setJobIndustry,
+    jobFill,
+    setJobFill,
   };
   function dynamicMainData(cityNumber, number) {
     return (
@@ -281,13 +286,13 @@ export default function Plotly(props) {
               className="remove-btn"
               id={'btn' + (number + 1)}
               onClick={e => {
-                HideCity(e, hideCityOptions);
+                hideCity(e, hideCityOptions);
               }}
             >
               x
             </button>
           </div>
-          <PopData population={{ popFill, number }}/>
+          <PopData population={{ popFill, number }} />
           <WalkData walk={{ walkFill, number }} />
           <WeatherData weather={{ weatherFill, number }} />
         </div>
@@ -325,7 +330,9 @@ export default function Plotly(props) {
           lastCityState={{ lastCity, lastState, lastCityAdded }}
           searching={{ searching, setSearching }}
         /> */}
-        <UnemploymentPlot unemployment={unemployment} />
+        <div className="unemploymentPlotViz">
+          <UnemploymentPlot unemployment={unemployment} />
+        </div>
         <WeatherPredictViz
           weatherPrediction={{ weatherPredict, setWeatherPredict }}
           compareList={compareList.cities}
@@ -333,12 +340,6 @@ export default function Plotly(props) {
           searching={{ searching, setSearching }}
         />
       </div>
-      <JobIndustryViz
-        searching={{ searching, setSearching }}
-        lastCityState={{ lastCity, lastState, lastCityAdded }}
-        compareList={compareList.cities}
-        jobTable={{ jobIndustry, setJobIndustry }}
-      />
       <RentPredict
         compareList={compareList.cities}
         lastCityState={{ lastCity, lastState, lastCityAdded }}
@@ -354,6 +355,12 @@ export default function Plotly(props) {
         {dynamicMainData(cityWeather2, 1)}
         {dynamicMainData(cityWeather3, 2)}
       </div>
+      <JobIndustryViz
+        searching={{ searching, setSearching }}
+        lastCityState={{ lastCity, lastState, lastCityAdded }}
+        compareList={compareList.cities}
+        jobTable={{ jobIndustry, setJobIndustry, jobFill }}
+      />
     </section>
   );
 }
