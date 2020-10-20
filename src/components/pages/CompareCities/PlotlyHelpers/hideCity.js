@@ -1,4 +1,4 @@
-export default function HideCity(event, hideCityOptions) {
+export default function hideCity(event, hideCityOptions) {
   // Setting up variables
   let compareList = hideCityOptions.compareList;
   let setCompareList = hideCityOptions.setCompareList;
@@ -11,6 +11,10 @@ export default function HideCity(event, hideCityOptions) {
   let rentalPredictData = hideCityOptions.rentalPredictData;
   let setRentalPredictData = hideCityOptions.setRentalPredictData;
   let setSearching = hideCityOptions.setSearching;
+  let jobIndustry = hideCityOptions.jobIndustry;
+  let setJobIndustry = hideCityOptions.setJobIndustry;
+  let jobFill = hideCityOptions.jobFill;
+  let setJobFill = hideCityOptions.setJobFill;
   // id of button the user clicks
   let id = event.target.id;
   // Duplicates to keep each object item in memory for changes.
@@ -34,7 +38,15 @@ export default function HideCity(event, hideCityOptions) {
       delete rentalFill[1];
       rentalFill[1] = rentalFill[2];
       delete rentalFill[2];
+
+      jobFill[0] = jobFill[1];
+      delete jobFill[1];
+      jobFill[1] = jobFill[2];
+      delete jobFill[2];
+
       setRentalPredictData(rentalPredictData.slice(1));
+      setJobIndustry(jobIndustry.slice(1));
+
       setWeatherCityData({
         cityWeather1: weatherCityData.cityWeather2,
         cityWeather2: copyWeather3,
@@ -48,7 +60,9 @@ export default function HideCity(event, hideCityOptions) {
       delete weatherCityData.cityWeather2;
       delete walkCityData.cityWalk2;
       delete rentalFill[1];
+      delete jobFill[1];
       setRentalPredictData([rentalPredictData[0], rentalPredictData[2]]);
+      setJobIndustry([jobIndustry[0], jobIndustry[2]]);
       setWeatherCityData({
         cityWeather1: weatherCityData.cityWeather1,
         cityWeather2: copyWeather3,
@@ -60,7 +74,9 @@ export default function HideCity(event, hideCityOptions) {
       compareList.cities = [compareList.cities[0], compareList.cities[2]];
     } else if (id === 'btn3') {
       delete rentalFill[2];
+      delete jobFill[2];
       setRentalPredictData(rentalPredictData.slice(0, 2));
+      setJobIndustry(jobIndustry.slice(0, 2));
       compareList.cities.pop();
       setWalkCityData({
         ...walkCityData,
@@ -76,7 +92,9 @@ export default function HideCity(event, hideCityOptions) {
     // copy weather/walk data to be set as city1 data
     if (id === 'btn1') {
       delete rentalFill[0];
+      delete jobFill[0];
       rentalPredictData[0] = rentalPredictData.pop();
+      jobIndustry[0] = jobIndustry.pop();
       // setRentalPredictData([rentalPredictData[1]]);
       setWeatherCityData({
         // // updating cityweather/walk to replace old city1 data
@@ -94,7 +112,9 @@ export default function HideCity(event, hideCityOptions) {
       });
     } else if (id === 'btn2') {
       setRentalPredictData([rentalPredictData[0]]);
+      setJobIndustry([jobIndustry[0]]);
       setRentalFill({});
+      setJobFill({});
       let firstCityState = compareList.cities[0];
       setWeatherCityData({
         cityweather1: copyWeather1,

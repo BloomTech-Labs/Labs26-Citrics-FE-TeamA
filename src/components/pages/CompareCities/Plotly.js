@@ -10,7 +10,7 @@ import RentPlot from './PlotlyHelpers/RentPlot';
 import RentPredict from './PlotlyHelpers/RentPredict';
 import JobIndustryViz from './PlotlyHelpers/JobIndustry';
 import WeatherPredictViz from './PlotlyHelpers/WeatherPredict';
-import HideCity from './PlotlyHelpers/hideCity';
+import hideCity from './PlotlyHelpers/hideCity';
 export default function Plotly(props) {
   //  useState for all the different components
   const [thisCityData, setThisCityData] = useState({});
@@ -19,7 +19,8 @@ export default function Plotly(props) {
   });
   const [weatherCityData, setWeatherCityData] = useState({});
   const [unemployment, setUnemployment] = useState({});
-  const [jobIndustry, setJobIndustry] = useState({});
+  const [jobIndustry, setJobIndustry] = useState([]);
+  const [jobFill, setJobFill] = useState({});
   const [weatherPredict, setWeatherPredict] = useState({});
   const [rentalPredictData, setRentalPredictData] = useState([]);
   const [rentalFill, setRentalFill] = useState({});
@@ -241,6 +242,10 @@ export default function Plotly(props) {
     rentalPredictData,
     setRentalPredictData,
     setSearching,
+    jobIndustry,
+    setJobIndustry,
+    jobFill,
+    setJobFill,
   };
   function dynamicMainData(cityNumber, number) {
     return (
@@ -257,7 +262,7 @@ export default function Plotly(props) {
               className="remove-btn"
               id={'btn' + (number + 1)}
               onClick={e => {
-                HideCity(e, hideCityOptions);
+                hideCity(e, hideCityOptions);
               }}
             >
               x
@@ -297,7 +302,9 @@ export default function Plotly(props) {
           lastCityState={{ lastCity, lastState, lastCityAdded }}
           searching={{ searching, setSearching }}
         /> */}
-        <UnemploymentPlot unemployment={unemployment} />
+        <div className="unemploymentPlotViz">
+          <UnemploymentPlot unemployment={unemployment} />
+        </div>
         <WeatherPredictViz
           weatherPrediction={{ weatherPredict, setWeatherPredict }}
           compareList={compareList.cities}
@@ -305,12 +312,6 @@ export default function Plotly(props) {
           searching={{ searching, setSearching }}
         />
       </div>
-      <JobIndustryViz
-        searching={{ searching, setSearching }}
-        lastCityState={{ lastCity, lastState, lastCityAdded }}
-        compareList={compareList.cities}
-        jobTable={{ jobIndustry, setJobIndustry }}
-      />
       <RentPredict
         compareList={compareList.cities}
         lastCityState={{ lastCity, lastState, lastCityAdded }}
@@ -326,6 +327,12 @@ export default function Plotly(props) {
         {dynamicMainData(cityWeather2, 1)}
         {dynamicMainData(cityWeather3, 2)}
       </div>
+      <JobIndustryViz
+        searching={{ searching, setSearching }}
+        lastCityState={{ lastCity, lastState, lastCityAdded }}
+        compareList={compareList.cities}
+        jobTable={{ jobIndustry, setJobIndustry, jobFill }}
+      />
     </section>
   );
 }
