@@ -6,7 +6,7 @@ export const NewURL =
 
 // Base url to make request to ds API
 const instance = axios.create({
-  baseURL: NewURL,
+  baseURL: URL,
 });
 
 export default instance;
