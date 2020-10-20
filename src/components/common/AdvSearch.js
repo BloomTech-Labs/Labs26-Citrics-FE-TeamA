@@ -145,6 +145,7 @@ export default function AdvSearch() {
                   className="adv-dropdown-select"
                   onChange={handleChange}
                   defaultValue={'DEFAULT'}
+                  required
                 >
                   <option value="DEFAULT" disabled>
                     -- Select an Option --
@@ -167,6 +168,7 @@ export default function AdvSearch() {
                   className="adv-dropdown-select"
                   onChange={handleChange}
                   defaultValue={'DEFAULT'}
+                  required
                 >
                   <option value="DEFAULT" disabled>
                     -- Select an Option --
@@ -192,6 +194,7 @@ export default function AdvSearch() {
                     step="50"
                     value={searchCities.budget}
                     onChange={handleChange}
+                    required
                   />
                 </span>
               </div>
@@ -209,6 +212,7 @@ export default function AdvSearch() {
                   className="adv-dropdown-select"
                   onChange={handleChange}
                   defaultValue={'DEFAULT'}
+                  required
                 >
                   <option value="DEFAULT" disabled>
                     -- Select an Option --
