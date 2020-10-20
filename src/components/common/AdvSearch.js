@@ -52,7 +52,7 @@ export default function AdvSearch() {
     // fetch cities that match users preferences
     axios
       .get(
-        `/adv_search/${searchCities.population}_${searchCities.homesize}_${searchCities.budget}_${searchCities.climate}`
+        `/adv_search/1_${searchCities.homesize}_${searchCities.budget}_${searchCities.climate}?popmax=${searchCities.population}`
       )
       .then(res => {
         // select 3 random cities from that response
@@ -103,14 +103,14 @@ export default function AdvSearch() {
             cities: [randomCities[0], randomCities[1]],
             searched: true,
           });
-        }, 4000);
+        }, 5000);
         setTimeout(() => {
           compareContext.setCompareList({
             ...compareContext.compareList,
             cities: [randomCities[0], randomCities[1], randomCities[2]],
             searched: true,
           });
-        }, 8000);
+        }, 9500);
       }
     }
     fetchThreeCities();
