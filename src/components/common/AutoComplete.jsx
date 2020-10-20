@@ -64,10 +64,11 @@ function AutoCompleteInput(props) {
     // applys the city and state value properly capitalized as an array item.
     let Arr = [
       value[0].toUpperCase() + value.slice(1, -4).toLowerCase(),
-      value.slice(-2, value.length).toUpperCase(),
+      value.slice(-2).toUpperCase(),
     ];
     // Filler to no change the compareList.cities array directly
     filler.push(Arr);
+
     // Clear out the dropdown items list
     setOptions([]);
     // Set new cities list as the filler array
@@ -112,7 +113,7 @@ function AutoCompleteInput(props) {
 
       e.target.value = [
         document.getElementById('p' + pCount).innerHTML.slice(0, -4),
-        document.getElementById('p' + pCount).innerHTML.slice(-2),
+        ' ' + document.getElementById('p' + pCount).innerHTML.slice(-2),
       ];
     }
   }
