@@ -43,9 +43,16 @@
 .fadeIn {
   animation: all 2s ease-in-out;
 }
-.rentalPredict {
+
+.rentalPredSection {
   border: 6px outset #c5c5ec;
   border-radius: 15px;
+  h3:first-child {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+}
+.rentalPredict {
   display: flex;
   justify-content: space-around;
   margin: 0 5vw;
@@ -85,6 +92,7 @@
     }
     display: grid;
     width: 100%;
+
     .rentalPredictData {
       display: grid;
       grid-template-columns: 1% 1fr 1fr;
@@ -104,7 +112,7 @@
   p {
     padding: 1%;
   }
-  background: rgba(255, 163, 59, 0.699);
+  background: rgba(235, 192, 144, 0.3);
   border: 6px outset rgb(197, 197, 236);
   color: white;
   border-radius: 20px;
@@ -145,7 +153,7 @@ span.ant-modal-close-x {
 }
 .weatherData {
   border-radius: 15px;
-  background: rgba(255, 163, 59, 0.699);
+  background: rgba(235, 192, 144, 0.3);
   border: 6px outset rgb(197, 197, 236);
   margin-top: 5%;
   padding: 6% 1vw 0;
@@ -265,7 +273,7 @@ span.ant-modal-close-x {
 .city-title {
   display: flex;
   justify-content: space-evenly;
-  background: rgba(255, 163, 59, 0.699);
+  background: rgba(235, 192, 144, 0.3);
   border: 6px outset rgb(197, 197, 236);
   font-weight: bold;
   border-radius: 15px;
@@ -274,6 +282,7 @@ span.ant-modal-close-x {
     color: white;
     font-size: 2.2rem;
     margin: auto 0;
+    text-shadow: 0 0 5px black;
   }
   .remove-btn {
     background-color: red;
@@ -293,9 +302,11 @@ span.ant-modal-close-x {
   }
 }
 .vizs {
-  display: grid;
-  grid-template-columns: 49% 49%;
-  gap: 2%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.soloViz {
   transform: scale(0.98);
   div {
     margin: 0 auto;
@@ -346,6 +357,48 @@ span.ant-modal-close-x {
     }
   }
 }
+
+.jobViz {
+  display: flex;
+  border: 6px outset rgb(197, 197, 236);
+  flex-direction: row;
+  border-radius: 15px;
+  margin: auto;
+  width: fit-content;
+  .jobInfo {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    align-items: center;
+
+    p {
+      margin: 0.5em;
+      font-size: 1.5rem;
+    }
+  }
+  .jobInfo:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  .jobInfo:first-child {
+    h6 {
+      font-weight: 800;
+    }
+    font-weight: 800;
+  }
+  .jobSubViz {
+    grid-template-rows: 1.2fr repeat(10, 1fr);
+    display: grid;
+    h4 {
+      color: black;
+      font-size: 2.5rem;
+    }
+    h6 {
+      text-align: left;
+      font-weight: 600;
+      font-size: 1.3rem;
+    }
+  }
+}
+
 @media (max-width: 500px) {
   .rentalPredict {
     margin: 0;
