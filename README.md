@@ -41,27 +41,17 @@ You can find the deployed project at [a.citrics.dev](https://a.citrics.dev/).
 
 - User can search any US city to view a statistical report on it
 - User can compare up to 3 cities with preferred attributes (rent, job industry, etc.)
+- User can Advanced Search based on preferences in Advanced Search form
 
-#### Front end deployed to `AWS`
+#### Front end deployed to `AWS Amplify`
 
-#### [Data Science API](https://ds.citrics.dev/) built using:
+#### [Data Science API](https://ds.citrics.dev/) [Backup DS API](https://a-ds.citrics.dev/) built using:
 
-#### 🚫 back end framework goes here
+#### Features
 
-- point one
-- point two
-- point three
-
-🚫 List the rest of the back end features and libraries in the same format as the framework above
-
-# APIs
-
-
-## Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+- Used FastAPI | Plotly.js
+- Endpoint documentation with "Try-it-out" functionality
+- Visualization endpoints to see what response is before pluggin in to front-end
 
 # Installation Instructions
 
@@ -107,6 +97,65 @@ Remember that this project is licensed under the MIT license, and by submitting 
 - Include the relevant issue number, if applicable.
 - You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
 
+## PR Template
+
+Use this PR format as a 'Saved Reply' on Github
+
+> Start
+### Description
+<br></br>
+
+### Type of change
+
+Please delete options that are not relevant.
+
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] New feature (non-breaking change which adds functionality)
+- [ ] Breaking change (fix or  feature that would cause existing functionality to not work as expected)
+- [ ] This change requires a documentation update
+
+### Change Status
+
+- [ ] Complete, tested, ready to review and merge
+- [ ] Complete, but not tested (may need new tests)
+- [ ] Incomplete/work-in-progress, PR is for dicussion/feedback
+
+### Has this Been Tested?
+
+- [ ] Yes
+- [ ] No
+- [ ] Not Necessaary
+
+### Checklist
+- [ ] My code follows the style guidelines of this project
+- [ ] At least 1 reviewer (2 person team as of 9/8/2020)
+- [ ] I have performed a self-review of my own code
+- [ ] My code has been reviewed by at least one peer
+- [ ] I have commented my code, particularly in hard-to-understand areas
+- [ ] I have made corresponding changes to the documentation
+- [ ] My changes generate no new warnings
+- [ ] I have added tests that prove my fix is effective or that my feature works
+- [ ] New and existing unit tests pass locally with my changes
+- [ ] There are no merge conflicts
+
+> End
+
 ## Data Science Documentation
 
 See [Backend Documentation](https://ds.citrics.dev/) for details on the backend of our project.
+
+## Bugs/Issues
+- Multiple duplicate useEffect calls on most endpoints.
+  - This can be visualized by console logging a particular state such as cityData
+    - Suspected to be what we have in the useEffect dependency arrays
+    - Adding missing dependency items without endless loop
+- Creating a separate backend for Front-end team of ALL US city names to prevent immediate crash
+  - build a backend where you can call an endpoint to GET city names separate from DS API
+    - Add full CRUD ops to endpoint if you plan to add worldwide cities
+ 
+
+## Future Improvements
+
+- Sign-up/Log-in capability to save cities
+- Display list of cities results from Advanced Search
+- Implementing a redux store
