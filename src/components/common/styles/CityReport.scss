@@ -1,11 +1,3 @@
-@keyframes fadeOut {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 .report-div {
   section {
     text-align: center;
@@ -39,9 +31,6 @@
   transition: opacity 1s;
   width: 50%;
   padding: 0 2vw;
-}
-.fadeIn {
-  animation: all 2s ease-in-out;
 }
 
 .rentalPredSection {

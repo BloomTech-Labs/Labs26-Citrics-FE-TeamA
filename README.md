@@ -49,9 +49,9 @@ You can find the deployed project at [a.citrics.dev](https://a.citrics.dev/).
 
 #### Features
 
-- Used FastAPI | Plotly.js
-- Endpoint documentation with "Try-it-out" functionality
-- Visualization endpoints to see what response is before pluggin in to front-end
+- Data pipeline using PostgreSQL via AWS RDS
+- Predictive modeling via statsmodels time series analysis
+- Visualizations created with Plotly Graph Objects
 
 # Installation Instructions
 
@@ -101,7 +101,7 @@ Remember that this project is licensed under the MIT license, and by submitting 
 
 Use this PR format as a 'Saved Reply' on Github
 
-> Start
+```
 ### Description
 <br></br>
 
@@ -138,7 +138,7 @@ Please delete options that are not relevant.
 - [ ] New and existing unit tests pass locally with my changes
 - [ ] There are no merge conflicts
 
-> End
+```
 
 ## Data Science Documentation
 
@@ -159,3 +159,4 @@ See [Backend Documentation](https://ds.citrics.dev/) for details on the backend 
 - Sign-up/Log-in capability to save cities
 - Display list of cities results from Advanced Search
 - Implementing a redux store
+- Separate larger SASS files into individual section files

@@ -14,6 +14,7 @@
   animation: fadeIn 2s ease-in-out;
 }
 
+// fade-in animation for when home page loads
 @keyframes fadeIn {
   0% {
     opacity: 0;
@@ -26,7 +27,8 @@
   background-color: rgb(255, 152, 152);
   font-weight: 600;
 }
-/*the container must be positioned relative:*/
+
+// the container must be positioned relative:
 .autocomplete {
   p {
     overflow-y: hidden;
@@ -45,6 +47,7 @@
   background-color: rgb(255, 255, 255);
 }
 
+// search bar input
 input {
   border: 1px solid transparent;
   background-color: #f1f1f1;
@@ -97,6 +100,7 @@ h4 {
   text-align: center;
   color: blue;
 }
+// mobile optimized
 @media (max-width: 500px) {
   #root .addingCities {
     p {

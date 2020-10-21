@@ -33,6 +33,7 @@
   }
 }
 
+// ========== advanced search button ===============
 .ant-btn.ant-btn-primary.adv-search-btn {
   background-color: #4e4ef5;
   border-color: #4e4ef5;
@@ -47,9 +48,11 @@
   &.show {
     margin-bottom: -3%;
   }
+  // search button
   &.search {
     margin: 0 1%;
   }
+  // cancel button
   &.cancel {
     background-color: red;
     border-color: red;
@@ -61,7 +64,7 @@
     }
   }
 }
-
+// ========== advanced search question form ===============
 .adv-question-container {
   display: flex;
   justify-content: space-between;
@@ -101,6 +104,7 @@
   }
 }
 
+// text box when 3 cities are already being searched
 .empty {
   font-size: 1.5rem;
   height: 5vh;
@@ -128,6 +132,7 @@
   }
 }
 
+// advanced search dollar sign for monthly budget
 .input-symbol {
   position: relative;
 }
@@ -141,12 +146,15 @@
   left: 7px;
 }
 
+// tablet width for advanced search button
 @media (max-width: 800px) {
   #adv-search-btn {
     height: fit-content;
   }
 }
 
+// error shake when empty or non-realistic preferences selected in
+// advanced search form
 .error{
   /* Start the shake animation and make the animation last for 0.5 seconds */
   animation: shake 0.5s;
