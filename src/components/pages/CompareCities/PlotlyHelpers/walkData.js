@@ -3,8 +3,7 @@ import Loader from '../../../common/Loader';
 export default function WalkData(props) {
   return (
     <>
-      {!props.walk.walkFill[props.walk.number] ? (
-        // if the walkFill[index] does not exist
+      {!props.walk.walkFill[props.walk.number] ? ( // if the walkFill[index] does not exist
         // display a Loader
         <Loader />
       ) : (

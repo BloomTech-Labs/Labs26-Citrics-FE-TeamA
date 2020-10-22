@@ -4,7 +4,7 @@ import Plot from 'react-plotly.js';
 import axios from '../../../../api/dsapi';
 
 export default function RentPlot(props) {
-  // setting up prop variables
+  // seting up variables from props
   let searching = props.rentPlotOptions.searching;
   let setSearching = props.rentPlotOptions.setSearching;
   let compareList = props.rentPlotOptions.compareList;
@@ -20,7 +20,9 @@ export default function RentPlot(props) {
       ...searching,
       rent: true,
     });
+    // Async axios call to set rentData
     async function fetchRentData() {
+      // Checks the length of compareList cities length to know which link to pull data from DS API.
       if (compareList.cities.length === 1) {
         const request = await axios.get(`/rent_viz/${lastCity}_${lastState}`);
         const rentData = JSON.parse(request.data);
@@ -30,7 +32,6 @@ export default function RentPlot(props) {
         });
       } else if (compareList.cities.length === 2) {
         let firstCity = compareList.cities[compareList.cities.length - 2];
-        console.log('first city', firstCity);
         const request = await axios.get(
           `/rent_viz/${firstCity[0]}_${firstCity[1]}?city2=${lastCityAdded[0]}&statecode2=${lastCityAdded[1]}`
         );
@@ -59,9 +60,12 @@ export default function RentPlot(props) {
     fetchRentData();
   }, [lastState, lastCity, lastCityAdded, compareList.cities]);
 
+  // If there is no cityData in thisCityData
   return !props.thisCityData.cityData ? (
+    // return a loader
     <Loader />
   ) : (
+    // else return the plot data
     <div className="rentPlotViz">
       <Plot
         data={props.thisCityData.cityData}

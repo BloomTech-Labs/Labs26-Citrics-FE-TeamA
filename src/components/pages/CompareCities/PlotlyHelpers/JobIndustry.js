@@ -8,14 +8,18 @@ export default function JobIndustryViz({
   compareList,
   jobTable,
 }) {
+  // seting up variables from props
   let jobFill = jobTable.jobFill;
   let jobIndustry = jobTable.jobIndustry;
   let setJobIndustry = jobTable.setJobIndustry;
+  // useeffect for fetching jobIndustry data from DS API
   useEffect(() => {
+    // For search bar knowledge
     searching.setSearching({
       ...searching,
       jobviz: true,
     });
+    // Async axios call to set job data
     async function fetchJobIndustry() {
       const request = await axios.get(
         `/bls_jobs/${lastCityState.lastCity}_${lastCityState.lastState}`
@@ -32,6 +36,7 @@ export default function JobIndustryViz({
     lastCityState.lastCityAdded,
     compareList,
   ]);
+  // dynamically makes jsx data from the jobIndustry object
   function dynamicJobFill(index) {
     if (index in jobIndustry) {
       jobFill[index] = [
@@ -70,26 +75,25 @@ export default function JobIndustryViz({
       ];
     }
   }
+  // checks compareList length to set jobFill by index
   if (compareList.length === 1) {
-    dynamicJobFill(jobIndustry, 0);
+    dynamicJobFill(0);
     jobIndustry.length > 1 && setJobIndustry([jobIndustry[0]]);
+  } else if (compareList.length === 2) {
+    jobIndustry.length > 2 && setJobIndustry(jobIndustry.slice(0, 2));
+    dynamicJobFill(1);
+  } else if (compareList.length === 3) {
+    dynamicJobFill(2);
   }
-
-  compareList.length === 2 &&
-    jobIndustry.length > 2 &&
-    setJobIndustry(jobIndustry.slice(0, 2));
-  compareList.length === 2 && dynamicJobFill(jobIndustry, 1);
-  compareList.length === 3 && dynamicJobFill(jobIndustry, 2);
-  return jobFill[0] || jobFill[1] ? (
+  // if jobFill exists, display the jobFill jsx data
+  return jobFill[0] ? (
     <div className="jobViz">
       {jobFill[0] && compareList.length >= 1 && jobFill[0]}
       {jobFill[1] && compareList.length >= 2 && jobFill[1]}
       {jobFill[2] && compareList.length >= 3 && jobFill[2]}
-
-      {/* {dynamicJobViz(jobTable.jobVizData, jobTable.jobVizLayout)} */}
     </div>
   ) : (
-    // eslint-disable-next-line semi
+    // else display a Loader
     <Loader />
   );
 }
