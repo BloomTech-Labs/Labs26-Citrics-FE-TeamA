@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import axios from '../../../../api/dsapi';
 import Loader from '../../../common/Loader';
 
@@ -32,7 +32,7 @@ export default function JobIndustryViz({
     lastCityState.lastCityAdded,
     compareList,
   ]);
-  function dynamicJobFill(jobIndustryInfo, index) {
+  function dynamicJobFill(index) {
     if (index in jobIndustry) {
       jobFill[index] = [
         <div className="jobSubViz" key={index}>
@@ -54,7 +54,7 @@ export default function JobIndustryViz({
                       .replace('Technicians', 'Techs')
                       .replace(/Representatives/g, 'Reps')
                       .replace(/Computer/g, 'Comp.')
-                      .replace(/Developers/, 'Devs')}
+                      .replace(/Developers/g, 'Devs')}
                   </h6>
                   <p>
                     $
