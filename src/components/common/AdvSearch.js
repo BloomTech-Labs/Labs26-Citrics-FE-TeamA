@@ -5,6 +5,7 @@ import { Button } from 'antd';
 import { ReportContext } from '../../state/contexts/ReportContext';
 
 export default function AdvSearch() {
+  // reset object for Submit/Cancel button
   const reset = {
     population: '',
     climate: '',
@@ -15,7 +16,6 @@ export default function AdvSearch() {
   const [advSearchResults, setAdvSearchResults] = useState([]);
   let compareContext = useContext(ReportContext);
   let randomCities = [];
-
   let selectTags = document.getElementsByTagName('select');
   let select = selectTags.length;
 
@@ -25,6 +25,7 @@ export default function AdvSearch() {
     document.getElementById('form-container').style.display = 'block';
   }
 
+  // sets state to reset object and changes selections to DEFAULT option
   function resetHelper() {
     setSearchCities(reset);
     for (var i = 0; i < select; i++) {
@@ -32,12 +33,14 @@ export default function AdvSearch() {
     }
   }
 
+  // hide form and resets state of form
   function hideForm() {
     document.getElementById('adv-search-btn').style.display = 'block';
     document.getElementById('form-container').style.display = 'none';
     resetHelper();
   }
 
+  // form feedback of user's selection
   function handleChange(e) {
     const value = e.target.value;
     const name = e.target.name;
@@ -46,6 +49,7 @@ export default function AdvSearch() {
       [name]: value,
     });
   }
+
   function handleSubmit(e) {
     e.preventDefault();
     compareContext.setCompareList({ cities: [], searched: false });
@@ -64,9 +68,6 @@ export default function AdvSearch() {
         hideForm();
       })
       .catch(err => {
-        console.log(
-          'WWHHHOOOOOOAAAAAA, LOOOOKKKSSSS LIKE YOU ERRRRRROOOOORRRRREEEDDD OOOOUUUUUUTTTTTT!!!!'
-        );
         document.getElementById('form-container').classList.add('error');
         setTimeout(() => {
           document.getElementById('form-container').classList.remove('error');
