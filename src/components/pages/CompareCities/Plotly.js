@@ -362,7 +362,6 @@ export default function Plotly(props) {
       <RentPredict
         compareList={compareList.cities}
         lastCityState={{ lastCity, lastState, lastCityAdded }}
-        searching={{ searching, setSearching }}
         rentalData={{
           rentalFill,
           rentalPredictData,

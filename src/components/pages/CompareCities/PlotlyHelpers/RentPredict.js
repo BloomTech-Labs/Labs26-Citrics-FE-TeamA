@@ -5,7 +5,6 @@ import axios from '../../../../api/dsapi';
 export default function RentPredict({
   compareList,
   lastCityState,
-  searching,
   rentalData,
 }) {
   // State items to make for easier use.
@@ -25,11 +24,11 @@ export default function RentPredict({
     }
     fetchRentalPredict();
   }, [lastCityState.lastCity, lastCityState.lastState]);
+
   const currentYear = new Date().getFullYear();
   const nextYear = currentYear + 1;
   const secondYearOut = currentYear + 2;
-  // Makes the jsx text for each rental predict item and their index.
-  // Gets set to rentalFill
+  // Rental Fill gets set to jsx text for each rental predict item and their index.
   function dynamicRentPredict(rentalPredictData, index) {
     if (index in rentalPredictData) {
       // Current city in an array format
@@ -73,18 +72,23 @@ export default function RentPredict({
     }
   }
   // checks the length of the compare list and runs functions to set the rentalFill
-  // Some additional checks to make sure the rentalFill and rentalPredictData are matching compareList
   if (compareList.length === 1) {
     dynamicRentPredict(rentalPredictData, 0);
+    // Some additional checks to make sure the rentalFill and rentalPredictData are matching compareList
     rentalPredictData.length > 1 &&
       setRentalPredictData([rentalPredictData[0]]);
   }
-  compareList.length === 2 &&
+  if (compareList.length === 2) {
+    dynamicRentPredict(rentalPredictData, 1);
+    // Some additional checks to make sure the rentalFill and rentalPredictData are matching compareList
     rentalPredictData.length > 2 &&
-    setRentalPredictData(rentalPredictData.slice(0, 2));
-  compareList.length === 2 && dynamicRentPredict(rentalPredictData, 1);
-  compareList.length === 3 && dynamicRentPredict(rentalPredictData, 2);
-  return rentalFill[0] || rentalFill[1] ? (
+      setRentalPredictData(rentalPredictData.slice(0, 2));
+  }
+  if (compareList.length === 3) {
+    dynamicRentPredict(rentalPredictData, 2);
+  }
+  // if rentalFill exists, return the jsx with the rentalFill[index]call
+  return rentalFill[0] ? (
     <section className="rentalPredSection">
       {' '}
       <h3>Predictive Rent Prices for the Next 2 Years</h3>
@@ -95,6 +99,7 @@ export default function RentPredict({
       </div>
     </section>
   ) : (
+    // else load the Loader
     <Loader />
   );
 }

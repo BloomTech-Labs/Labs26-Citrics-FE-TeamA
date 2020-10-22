@@ -9,6 +9,7 @@ export default function WeatherPredictViz({
   lastCityState,
   searching,
 }) {
+  // Set up setWeatherPredict from state so it is not a long string in the code below
   const setWeatherPredict = weatherPrediction.setWeatherPredict;
   useEffect(() => {
     // For search bar loading knowledge
@@ -16,7 +17,9 @@ export default function WeatherPredictViz({
       ...searching.searching,
       weatherPredictViz: true,
     });
+    // Async axios call to set weatherPredict
     async function fetchWeatherPredict() {
+      // Checks the length of compareList cities length to know which link to pull data from DS API.
       if (compareList.length === 1) {
         const request = await axios.get(
           `/weather/predict/viz/${lastCityState.lastCity}_${lastCityState.lastState}`
@@ -32,7 +35,6 @@ export default function WeatherPredictViz({
           `/weather/predict/viz/${firstCity[0]}_${firstCity[1]}?city2=${lastCityState.lastCityAdded[0]}&state2=${lastCityState.lastCityAdded[1]}`
         );
         const weatherPredictData = JSON.parse(request.data);
-
         setWeatherPredict({
           weatherPredictionData: weatherPredictData.data,
           weatherPredictionLayout: weatherPredictData.layout,
@@ -61,7 +63,9 @@ export default function WeatherPredictViz({
     lastCityState.lastCityAdded,
     compareList,
   ]);
+  // set up from state to not have long strings
   const weatherPredictRes = weatherPrediction.weatherPredict;
+  // If weatherPredicitonRes has weatherPredictData, return the plot
   return weatherPredictRes.weatherPredictionData ? (
     <div className="weatherPlotViz">
       <Plot
@@ -70,6 +74,7 @@ export default function WeatherPredictViz({
       />
     </div>
   ) : (
+    // Else display a loader
     <Loader />
   );
 }
