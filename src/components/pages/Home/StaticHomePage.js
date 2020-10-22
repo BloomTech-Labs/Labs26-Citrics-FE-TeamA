@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../common/styles/StaticHomePage.scss';
 export default function StaticHomePage() {
+  // When page first loads, This information is displayed on the homepage
   return (
     <section className="information">
       <div>

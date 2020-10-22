@@ -32,11 +32,10 @@ export default function JobIndustryViz({
     lastCityState.lastCityAdded,
     compareList,
   ]);
-  jobIndustry[0] && console.log(jobIndustry);
   function dynamicJobFill(jobIndustryInfo, index) {
     if (index in jobIndustry) {
       jobFill[index] = [
-        <div className="jobSubViz">
+        <div className="jobSubViz" key={index}>
           {jobIndustry[index] && (
             <div className="jobInfo">
               <h6>
@@ -71,7 +70,6 @@ export default function JobIndustryViz({
       ];
     }
   }
-  console.log(jobFill);
   if (compareList.length === 1) {
     dynamicJobFill(jobIndustry, 0);
     jobIndustry.length > 1 && setJobIndustry([jobIndustry[0]]);
@@ -82,7 +80,7 @@ export default function JobIndustryViz({
     setJobIndustry(jobIndustry.slice(0, 2));
   compareList.length === 2 && dynamicJobFill(jobIndustry, 1);
   compareList.length === 3 && dynamicJobFill(jobIndustry, 2);
-  return (
+  return jobFill[0] || jobFill[1] ? (
     <div className="jobViz">
       {jobFill[0] && compareList.length >= 1 && jobFill[0]}
       {jobFill[1] && compareList.length >= 2 && jobFill[1]}
@@ -90,6 +88,8 @@ export default function JobIndustryViz({
 
       {/* {dynamicJobViz(jobTable.jobVizData, jobTable.jobVizLayout)} */}
     </div>
+  ) : (
     // eslint-disable-next-line semi
+    <Loader />
   );
 }

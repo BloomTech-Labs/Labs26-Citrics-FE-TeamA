@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+// fetches all the available cities for the autocomplete search bar
 import fetchCityData from '../../../api/cityData';
-
+// importing of main components
 import CityReport from '../../common/CityReport';
 import Title from '../Home/Title';
 import AddingCities from '../../common/AddingCities';
 import StaticHomePage from '../Home/StaticHomePage';
-
+// Contexts
 import { SearchContext } from '../../../state/contexts/ReportContext';
 import { ReportContext } from '../../../state/contexts/ReportContext';
 
@@ -31,11 +32,11 @@ export default function RenderHomePage() {
 
   // An object of city data arrays
   const cityDataArr = {};
-
+  // As soon as the page loads, retrieve all the available cities to be used for the search bar
   useEffect(() => {
     getRentalData();
   }, []);
-  // Rental Data from DS API
+  // Cities and State from Rental Data from DS API
   const getRentalData = () => {
     fetchCityData()
       .then(response => {
@@ -46,7 +47,6 @@ export default function RenderHomePage() {
       });
   };
   // For each item in cityData array, if it is not in the dicitonary cityDataArr yet, make an array for that city name
-
   cityData.forEach(value => {
     if (!(value.city in cityDataArr)) {
       cityDataArr[value.city] = [];
@@ -54,6 +54,8 @@ export default function RenderHomePage() {
     // Push each city and state name into the cityDataArr[state]
     cityDataArr[value.city].push([value.city, value.state]);
   });
+  // Will always display Title and AutoComplete Search Bar
+  // Static home page will change to CityReport if compareList.searched is true
   return (
     <>
       <div className="colorTitle">
