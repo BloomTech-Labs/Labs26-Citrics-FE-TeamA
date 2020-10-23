@@ -6,6 +6,10 @@ For steps on how to work with this repository [please see here](https://docs.lab
 
 You can find the deployed project at [a.citrics.dev](https://a.citrics.dev/).
 
+<p align='center'>
+<img width="90%" src='./.github/CitricsEndLabs.gif' alt='Gif moving image of a preview of the citircs website at the end of Labs26'/>
+</p>
+
 ## Contributors
 
 |                                            [Michael Perez](https://github.com/Perezented)                                            |                                         [Toricruz Mendiola](https://github.com/mtoricruz)                                          |
@@ -55,15 +59,14 @@ You can find the deployed project at [a.citrics.dev](https://a.citrics.dev/).
 
 # Installation Instructions
 
-
 ## Scripts
 
-> Enter `npm  command_name` into your terminal to run scripts below 
+> Enter `npm command_name` into your terminal to run scripts below
 
     * build - creates a build of the application
     * start - starts the production server after a build is created
     * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
-    * e2e - opens cypress GUI 
+    * e2e - opens cypress GUI
 
 # Contributing
 
@@ -145,6 +148,7 @@ Please delete options that are not relevant.
 See [Backend Documentation](https://ds.citrics.dev/) for details on the backend of our project.
 
 ## Bugs/Issues
+
 - Multiple duplicate useEffect calls on most endpoints.
   - This can be visualized by console logging a particular state such as cityData
     - Suspected to be what we have in the useEffect dependency arrays
@@ -152,7 +156,6 @@ See [Backend Documentation](https://ds.citrics.dev/) for details on the backend 
 - Creating a separate backend for Front-end team of ALL US city names to prevent immediate crash
   - build a backend where you can call an endpoint to GET city names separate from DS API
     - Add full CRUD ops to endpoint if you plan to add worldwide cities
- 
 
 ## Future Improvements
 
