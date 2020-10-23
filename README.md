@@ -10,6 +10,8 @@ You can find the deployed project at [a.citrics.dev](https://a.citrics.dev/).
 <img width="90%" src='./.github/CitricsEndLabs.gif' alt='Gif moving image of a preview of the citircs website at the end of Labs26'/>
 </p>
 
+> A walk through video with audio about each seciton found [on this video](https://youtu.be/zdBlEwy-V3M)
+
 ## Contributors
 
 |                                            [Michael Perez](https://github.com/Perezented)                                            |                                         [Toricruz Mendiola](https://github.com/mtoricruz)                                          |
